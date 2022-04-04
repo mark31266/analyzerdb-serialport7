@@ -29,8 +29,8 @@ d = (n.getDate() < 10 ? '0' : '') + n.getDate()
 // var mon = ["Jan","Feb","Mar","Apr","May","June","Jul","Aug","Sep","Oct","Nov","12"];
 var wks = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 var week =[wks[w]];
-db2.collection("DateSetting").doc("Format").get().then((doc) => {
-    var format2 = doc.data().format; 
+
+    var format2 ="mm-dd-yyyy" 
    if (format2 == "mm-dd-yyyy") 
   {
     document.getElementById("date1").innerHTML =  m + "-" + d + "-" + y + " <b>| </b>" + week;
@@ -52,5 +52,4 @@ db2.collection("DateSetting").doc("Format").get().then((doc) => {
     document.getElementById("date").innerHTML =  y + "-" + m + "-" + d + " <b>| </b>" + week;
   }
 
-})
 }

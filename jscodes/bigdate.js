@@ -83,8 +83,7 @@ const date5 = event.toLocaleString('en-GB', options);
     }
   }
 
-  for (let j = 1; j <= nextDays; j++) {
-    days += `<div class="next-date">${j}</div>`;
+  for (let j = 0; j <= nextDays; j++) {
     monthDays.innerHTML = days;
   }
 };
