@@ -904,37 +904,3 @@ docRef.get().then((doc) => {
 function printfunction() {
   window.print();
 }
-
-var socket = io();
-socket.on('status', function(status) {
-  console.log(status);
-  if (String(status).includes("COM1") ){
-   machinename = "Orphee Mythic 22"; 
-     //SelectPicker Nav
-   const navobj = document.createElement("li");
-   const navobj2 = document.createElement("a");
-   navobj2.textContent = "Mythic 22";
-   navobj2.href = "/myth22/run"; 
-   navobj.appendChild(navobj2)
-   document.getElementById("homeSubmenu1").appendChild(navobj);
-  }
-  if (String(status).includes("COM2") ){
-    machinename = "Orphee Mythic 18"; 
-    const navobj = document.createElement("li");
-    const navobj2 = document.createElement("a");
-    navobj2.textContent = "Mythic 18";
-    navobj2.href = "/myth18/run"; 
-    navobj.appendChild(navobj2)
-    document.getElementById("homeSubmenu1").appendChild(navobj);
-   }
-   if (String(status).includes("COM3") ){
-    machinename = "Orphee Mythic 60"; 
-    const navobj = document.createElement("li");
-    const navobj2 = document.createElement("a");
-    navobj2.textContent = "Mythic 22";
-    navobj2.href = "/myth60/run"; 
-    navobj.appendChild(navobj2)
-    document.getElementById("homeSubmenu1").appendChild(navobj);
-   }
-  socket.close();
-});

@@ -18,7 +18,6 @@ if (sec < 10){
 document.getElementById('clock').innerHTML = hrs + ':' + min + ':' + sec;
 }
 function displaydate(){
-    let db2 = firebase.firestore();
 n =  new Date();
 w = n.getDay();
 y = n.getFullYear();

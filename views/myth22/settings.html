@@ -48,6 +48,7 @@
         </a>
       </div>
       <ul class="list-unstyled components">
+        <!-- <p class="search" id="machinename" style="font-size:22px;"></p> -->
         <li>
           <a href="/home">Main Dashboard</a>
         </li>
@@ -68,6 +69,12 @@
             </li>
             <li>
               <a href="/myth60/records">Mythic 60</a>
+            </li>
+            <li>
+              <a href="/mnchipv5/records">MNCHIP v5</a>
+            </li>
+            <li>
+              <a href="/myth18vet/records">Mythic 18 Vet</a>
             </li>
           </ul>
         </li>
@@ -138,19 +145,20 @@
                     <div class="row align-items-center">
                       <div class="col-md-4">
                         <table id="UserDetails" class="table table-borderless table-fluid">
-                          <h2>Mark Montenegro</h2>
-                            <!--<div id="username5"></div>
-                          </h2>-->
-                          <h5>Administrator</h5>
-                            <!--<div id="userlvl1"></div>
-                          </h5>-->
+                          <!--  Name and User Level -->
+                          <h2>
+                            <div id="username5"></div>
+                          </h2>
+                          <h5>
+                            <div id="userlvl1"></div>
+                          </h5>
                           <thead>
                             <tr id="desc">
                               <th class="w-30" style="text-align:left">
                                 <div class="inputBoxFname">
                                   Description:</div>
                                 <div id="desc1" class="infotab"></div>
-                                <div class="signatureover1"><input id="desc1inputs"></div>
+                                <div class="credentials"><input id="desc1inputs"></div>
                               </th>
                             </tr>
                             <tr id="email">
@@ -158,7 +166,7 @@
                                 <div class="inputBoxFname">
                                   Email:</div>
                                 <div id="email1" class="infotab"></div>
-                                <div class="signatureover1"><input id="email1inputs"></div>
+                                <div class="credentials"><input id="email1inputs"></div>
                               </th>
                             </tr>
                             <tr id="username">
@@ -166,7 +174,7 @@
                                 <div class="inputBoxFname">
                                   Username:</div>
                                 <div id="username1" class="infotab"></div>
-                                <div class="signatureover1"><input id="username1inputs"></div>
+                                <div class="credentials"><input id="username1inputs"></div>
                               </th>
                             </tr>
                           </thead>
@@ -176,13 +184,14 @@
                           <button id="forgotBTN" class="btn text-light">Forgot Password?</button>
                           <button id="updateBTN" class="btn text-light">Update</button>
                           <button id="subchangeBTN" class="btn text-light">Submit Changes</button>
+                          <button id="closeBTN" class="btn text-light">Close</button>
                         </div>
                       </div>
                       &nbsp;
                       <div class="col-md-1"></div>
                       <!--Clock-->
                       <!-- <div class="col-md-1"></div> -->
-                      <div class="col-md-4">
+                      <div class="col-md-5">
                         <p></p>
                         <div class="clockkk">
                           <div class="clock1">
@@ -201,31 +210,31 @@
                       &nbsp;
 
 
-         
-                            <!--Calendar-->
-                            <!-- <div class="col-md-offset-1 col-md-1"></div>  -->
-                            <div class="col-sm-1">
-                              <div class="calendar">
-                                  <div class="month">
-                                      <i class="fas fa-angle-left prev"></i>
-                                      <div class="date">
-                                          <h1></h1>
-                                          <p></p>
-                                      </div>
-                                      <i class="fas fa-angle-right next"></i>
-                                  </div>
-                                  <div class="weekdays">
-                                      <div>Sun</div>
-                                      <div>Mon</div>
-                                      <div>Tue</div>
-                                      <div>Wed</div>
-                                      <div>Thu</div>
-                                      <div>Fri</div>
-                                      <div>Sat</div>
-                                  </div>
-                                  <div class="days"></div>
-                              </div>
+
+                      <!--Calendar-->
+                      <!-- <div class="col-md-offset-1 col-md-1"></div>  -->
+                      <div class="col-sm-1">
+                        <div class="calendar">
+                          <div class="month">
+                            <i class="fas fa-angle-left prev"></i>
+                            <div class="date">
+                              <h1></h1>
+                              <p></p>
+                            </div>
+                            <i class="fas fa-angle-right next"></i>
                           </div>
+                          <div class="weekdays">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                          </div>
+                          <div class="days"></div>
+                        </div>
+                      </div>
                       <div class="col-1">
                       </div>
                       <div class="col-lg-1"></div>
@@ -254,8 +263,10 @@
                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title text-modal-header" id="ModalLongTitle"><strong>Edit Range</strong></strong></h5>
-                                  <button type="button" class="close" onclick="$('#Modalref').modal('hide');" aria-label="Close">
+                                  <h5 class="modal-title text-modal-header" id="ModalLongTitle">Edit
+                                    Range</h5>
+                                  <button type="button" class="close" onclick="$('#Modalref').modal('hide');"
+                                    aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
@@ -263,17 +274,16 @@
                                 <div class="modal-body">
                                   <div class="row">
                                     <div class="col-6">
-                                      <th id="trd" class="w-10" style="text-align:left"><strong>Machine and Species</strong>
+                                      <th id="trd" class="w-10" style="text-align:left"><strong>Machine and
+                                          Species</strong>
                                       <th class="no-gutters" style="text-align:center">
                                         <div class="dropdown bootstrap-select fit-width show"></div>
                                         <select class="selectpicker select-dte" id="msselect" data-size="4"
                                           data-live-search="true" data-width="85%">
                                           <option disabled selected value>Select an Option</option>
-                                          <option>Mythic 18 Vet - Dog</option>
-                                          <option>MNCHIP V5 - Cat</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="col-3">
                                       <button id="machinebutton" class="btn btn-sbmt1 text-light" onclick=""
                                         class="button-xl pt-3"><span>Submit</span></button>
@@ -290,15 +300,17 @@
                                       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Range</h5>
-                                            <button type="button" class="close" onclick="$('#addRefModal').modal('hide');" aria-label="Close">
+                                            <h5 class="modal-title" id="exampleModalCenterTitle">Add Range</h5>
+                                            <button type="button" class="close"
+                                              onclick="$('#addRefModal').modal('hide');" aria-label="Close">
                                               <span aria-hidden="true">&times;</span>
                                             </button>
                                           </div>
                                           <div class="modal-body">
                                             <div class="row">
                                               <div class="col-6">
-                                                <th id="trd" class="w-10" style="text-align:left"><strong>Machine</strong>
+                                                <th id="trd" class="w-10" style="text-align:left">
+                                                  <strong>Machine</strong>
                                                 <th class="no-gutters" style="text-align:center">
                                                   <div class="dropdown bootstrap-select fit-width show"></div>
                                                   <select class="selectpicker select-dte" id="machineselect"
@@ -309,7 +321,8 @@
                                                   </select>
                                               </div>
                                               <div class="col-6">
-                                                <th id="trd" class="w-10" style="text-align:left"><strong>Species</strong>
+                                                <th id="trd" class="w-10" style="text-align:left">
+                                                  <strong>Species</strong>
                                                 <th class="no-gutters" style="text-align:center">
                                                   <input type="" class="form-control" id="speciesInp"
                                                     placeholder="Add Species" data-live-search="true" data-width="85%">
@@ -328,79 +341,79 @@
 
                                               <tr id="wbc">
                                                 <td id="seq2">ALB</td>
-                                                <td><input id="albl" class="noBorderInp"type="number"></td>
+                                                <td><input id="albl" class="noBorderInp" type="number"></td>
                                                 <td><input id="albu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="neu">
                                                 <td id="seq2">TP</td>
-                                                <td><input id="tpl" class="noBorderInp"type="number"></td>
+                                                <td><input id="tpl" class="noBorderInp" type="number"></td>
                                                 <td><input id="tpu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="lym">
                                                 <td id="seq2">Ca</td>
-                                                <td><input id="calower" class="noBorderInp"type="number"></td>
+                                                <td><input id="calower" class="noBorderInp" type="number"></td>
                                                 <td><input id="caupper" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="mon">
                                                 <td id="seq2">GLU</td>
-                                                <td><input id="glul" class="noBorderInp"type="number"></td>
+                                                <td><input id="glul" class="noBorderInp" type="number"></td>
                                                 <td><input id="gluu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="eos">
                                                 <td id="seq2">BUN</td>
-                                                <td><input id="bunl" class="noBorderInp"type="number"></td>
+                                                <td><input id="bunl" class="noBorderInp" type="number"></td>
                                                 <td><input id="bunu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="bas">
                                                 <td id="seq2">P</td>
-                                                <td><input id="pl" class="noBorderInp"type="number"></td>
+                                                <td><input id="pl" class="noBorderInp" type="number"></td>
                                                 <td><input id="pu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="rbc">
                                                 <td id="seq2">AMY</td>
-                                                <td><input id="amyl" class="noBorderInp"type="number"></td>
+                                                <td><input id="amyl" class="noBorderInp" type="number"></td>
                                                 <td><input id="amyu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="hgb">
                                                 <td id="seq2">CHOL</td>
-                                                <td><input id="choll" class="noBorderInp"type="number"></td>
+                                                <td><input id="choll" class="noBorderInp" type="number"></td>
                                                 <td><input id="cholu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="hct">
                                                 <td id="seq2">ALT</td>
-                                                <td><input id="altl" class="noBorderInp"type="number"></td>
+                                                <td><input id="altl" class="noBorderInp" type="number"></td>
                                                 <td><input id="altu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="mcv">
                                                 <td id="seq2">TBIL</td>
-                                                <td><input id="tbill" class="noBorderInp"type="number"></td>
+                                                <td><input id="tbill" class="noBorderInp" type="number"></td>
                                                 <td><input id="tbilu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="mch">
                                                 <td id="seq2">ALP</td>
-                                                <td><input id="alpl" class="noBorderInp"type="number"></td>
+                                                <td><input id="alpl" class="noBorderInp" type="number"></td>
                                                 <td><input id="alpu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="mchc">
                                                 <td id="seq2">CRE</td>
-                                                <td><input id="crel" class="noBorderInp"type="number"></td>
+                                                <td><input id="crel" class="noBorderInp" type="number"></td>
                                                 <td><input id="creu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="plt">
                                                 <td id="seq2">CK</td>
-                                                <td><input id="ckl" class="noBorderInp"type="number"></td>
+                                                <td><input id="ckl" class="noBorderInp" type="number"></td>
                                                 <td><input id="cku" class="noBorderInp" type="number"></td>
                                               </tr>
 
@@ -415,79 +428,79 @@
 
                                               <tr id="wbc">
                                                 <td id="seq2">WBC Count</td>
-                                                <td><input id="wbcl" class="noBorderInp"type="number"></td>
+                                                <td><input id="wbcl" class="noBorderInp" type="number"></td>
                                                 <td><input id="wbcu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="neu">
                                                 <td id="seq2">Neutrophil</td>
-                                                <td><input id="neul" class="noBorderInp"type="number"></td>
+                                                <td><input id="neul" class="noBorderInp" type="number"></td>
                                                 <td><input id="neuu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="lym">
                                                 <td id="seq2">Lymphocyte</td>
-                                                <td><input id="lyml" class="noBorderInp"type="number"></td>
+                                                <td><input id="lyml" class="noBorderInp" type="number"></td>
                                                 <td><input id="lymu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="mon">
                                                 <td id="seq2">Monocyte</td>
-                                                <td><input id="monl" class="noBorderInp"type="number"></td>
+                                                <td><input id="monl" class="noBorderInp" type="number"></td>
                                                 <td><input id="monu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="eos">
                                                 <td id="seq2">Eosinophil</td>
-                                                <td><input id="eosl" class="noBorderInp"type="number"></td>
+                                                <td><input id="eosl" class="noBorderInp" type="number"></td>
                                                 <td><input id="eosu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="bas">
                                                 <td id="seq2">Basophil</td>
-                                                <td><input id="basl" class="noBorderInp"type="number"></td>
+                                                <td><input id="basl" class="noBorderInp" type="number"></td>
                                                 <td><input id="basu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="rbc">
                                                 <td id="seq2">RBC Count</td>
-                                                <td><input id="rbcl" class="noBorderInp"type="number"></td>
+                                                <td><input id="rbcl" class="noBorderInp" type="number"></td>
                                                 <td><input id="rbcu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="hgb">
                                                 <td id="seq2">HGB</td>
-                                                <td><input id="hgbl" class="noBorderInp"type="number"></td>
+                                                <td><input id="hgbl" class="noBorderInp" type="number"></td>
                                                 <td><input id="hgbu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="hct">
                                                 <td id="seq2">HCT</td>
-                                                <td><input id="hctl" class="noBorderInp"type="number"></td>
+                                                <td><input id="hctl" class="noBorderInp" type="number"></td>
                                                 <td><input id="hctu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="mcv">
                                                 <td id="seq2">MCV</td>
-                                                <td><input id="mcvl" class="noBorderInp"type="number"></td>
+                                                <td><input id="mcvl" class="noBorderInp" type="number"></td>
                                                 <td><input id="mcvu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="mch">
                                                 <td id="seq2">MCH</td>
-                                                <td><input id="mchl" class="noBorderInp"type="number"></td>
+                                                <td><input id="mchl" class="noBorderInp" type="number"></td>
                                                 <td><input id="mchu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="mchc">
                                                 <td id="seq2">MCHC</td>
-                                                <td><input id="mchcl" class="noBorderInp"type="number"></td>
+                                                <td><input id="mchcl" class="noBorderInp" type="number"></td>
                                                 <td><input id="mchcu" class="noBorderInp" type="number"></td>
                                               </tr>
 
                                               <tr id="plt">
                                                 <td id="seq2">PLT</td>
-                                                <td><input id="pltl" class="noBorderInp"type="number"></td>
+                                                <td><input id="pltl" class="noBorderInp" type="number"></td>
                                                 <td><input id="pltu" class="noBorderInp" type="number"></td>
                                               </tr>
 
@@ -495,8 +508,10 @@
                                           </div>
                                           <div class="modal-footer">
                                             <button id="addsubmit" type="button" class="btn text-light">Submit</button>
-                                            <button id="savesubmit" type="button" class="btn text-light">Save Changes</button>
-                                            <button id="changemachine" type="button" class="btn text-light">Change Machine</button>
+                                            <button id="savesubmit" type="button" class="btn text-light">Save
+                                              Changes</button>
+                                            <button id="changemachine" type="button" class="btn text-light">Change
+                                              Machine</button>
                                           </div>
                                         </div>
                                       </div>
@@ -517,57 +532,84 @@
 
                                     <tr id="wbc">
                                       <td id="seq2">ALB</td>
+                                      <td><div id="albl1"></div><input id="albl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="albu1"></div><input id="albu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="neu">
                                       <td id="seq2">TP</td>
+                                      <td><div id="tpl1"></div><input id="tpl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="tpu1"></div><input id="tpu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="lym">
                                       <td id="seq2">Ca</td>
+                                      <td><div id="cal1"></div><input id="calower2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="cau1"></div><input id="caupper2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="mon">
                                       <td id="seq2">GLU</td>
+                                      <td><div id="glul1"></div><input id="glul2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="gluu1"></div><input id="gluu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="eos">
                                       <td id="seq2">BUN</td>
+                                      <td><div id="bunl1"></div><input id="bunl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="bunu1"></div><input id="bunu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="bas">
                                       <td id="seq2">P</td>
+                                      <td><div id="pl1"></div><input id="pl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="pu1"></div><input id="pu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="rbc">
                                       <td id="seq2">AMY</td>
+                                      <td><div id="amyl1"></div><input id="amyl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="amyu1"></div><input id="amyu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="hgb">
                                       <td id="seq2">CHOL</td>
+                                      <td><div id="choll1"></div><input id="choll2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="cholu1"></div><input id="cholu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="hct">
                                       <td id="seq2">ALT</td>
+                                      <td><div id="altl1"></div><input id="altl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="altu1"></div><input id="altu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="mcv">
                                       <td id="seq2">TBIL</td>
+                                      <td><div id="tbill1"></div><input id="tbill2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="tbilu1"></div><input id="tbilu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="mch">
                                       <td id="seq2">ALP</td>
+                                      <td><div id="alpl1"></div><input id="alpl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="aplu1"></div><input id="alpu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="mchc">
                                       <td id="seq2">CRE</td>
+                                      <td><div id="crel1"></div><input id="crel2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="creu1"></div><input id="creu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="plt">
                                       <td id="seq2">CK</td>
+                                      <td><div id="ckl1"></div><input id="ckl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="cku1"></div><input id="cku2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                   </table>
+
 
                                   <table id="mythic18vettable" class="table table-bordered">
                                     <tr id="seq">
@@ -578,58 +620,90 @@
 
                                     <tr id="wbc">
                                       <td id="seq2">WBC Count</td>
-                                      
+                                      <td><div id="wbcl1"></div><input id="wbcl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="wbcu1"></div><input id="wbcu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="neu">
                                       <td id="seq2">Neutrophil</td>
+                                      <td><div id="neul1"></div><input id="neul2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="neuu1"></div><input id="neuu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="lym">
                                       <td id="seq2">Lymphocyte</td>
+                                      <td><div id="lyml1"></div><input id="lyml2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="lymu1"></div><input id="lymu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="mon">
                                       <td id="seq2">Monocyte</td>
+                                      <td><div id="monl1"></div><input id="monl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="monu1"></div><input id="monu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="eos">
                                       <td id="seq2">Eosinophil</td>
+                                      <td><div id="eosl1"></div><input id="eosl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="eosu1"></div><input id="eosu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="bas">
                                       <td id="seq2">Basophil</td>
+                                      <td><div id="basl1"></div><input id="basl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="basu1"></div><input id="basu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="rbc">
                                       <td id="seq2">RBC Count</td>
+                                      <td><div id="rbcl1"></div><input id="rbcl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="rbcu1"></div><input id="rbcu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="hgb">
                                       <td id="seq2">HGB</td>
+                                      <td><div id="hgbl1"></div><input id="hgbl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="hgbu1"></div><input id="hgbu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="hct">
                                       <td id="seq2">HCT</td>
+                                      <td><div id="hctl1"></div><input id="hctl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="hctu1"></div><input id="hctu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="mcv">
                                       <td id="seq2">MCV</td>
+                                      <td><div id="mcvl1"></div><input id="mcvl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="mcvu1"></div><input id="mcvu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="mch">
                                       <td id="seq2">MCH</td>
+                                      <td><div id="mchl1"></div><input id="mchl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="mchu1"></div><input id="mchu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="mchc">
                                       <td id="seq2">MCHC</td>
+                                      <td><div id="mchcl1"></div><input id="mchcl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="mchcu1"></div><input id="mchcu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                     <tr id="plt">
                                       <td id="seq2">PLT</td>
+                                      <td><div id="pltl1"></div><input id="pltl2" class="noBorderInp1" type="number"></td>
+                                      <td><div id="pltu1"></div><input id="pltu2" class="noBorderInp1" type="number"></td>
                                     </tr>
 
                                   </table>
+
+                                </div>
+                                <div id="footerRefMythic18vet" class="modal-footer">
+                                  <button id="addsubmit1" type="button" class="btn addsubmit text-light">Submit</button>
+                                </div>
+                                <div id="footerRefMnchipv5" class="modal-footer">
+                                  <button id="addsubmit2" type="button" class="btn addsubmit text-light">Submit</button>
                                 </div>
                               </div>
                             </div>
@@ -732,30 +806,37 @@
                   &nbsp;
 
                   <div class="modal fade" id="messagemodal" role="dialog" data-backdrop="false" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h4 class="modal-title">Audit Log</h4>
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" style="height:380px;">
                           <div id="content">
 
 
                             <div id="bloodlabel">Log Number:</div>
                             <div class="modaltexts" id="number1"></div>
-                            <div id="bloodlabel">Activity:</div>
+                           
+                            <div id="bloodlabel">Activity:</div>                            
                             <div class="modaltexts" id="activity1"></div>
-                            <div id="bloodlabel">Date Comitted:</div>
+                          
+                            <div id="bloodlabel">Date Comitted:</div>                           
                             <div class="modaltexts" id="date6"></div>
-                            <div id="bloodlabel">Serial Number:</div>
+                            
+                            <div id="bloodlabel">Serial Number:</div>                           
                             <div class="modaltexts" id="serial1"></div>
-                            <div id="bloodlabel">Machine:</div>
+                            
+                            <div id="bloodlabel">Machine:</div>                           
                             <div class="modaltexts" id="machine1"></div>
-                            <div id="bloodlabel">Number Identifier:</div>
+                            
+                            <div id="bloodlabel">Number Identifier:</div>                           
                             <div class="modaltexts" id="idnumber1"></div>
-                            <div id="bloodlabel">User Comitted:</div>
+                            
+                            <div id="bloodlabel">User Comitted:</div>                         
                             <div class="modaltexts" id="username63"></div>
+                            
                           </div>
                         </div>
                       </div>
@@ -779,8 +860,14 @@
                     </div>
                   </div>
                   &nbsp;
+
+
+
+
+
                   <script src="/jscodes/date.js"></script>
                   <script src="/jscodes/bigdate.js"></script>
+                  <script src="/jscodes/machine.js"></script>
                   <script>
                     // Add the following code if you want the name of the file appear on select
                     $(".custom-file-input").on("change", function () {

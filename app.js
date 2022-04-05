@@ -101,6 +101,32 @@
           res.redirect("/login");
         });
     });
+    app.get("/mnchipv5/run", function(req,res)
+    {
+      const sessionCookie = req.cookies.session || "";
+      admin
+        .auth()
+        .verifySessionCookie(sessionCookie, true)
+        .then(() => {
+          res.render("mnchipv5/runsamples.html");
+        })
+        .catch((error) => {
+          res.redirect("/login");
+        });
+    });
+    app.get("/myth18vet/run", function(req,res)
+    {
+      const sessionCookie = req.cookies.session || "";
+      admin
+        .auth()
+        .verifySessionCookie(sessionCookie, true)
+        .then(() => {
+          res.render("myth18vet/runsamples.html");
+        })
+        .catch((error) => {
+          res.redirect("/login");
+        });
+    });
     app.get("/myth22/records", function(req,res)
     {
       const sessionCookie = req.cookies.session || "";
@@ -140,6 +166,32 @@
           res.redirect("/login");
         });
     });
+    app.get("/mnchipv5/records", function(req,res)
+    {
+      const sessionCookie = req.cookies.session || "";
+      admin
+        .auth()
+        .verifySessionCookie(sessionCookie, true)
+        .then(() => {
+          res.render("mnchipv5/managerecords.html");
+        })
+        .catch((error) => {
+          res.redirect("/login");
+        });
+    });
+    app.get("/myth18vet/records", function(req,res)
+    {
+      const sessionCookie = req.cookies.session || "";
+      admin
+        .auth()
+        .verifySessionCookie(sessionCookie, true)
+        .then(() => {
+          res.render("myth18vet/managerecords.html");
+        })
+        .catch((error) => {
+          res.redirect("/login");
+        });
+    });
     app.get("/settings", function(req,res)
     {
       const sessionCookie = req.cookies.session || "";
@@ -163,6 +215,19 @@
         .verifySessionCookie(sessionCookie, true)
         .then(() => {
           res.render("myth22/about.html");
+        })
+        .catch((error) => {
+          res.redirect("/login");
+        });
+    });
+    app.get("/signup", function(req,res)
+    {
+      const sessionCookie = req.cookies.session || "";
+      admin
+        .auth()
+        .verifySessionCookie(sessionCookie, true)
+        .then(() => {
+          res.render("signup.html");
         })
         .catch((error) => {
           res.redirect("/login");
