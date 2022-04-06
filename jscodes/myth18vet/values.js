@@ -68,13 +68,13 @@
                 let th_plt = document.getElementById('th_plt');
                 let th_pltunit = document.getElementById('th_pltunit');
                 let th_pltnormal =document.getElementById('th_pltnormal');
-                let Fnameinput = document.getElementById('fnameinputs'); 
-                let Lnameinput = document.getElementById('lnameinputs');
+                // let Fnameinput = document.getElementById('fnameinputs'); 
+                // let Lnameinput = document.getElementById('lnameinputs');
                 let genderinputs = document.getElementById('genderselect'); 
                 let ageinputs = document.getElementById('ageinputs');
                 let bloodinputs = document.getElementById('bloodselect');
-                let fnamevariable = fnameinputs.value; 
-                let lnamevariable = lnameinputs.value; 
+                // let fnamevariable = fnameinputs.value; 
+                // let lnamevariable = lnameinputs.value; 
                 let pinputs = document.getElementById('physicianinputs');
                 var date2 = document.getElementById("date");  
                 var clock1 = document.getElementById("clock");  

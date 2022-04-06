@@ -1,7 +1,7 @@
            //--------------DATA----------------------//
            var DATEinput = document.getElementById('DATE'); 
            var TIMEinput = document.getElementById('timeinputs'); 
-           var SIDinput = document.getElementById('SID'); 
+           var PIDinput = document.getElementById('PID'); 
                 //-----------------WBC--------------------/
                 const results1 = document.querySelector('#results');
                 let tr_wbc = document.getElementById('wbc');
@@ -68,15 +68,15 @@
                 let th_plt = document.getElementById('th_plt');
                 let th_pltunit = document.getElementById('th_pltunit');
                 let th_pltnormal =document.getElementById('th_pltnormal');
-                let Fnameinput = document.getElementById('fnameinputs'); 
-                let Lnameinput = document.getElementById('lnameinputs');
+                // // let Fnameinput = document.getElementById('fnameinputs'); 
+                // let Lnameinput = document.getElementById('lnameinputs');
                 let genderinputs = document.getElementById('genderselect'); 
                 let ageinputs = document.getElementById('ageinputs');
                 let bloodinputs = document.getElementById('bloodselect');
-                let fnamevariable = fnameinputs.value; 
-                let lnamevariable = lnameinputs.value; 
+                // let fnamevariable = fnameinputs.value; 
+                // let lnamevariable = lnameinputs.value; 
                 let pinputs = document.getElementById('physicianinputs');
-                var date2 = document.getElementById("date");  
+                var date2 = document.getElementById("date1");  
                 var clock1 = document.getElementById("clock");  
                 var machinename = document.getElementById("machinename").innerHTML; 
                 function Update(val,type) 
@@ -239,10 +239,10 @@
                    } 
                  });     
                       //SID DATA
-                 socket.on('SID', function(SID) {
-                   if (SID !== null ){
-                     document.getElementById('SID').innerHTML += String(SID).substr(4);
-                     
+                 socket.on('OBR', function(OBR) {
+                   if (OBR !== null ){
+                     document.getElementById('PID').innerHTML = String(OBR).substring(14,28); 
+                     document.getElementById('DATE').innerHTML = date2.innerHTML; 
                    } 
                  });
                        //DATE DATA

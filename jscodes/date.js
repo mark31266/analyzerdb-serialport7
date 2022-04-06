@@ -32,7 +32,7 @@ var week =[wks[w]];
     var format2 ="mm-dd-yyyy" 
    if (format2 == "mm-dd-yyyy") 
   {
-    document.getElementById("date1").innerHTML =  m + "-" + d + "-" + y + " <b>| </b>" + week;
+    document.getElementById("date1").innerHTML =  m + "-" + d + "-" + y; 
     document.getElementById("date").innerHTML =  m + "-" + d + "-" + y + " <b>| </b>" + week;
   }
   if (format2 == "dd-mm-yyyy") 

@@ -3,6 +3,7 @@ re<html>
 <head>
   <title>Signup Page</title>
   <meta charset="utf-8">
+  <link rel="icon" href="/images/icon.png">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,6 +38,10 @@ re<html>
       <div class="inputBox">
         <input type="password" id="signup-password" required />
         <label for="signup-password">Choose Password</label>
+      </div>
+      <div class="inputBox">
+        <input type="text" id="signup-company" required />
+        <label for="signup-company">Company</label>
       </div>
       <div class="inputBox">
         <input type="text" id="signup-bio" required />
@@ -90,7 +95,8 @@ signupForm.addEventListener('submit', (e) => {
       Description : signupForm['signup-bio'].value, 
       Username :    signupForm['signup-username'].value, 
       EMail :       signupForm['signup-email'].value, 
-      UserLevel :   signupForm['signup-priv'].value
+      Company :   signupForm['signup-company'].value,
+      UserLevel :   signupForm['signup-priv'].value, 
     })
   }).then(() => {
     // sign up the user & add firestore data

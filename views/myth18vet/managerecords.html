@@ -22,6 +22,8 @@
   <script defer src="/rep/solid.js" crossorigin="anonymous"></script>
   <script defer src="/rep/fontawesome.js" crossorigin="anonymous"></script>
   <script src='/jscodes/moment.js'></script>
+  <script src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>
+  <script src='https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js'></script>
 
 </head>
 <link rel="stylesheet" href="/css/myth18vet/managerecords.css">
@@ -130,168 +132,252 @@
               <div class="run">Manage Records</div>
             </div>
           </div>
-          <div class="tabletext">
-            <div class="row">
+          
 
-              <div class="col-md-4">
-                <table class="table table-borderless table-fluid">
-                  <thead>
-                    <tr id="sid1" class="w-30">
-                      <th id="sss" class="w-30" style="text-align:left">SID:
-                      <th class="no-gutters" style="text-align:left"></b><select id="sidselect"
-                          class="selectpicker select-sid" data-size="4" data-live-search="true" data-width="80%">
-                          <option disabled selected value>Select an Option</option>
-
-                        </select></b>
-              </div>
-              </th>
-              </th>
-            </div>
-            </tr>
-            </thead>
-            </tbody>
-            </table>
-          </div>
-          <div class="col-md-5" id="font_results">
-            <table class="table table-borderless table-fluid">
-              <thead>
-                <th id="trd" class="w-30" style="text-align:left">Test Run Date:
-                <th class="no-gutters" style="text-align:left">
-                  <div class="dropdown bootstrap-select fit-width show"></div>
-                  <select class="selectpicker select-dte" id="dateselect1" onchange="sidfunction()" data-size="4"
-                    data-live-search="true" data-width="85%">
-                    <option disabled selected value>Select an Option</option>
-
-                  </select>
-          </div>
-
-        </div>
-        </th>
-        </th>
-      </div>
-      </tr>
-      </thead>
-      </tbody>
-      </table>
+  <div id='searchAlgn' object align = right d-inline-block>
+  <div class="first">
     </div>
-    <div class="col-md-3">
-      <table class="table table-borderless table-fluid">
-        <thead>
-          <div class="btn-group mr-1 " role="group">
-            <button id="resetbtn" class="btn btn-rst text-light" onClick="window.location.reload();">Reset</button>
-          </div>
-          <div class="btn-group mr-1 " role="group">
-            <button id="submitdata" class="btn btn-sbmt text-light" onClick="onClick()"
-              class="button"><span>Submit</span>
+    <table class="table " id="example" style="width:100%">
+
+      <thead>
+        <tr>
+          <th data-sortable="false">SID</th>
+          <th data-sortable="false">Name</th>
+          <th data-sortable="false">Date</th>
+          <th data-sortable="false"></th>
+          <th data-sortable="false"></th>
+          <th data-sortable="false"></th>
+          <th data-sortable="false"></th>
+        </tr>
+      </thead>
+      <tbody id="logresults">
+      </tbody>
+    </table>
+    &nbsp;
+  </div>
+</div>
+</div>
+&nbsp;
+
+<div class="modal fade" id="messagemodal" role="dialog" data-backdrop="false" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Audit Log</h4>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body" style="height:380px;">
+      <div id="content">
+
+
+        <div class="tabletext">
+          <div class="row">
+
+            <div class="col-md-4">
+              <table class="table table-borderless table-fluid">
+                <thead>
+                  <tr id="sid1" class="w-30">
+                    <th id="sss" class="w-30" style="text-align:left">SID:
+                    <th class="no-gutters" style="text-align:left"></b><select id="sidselect"
+                        class="selectpicker select-sid" data-size="4" data-live-search="true" data-width="80%">
+                        <option disabled selected value>Select an Option</option>
+
+                      </select></b>
+            </div>
+            </th>
+            </th>
           </div>
           </tr>
-        </thead>
-        </tbody>
-      </table>
+          </thead>
+          </tbody>
+          </table>
+        </div>
+        <div class="col-md-5" id="font_results">
+          <table class="table table-borderless table-fluid">
+            <thead>
+              <th id="trd" class="w-30" style="text-align:left">Test Run Date:
+              <th class="no-gutters" style="text-align:left">
+                <div class="dropdown bootstrap-select fit-width show"></div>
+                <select class="selectpicker select-dte" id="dateselect1" onchange="sidfunction()" data-size="4"
+                  data-live-search="true" data-width="85%">
+                  <option disabled selected value>Select an Option</option>
+
+                </select>
+        </div>
+
+      </div>
+      </th>
+      </th>
     </div>
     </tr>
     </thead>
     </tbody>
     </table>
   </div>
-  <div class="tabletext">
-    <div class="row">
-      <!--<div class="col-md-1"></div>-->
-      <div class="col-md-4">
-        <table id="fname1" class="table table-borderless table-fluid">
-          <thead>
-            <tr id="fn1">
-              <th class="w-30" style="text-align:left">
-                <div class="inputBoxFname">First Name: <input id="fnameinputs" type="text" required="" /></div>
-              </th>
-            </tr>
-            </tr>
-            <tr id="ln1">
-              <th class="w-30" style="text-align:left">
-                <div class="inputBoxLname">Last Name: <input id="lnameinputs" type="text"
-                    oninput="Update(this.value,'LastName')" required="" /></div>
-              </th>
-            </tr>
-          </thead>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="col-md-2">
-        <table id="lname1" class="table table-borderless table-fluid">
-          <thead>
-            <tr id="age1">
-              <th class="w-30" style="text-align:left">
-                <div class="inputBoxAge">Age:</div> <input id="ageinputs" type="number" min="1" max="99" required="" />
-              </th>
-            </tr>
-            </tr>
-            <tr id="gender1">
-              <th class="w-30" style="text-align:left">
-                <div class="inputBoxGender">Gender:
-                  <select id="genderselect" class="selectpicker select-gen" data-size="3" data-width="85%">
-                    <option disabled selected value>Gender</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                  </select></b>
-                </div>
-              </th>
-              </th>
-      </div>
-      </th>
-      </tr>
+  <div class="col-md-3">
+    <table class="table table-borderless table-fluid">
+      <thead>
+        <div class="btn-group mr-1 " role="group">
+          <button id="resetbtn" class="btn btn-rst text-light" onClick="window.location.reload();">Reset</button>
+        </div>
+        <div class="btn-group mr-1 " role="group">
+          <button id="submitdata" class="btn btn-sbmt text-light" onClick="onClick()"
+            class="button"><span>Submit</span>
+        </div>
+        </tr>
       </thead>
       </tbody>
-      </table>
-    </div>
+    </table>
+  </div>
+  </tr>
+  </thead>
+  </tbody>
+  </table>
+</div>
+<div class="tabletext">
+  <div class="row">
+    <!--<div class="col-md-1"></div>-->
     <div class="col-md-4">
-      <table id="timephys" class="table table-striped table-borderless table-fluid">
+      <table id="fname1" class="table table-borderless table-fluid">
         <thead>
-          <tr id="pn1">
-            <th class="w-40" style="text-align:left">
-              <div class="inputBoxDocname">Requesting Physician:<input id="physicianinputs" type="text"
-                  required=""></input></div>
+          <tr id="fn1">
+            <th class="w-30" style="text-align:left">
+              <div class="inputBoxFname">First Name: <input id="fnameinputs" type="text" required="" /></div>
             </th>
           </tr>
-
-          <tr id="time">
-            <th class="time" style="text-align:initial">
-              <div class="inputBoxTime">Time:<u></div><input id='timeinputs' disabled>
+          </tr>
+          <tr id="ln1">
+            <th class="w-30" style="text-align:left">
+              <div class="inputBoxLname">Last Name: <input id="lnameinputs" type="text"
+                  oninput="Update(this.value,'LastName')" required="" /></div>
             </th>
           </tr>
-
         </thead>
         </tbody>
       </table>
     </div>
 
     <div class="col-md-2">
-      <table id="bldtyp" class="table table-striped table-borderless table-fluid">
+      <table id="lname1" class="table table-borderless table-fluid">
         <thead>
-          <tr id="bld1">
-            <th class="w-40" style="text-align:left">
-              <div class="inputBloodType"><b>Blood Type:</b><select class="selectpicker select-bld" id="bloodselect"
-                  required="" data-size="3" data-width="67%">
-                  <option disabled selected value>Type</option>
-                  <option>A+</option>
-                  <option>AB+</option>
-                  <option>B+</option>
-                  <option>O+</option>
-                  <option>A-</option>
-                  <option>AB-</option>
-                  <option>B-</option>
-                  <option>O-</option>
-                  <option>-</option>
-                </select></div>
+          <tr id="age1">
+            <th class="w-30" style="text-align:left">
+              <div class="inputBoxAge">Age:</div> <input id="ageinputs" type="number" min="1" max="99" required="" />
             </th>
           </tr>
+          </tr>
+          <tr id="gender1">
+            <th class="w-30" style="text-align:left">
+              <div class="inputBoxGender">Gender:
+                <select id="genderselect" class="selectpicker select-gen" data-size="3" data-width="85%">
+                  <option disabled selected value>Gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select></b>
+              </div>
+            </th>
+            </th>
+    </div>
+    </th>
+    </tr>
+    </thead>
+    </tbody>
+    </table>
+  </div>
+  <div class="col-md-4">
+    <table id="timephys" class="table table-striped table-borderless table-fluid">
+      <thead>
+        <tr id="pn1">
+          <th class="w-40" style="text-align:left">
+            <div class="inputBoxDocname">Requesting Physician:<input id="physicianinputs" type="text"
+                required=""></input></div>
+          </th>
+        </tr>
 
-        </thead>
-        </tbody>
-      </table>
+        <tr id="time">
+          <th class="time" style="text-align:initial">
+            <div class="inputBoxTime">Time:<u></div><input id='timeinputs' disabled>
+          </th>
+        </tr>
+
+      </thead>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-2">
+    <table id="bldtyp" class="table table-striped table-borderless table-fluid">
+      <thead>
+        <tr id="bld1">
+          <th class="w-40" style="text-align:left">
+            <div class="inputBloodType"><b>Blood Type:</b><select class="selectpicker select-bld" id="bloodselect"
+                required="" data-size="3" data-width="67%">
+                <option disabled selected value>Type</option>
+                <option>A+</option>
+                <option>AB+</option>
+                <option>B+</option>
+                <option>O+</option>
+                <option>A-</option>
+                <option>AB-</option>
+                <option>B-</option>
+                <option>O-</option>
+                <option>-</option>
+              </select></div>
+          </th>
+        </tr>
+
+      </thead>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+        <div id="bloodlabel">Log Number:</div>
+        <div class="modaltexts" id="number1"></div>
+       
+        <div id="bloodlabel">Activity:</div>                            
+        <div class="modaltexts" id="activity1"></div>
+      
+        <div id="bloodlabel">Date Comitted:</div>                           
+        <div class="modaltexts" id="date6"></div>
+        
+        <div id="bloodlabel">Serial Number:</div>                           
+        <div class="modaltexts" id="serial1"></div>
+        
+        <div id="bloodlabel">Machine:</div>                           
+        <div class="modaltexts" id="machine1"></div>
+        
+        <div id="bloodlabel">Number Identifier:</div>                           
+        <div class="modaltexts" id="idnumber1"></div>
+        
+        <div id="bloodlabel">User Comitted:</div>                         
+        <div class="modaltexts" id="username63"></div>
+        
+      </div>
     </div>
   </div>
-  <table id="results" class="table table-bordered">
+</div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-backdrop="false"
+data-target="#myModal" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <div id="error1"></div>
+      </h5>
+      <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-rst text-light" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+</div>
+
+  <!--<table id="results" class="table table-bordered">
     <tr id="seq">
       <th>Test</th>
       <th>Results</th>
@@ -345,10 +431,10 @@
       <td id="seq2">Blood Type/Group</td>
     </tr>
   </table>
-  </div>
+  </div>-->
 
-  <!-- LOCALHOST6969: MYTHIC 22 -->
-  <div class="row no-gutters">
+  <!--LOCALHOST6969: MYTHIC 22 -->
+  <!--<div class="row no-gutters">
     <div class="col-12">
       <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group mr-1 " role="group">
@@ -364,7 +450,7 @@
                 <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </button>-->
-              </div>
+              <!--</div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-updt text-info" onClick="updatefunction();">Update</button>
                 <button type="button" class="btn btn-rst text-light" data-dismiss="modal">Close</button>
@@ -386,7 +472,7 @@
                 <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>-->
-              </div>
+              <!--</div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-dlt text-light" onClick="deletefunction();">Delete</button>
                 <button type="button" class="btn btn-rst text-light" data-dismiss="modal">Close</button>
@@ -435,7 +521,7 @@
     <div class="col-md-2">
       <div id="signatories"><img id="signatories1" width="730px" height="118px"></div>
     </div>
-  </div>
+  </div>-->
 
 
   <script src="/jscodes/date.js"></script>

@@ -56,8 +56,7 @@ a.clock1 {
   font-size: 20px;
 }
 
-#clock
-{
+#clock {
   font-family: 'Segoe UI Light';
   font-size: 20px;
 }
@@ -955,18 +954,15 @@ div.filter-option-inner-inner {
   content: hidden;
 }
 
-
 .btn-sbmt1 {
   background-color: #337277 !important;
   padding: 10px 30px;
   font-family: 'Segoe UI Light';
   font-size: 15px;
   border-radius: 25px;
-  width: 150px;
+  width: 170px;
   margin-top: 5%;
 }
-
-
 
 #dateselection {
   visibility: hidden;
@@ -1124,9 +1120,7 @@ table.dataTable tbody tr:hover {
   border-color: #296e74;
 }
 
-.page-link {
-  color: #000000;
-}
+
 
 #savesubmit {
   display: none;
@@ -1206,15 +1200,19 @@ table.dataTable tbody tr:hover {
   text-align: left;
   width: 400%
 }
-.modaltexts{
+
+.modaltexts {
   padding-left: 5px;
   font-family: 'Segoe UI Semibold';
   text-align: left;
- 
 }
 
 .noBorderInp1 {
-
   border: none;
   text-align: center;
+}
+
+#email1inputs, #username1inputs, #desc1inputs  {
+   border-bottom: 0.065rem solid #333232;
+   width: 340px
 }

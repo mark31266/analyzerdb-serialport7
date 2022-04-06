@@ -126,9 +126,9 @@ firebase.auth().onAuthStateChanged(function (user) {
       email1inputs.style.display = "none";
       username1inputs.style.display = "none";
 
-      desc1inputs.style.display = "block";
-      email1inputs.style.display = "block";
-      username1inputs.style.display = "block";
+      desc1.style.display = "block";
+      email1.style.display = "block";
+      username1.style.display = "block";
 
       closebtn1.style.display = "none";
       submitbtn1.style.display = "none";
@@ -369,8 +369,6 @@ firebase.auth().onAuthStateChanged(function (user) {
       });
     }, 2000);
 
-
-
     //--------Image Upload---------//
     var reader = new FileReader();
     var proglab = document.getElementById("upprogress");
@@ -427,8 +425,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 
       }
     }
-
-
     async function SaveURLtoFirestore(url) {
       var filename = document.getElementById("filenamelabel").innerText;
 
@@ -458,86 +454,140 @@ firebase.auth().onAuthStateChanged(function (user) {
     var footerid1 = document.getElementById("footerRefMythic18vet");
     var footerid2 = document.getElementById("footerRefMnchipv5");
 
+    var machinebutton3 = document.getElementById("machinebutton"); 
+
     //MNCHIP V5 Data
     var albl1 = document.getElementById("albl");
     var albu1 = document.getElementById("albu");
+    var albl2 = document.getElementById("albl2");
+    var albu2 = document.getElementById("albu2");
 
     var tpl1 = document.getElementById("tpl");
     var tpu1 = document.getElementById("tpu");
+    var tpl2 = document.getElementById("tpl2");
+    var tpu2 = document.getElementById("tpu2");
 
     var cal1 = document.getElementById("calower");
     var cau1 = document.getElementById("caupper");
+    var cal2 = document.getElementById("calower2");
+    var cau2 = document.getElementById("caupper2");
 
     var glul1 = document.getElementById("glul");
     var gluu1 = document.getElementById("gluu");
+    var glul2 = document.getElementById("glul2");
+    var gluu2 = document.getElementById("gluu2");
 
     var bunl1 = document.getElementById("bunl");
     var bunu1 = document.getElementById("bunu");
+    var bunl2 = document.getElementById("bunl2");
+    var bunu2 = document.getElementById("bunu2");
 
     var pl1 = document.getElementById("pl");
     var pu1 = document.getElementById("pu");
+    var pl2 = document.getElementById("pl2");
+    var pu2 = document.getElementById("pu2");
 
     var amyl1 = document.getElementById("amyl");
     var amyu1 = document.getElementById("amyu");
+    var amyl2 = document.getElementById("amyl2");
+    var amyu2 = document.getElementById("amyu2");
 
     var choll1 = document.getElementById("choll");
     var cholu1 = document.getElementById("cholu");
+    var choll2 = document.getElementById("choll2");
+    var cholu2 = document.getElementById("cholu2");
 
     var altl1 = document.getElementById("altl");
     var altu1 = document.getElementById("altu");
+    var altl2 = document.getElementById("altl2");
+    var altu2 = document.getElementById("altu2");
 
     var tbill1 = document.getElementById("tbill");
     var tbilu1 = document.getElementById("tbilu");
+    var tbill2 = document.getElementById("tbill2");
+    var tbilu2 = document.getElementById("tbilu2");
 
     var alpl1 = document.getElementById("alpl");
     var alpu1 = document.getElementById("alpu");
+    var alpl2 = document.getElementById("alpl2");
+    var alpu2 = document.getElementById("alpu2");
 
     var crel1 = document.getElementById("crel");
     var creu1 = document.getElementById("creu");
+    var crel2 = document.getElementById("crel2");
+    var creu2 = document.getElementById("creu2");
 
     var ckl1 = document.getElementById("ckl");
     var cku1 = document.getElementById("cku");
+    var ckl2 = document.getElementById("ckl2");
+    var cku2 = document.getElementById("cku2");
 
     //Mythic 18 Vet Data
 
     var wbcl1 = document.getElementById("wbcl");
     var wbcu1 = document.getElementById("wbcu");
+    var wbcl2 = document.getElementById("wbcl2");
+    var wbcu2 = document.getElementById("wbcu2");
 
     var neul1 = document.getElementById("neul");
     var neuu1 = document.getElementById("neuu");
+    var neul2 = document.getElementById("neul2");
+    var neuu2 = document.getElementById("neuu2");
 
     var lyml1 = document.getElementById("lyml");
     var lymu1 = document.getElementById("lymu");
+    var lyml2 = document.getElementById("lyml2");
+    var lymu2 = document.getElementById("lymu2");
 
     var monl1 = document.getElementById("monl");
     var monu1 = document.getElementById("monu");
+    var monl2 = document.getElementById("monl2");
+    var monu2 = document.getElementById("monu2");
 
     var eosl1 = document.getElementById("eosl");
     var eosu1 = document.getElementById("eosu");
+    var eosl2 = document.getElementById("eosl2");
+    var eosu2 = document.getElementById("eosu2");
 
     var basl1 = document.getElementById("basl");
     var basu1 = document.getElementById("basu");
+    var basl2 = document.getElementById("basl2");
+    var basu2 = document.getElementById("basu2");
 
     var rbcl1 = document.getElementById("rbcl");
     var rbcu1 = document.getElementById("rbcu");
+    var rbcl2 = document.getElementById("rbcl2");
+    var rbcu2 = document.getElementById("rbcu2");
 
     var hgbl1 = document.getElementById("hgbl");
     var hgbu1 = document.getElementById("hgbu");
+    var hgbl2 = document.getElementById("hgbl2");
+    var hgbu2 = document.getElementById("hgbu2");
 
     var hctl1 = document.getElementById("hctl");
     var hctu1 = document.getElementById("hctu");
+    var hctl2 = document.getElementById("hctl2");
+    var hctu2 = document.getElementById("hctu2");
 
     var mcvl1 = document.getElementById("mcvl");
     var mcvu1 = document.getElementById("mcvu");
+    var mcvl2 = document.getElementById("mcvl2");
+    var mcvu2 = document.getElementById("mcvu2");
 
     var mchl1 = document.getElementById("mchl");
     var mchu1 = document.getElementById("mchu");
+    var mchl2 = document.getElementById("mchl2");
+    var mchu2 = document.getElementById("mchu2");
 
     var mchcl1 = document.getElementById("mchcl");
     var mchcu1 = document.getElementById("mchcu");
+    var mchcl2 = document.getElementById("mchcl2");
+    var mchcu2 = document.getElementById("mchcu2");
 
     var pltl1 = document.getElementById("pltl");
     var pltu1 = document.getElementById("pltu");
+    var pltl2 = document.getElementById("pltl2");
+    var pltu2 = document.getElementById("pltu2");
 
     var result1 = [];
    
@@ -550,21 +600,77 @@ firebase.auth().onAuthStateChanged(function (user) {
         mnchipv5table.style.display = "none";
         footerid1.style.display = "block";
         footerid2.style.display = "none";
-      
-    
+        machinebutton3.textContent = "Change Machine"; 
+        db2.collection("Reference Ranges").doc(String(msselect1.value)).get()  
+        .then((doc) => {
+         
+            document.getElementById("wbcl2").value = parseFloat(doc.data().WBCLower); 
+            document.getElementById("wbcu2").value = parseFloat(doc.data().WBCUpper); 
+            document.getElementById("neul2").value = parseFloat(doc.data().NeuLower); 
+            document.getElementById("neuu2").value = parseFloat(doc.data().NeuUpper); 
+            document.getElementById("lyml2").value = parseFloat(doc.data().LymLower); 
+            document.getElementById("lymu2").value = parseFloat(doc.data().LymUpper); 
+            document.getElementById("monl2").value = parseFloat(doc.data().MonLower); 
+            document.getElementById("monu2").value = parseFloat(doc.data().MonUpper); 
+            document.getElementById("eosl2").value = parseFloat(doc.data().EosLower); 
+            document.getElementById("eosu2").value = parseFloat(doc.data().EosUpper); 
+            document.getElementById("basl2").value = parseFloat(doc.data().BasLower); 
+            document.getElementById("basu2").value = parseFloat(doc.data().BasUpper); 
+            document.getElementById("rbcl2").value = parseFloat(doc.data().RBCLower); 
+            document.getElementById("rbcu2").value = parseFloat(doc.data().RBCUpper); 
+            document.getElementById("hgbl2").value = parseFloat(doc.data().HGBLower); 
+            document.getElementById("hgbu2").value = parseFloat(doc.data().HGBUpper); 
+            document.getElementById("hctl2").value = parseFloat(doc.data().HCTLower); 
+            document.getElementById("hctu2").value = parseFloat(doc.data().HCTUpper); 
+            document.getElementById("mcvl2").value = parseFloat(doc.data().MCVLower); 
+            document.getElementById("mcvu2").value = parseFloat(doc.data().MCVUpper); 
+            document.getElementById("mchl2").value = parseFloat(doc.data().MCHLower); 
+            document.getElementById("mchu2").value = parseFloat(doc.data().MCHUpper); 
+            document.getElementById("mchcl2").value = parseFloat(doc.data().MCHCLower); 
+            document.getElementById("mchcu2").value = parseFloat(doc.data().MCHCUpper); 
+            document.getElementById("pltl2").value = parseFloat(doc.data().PLTLower); 
+            document.getElementById("pltu2").value = parseFloat(doc.data().PLTUpper); 
+      })
       }
       if (msselect1.value.includes("MNCHIP V5")) {
         myth18table.style.display = "none";
         mnchipv5table.style.display = "table";
         footerid2.style.display = "block";
         footerid1.style.display = "none";
+        machinebutton3.textContent = "Change Machine"; 
         db2.collection("Reference Ranges").doc(String(msselect1.value)).get()  
         .then((doc) => {
          
             document.getElementById("albl2").value = parseFloat(doc.data().ALBLower); 
-            document.getElementById("albu2").value = parseFloat(doc.data().ALBupper); 
-  
+            document.getElementById("albu2").value = parseFloat(doc.data().ALBUpper); 
+            document.getElementById("tpl2").value = parseFloat(doc.data().TPLower); 
+            document.getElementById("tpu2").value = parseFloat(doc.data().TPUpper); 
+            document.getElementById("calower2").value = parseFloat(doc.data().CaLower); 
+            document.getElementById("caupper2").value = parseFloat(doc.data().CaUpper); 
+            document.getElementById("glul2").value = parseFloat(doc.data().GLULower); 
+            document.getElementById("gluu2").value = parseFloat(doc.data().GLUUpper); 
+            document.getElementById("glul2").value = parseFloat(doc.data().GLULower); 
+            document.getElementById("gluu2").value = parseFloat(doc.data().GLUUpper); 
+            document.getElementById("bunl2").value = parseFloat(doc.data().BUNLower); 
+            document.getElementById("bunu2").value = parseFloat(doc.data().BUNUpper); 
+            document.getElementById("pl2").value = parseFloat(doc.data().PLower); 
+            document.getElementById("pu2").value = parseFloat(doc.data().PUpper); 
+            document.getElementById("amyl2").value = parseFloat(doc.data().AMYLower); 
+            document.getElementById("amyu2").value = parseFloat(doc.data().AMYUpper); 
+            document.getElementById("choll2").value = parseFloat(doc.data().CholLower); 
+            document.getElementById("cholu2").value = parseFloat(doc.data().CholUpper); 
+            document.getElementById("altl2").value = parseFloat(doc.data().AltLower); 
+            document.getElementById("altu2").value = parseFloat(doc.data().AltUpper); 
+            document.getElementById("tbill2").value = parseFloat(doc.data().TbilLower); 
+            document.getElementById("tbilu2").value = parseFloat(doc.data().TbilUpper); 
+            document.getElementById("alpl2").value = parseFloat(doc.data().AlpLower); 
+            document.getElementById("alpu2").value = parseFloat(doc.data().AlpUpper); 
+            document.getElementById("crel2").value = parseFloat(doc.data().CreLower); 
+            document.getElementById("creu2").value = parseFloat(doc.data().CreUpper); 
+            document.getElementById("ckl2").value = parseFloat(doc.data().CkLower); 
+            document.getElementById("cku2").value = parseFloat(doc.data().CkUpper); 
       })
+       
       }
       if (msselect1 !== null && msselect1.value === "") {
         document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
@@ -583,7 +689,6 @@ firebase.auth().onAuthStateChanged(function (user) {
 
       });
     })
-   
     //------------breakpoint-------------------------//
     function adddatatodb1() {
       db2.collection("Reference Ranges").doc(machineselect1.value + " - " + speciesinput.value).set(
@@ -614,7 +719,14 @@ firebase.auth().onAuthStateChanged(function (user) {
           CreUpper: creu1.value,
           CkLower: ckl1.value,
           CkUpper: cku1.value
-        });
+        }).then(() => {
+          document.getElementById("error1").innerHTML = "Data Updated!";
+          $('#myModal').modal('show');
+          window.location.reload(); 
+      }).catch((error) => {
+        document.getElementById("error1").innerHTML = error.message;
+        $('#myModal').modal('show');
+    });
     }
     function adddatatodb() {
       db2.collection("Reference Ranges").doc(machineselect1.value + " - " + speciesinput.value).set(
@@ -633,7 +745,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           BasUpper: basu1.value,
           RBCLower: rbcl1.value,
           RBCUpper: rbcu1.value,
-          HBGLower: hgbl1.value,
+          HGBLower: hgbl1.value,
           HGBUpper: hgbu1.value,
           HCTLower: hctl1.value,
           HCTUpper: hctu1.value,
@@ -645,8 +757,14 @@ firebase.auth().onAuthStateChanged(function (user) {
           MCHCUpper: mchcu1.value,
           PLTLower: pltl1.value,
           PLTUpper: pltu1.value,
-        })
-
+        }).then(() => {
+          document.getElementById("error1").innerHTML = "Data Updated!";
+          $('#myModal').modal('show');
+          window.location.reload(); 
+      }).catch((error) => {
+        document.getElementById("error1").innerHTML = error.message;
+        $('#myModal').modal('show');
+    });
     }
     document.getElementById("changemachine").addEventListener("click", function (event) {
       if (machineselect1.value.includes("Mythic 18 Vet")) {
@@ -657,9 +775,145 @@ firebase.auth().onAuthStateChanged(function (user) {
         myth18table1.style.display = "none";
         mnchipv5table1.style.display = "table";
       }
-
     })
-
+    document.getElementById("addsubmit1").addEventListener("click", function (event) {
+      if (wbcl2 !== null && wbcl2.value === "" ||
+      wbcu2 !== null && wbcu2.value === "" ||
+      neul2 !== null && neul2.value === "" ||
+      neuu2 !== null && neuu2.value === "" ||
+      lyml2 !== null && lyml2.value === "" ||
+      lymu2 !== null && lymu2.value === "" ||
+      monl2 !== null && monl2.value === "" ||
+      monu2 !== null && monu2.value === "" ||
+      eosl2 !== null && eosl2.value === "" ||
+      eosu2 !== null && eosu2.value === "" ||
+      basl2 !== null && basl2.value === "" ||
+      basu2 !== null && basu2.value === "" ||
+      rbcl2 !== null && rbcl2.value === "" ||
+      rbcu2 !== null && rbcu2.value === "" ||
+      hgbl2 !== null && hgbl2.value === "" ||
+      hgbu2 !== null && hgbu2.value === "" ||
+      hctl2 !== null && hctl2.value === "" ||
+      hctl2 !== null && hctu2.value === "" ||
+      mcvl2 !== null && mcvl2.value === "" ||
+      mcvu2 !== null && mcvu2.value === "" ||
+      mchl2 !== null && mchl2.value === "" ||
+      mchu2 !== null && mchu2.value === "" ||
+      mchcl2 !== null && mchcl2.value === "" ||
+      mchcu2 !== null && mchcu2.value === "" ||
+      pltl2 !== null && pltl2.value === "" ||
+      pltu2 !== null && pltu2.value === "") {
+      document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
+      $('#myModal').modal('show');
+    }
+    else {
+      db2.collection("Reference Ranges").doc(msselect1.value).set(
+        {
+          WBCLower: wbcl2.value,
+          WBCUpper: wbcu2.value,
+          NeuLower: neul2.value,
+          NeuUpper: neuu2.value,
+          LymLower: lyml2.value,
+          LymUpper: lymu2.value,
+          MonLower: monl2.value,
+          MonUpper: monu2.value,
+          EosLower: eosl2.value,
+          EosUpper: eosu2.value,
+          BasLower: basl2.value,
+          BasUpper: basu2.value,
+          RBCLower: rbcl2.value,
+          RBCUpper: rbcu2.value,
+          HGBLower: hgbl2.value,
+          HGBUpper: hgbu2.value,
+          HCTLower: hctl2.value,
+          HCTUpper: hctu2.value,
+          MCVLower: mcvl2.value,
+          MCVUpper: mcvu2.value,
+          MCHLower: mchl2.value,
+          MCHUpper: mchu2.value,
+          MCHCLower: mchcl2.value,
+          MCHCUpper: mchcu2.value,
+          PLTLower: pltl2.value,
+          PLTUpper: pltu2.value,
+        }, {merge: true}).then(() => {
+          document.getElementById("error1").innerHTML = "Data Updated!";
+          $('#myModal').modal('show');
+          window.location.reload(); 
+      }).catch((error) => {
+        document.getElementById("error1").innerHTML = error.message;
+        $('#myModal').modal('show');
+    });
+    }
+    })
+    document.getElementById("addsubmit2").addEventListener("click", function (event) {
+      if (albl2 !== null && albl2.value === "" ||
+      albu2 !== null && albu2.value === "" ||
+      tpl2 !== null && tpl2.value === "" ||
+      tpu2 !== null && tpu2.value === "" ||
+      cal2 !== null && cal2.value === "" ||
+      cau2 !== null && cau2.value === "" ||
+      glul2 !== null && glul2.value === "" ||
+      gluu2 !== null && gluu2.value === "" ||
+      bunl2 !== null && bunl2.value === "" ||
+      bunu2 !== null && bunu2.value === "" ||
+      pl2 !== null && pl2.value === "" ||
+      pu2 !== null && pu2.value === "" ||
+      amyl2 !== null && amyl2.value === "" ||
+      amyu2 !== null && amyu2.value === "" ||
+      choll2 !== null && choll2.value === "" ||
+      cholu2 !== null && cholu2.value === "" ||
+      altl2 !== null && altl2.value === "" ||
+      altu2 !== null && altu2.value === "" ||
+      tbill2 !== null && tbill2.value === "" ||
+      tbilu2 !== null && tbilu2.value === "" ||
+      alpl2 !== null && alpl2.value === "" ||
+      alpu2 !== null && alpu2.value === "" ||
+      crel2 !== null && crel2.value === "" ||
+      creu2 !== null && creu2.value === "" ||
+      ckl2 !== null && ckl2.value === "" ||
+      cku2 !== null && cku2.value === "") {
+      document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
+      $('#myModal').modal('show');
+    }
+    else {
+      db2.collection("Reference Ranges").doc(msselect1.value).set(
+        {
+          ALBLower: albl2.value,
+          ALBUpper: albu2.value,
+          TPLower: tpl2.value,
+          TPUpper: tpu2.value,
+          CaLower: cal2.value,
+          CaUpper: cau2.value,
+          GLULower: glul2.value,
+          GLUUpper: gluu2.value,
+          BUNLower: bunl2.value,
+          BUNUpper: bunu2.value,
+          PLower: pl2.value,
+          PUpper: pu2.value,
+          AMYLower: amyl2.value,
+          AMYUpper: amyu2.value,
+          CholLower: choll2.value,
+          CholUpper: cholu2.value,
+          AltLower: altl2.value,
+          AltUpper: altu2.value,
+          TbilLower: tbill2.value,
+          TbilUpper: tbilu2.value,
+          AlpLower: alpl2.value,
+          AlpUpper: alpu2.value,
+          CreLower: crel2.value,
+          CreUpper: creu2.value,
+          CkLower: ckl2.value,
+          CkUpper: cku2.value
+        }, {merge: true}).then(() => {
+          document.getElementById("error1").innerHTML = "Data Updated!";
+          $('#myModal').modal('show');
+          window.location.reload(); 
+      }).catch((error) => {
+        document.getElementById("error1").innerHTML = error.message;
+        $('#myModal').modal('show');
+    });
+    } 
+    })
     document.getElementById("addsubmit").addEventListener("click", function (event) {
       if (machineselect1.value.includes("Mythic 18 Vet")) {
         myth18table1.style.display = "table";
@@ -718,8 +972,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         }
         else {
           adddatatodb();
-          document.getElementById("error1").innerHTML = "Data Written!";
-          $('#myModal').modal('show');
         }
       }
       else if (machineselect1.value.includes("MNCHIP V5")) {
@@ -754,8 +1006,6 @@ firebase.auth().onAuthStateChanged(function (user) {
         }
         else {
           adddatatodb1();
-          document.getElementById("error1").innerHTML = "Data Written!";
-          $('#myModal').modal('show');
         }
       }
     })
