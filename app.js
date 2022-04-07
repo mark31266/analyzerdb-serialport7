@@ -314,8 +314,7 @@
   //mythic 18
   const parser2 = port3.pipe(new Regex({ regex: /[\r\n]+/ }))
   parser2.on('data', function(data) {
-    io.emit('data', data)
-    console.dir(data); 
+
     let MSH = data.match(/^MSH.+/);  
     io.emit('MSH', MSH)
       //PID Data
@@ -325,43 +324,45 @@
       let OBR = data.match(/^OBR\|1\|.+/);
       io.emit('OBR', OBR)
   //ALB Data
-  let ALB = data.match(/ALB\|...\|/);
+  let ALB = data.match(/ALB\|(.*?)\|/);
   io.emit('ALB', ALB)
+  console.log(ALB); 
   //TP Data
-  let TP = data.match(/TP\|.....|/);
+  let TP = data.match(/TP\|(.*?)\|/);
   io.emit('TP', TP)
+  console.log(TP); 
   //Ca Data
-  let CA = data.match(/Ca\|....|/);
+  let CA = data.match(/Ca\|(.*?)\|/);
   io.emit('CA', CA)
   //GLU Data
-  let GLU = data.match(/GLU\|.....|/);
+  let GLU = data.match(/GLU\|(.*?)\|/);
   io.emit('GLU', GLU)  
   //BUN Data
-  let BUN = data.match(/BUN\|.......|/);
+  let BUN = data.match(/BUN\|(.*?)\|/);
   io.emit('BUN', BUN)
   //P Data
-  let P = data.match(/P\|....|/);
+  let P = data.match(/\|P\|(.*?)\|/);
   io.emit('P', P)
   //AMY Data
-  let AMY = data.match(/AMY\|......|/);
+  let AMY = data.match(/\|AMY\|(.*?)\|/);
   io.emit('AMY', AMY)
   //CHOL
-  let CHOL = data.match(/CHOL\|....|/);
+  let CHOL = data.match(/\|CHOL\|(.*?)\|/);
   io.emit('CHOL', CHOL)
   //ALT
-  let ALT = data.match(/ALT\|.......|/);
+  let ALT = data.match(/\|ALT\|(.*?)\|/);
   io.emit('ALT', ALT)
   //TBIL
-  let TBIL = data.match(/TBIL\|......|/);
+  let TBIL = data.match(/\|TBIL\|(.*?)\|/);
   io.emit('TBIL', TBIL)
   //ALP
-  let ALP = data.match(/ALP\|....|/);
+  let ALP = data.match(/\|ALP\|(.*?)\|/);
   io.emit('ALP', ALP)
   //CRE
-  let CRE = data.match(/CRE....|/);
+  let CRE = data.match(/\|CRE\|(.*?)\|/);
   io.emit('CRE', CRE)
   //CK
-  let CK = data.match(/CK.....|/);
+  let CK = data.match(/\|CK\|(.*?)\|/);
   io.emit('CK', CK)
   })
   const parser = port.pipe(new Regex({ regex: /[\r\n]+/ }))

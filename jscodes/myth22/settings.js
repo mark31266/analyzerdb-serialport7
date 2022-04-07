@@ -681,10 +681,11 @@ firebase.auth().onAuthStateChanged(function (user) {
     db2.collection("Reference Ranges").get().then(querySnapshot => {
       querySnapshot.forEach(doc => result1.push(doc.id));
       result1.forEach(function (item1) {
+        
         const optionObj1 = document.createElement("option");
         optionObj1.textContent = item1;
         document.getElementById("msselect").appendChild(optionObj1);
-
+        
         $('#msselect').selectpicker('refresh');
 
       });
@@ -757,6 +758,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           MCHCUpper: mchcu1.value,
           PLTLower: pltl1.value,
           PLTUpper: pltu1.value,
+          Machine : "Mythic 18 Vet"
         }).then(() => {
           document.getElementById("error1").innerHTML = "Data Updated!";
           $('#myModal').modal('show');
@@ -835,6 +837,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           MCHCUpper: mchcu2.value,
           PLTLower: pltl2.value,
           PLTUpper: pltu2.value,
+          Machine : "MNCHIP V5"
         }, {merge: true}).then(() => {
           document.getElementById("error1").innerHTML = "Data Updated!";
           $('#myModal').modal('show');
