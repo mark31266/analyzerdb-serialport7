@@ -18,99 +18,44 @@ var firebaseConfig = {
   //--------------writing data---------------------//
  
   var socket = io();
-
+  var machinename = document.getElementById("machinename"); 
 socket.on('status', function(status) {
-  if (String(status).includes("COM5") ){
-    //SelectPicker Card
-    const optionObj = document.createElement("option");
-    const optionObj2 = document.createElement("div");
 
- optionObj2.id = "yey10"; 
- optionObj2.innerHTML = "Orphee Mythic 18 Vet (Online)"; 
- optionObj2.href = "/myth18/run"; 
-
-    optionObj.appendChild(optionObj2);
-    document.getElementById("machineselect").appendChild(optionObj);
+  if (String(status).includes("COM6") || String(status).includes("COM5")){
       //SelectPicker Nav
-    const navobj = document.createElement("li");
-    const navobj2 = document.createElement("a");
-    navobj2.textContent = "Mythic 18";
-    navobj2.href = "/myth18/run"; 
-    navobj.appendChild(navobj2)
-    document.getElementById("homeSubmenu1").appendChild(navobj);
-    // setTimeout(() => {
-    //   alert("The page will reload to check current machines connected")
-    //   window.location.reload(); 
-    // }, 10000);
-    if (!String(status).includes("COM2") ){
-    
-      const optionObj = document.createElement("option");
-      optionObj.textContent = "Orphee Mythic 18 (Offline)";
-      optionObj.disabled = true;
-      document.getElementById("machineselect").appendChild(optionObj);
-       
-  } 
-  if (!String(status).includes("COM3") ){
-    const optionObj = document.createElement("option");
-    optionObj.textContent = "Orphee Mythic 60 (Offline)";
-    optionObj.disabled = true;
-    document.getElementById("machineselect").appendChild(optionObj); 
-} 
-} 
-else if (String(status).includes("COM2") ){
+    const navobj4 = document.createElement("li");
+    const navobj5 = document.createElement("a");
+    navobj5.textContent = "MNCHIP V5";
+    navobj5.href = "/mnchipv5/run"; 
+    navobj4.appendChild(navobj5)
+    document.getElementById("homeSubmenu1").appendChild(navobj4);
 
-  const optionObj = document.createElement("option");
-  optionObj.textContent = "Orphee Mythic 18 (Online)";
-  optionObj.value = "/myth18/run";
-  document.getElementById("machineselect").appendChild(optionObj);
-      //SelectPicker Nav
+    const optionObj10 = document.createElement("option");
+    optionObj10.textContent = "MNCHIP V5";
+    document.getElementById("machineselect").appendChild(optionObj10); 
+
+
       const navobj = document.createElement("li");
       const navobj2 = document.createElement("a");
-      navobj2.textContent = "Mythic 18";
-      navobj2.href = "/myth18/run"; 
+      navobj2.textContent = "Orphee Mythic 18 Vet";
+      navobj2.href = "/myth18vet/run"; 
       navobj.appendChild(navobj2)
       document.getElementById("homeSubmenu1").appendChild(navobj);
-  if (!String(status).includes("COM1") ){
-    const optionObj = document.createElement("option");
-    optionObj.textContent = "Orphee Mythic 22 (Offline)";
-    document.getElementById("machineselect").appendChild(optionObj); 
-} 
-if (!String(status).includes("COM3") ){
-  const optionObj = document.createElement("option");
-  optionObj.textContent = "Orphee Mythic 60 (Offline)";
-  document.getElementById("machineselect").appendChild(optionObj); 
-} 
-}
-else if (String(status).includes("COM3") ){
 
-  const optionObj = document.createElement("option");
-  optionObj.textContent = "Orphee Mythic 60 (Online)";
-  optionObj.value = "/myth60/run";
-  document.getElementById("machineselect").appendChild(optionObj);
-    //SelectPicker Nav
-    const navobj = document.createElement("li");
-    const navobj2 = document.createElement("a");
-    navobj2.textContent = "Mythic 60";
-    navobj2.href = "/myth60/run"; 
-    navobj.appendChild(navobj2)
-    document.getElementById("homeSubmenu1").appendChild(navobj);
-  if (!String(status).includes("COM1") ){
-    const optionObj = document.createElement("option");
-    optionObj.textContent = "Orphee Mythic 22 (Offline)";
-    document.getElementById("machineselect").appendChild(optionObj); 
-  } 
-  if (!String(status).includes("COM2") ){
-    const optionObj = document.createElement("option");
-    optionObj.textContent = "Orphee Mythic 18 (Offline)";
-    document.getElementById("machineselect").appendChild(optionObj); 
-  } 
-}
+      const optionObj11 = document.createElement("option");
+      optionObj11.textContent = "Orphee Mythic 18 Vet";
+      optionObj11.href = "/myth18vet/run"; 
+      document.getElementById("machineselect").appendChild(optionObj11); 
+
+     socket.close(); 
+   }
+  
 else
 {
   document.getElementById('data4').innerHTML = "Not Connected";
 
 }
-socket.close(); 
+
 }); 
 
   $('.ui.dropdown').dropdown()

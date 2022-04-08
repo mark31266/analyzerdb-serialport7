@@ -272,6 +272,7 @@ ul.CTAs a {
     font-family: "Segoe UI Semibold";
   }
 
+  
   .inputBoxDocname input {
 
     padding-left: 5px;
@@ -439,7 +440,7 @@ div.subtabletext {
   margin-top: 4px;
 }
 
-.inputBoxGender input {
+.inputBoxSpecies input {
   width: 100%;
   padding-left: 5px;
   font-size: 16px;
@@ -487,14 +488,12 @@ div.subtabletext {
   font-family: "Segoe UI Semibold";
 }
 
-
-
 .ageinputs {
   font-size: 30px;
 }
 
 #bloodtype {
-  visibility: hidden;
+  visibility: none;
 }
 
 #signatories {
@@ -506,7 +505,29 @@ div.subtabletext {
 
 }
 
+#bloodtype {
+  visibility: hidden;
+}
+
+
 @media print {
+  
+  #PID, #DATE
+  {
+    font-family: 'Segoe UI Semibold';
+  }
+
+  .inputBoxPetsName input, .inputBoxOwnername input {
+    width: 120%;
+    border-bottom: none;
+    font-weight: bold;
+  }
+
+  .inputBoxTime{
+    display: block;
+    margin-top: -110px;
+    width: 250px;
+  }
 
   #refreshbtn {
     display: none;
@@ -516,14 +537,16 @@ div.subtabletext {
     display: none;
   }
 
-  #submitbtn {
+  #submitbtn, .btn-sbt {
     display: none;
+    visibility: hidden;
   }
-
   #printbtn {
     display: none;
   }
-
+  #submitbtn {
+    display: none  
+  }
   #insertBtn {
     display: none;
   }
@@ -562,35 +585,24 @@ div.subtabletext {
   #barcode1 {
     display: block;
     margin-top: 30px;
-
     width: 250px;
   }
 
-  .inputBoxFname input {
-    width: 120%;
-    border-bottom: none;
-    font-weight: bold;
-  }
-
+  
   input#physicianinputs {
     width: 200%;
     border-bottom: none;
     font-weight: bold;
   }
 
-  .inputBoxLname input {
-    width: 120%;
-    border-bottom: none;
-    font-weight: bold;
-  }
-
-  .inputBoxBloodType input {
+  .inputBoxTime input {
     padding-left: 0px;
     width: 5px;
     font-size: 100px;
     border-bottom: none;
     font-weight: bold;
   }
+
 
   select#genderselect.form-select.select-gen {
     border-bottom: none;
@@ -602,6 +614,12 @@ div.subtabletext {
     border-bottom: none;
     font-weight: bold;
   }
+
+  select#specieselect.form-select.select-spc {
+    border-bottom: none;
+    font-weight: bold;
+  }
+
 
   input#ageinputs {
     width: 120%;
@@ -645,6 +663,13 @@ div.subtabletext {
   }
 
   .select-gen {
+    border: none;
+    border-bottom: none !important;
+    outline: none;
+    background: transparent;
+  }
+
+  .select-spc {
     border: none;
     border-bottom: none !important;
     outline: none;
@@ -745,7 +770,7 @@ td {
   text-align: center;
 }
 
-.select-species {
+.select-spc {
   color: #333232;
   border: none;
   border-bottom: 0.065rem solid #333232;
@@ -854,6 +879,10 @@ td {
   background-color: rgba(10, 10, 10, 0.45);
 }
 
+#errormodal {
+  background-color: rgba(10, 10, 10, 0.45);
+}
+
 a,
 a:hover,
 a:focus {
@@ -875,11 +904,21 @@ a:focus {
 }
 
 
-.IDDisplay
-{
-  margin-left:2px;
+.IDDisplay {
+  margin-left: 2px;
 }
+
 #UniqueID {
   font-family: 'Segoe UI';
   font-size: 16px;
+}
+
+#submitbtn {
+  display: none;
+}
+
+#user1,
+#email2,
+#user5 {
+  display: none;
 }

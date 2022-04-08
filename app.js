@@ -7,11 +7,11 @@
   const SerialPort = require('serialport')
   const HL7 = require('hl7-standard');
   var hl7parser = require("hl7parser");
-  //mnchip v5
-  const port = new SerialPort('COM9', {
+    //mythic 18 vet
+  const port = new SerialPort('COM7', {
     baudRate: 115200
   }) 
-  //mythic 18 vet
+  //mnchip v5
   const port3 = new SerialPort('COM6', {
     baudRate: 115200
   }) 
@@ -293,7 +293,7 @@
       SerialPort.list().then(function(ports){
         ports.forEach(function(port){
           // console.log(port); 
-          status = JSON.stringify(port)
+          status = JSON.stringify(port); 
           io.emit('status', status)
         })
       });

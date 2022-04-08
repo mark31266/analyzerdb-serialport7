@@ -719,7 +719,8 @@ firebase.auth().onAuthStateChanged(function (user) {
           CreLower: crel1.value,
           CreUpper: creu1.value,
           CkLower: ckl1.value,
-          CkUpper: cku1.value
+          CkUpper: cku1.value, 
+          Machine: "MNCHIP V5"
         }).then(() => {
           document.getElementById("error1").innerHTML = "Data Updated!";
           $('#myModal').modal('show');

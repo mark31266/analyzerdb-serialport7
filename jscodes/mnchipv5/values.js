@@ -75,7 +75,7 @@
                 let pinputs = document.getElementById('physicianinputs');
                 var date2 = document.getElementById("date1");  
                 var clock1 = document.getElementById("clock");  
-                var machinename = document.getElementById("machinename").innerHTML; 
+                var machinename = document.getElementById("machinename"); 
                 var result1 = [] ; 
                 
                 function Update(val,type) 
@@ -124,10 +124,10 @@
                 querySnapshot.forEach(doc => result1.push(doc.id));
                 result1.forEach(function (item1) {
                   const optionObj1 = document.createElement("option");
-                  optionObj1.textContent = item1;
-                  document.getElementById("msselect").appendChild(optionObj1);
+                  optionObj1.textContent = item1.replace("MNCHIP V5 - ","");
+                  document.getElementById("specieselect").appendChild(optionObj1);
                   
-                  $('#msselect').selectpicker('refresh');
+                  $('#specieselect').selectpicker('refresh');
                  
                 });
               }) 
@@ -136,7 +136,16 @@
             function printfunction() {
               window.print();
           }
-            
+          firebase.auth().onAuthStateChanged(function (user) {
+            document.getElementById("user1").innerHTML = user.uid
+            document.getElementById("email2").innerHTML = user.email; 
+            var uid5 = document.getElementById("user1").innerHTML; 
+            db.collection("users").doc(uid5).get().then((doc) => {
+              document.getElementById("user5").innerHTML = String(doc.data().Username); 
+            })
+          })
+
+
              function dataonload() {
               var myimg = document.getElementById("signatories1"); 
               var myimg2 = document.getElementById("logo1"); 
@@ -183,19 +192,12 @@
             }
 
             function doc_withautoincrement(){
-              firebase.auth().onAuthStateChanged(function (user) {
-                uid1 = user.uid
-                email1 = user.email; 
-                console.log(uid1)
-                db.collection("users").doc(uid1).get().then((doc) => {
-                  username5 = String(doc.data().Username);
-                  console.log(username5)
+              var emailused = document.getElementById("email2"); 
               var doc = db.collection("MNCHIPV5").doc(PIDinput.innerHTML); 
               doc.get().then((docSnapshot) => {
                 if (docSnapshot.exists) {
                   document.getElementById("error1").innerHTML = "Data Exists in the Database: " + "PID: " + PIDinput.innerHTML;
                   $('#errormodal').modal('show');
-                  // window.location.reload(); 
                 } else {
                   // document does not exist (only on online)
                   db.collection("MNCHIPV5").doc(PIDinput.innerHTML).set(
@@ -265,9 +267,9 @@
                   TIME : TIMEinput.innerHTML, 
                   PID : PIDinput.innerText,
                   Doctor: pinputs.value,
-                  Machine : machinename, 
+                  Machine : machinename.innerHTML, 
                   barcode : PIDinput.innerText, 
-                  User : String(email1)
+                  User : emailused.innerHTML
                  
                  }).then(function (){
                    console.log(); 
@@ -281,8 +283,7 @@
              } 
              }).catch((fail) => {
              });
-            })
-          })
+         
            }
 
 
@@ -295,20 +296,20 @@
                    console.dir(data);
                    } 
                  });   
-                 var selectBox = document.getElementById("msselect");
+                 var selectBox = document.getElementById("specieselect");
                  selectedValue = selectBox.options[selectBox.selectedIndex].value;
-                db.collection("Reference Ranges").doc(String(selectedValue)).get()  
+                db.collection("Reference Ranges").doc("MNCHIP V5 - "+ String(selectedValue)).get()  
                 .then((doc) => {
                       //SID DATA
                  socket.on('OBR', function(OBR) {
                    if (OBR !== null ){
-                     document.getElementById('UniqueID').innerHTML = String(OBR).substring(14,28); 
+                     document.getElementById('PID').innerHTML = String(OBR).substring(14,28); 
                      document.getElementById('DATE').innerHTML = date2.innerHTML; 
                      timeinputs.value = TIMEinput.innerHTML 
-                  document.getElementById('PID').innerHTML = (navdate.innerText.replace("-","").replace("-","") 
+                  document.getElementById('UniqueID').innerHTML = (navdate.innerText.replace("-","").replace("-","") 
                   + TIMEinput.innerText.replace(":","")).replace(":","") ; 
-
-                   } 
+                    document.getElementById("submitbtn").style.display = "block"; 
+                    } 
                  });
            //ALB DATA
            socket.on('ALB', function(ALB) {
@@ -319,7 +320,7 @@
               /*low */ var albb = String(doc.data().ALBLower);
               /* high */ var albc = String(doc.data().ALBUpper);    
             
-                if (parseFloat(alba) > parseFloat(albc))
+                if (parseFloat(alba) > parseFloat(albc) || alba.includes(">"))
                     {
                      th_alb.innerHTML = "<b>" + alba + "&nbsp↑</b>" 
                     }
@@ -344,7 +345,7 @@
                 /*low */ var tpb = String(doc.data().TPLower); 
                 /* high */ var tpc = String(doc.data().TPUpper);    
               
-                  if (parseFloat(tpa) > parseFloat(tpc))
+                  if (parseFloat(tpa) > parseFloat(tpc) || tpa.includes(">"))
                       {
                        th_tp.innerHTML = "<b>" + tpa + "&nbsp↑</b>" 
                       }
@@ -371,7 +372,7 @@
                /*low */ var cab = String(doc.data().CaLower); 
                /* high */ var cac = String(doc.data().CaUpper);     
              
-                 if (parseFloat(caa) > parseFloat(cac))
+                 if (parseFloat(caa) > parseFloat(cac) || caa.includes(">"))
                      {
                       th_ca.innerHTML = "<b>" + caa + "&nbsp↑</b>" 
                      }
@@ -396,7 +397,7 @@
                /*low */ var glub = String(doc.data().GLULower); 
                /* high */ var gluc = String(doc.data().GLUUpper); 
              
-                 if (parseFloat(glua) > parseFloat(gluc))
+                 if (parseFloat(glua) > parseFloat(gluc) || glua.includes(">"))
                      {
                       th_glu.innerHTML = "<b>" + glua + "&nbsp↑</b>" 
                      }
@@ -421,7 +422,7 @@
                /*low */ var bunb = String(doc.data().BUNLower)
                /* high */ var bunc =  String(doc.data().BUNUpper)
              
-                 if (parseFloat(buna) > parseFloat(bunc))
+                 if (parseFloat(buna) > parseFloat(bunc) || buna.includes(">"))
                      {
                       th_bun.innerHTML = "<b>" + buna + "&nbsp↑</b>" 
                      }
@@ -446,7 +447,7 @@
                 /*low */ var pb =  String(doc.data().PLower)
                 /* high */ var pc =  String(doc.data().PUpper)  
               
-                  if (parseFloat(pa) > parseFloat(pc))
+                  if (parseFloat(pa) > parseFloat(pc) || pa.includes(">"))
                       {
                        th_p.innerHTML = "<b>" + pa + "&nbsp↑</b>" 
                       }
@@ -471,7 +472,7 @@
                /*low */ var amyb = String(doc.data().AMYLower); 
                /* high */ var amyc = String(doc.data().AMYUpper);   
              
-                 if (parseFloat(amya) > parseFloat(amyc))
+                 if (parseFloat(amya) > parseFloat(amyc) || amya.includes(">"))
                      {
                       th_amy.innerHTML = "<b>" + amya + "&nbsp↑</b>" 
                      }
@@ -487,15 +488,7 @@
                       th_amynormal.innerHTML =  amyb + " - " + amyc ;
                } 
              });
-                   
-          //amyL DATA
-            socket.on('HCTL', function(HCTL) {
-            if (HCTL !== null ){
-                th_hctnormal.innerHTML +=  /*low*/  String(HCTL).substr(12,5).replace(";", "").replace(";", "")
-                + /*High*/ " - " + String(HCTL).substr(26,5).replace(";", "").replace(";", "");
-               } 
-             });
-          
+    
           //CHOL DATA
             socket.on('CHOL', function(CHOL) {
             if (CHOL !== null ){
@@ -505,7 +498,7 @@
                 /*low */ var cholb =  String(doc.data().CholLower)
                 /* high */ var cholc =  String(doc.data().CholUpper)  
               
-                  if (parseFloat(chola) > parseFloat(cholc))
+                  if (parseFloat(chola) > parseFloat(cholc) || chola.includes(">"))
                       {
                        th_chol.innerHTML = "<b>" + chola + "&nbsp↑</b>" 
                       }
@@ -530,7 +523,7 @@
                  var alta = alt0[1]; 
                  /*low */ var altb = String(doc.data().AltLower)
                  /* high */ var altc = String(doc.data().AltUpper)   
-                   if (parseFloat(alta) > parseFloat(altc))
+                   if (parseFloat(alta) > parseFloat(altc) || alta.includes(">"))
                        {
                         th_alt.innerHTML = "<b>" + alta + "&nbsp↑</b>" 
                        }
@@ -555,7 +548,7 @@
                  /*low */ var tbilb = String(doc.data().TbilLower)
                  /* high */ var tbilc = String(doc.data().TbilUpper)  
                
-                   if (parseFloat(tbila) > parseFloat(tbilc))
+                   if (parseFloat(tbila) > parseFloat(tbilc) || tbila.includes(">"))
                        {
                         th_tbil.innerHTML = "<b>" + tbila + "&nbsp↑</b>" 
                        }
@@ -582,7 +575,7 @@
                   var alpa = alp0[1]; 
                 /*low */ var alpb =  String(doc.data().AlpLower)
                 /* high */ var alpc =  String(doc.data().AlpUpper)   
-                  if (parseFloat(alpa) > parseFloat(alpc))
+                  if (parseFloat(alpa) > parseFloat(alpc) || alpa.includes(">"))
                       {
                        th_alp.innerHTML = "<b>" + alpa + "&nbsp↑</b>" 
                       }
@@ -611,7 +604,7 @@
            /*low */ var creb = String(doc.data().CreLower)
            /* high */ var crec = String(doc.data().CreUpper)
          
-             if (parseFloat(crea) > parseFloat(crec))
+             if (parseFloat(crea) > parseFloat(crec) || crea.includes(">"))
                  {
                   th_cre.innerHTML = "<b>" + crea + "&nbsp↑</b>" 
                  }
@@ -642,65 +635,62 @@
             $('#errormodal').modal('show');
           }
           else{
-            bnn2.innerHTML += "<b>" + bnn1.value + "</b>"; 
-            doc_withautoincrement(); 
-          //   JsBarcode("#barcode1", (PIDinput.innerText), {
-          //            format: "CODE39",
-          //    flat : true,
-          //  lineColor: "#0aa",
-          //                  width: 1,
-          //                  height: 50
-          //  })
-          //  window.print(); 
-       
-          //  db.collection("Timestamp").doc("Counting").get().then((doc) => {
-          //    var count1 = doc.data().counting; 
-          //   if (count1 == "0") 
-          //  {
-          //   db.collection("Timestamp").doc("Constant").set(
-          //     {
-          //       dateran : date2.innerText + " " + clock1.innerText,
-          //       date : DATEinput.innerText,
-          //       sid : PIDinput.innerText
-          //     })
-          //     db.collection("Timestamp").doc("Counting").set(
-          //       {
-          //         counting : "1"  
-          //       })
-          //  }
-          //  else if (count1 == "1") 
-          //  {
-          //   db.collection("Timestamp").doc("Counting").set(
-          //     {
-          //       counting : "0"  
-          //     })
-          //   db.collection("Timestamp").doc("Constant2").set(
-          //     {
-          //       dateran : date2.innerText + " " + clock1.innerText,
-          //       date : DATEinput.innerText,
-          //       sid : PIDinput.innerText,
-          //     })
-          //  }
-          //  })
-          //  db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
-          //    {
-          //    id : idSTRING,
-          //    SID : SIDinput.innerText,
-          //    Test_Run_Date : DATEinput.innerText,
-          //    Activity : "Run Sample",
-          //    Machine : machinename,
-          //    DateDid : date2.innerText + " " + clock1.innerText 
-          //    })
-          setTimeout(function(){    
-            //  window.location.reload();  
+            bnn2.innerHTML = "<b>" + bnn1.value + "</b>"; 
           
-          }, 1500);
+            JsBarcode("#barcode1", (PIDinput.innerText), {
+                     format: "CODE39",
+             flat : true,
+           lineColor: "#0aa",
+                           width: 1,
+                           height: 50
+           })
+           doc_withautoincrement(); 
+           window.print(); 
+           db.collection("Timestamp MNCHIP V5").doc("Counting").get().then((doc) => {
+             var count1 = doc.data().counting; 
+            if (count1 == "0") 
+           {
+            db.collection("Timestamp MNCHIP V5").doc("Constant").set(
+              {
+                dateran : date2.innerText + " " + clock1.innerText,
+                date : DATEinput.innerText,
+                PID : PIDinput.innerText
+              })
+              db.collection("Timestamp MNCHIP V5").doc("Counting").set(
+                {
+                  counting : "1"  
+                })
+           }
+           else if (count1 == "1") 
+           {
+            db.collection("Timestamp MNCHIP V5").doc("Counting").set(
+              {
+                counting : "0"  
+              })
+            db.collection("Timestamp MNCHIP V5").doc("Constant2").set(
+              {
+                dateran : date2.innerText + " " + clock1.innerText,
+                date : DATEinput.innerText,
+                PID : PIDinput.innerText,
+              })
+           }
+           })
+           var emailused2 = document.getElementById("email2"); 
+           db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
+             {
+             id : emailused2.innerHTML,
+             PID : PIDinput.innerText,
+             Test_Run_Date : DATEinput.innerText,
+             Activity : "Run Sample",
+             Machine : machinename.innerHTML,
+             DateDid : date2.innerText + " " + clock1.innerText 
+             })
+          // setTimeout(function(){    
+          //    window.location.reload();  
+          
+          // }, 1500);
           }
         }); 
-
-
-
-
 
    //CK DATA
    socket.on('CK', function(CK) {
@@ -744,7 +734,7 @@
         }
         else{
         
-          bnn2.innerHTML += "<b>" + bnn1.value + "</b>"; 
+          bnn2.innerHTML = "<b>" + bnn1.value + "</b>"; 
         
           doc_withautoincrement(); 
          window.print();
@@ -765,7 +755,7 @@
            {
              dateran : date2.innerText + " " + clock1.innerText,
              date : DATEinput.innerText,
-             sid : SIDinput.innerText
+             PID : PIDinput.innerText
            })
            db.collection("Timestamp").doc("Counting").set(
              {
@@ -782,23 +772,23 @@
            {
              dateran : date2.innerText + " " + clock1.innerText,
              date : DATEinput.innerText,
-             sid : SIDinput.innerText,
+             PID : PIDinput.innerText,
            })
         }
         })
-        //  db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
-        //    {
-        //    id : idSTRING,
-        //    SID : SIDinput.innerText,
-        //    Test_Run_Date : DATEinput.innerText,
-        //    Activity : "Run Sample",
-        //    Machine : machinename,
-        //    DateDid : date2.innerText + " " + clock1.innerText 
-        //    })
-        //  alert("Data Written! " + "SID: " + SIDinput.innerText); 
-        setTimeout(function(){    
-          //  window.location.reload();  
-        }, 1000);
+        var emailused3 = document.getElementById("email2"); 
+         db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
+           {
+           id : emailused3.innerHTML,
+           PID : PIDinput.innerText,
+           Test_Run_Date : DATEinput.innerText,
+           Activity : "Run Sample",
+           Machine : machinename,
+           DateDid : date2.innerText + " " + clock1.innerText 
+           })
+        // setTimeout(function(){    
+        //   //  window.location.reload();  
+        // }, 1000);
         }
 } 
     }); 
