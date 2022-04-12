@@ -47,6 +47,13 @@ socket.on('status', function(status) {
       optionObj11.href = "/myth18vet/run"; 
       document.getElementById("machineselect").appendChild(optionObj11); 
 
+      const navobj10 = document.createElement("li");
+      const navobj11 = document.createElement("a");
+      navobj11.textContent = "Combo Machines";
+      navobj11.href = "/combo/run"; 
+      navobj10.appendChild(navobj11)
+      document.getElementById("homeSubmenu1").appendChild(navobj10);
+      
      socket.close(); 
    }
   

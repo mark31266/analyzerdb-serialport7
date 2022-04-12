@@ -43,7 +43,6 @@
       res.cookie("XSRF-TOKEN", req.csrfToken()); 
       next(); 
     }); 
-
     app.get("/", function(req,res)
     {
       const sessionCookie = req.cookies.session || "";
@@ -51,7 +50,7 @@
         .auth()
         .verifySessionCookie(sessionCookie, true)
         .then(() => {
-          res.render("myth22/home.html");
+          res.render("rel/home.html");
         })
         .catch((error) => {
           res.redirect("/login");
@@ -64,48 +63,10 @@
         .auth()
         .verifySessionCookie(sessionCookie, true)
         .then(() => {
-          res.render("myth22/home.html");
+          res.render("rel/home.html");
         })
         .catch((error) => {
           res.render("login.html");
-        });
-    });
-    app.get("/myth22/run", function(req,res)
-    {
-      const sessionCookie = req.cookies.session || "";
-      admin.auth()
-        .verifySessionCookie(sessionCookie, true)
-        .then(() => {
-          res.render("myth22/runsamples.html");
-        })
-        .catch((error) => {
-          res.redirect("/login");
-        });
-    });
-    app.get("/myth18/run", function(req,res)
-    {
-      const sessionCookie = req.cookies.session || "";
-      admin
-        .auth()
-        .verifySessionCookie(sessionCookie, true)
-        .then(() => {
-          res.render("myth18/runsamples.html");
-        })
-        .catch((error) => {
-          res.redirect("/login");
-        });
-    });
-    app.get("/myth60/run", function(req,res)
-    {
-      const sessionCookie = req.cookies.session || "";
-      admin
-        .auth()
-        .verifySessionCookie(sessionCookie, true)
-        .then(() => {
-          res.render("myth60/runsamples.html");
-        })
-        .catch((error) => {
-          res.redirect("/login");
         });
     });
     app.get("/mnchipv5/run", function(req,res)
@@ -129,45 +90,6 @@
         .verifySessionCookie(sessionCookie, true)
         .then(() => {
           res.render("myth18vet/runsamples.html");
-        })
-        .catch((error) => {
-          res.redirect("/login");
-        });
-    });
-    app.get("/myth22/records", function(req,res)
-    {
-      const sessionCookie = req.cookies.session || "";
-      admin
-        .auth()
-        .verifySessionCookie(sessionCookie, true)
-        .then(() => {
-          res.render("myth22/managerecords.html");
-        })
-        .catch((error) => {
-          res.redirect("/login");
-        });
-    });
-    app.get("/myth18/records", function(req,res)
-    {
-      const sessionCookie = req.cookies.session || "";
-      admin
-        .auth()
-        .verifySessionCookie(sessionCookie, true)
-        .then(() => {
-          res.render("myth18/managerecords.html");
-        })
-        .catch((error) => {
-          res.redirect("/login");
-        });
-    });
-    app.get("/myth60/records", function(req,res)
-    {
-      const sessionCookie = req.cookies.session || "";
-      admin
-        .auth()
-        .verifySessionCookie(sessionCookie, true)
-        .then(() => {
-          res.render("myth60/managerecords.html");
         })
         .catch((error) => {
           res.redirect("/login");
@@ -199,6 +121,32 @@
           res.redirect("/login");
         });
     });
+    app.get("/combo/records", function(req,res)
+    {
+      const sessionCookie = req.cookies.session || "";
+      admin
+        .auth()
+        .verifySessionCookie(sessionCookie, true)
+        .then(() => {
+          res.render("combo/managerecords.html");
+        })
+        .catch((error) => {
+          res.redirect("/login");
+        });
+    });
+    app.get("/combo/run", function(req,res)
+    {
+      const sessionCookie = req.cookies.session || "";
+      admin
+        .auth()
+        .verifySessionCookie(sessionCookie, true)
+        .then(() => {
+          res.render("combo/runsamples.html");
+        })
+        .catch((error) => {
+          res.redirect("/login");
+        });
+    });
     app.get("/settings", function(req,res)
     {
       const sessionCookie = req.cookies.session || "";
@@ -207,13 +155,12 @@
         .auth()
         .verifySessionCookie(sessionCookie, true)
         .then(() => {
-          res.render("myth22/settings.html");
+          res.render("rel/settings.html");
         })
         .catch((error) => {
           res.redirect("/login");
         });
     });
-  
     app.get("/about", function(req,res)
     {
       const sessionCookie = req.cookies.session || "";
@@ -221,7 +168,7 @@
         .auth()
         .verifySessionCookie(sessionCookie, true)
         .then(() => {
-          res.render("myth22/about.html");
+          res.render("rel/about.html");
         })
         .catch((error) => {
           res.redirect("/login");
@@ -247,7 +194,7 @@
         .auth()
         .verifySessionCookie(sessionCookie, true)
         .then(() => {
-          res.render("myth22/home.html");
+          res.render("rel/home.html");
         })
         .catch((error) => {
           res.redirect("/login");
@@ -279,8 +226,6 @@
       res.redirect("/login");
     });
       //System Uptime
-  
-    
       io.on('connection', function(io) {
         
         let uptimedata = process.uptime(); 
@@ -296,18 +241,14 @@
           status = JSON.stringify(port); 
           io.emit('status', status)
         })
-      });
-
-        
+      });  
         port.open(function (err) {
           if (err) {
             barcode = "Error " + err.message; 
             io.emit('barcode', barcode)
-          }
-          
+          }  
         })
       })
-    
   //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^app usages^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
   io.on('connection', function(io) {
   }) 
@@ -365,7 +306,7 @@
   let CK = data.match(/\|CK\|(.*?)\|/);
   io.emit('CK', CK)
   })
-  const parser = port.pipe(new Regex({ regex: /[\r\n]+/ }))
+  const parser = port3.pipe(new Regex({ regex: /[\r\n]+/ }))
   parser.on('data', function(data) {
     io.emit('data', data)
     // // port.write("DSR^Q03")

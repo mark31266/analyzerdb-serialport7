@@ -18,9 +18,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   var user = firebase.auth().currentUser;
   username = user.email;
 })
-
 var clicks = 0;
-
 // RealTimeData();
 setTimeout(function (searchAlgn) {
   $(document).ready(function () {
