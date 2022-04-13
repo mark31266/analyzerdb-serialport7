@@ -27,6 +27,79 @@ import {
   from "https://www.gstatic.com/firebasejs/9.3.0/firebase-storage.js"
 
 const db = getFirestore();
+ //--------Image Upload---------//
+ var reader = new FileReader();
+ var proglab = document.getElementById("upprogress");
+ document.getElementById("filenamelabel").innerHTML += " ";
+ function readURL() {
+   var $input = $(this);
+   var $newinput = $(this).parent().parent().parent().find('.portimg ');
+   if (this.files && this.files[0]) {
+     reader.onload = function (e) {
+       reset($newinput.next('.delbtn'), true);
+       $newinput.attr('src', e.target.result).show();
+       $newinput.after('<input type="button" class="delbtn removebtn" value="✖">');
+     }
+     reader.readAsDataURL(this.files[0]);
+     var ImgToUpload = this.files[0];
+     var ImgName = document.getElementById("filenamelabel").innerText;
+     const metaData = {
+       contentType: ImgToUpload.type
+     }
+     const storage = getStorage();
+     const storageRef = sRef(storage, "Images/" + ImgName)
+     const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
+
+     UploadTask.on('state-changed', (snapshot) => {
+       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+       proglab.innerHTML = "Upload " + progress + "%";
+     },
+       (error) => {
+         console.log("error" + error);
+       },
+       () => {
+         getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
+           SaveURLtoFirestore(downloadURL);
+         });
+       }
+     );
+   }
+ }
+
+ $(".custom-file-input").change(readURL);
+ $("form").on('click', '.delbtn', function (e) {
+   reset($(this));
+ });
+
+ function reset(elm, prserveFileName) {
+   if (elm && elm.length > 0) {
+     var $input = elm;
+     $input.prev('.portimg').attr('src', '').hide();
+     if (!prserveFileName) {
+       $($input).parent().parent().parent().find('input.custom-file-input ').val("");
+       //input.fileUpload and input#uploadre both need to empty values for particular div
+     }
+     elm.remove();
+
+   }
+ }
+ async function SaveURLtoFirestore(url) {
+   var filename = document.getElementById("filenamelabel").innerText;
+
+   var ref = doc(db, "Images/" + filename);
+
+   await setDoc(ref, {
+     ImageName: filename,
+     ImageURL: url
+   })
+ }
+
+
+
+
+
+
+
 let db2 = firebase.firestore();
 var submitbtn1 = document.getElementById("subchangeBTN");
 var updatebtn1 = document.getElementById("updateBTN");
@@ -369,72 +442,7 @@ firebase.auth().onAuthStateChanged(function (user) {
       });
     }, 2000);
 
-    //--------Image Upload---------//
-    var reader = new FileReader();
-    var proglab = document.getElementById("upprogress");
-    document.getElementById("filenamelabel").innerHTML += " ";
-    function readURL() {
-      var $input = $(this);
-      var $newinput = $(this).parent().parent().parent().find('.portimg ');
-      if (this.files && this.files[0]) {
-        reader.onload = function (e) {
-          reset($newinput.next('.delbtn'), true);
-          $newinput.attr('src', e.target.result).show();
-          $newinput.after('<input type="button" class="delbtn removebtn" value="✖">');
-        }
-        reader.readAsDataURL(this.files[0]);
-        var ImgToUpload = this.files[0];
-        var ImgName = document.getElementById("filenamelabel").innerText;
-        const metaData = {
-          contentType: ImgToUpload.type
-        }
-        const storage = getStorage();
-        const storageRef = sRef(storage, "Images/" + ImgName)
-        const UploadTask = uploadBytesResumable(storageRef, ImgToUpload, metaData);
-
-        UploadTask.on('state-changed', (snapshot) => {
-          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          proglab.innerHTML = "Upload " + progress + "%";
-        },
-          (error) => {
-            console.log("error" + error);
-          },
-          () => {
-            getDownloadURL(UploadTask.snapshot.ref).then((downloadURL) => {
-              SaveURLtoFirestore(downloadURL);
-            });
-          }
-        );
-      }
-    }
-
-    $(".custom-file-input").change(readURL);
-    $("form").on('click', '.delbtn', function (e) {
-      reset($(this));
-    });
-
-    function reset(elm, prserveFileName) {
-      if (elm && elm.length > 0) {
-        var $input = elm;
-        $input.prev('.portimg').attr('src', '').hide();
-        if (!prserveFileName) {
-          $($input).parent().parent().parent().find('input.custom-file-input ').val("");
-          //input.fileUpload and input#uploadre both need to empty values for particular div
-        }
-        elm.remove();
-
-      }
-    }
-    async function SaveURLtoFirestore(url) {
-      var filename = document.getElementById("filenamelabel").innerText;
-
-      var ref = doc(db, "Images/" + filename);
-
-      await setDoc(ref, {
-        ImageName: filename,
-        ImageURL: url
-      })
-    }
+   
     //reference ranges
     var msselect1 = document.getElementById("msselect");
     var machineselect1 = document.getElementById("machineselect");

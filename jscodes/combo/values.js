@@ -293,7 +293,7 @@
               //SID DATA
                  socket.on('data', function(data) {
                    if (data !== null ){
-                   console.dir(data);
+                     console.log(data); 
                    } 
                  });   
                  var selectBox = document.getElementById("specieselect");
@@ -794,7 +794,7 @@
     }); 
     socket.on('data', function(data) {
       if (data !== null ){
-      console.dir(data);
+        console.log(data); 
       } 
     });     
     var selectBox = document.getElementById("specieselect");
