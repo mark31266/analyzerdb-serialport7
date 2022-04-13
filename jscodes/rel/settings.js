@@ -529,11 +529,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     var wbcl2 = document.getElementById("wbcl2");
     var wbcu2 = document.getElementById("wbcu2");
 
-    var neul1 = document.getElementById("neul");
-    var neuu1 = document.getElementById("neuu");
-    var neul2 = document.getElementById("neul2");
-    var neuu2 = document.getElementById("neuu2");
-
     var lyml1 = document.getElementById("lyml");
     var lymu1 = document.getElementById("lymu");
     var lyml2 = document.getElementById("lyml2");
@@ -544,15 +539,10 @@ firebase.auth().onAuthStateChanged(function (user) {
     var monl2 = document.getElementById("monl2");
     var monu2 = document.getElementById("monu2");
 
-    var eosl1 = document.getElementById("eosl");
-    var eosu1 = document.getElementById("eosu");
-    var eosl2 = document.getElementById("eosl2");
-    var eosu2 = document.getElementById("eosu2");
-
-    var basl1 = document.getElementById("basl");
-    var basu1 = document.getElementById("basu");
-    var basl2 = document.getElementById("basl2");
-    var basu2 = document.getElementById("basu2");
+    var gral1 = document.getElementById("gral");
+    var grau1 = document.getElementById("grau");
+    var gral2 = document.getElementById("gral2");
+    var grau2 = document.getElementById("grau2");
 
     var rbcl1 = document.getElementById("rbcl");
     var rbcu1 = document.getElementById("rbcu");
@@ -606,16 +596,12 @@ firebase.auth().onAuthStateChanged(function (user) {
          
             document.getElementById("wbcl2").value = parseFloat(doc.data().WBCLower); 
             document.getElementById("wbcu2").value = parseFloat(doc.data().WBCUpper); 
-            document.getElementById("neul2").value = parseFloat(doc.data().NeuLower); 
-            document.getElementById("neuu2").value = parseFloat(doc.data().NeuUpper); 
             document.getElementById("lyml2").value = parseFloat(doc.data().LymLower); 
             document.getElementById("lymu2").value = parseFloat(doc.data().LymUpper); 
             document.getElementById("monl2").value = parseFloat(doc.data().MonLower); 
             document.getElementById("monu2").value = parseFloat(doc.data().MonUpper); 
-            document.getElementById("eosl2").value = parseFloat(doc.data().EosLower); 
-            document.getElementById("eosu2").value = parseFloat(doc.data().EosUpper); 
-            document.getElementById("basl2").value = parseFloat(doc.data().BasLower); 
-            document.getElementById("basu2").value = parseFloat(doc.data().BasUpper); 
+            document.getElementById("gral2").value = parseFloat(doc.data().GraLower); 
+            document.getElementById("grau2").value = parseFloat(doc.data().GraUpper); 
             document.getElementById("rbcl2").value = parseFloat(doc.data().RBCLower); 
             document.getElementById("rbcu2").value = parseFloat(doc.data().RBCUpper); 
             document.getElementById("hgbl2").value = parseFloat(doc.data().HGBLower); 
@@ -735,16 +721,12 @@ firebase.auth().onAuthStateChanged(function (user) {
         {
           WBCLower: wbcl1.value,
           WBCUpper: wbcu1.value,
-          NeuLower: neul1.value,
-          NeuUpper: neuu1.value,
           LymLower: lyml1.value,
           LymUpper: lymu1.value,
           MonLower: monl1.value,
           MonUpper: monu1.value,
-          EosLower: eosl1.value,
-          EosUpper: eosu1.value,
-          BasLower: basl1.value,
-          BasUpper: basu1.value,
+          GraLower: gral1.value,
+          GraUpper: grau1.value,
           RBCLower: rbcl1.value,
           RBCUpper: rbcu1.value,
           HGBLower: hgbl1.value,
@@ -782,16 +764,12 @@ firebase.auth().onAuthStateChanged(function (user) {
     document.getElementById("addsubmit1").addEventListener("click", function (event) {
       if (wbcl2 !== null && wbcl2.value === "" ||
       wbcu2 !== null && wbcu2.value === "" ||
-      neul2 !== null && neul2.value === "" ||
-      neuu2 !== null && neuu2.value === "" ||
       lyml2 !== null && lyml2.value === "" ||
       lymu2 !== null && lymu2.value === "" ||
       monl2 !== null && monl2.value === "" ||
       monu2 !== null && monu2.value === "" ||
-      eosl2 !== null && eosl2.value === "" ||
-      eosu2 !== null && eosu2.value === "" ||
-      basl2 !== null && basl2.value === "" ||
-      basu2 !== null && basu2.value === "" ||
+      gral2 !== null && gral2.value === "" ||
+      grau2 !== null && grau2.value === "" ||
       rbcl2 !== null && rbcl2.value === "" ||
       rbcu2 !== null && rbcu2.value === "" ||
       hgbl2 !== null && hgbl2.value === "" ||
@@ -814,16 +792,12 @@ firebase.auth().onAuthStateChanged(function (user) {
         {
           WBCLower: wbcl2.value,
           WBCUpper: wbcu2.value,
-          NeuLower: neul2.value,
-          NeuUpper: neuu2.value,
           LymLower: lyml2.value,
           LymUpper: lymu2.value,
           MonLower: monl2.value,
           MonUpper: monu2.value,
-          EosLower: eosl2.value,
-          EosUpper: eosu2.value,
-          BasLower: basl2.value,
-          BasUpper: basu2.value,
+          GraLower: gral2.value,
+          GraUpper: grau2.value,
           RBCLower: rbcl2.value,
           RBCUpper: rbcu2.value,
           HGBLower: hgbl2.value,
@@ -838,7 +812,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           MCHCUpper: mchcu2.value,
           PLTLower: pltl2.value,
           PLTUpper: pltu2.value,
-          Machine : "MNCHIP V5"
+          Machine : "Mythic 18 Vet"
         }, {merge: true}).then(() => {
           document.getElementById("error1").innerHTML = "Data Updated!";
           $('#myModal').modal('show');
@@ -947,16 +921,12 @@ firebase.auth().onAuthStateChanged(function (user) {
       else if (machineselect1.value.includes("Mythic 18 Vet")) {
         if (wbcl1 !== null && wbcl1.value === "" ||
           wbcu1 !== null && wbcu1.value === "" ||
-          neul1 !== null && neul1.value === "" ||
-          neuu1 !== null && neuu1.value === "" ||
           lyml1 !== null && lyml1.value === "" ||
           lymu1 !== null && lymu1.value === "" ||
           monl1 !== null && monl1.value === "" ||
           monu1 !== null && monu1.value === "" ||
-          eosl1 !== null && eosl1.value === "" ||
-          eosu1 !== null && eosu1.value === "" ||
-          basl1 !== null && basl1.value === "" ||
-          basu1 !== null && basu1.value === "" ||
+          gral1 !== null && gral1.value === "" ||
+          grau1 !== null && grau1.value === "" ||
           rbcl1 !== null && rbcl1.value === "" ||
           rbcu1 !== null && rbcu1.value === "" ||
           hgbl1 !== null && hgbl1.value === "" ||

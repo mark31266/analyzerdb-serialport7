@@ -445,6 +445,7 @@ select {
 }
 
 #cal {
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1215,4 +1216,9 @@ table.dataTable tbody tr:hover {
 #email1inputs, #username1inputs, #desc1inputs  {
    border-bottom: 0.065rem solid #333232;
    width: 340px
+}
+
+#FirstPart
+{
+  padding-right: 220px;
 }

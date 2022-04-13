@@ -530,6 +530,7 @@ div.subtabletext {
   .inputBoxTime {
     display: block;
     width: 250px;
+    font-weight: bold;
   }
 
   #refreshbtn {

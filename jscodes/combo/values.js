@@ -287,7 +287,7 @@
            }
 
 
-             function changeFunc(selectedValue) {
+             function changeFunc() {
             
                            var socket = io();
               //SID DATA
@@ -297,7 +297,7 @@
                    } 
                  });   
                  var selectBox = document.getElementById("specieselect");
-                 selectedValue = selectBox.options[selectBox.selectedIndex].value;
+                 var selectedValue = selectBox.options[selectBox.selectedIndex].value;
                 db.collection("Reference Ranges").doc("MNCHIP V5 - "+ String(selectedValue)).get()  
                 .then((doc) => {
                       //SID DATA
@@ -314,7 +314,7 @@
            //ALB DATA
            socket.on('ALB', function(ALB) {
              if (ALB !== null ){
-               th_albunit.innerHTML = "g/L" ;     
+               th_albunit.innerHTML = "g/dL" ;     
                var alba0 = String(ALB).split(",");
                var alba = alba0[1]; 
               /*low */ var albb = String(doc.data().ALBLower);
@@ -339,7 +339,7 @@
           //TP DATA
             socket.on('TP', function(TP) {
              if (TP !== null ){
-                th_tpunit.innerHTML = "g/L" ;
+                th_tpunit.innerHTML = "g/dL" ;
                 var tpa0 = String(TP).split(",");
                 var tpa = tpa0[1]; 
                 /*low */ var tpb = String(doc.data().TPLower); 
@@ -366,7 +366,7 @@
           //CA DATA
             socket.on('CA', function(CA) {   
              if (CA !== null ){
-               th_caunit.innerHTML = "mmol/L" ;
+               th_caunit.innerHTML = "mg/dL" ;
                var ca0 = String(CA).split(",");
                var caa = ca0[1]; 
                /*low */ var cab = String(doc.data().CaLower); 
@@ -391,7 +391,7 @@
           //GLU DATA
             socket.on('GLU', function(GLU) {
             if (GLU !== null ){
-               th_gluunit.innerHTML = "mmol/L" ;
+               th_gluunit.innerHTML = "mg/dL" ;
                var glu0 = String(GLU).split(",");
                var glua = glu0[1]; 
                /*low */ var glub = String(doc.data().GLULower); 
@@ -416,7 +416,7 @@
            //BUN DATA
              socket.on('BUN', function(BUN) {
              if (BUN !== null ) {
-               th_bununit.innerHTML = "mmol/L" ;
+               th_bununit.innerHTML = "mg/dL" ;
                var bun0 = String(BUN).split(",");
                var buna = bun0[1];  
                /*low */ var bunb = String(doc.data().BUNLower)
@@ -441,7 +441,7 @@
           //P DATA
             socket.on('P', function(P) {
               if (P !== null ){
-                th_punit.innerHTML = "mmol/L" ;
+                th_punit.innerHTML = "mg/dL" ;
                 var p0 = String(P).split(",");
                 var pa = p0[1];  
                 /*low */ var pb =  String(doc.data().PLower)
@@ -466,7 +466,7 @@
           //AMY DATA
             socket.on('AMY', function(AMY) {
              if (AMY !== null ){
-                th_amyunit.innerHTML = "μ/L" ;
+                th_amyunit.innerHTML = "U/L" ;
                 var amy0 = String(AMY).split(",");
                 var amya = amy0[1];  
                /*low */ var amyb = String(doc.data().AMYLower); 
@@ -492,7 +492,7 @@
           //CHOL DATA
             socket.on('CHOL', function(CHOL) {
             if (CHOL !== null ){
-                th_cholunit.innerHTML = "mmol/L" ;
+                th_cholunit.innerHTML = "mg/dL" ;
                 var chol0 = String(CHOL).split(",");
                 var chola = chol0[1]; 
                 /*low */ var cholb =  String(doc.data().CholLower)
@@ -518,7 +518,7 @@
           //ALT DATA
              socket.on('ALT', function(ALT) {
               if (ALT !== null ){
-                 th_altunit.innerHTML = "μ/L" ;
+                 th_altunit.innerHTML = "U/L" ;
                  var alt0 = String(ALT).split(",");
                  var alta = alt0[1]; 
                  /*low */ var altb = String(doc.data().AltLower)
@@ -542,7 +542,7 @@
           //TBIL DATA
             socket.on('TBIL', function(TBIL) {
               if (TBIL !== null ){
-                  th_tbilunit.innerHTML = "μmol/L" ;
+                  th_tbilunit.innerHTML = "mg/dL" ;
                   var tbil0 = String(TBIL).split(",");
                   var tbila = tbil0[1]; 
                  /*low */ var tbilb = String(doc.data().TbilLower)
@@ -570,7 +570,7 @@
           //ALP DATA
             socket.on('ALP', function(ALP) {
             if (ALP !== null ){
-                th_alpunit.innerHTML = "μ/L" ;
+                th_alpunit.innerHTML = "U/L" ;
                 var alp0 = String(ALP).split(",");
                   var alpa = alp0[1]; 
                 /*low */ var alpb =  String(doc.data().AlpLower)
@@ -598,7 +598,7 @@
       //CRE DATA
       socket.on('CRE', function(CRE) {
         if (CRE !== null ){
-           th_creunit.innerHTML = "μmol/L" ;
+           th_creunit.innerHTML = "mg/dL" ;
            var cre0 = String(CRE).split(",");
            var crea = cre0[1]; 
            /*low */ var creb = String(doc.data().CreLower)
@@ -695,7 +695,7 @@
    //CK DATA
    socket.on('CK', function(CK) {
     if (CK !== null ){
-       th_ckunit.innerHTML = "μ/L" ;
+       th_ckunit.innerHTML = "U/L" ;
        var ck0 = String(CK).split(",");
        var cka = ck0[1]; 
        /*low */ var ckb = String(doc.data().CkLower)
@@ -797,6 +797,10 @@
       console.dir(data);
       } 
     });     
+    var selectBox = document.getElementById("specieselect");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+   db.collection("Reference Ranges").doc("Mythic 18 Vet - "+ String(selectedValue)).get()  
+   .then((doc) => {
          //SID DATA
     socket.on('SID', function(SID) {
       if (SID !== null ){
@@ -821,8 +825,8 @@ socket.on('WBC', function(WBC) {
 if (WBC !== null ){
   th_wbcunit.innerHTML = "x10<sup>3</sup>/µL" ;     
   var wbca = String(WBC).substr(3,5).replace(";", "").replace(";", ""); 
- /*low */ var wbcb = String(WBC).substr(12,6).replace(";", "").replace(";", "") ; 
- /* high */ var wbcc = String(WBC).substr(29,6).replace(";", "").replace(";", "");    
+ /*low */ var wbcb = String(doc.data().WBCLower) 
+ /* high */ var wbcc = String(doc.data().WBCUpper);    
 
    if (parseFloat(wbca) > parseFloat(wbcc))
        {
@@ -836,24 +840,17 @@ if (WBC !== null ){
        {
         th_wbc.innerHTML = "" + wbca + "" 
        }
+       //WBCL DATA
+       th_wbcnormal.innerHTML = wbcb + " - " + wbcc;
 } 
 });
-//WBCL DATA
- socket.on('WBCL', function(WBCL) {
- if (WBCL !== null ){
- th_wbcnormal.innerHTML =  + String(WBCL).substr(12,6).replace(";", "").replace(";", "") 
- + " - " + String(WBCL).substr(29,6).replace(";", "").replace(";", "") ;
-} 
-});
-  
-
 //LYM DATA
 socket.on('LYM', function(LYM) {
 if (LYM !== null ){
    th_lymunit.innerHTML = "%" ;
    var lyma =  String(LYM).substr(5,4); 
-   /*low */ var lymb = String(LYM).substr(12,5).replace(";", "").replace(";", ""); 
-   /* high */ var lymc = String(LYM).substr(27,5).replace(";", "").replace(";", "");    
+   /*low */ var lymb = String(doc.data().LymLower); 
+   /* high */ var lymc = String(doc.data().LymUpper); ;    
  
      if (parseFloat(lyma) > parseFloat(lymc))
          {
@@ -867,15 +864,9 @@ if (LYM !== null ){
          {
           th_lym.innerHTML = "" + lyma + "" 
          }
+      //LYML DATA
+       th_lymnormal.innerHTML = lymb + " - " + lymc;
     }
-});
-
-//LYML DATA
-socket.on('LYML', function(LYML) { 
-if (LYML !== null ){
-   th_lymnormal.innerHTML =  /* Low */ String(LYML).substr(12,5).replace(";", "").replace(";", "")
-   + /* High */" - " + String(LYML).substr(27,5).replace(";", "").replace(";", "");
-  }   
 });
 
 //MON DATA
@@ -883,8 +874,8 @@ socket.on('MON', function(MON) {
 if (MON !== null ){
   th_monunit.innerHTML = "%" ;
   var mona =  String(MON).substr(5,4); 
-  /*low */ var monb = String(MON).substr(12,5).replace(";", "").replace(";", ""); 
-  /* high */ var monc = String(MON).substr(27,5).replace(";", "").replace(";", "");    
+  /*low */ var monb = String(doc.data().MonLower); 
+  /* high */ var monc = String(doc.data().MonUpper);    
 
     if (parseFloat(mona) > parseFloat(monc))
         {
@@ -898,24 +889,17 @@ if (MON !== null ){
         {
          th_mon.innerHTML = "" + mona + "" 
         }
+        th_monnormal.innerHTML = monb + " - " + monc 
  }
 });
-
-//MONL DATA
-socket.on('MONL', function(MONL) {
-if (MONL !== null ){
-th_monnormal.innerHTML = /*low*/  String(MONL).substr(12,5).replace(";", "").replace(";", "")
-+ /*High*/ " - " + String(MONL).substr(27,5).replace(";", "").replace(";", "");
-}
-}); 
 
 //GRA DATA
 socket.on('GRA', function(GRA) {
 if (GRA !== null ){
   th_graunit.innerHTML = "%" ;
   var graa =  String(GRA).substr(5,4); 
-  /*low */ var grab = String(GRA).substr(12,5).replace(";", "").replace(";", "").replace(";", "").replace(".0", ""); 
-  /* high */ var grac = String(GRA).substr(26,5).replace(";", "").replace(";", "").replace("0", "").replace(".", ""); 
+  /*low */ var grab = String(doc.data().GraLower); 
+  /* high */ var grac = String(doc.data().GraUpper);    
 
     if (parseFloat(graa) > parseFloat(grac))
         {
@@ -929,25 +913,17 @@ if (GRA !== null ){
         {
          th_gra.innerHTML = "" + graa + "" 
         }
+        th_granormal.innerHTML = grab + " - " + grac
  }   
 });
-//GRAL DATA
-socket.on('GRAL', function(GRAL) {
-if (GRAL !== null ){
-    th_granormal.innerHTML = String(GRAL).substr(12,5).replace(";", "").replace(";", "").replace(";", "").replace(".0", "")
-    + " - " + String(GRAL).substr(26,5).replace(";", "").replace(";", "").replace("0", "").replace(".", ""); 
-  } 
-});
-
-
 
 //RBC DATA
 socket.on('RBC', function(RBC) {
 if (RBC !== null ) {
   th_rbcunit.innerHTML = "x10<sup>6</sup>/µL" ;
   var rbca =  String(RBC).substr(4,4); 
-  /*low */ var rbcb = String(RBC).substr(18,6).replace(";", "").replace(";", "")
-  /* high */ var rbcc =  String(RBC).substr(30,6).replace(";", "").replace(";", "") + "</b>";   
+  /*low */ var rbcb = String(doc.data().RBCLower); 
+  /* high */ var rbcc =  String(doc.data().RBCUpper); 
 
     if (parseFloat(rbca) > parseFloat(rbcc))
         {
@@ -961,24 +937,18 @@ if (RBC !== null ) {
         {
          th_rbc.innerHTML = "" + rbca + "" 
         }
+        th_rbcnormal.innerHTML = rbcb + " - " + rbcc
 } 
 });
 
-//RBCL DATA
-socket.on('RBCL', function(RBCL) {
-if (RBCL !== null ){
- th_rbcnormal.innerHTML =  /*low*/  String(RBCL).substr(18,6).replace(";", "").replace(";", "")
-  + /*High*/ " - " + String(RBCL).substr(30,6).replace(";", "").replace(";", "") ;
-} 
-});
   
 //HGB DATA
 socket.on('HGB', function(HGB) {
  if (HGB !== null ){
    th_hgbunit.innerHTML = "g/dL" ;
    var hgba =   String(HGB).substr(4,4).replace(";", ""); 
-   /*low */ var hgbb =  String(HGB).substr(9,6).replace(";", "").replace(";", "").replace(/[^0-9.]/, "")
-   /* high */ var hgbc =  String(HGB).substr(21,5).replace(";", "").replace(";", "").replace(/[^0-9.]/, "") + "</b>";   
+   /*low */ var hgbb =  String(doc.data().HGBLower); 
+   /* high */ var hgbc =  String(doc.data().HGBUpper); 
  
      if (parseFloat(hgba) > parseFloat(hgbc))
          {
@@ -992,24 +962,18 @@ socket.on('HGB', function(HGB) {
          {
           th_hgb.innerHTML = "" + hgba + "" 
          }
+         th_hgbnormal.innerHTML = hgbb + " - " + hgbc
   } 
 });
 
-//HGBL DATA
-socket.on('HGBL', function(HGBL) {
-if (HGBL !== null ){
-   th_hgbnormal.innerHTML =  /*low*/  String(HGBL).substr(9,6).replace(";", "").replace(";", "").replace(/[^0-9.]/, "")
-    + /*High*/ " - " + String(HGBL).substr(22,5).replace(";", "").replace(";", "").replace(/[^0-9.]/, "");
-  } 
-});
 
 //HCT DATA
 socket.on('HCT', function(HCT) {
 if (HCT !== null ){
    th_hctunit.innerHTML = "L/L" ;
   var hcta =  String(HCT).substr(4,5).replace(";", ""); 
-  /*low */ var hctb = String(HCT).substr(12,5).replace(";", "").replace(";", "");
-  /* high */ var hctc = String(HCT).substr(26,5).replace(";", "").replace(";", "") + "</b>";   
+  /*low */ var hctb = String(doc.data().HCTLower); 
+  /* high */ var hctc = String(doc.data().HCTUpper); 
 
     if (parseFloat(hcta) > parseFloat(hctc))
         {
@@ -1023,24 +987,18 @@ if (HCT !== null ){
         {
          th_hct.innerHTML = "" + hcta + "" 
         }
+        th_hctnormal.innerHTML = hctb + " - " + hctc
   } 
 });
       
-//HCTL DATA
-socket.on('HCTL', function(HCTL) {
-if (HCTL !== null ){
-   th_hctnormal.innerHTML =  /*low*/  String(HCTL).substr(12,5).replace(";", "").replace(";", "")
-   + /*High*/ " - " + String(HCTL).substr(26,5).replace(";", "").replace(";", "");
-  } 
-});
 
 //MCV DATA
 socket.on('MCV', function(MCV) {
 if (MCV !== null ){
    th_mcvunit.innerHTML = "fL" ;
    var mcva = String(MCV).substr(4,6).replace(";", ""); 
-   /*low */ var mcvb =  String(MCV).substr(12,5).replace(";", "").replace(";", "")
-   /* high */ var mcvc =  String(MCV).substr(30,6).replace(";", "").replace(";", "") + "</b>";   
+   /*low */ var mcvb =  String(doc.data().MCVLower); 
+   /* high */ var mcvc =  String(doc.data().MCVUpper); 
  
      if (parseFloat(mcva) > parseFloat(mcvc))
          {
@@ -1054,24 +1012,18 @@ if (MCV !== null ){
          {
           th_mcv.innerHTML = "" + mcva + "" 
          }
+         th_mcvnormal.innerHTML = mcvb + " - " + mcvc
  } 
 });
 
-//MCVL DATA
-socket.on('MCVL', function(MCVL) {
- if (MCVL !== null ){
-     th_mcvnormal.innerHTML = /*low*/  String(MCVL).substr(12,5).replace(";", "").replace(";", "")
-     + /*High*/ " - " + String(MCVL).substr(30,6).replace(";", "").replace(";", "");
-    } 
-  });
-        
+
 //MCH DATA
 socket.on('MCH', function(MCH) {
  if (MCH !== null ){
     th_mchunit.innerHTML = "Pg" ;
     var mcha =  String(MCH).substr(4,4); 
-    /*low */ var mchb = String(MCH).substr(12,5).replace(";", "").replace(";", "")
-    /* high */ var mchc = String(MCH).substr(29,8).replace(";", "").replace(";", "") + "</b>";   
+    /*low */ var mchb = String(doc.data().MCHLower); 
+    /* high */ var mchc = String(doc.data().MCHUpper); 
   
       if (parseFloat(mcha) > parseFloat(mchc))
           {
@@ -1085,15 +1037,8 @@ socket.on('MCH', function(MCH) {
           {
            th_mch.innerHTML = "" + mcha + "" 
           }
+          th_mchnormal.innerHTML = mchb + " - " + mchc
    } 
- });
-//MCHL DATA
-socket.on('MCHL', function(MCHL) {       
-if (MCHL !== null ){
-   th_mchnormal.innerHTML =  /*low*/  String(MCHL).substr(12,5).replace(";", "").replace(";", "")
-   + /*High*/ " - " + String(MCHL).substr(29,8).replace(";", "").replace(";", "");
-
- }
  });
 
 //MCHC DATA
@@ -1101,8 +1046,8 @@ socket.on('MCHC', function(MCHC) {
  if (MCHC !== null ){
      th_mchcunit.innerHTML = "g/dL" ;
      var mchca =  String(MCHC).substr(5,4); 
-    /*low */ var mchcb = String(MCHC).substr(13,5).replace(";", "").replace(";", "")
-    /* high */ var mchcc = String(MCHC).substr(30,7).replace(";", "").replace(";", "");   
+    /*low */ var mchcb = String(doc.data().MCHCLower); 
+    /* high */ var mchcc = String(doc.data().MCHCUpper); 
   
       if (parseFloat(mchca) > parseFloat(mchcc))
           {
@@ -1116,68 +1061,18 @@ socket.on('MCHC', function(MCHC) {
           {
            th_mchc.innerHTML = "" + mchca + "" 
           } 
+          th_mchcnormal.innerHTML = mchcb + " - " + mchcc
     } 
   });
-//MCHCL DATA
-socket.on('MCHCL', function(MCHCL) {
-if (MCHCL !== null ){
-   th_mchcnormal.innerHTML =  /*low*/  String(MCHCL).substr(13,5).replace(";", "").replace(";", "")
-   + /*High*/ " - " + String(MCHCL).substr(30,7).replace(";", "").replace(";", "");
-if (! $('#th_mchcnormal').children().length > 0 ) 
-  {
-    var fn = document.getElementById("fnameinputs");
-    var ln = document.getElementById("lnameinputs");
-    let gn = document.getElementById('genderselect'); 
-    let an = document.getElementById('ageinputs');
-    let pn = document.getElementById('physicianinputs');
-    let bn = document.getElementById('bloodselect');
-    let bnn1 = document.getElementById('bloodselect'); 
-    let bnn2 = document.getElementById('th_blood'); 
-    if (fn !== null && fn.value === "" || ln !== null && ln.value === "" || an !== null && an.value === "" || gn !== null && gn.value === "" || pn !== null && pn.value === "" || bn !== null && bn.value === ""  )
-    {
-  
-      $('#myModal').modal('show');
-    }
-    else{
 
-      bnn2.innerHTML = "<b>" + bnn1.value + "</b>"; 
-    
-      doc_withautoincrement(); 
-     window.print(); 
-     JsBarcode("#barcode1", (DATEinput.innerText + " " + SIDinput.innerText), {
-       format: "CODE39",
-       flat : true,
-     lineColor: "#0aa",
-                     width: 1,
-                     height: 50,
-                     displayValue: true
-     })
-     db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
-       {
-       id : idSTRING,
-       SID : SIDinput.innerText,
-       Test_Run_Date : DATEinput.innerText,
-       Activity : "Run Sample",
-       Machine : machinename,
-       DateDid : date2.innerText + " " + clock1.innerText 
-       })
-     alert("Data Written! " + "SID: " + SIDinput.innerText); 
-    setTimeout(function(){    
-       window.location.reload();  
-    }, 1000);
-    }
-           
-}    
-} 
-});
 
 //PLT DATA
 socket.on('PLT', function(PLT) {
 if (PLT !== null ){
    th_pltunit.innerHTML = "x10<sup>3</sup>/µL" ;
    var plta = String(PLT).substr(4,4); 
-   /*low */ var pltb =  String(PLT).substr(12,6).replace(";", "").replace(";", "").replace(/[^0-9.]/, "")
-   /* high */ var pltc =  String(PLT).substr(29,6).replace(";", "").replace(";", "") + "</b>";   
+   /*low */ var pltb =  String(doc.data().PLTLower); 
+   /* high */ var pltc =  String(doc.data().PLTUpper); 
  
      if (parseFloat(plta) > parseFloat(pltc))
          {
@@ -1191,15 +1086,11 @@ if (PLT !== null ){
          {
           th_plt.innerHTML = "" + plta + "" 
          }
+         th_pltnormal.innerHTML = pltb + " - " + pltc
  } 
 });
+   }); 
+  })
+}
 
-//PLTL DATA
-socket.on('PLTL', function(PLTL) {
-if (PLTL !== null ){
-   th_pltnormal.innerHTML =  String(PLTL).substr(12,6).replace(";", "").replace(";", "").replace(/[^0-9.]/, "")
-   + " - " + String(PLTL).substr(29,6).replace(";", "").replace(";", "")  } 
-});
-    });
-  }
   
