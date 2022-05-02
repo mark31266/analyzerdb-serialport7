@@ -8,11 +8,11 @@
   const HL7 = require('hl7-standard');
   var hl7parser = require("hl7parser");
     //mythic 18 vet
-  const port = new SerialPort('COM7', {
+  const port = new SerialPort('COM6', {
     baudRate: 115200
   }) 
   //mnchip v5
-  const port3 = new SerialPort('COM6', {
+  const port3 = new SerialPort('COM9', {
     baudRate: 115200
   }) 
   var admin = require("firebase-admin"); 
@@ -306,7 +306,7 @@
   let CK = data.match(/\|CK\|(.*?)\|/);
   io.emit('CK', CK)
   })
-  const parser = port3.pipe(new Regex({ regex: /[\r\n]+/ }))
+  const parser = port.pipe(new Regex({ regex: /[\r\n]+/ }))
   parser.on('data', function(data) {
     io.emit('data', data)
     // // port.write("DSR^Q03")

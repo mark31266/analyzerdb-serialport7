@@ -3,6 +3,7 @@
            var TIMEinput = document.getElementById("clock"); 
            var timeinputs = document.getElementById("timeinputs"); 
            var PIDinput = document.getElementById('PID'); 
+           var SIDinput = document.getElementById('SID'); 
            var navdate = document.getElementById("date1"); 
                 //-----------------ALB--------------------/
                 const results1 = document.querySelector('#results');
@@ -40,11 +41,16 @@
                 let th_amy = document.getElementById('th_amy');
                 let th_amyunit = document.getElementById('th_amyunit');
                 let th_amynormal =document.getElementById('th_amynormal');
-                //-----------------chol--------------------/
-                let tr_chol = document.getElementById('chol');
-                let th_chol = document.getElementById('th_chol');
-                let th_cholunit = document.getElementById('th_cholunit');
-                let th_cholnormal =document.getElementById('th_cholnormal');
+                //-----------------alt--------------------/
+                let tr_alt = document.getElementById('alt');
+                let th_alt = document.getElementById('th_alt');
+                let th_altunit = document.getElementById('th_altunit');
+                let th_altnormal =document.getElementById('th_altnormal');  
+                //-----------------tbil--------------------/
+                let tr_tbil = document.getElementById('tbil');
+                let th_tbil = document.getElementById('th_tbil');
+                let th_tbilunit = document.getElementById('th_tbilunit');
+                let th_tbilnormal =document.getElementById('th_tbilnormal');                 
                  //-----------------alp--------------------/
                 let tr_alp = document.getElementById('alp');
                 let th_alp = document.getElementById('th_alp');
@@ -60,11 +66,74 @@
                 let th_ck = document.getElementById('th_ck');
                 let th_ckunit = document.getElementById('th_ckunit');
                 let th_cknormal =document.getElementById('th_cknormal');
-                 //-----------------PLT--------------------/
-                let tr_plt = document.getElementById('plt');
-                let th_plt = document.getElementById('th_plt');
-                let th_pltunit = document.getElementById('th_pltunit');
-                let th_pltnormal =document.getElementById('th_pltnormal');
+             
+                 //Mythic 18 Vet
+                  //-----------------WBC--------------------/
+                  let tr_wbc = document.getElementById('wbc');
+                  let th_wbc = document.getElementById('th_wbc');
+                  let th_wbcunit = document.getElementById('th_wbcunit');
+                  let th_wbcnormal =document.getElementById('th_wbcnormal');
+                   //-----------------NEU--------------------/
+                  let tr_neu = document.getElementById('neu');
+                  let th_neu = document.getElementById('th_neu');
+                  let th_neuunit = document.getElementById('th_neuunit');
+                  let th_neunormal =document.getElementById('th_neunormal');
+                      //-----------------LYM--------------------/
+                  let tr_lym = document.getElementById('lym');
+                  let th_lym = document.getElementById('th_lym');
+                  let th_lymunit = document.getElementById('th_lymunit');
+                  let th_lymnormal =document.getElementById('th_lymnormal');
+                   //-----------------MON--------------------/
+                  let tr_mon = document.getElementById('mon');
+                  let th_mon = document.getElementById('th_mon');
+                  let th_monunit = document.getElementById('th_monunit');
+                  let th_monnormal =document.getElementById('th_monnormal');
+                   //-----------------EOS--------------------/
+                  let tr_eos = document.getElementById('eos');
+                  let th_eos = document.getElementById('th_eos');
+                  let th_eosunit = document.getElementById('th_eosunit');
+                  let th_eosnormal =document.getElementById('th_eosnormal');
+                   //-----------------GRA--------------------/
+                  let tr_gra = document.getElementById('gra');
+                  let th_gra = document.getElementById('th_gra');
+                  let th_graunit = document.getElementById('th_graunit');
+                  let th_granormal =document.getElementById('th_granormal');
+                    //-----------------RBC--------------------/
+                  let tr_rbc = document.getElementById('rbc');
+                  let th_rbc = document.getElementById('th_rbc');
+                  let th_rbcunit = document.getElementById('th_rbcunit');
+                  let th_rbcnormal =document.getElementById('th_rbcnormal');
+                  //-----------------HGB--------------------/
+                  let tr_hgb = document.getElementById('hgb');
+                  let th_hgb = document.getElementById('th_hgb');
+                  let th_hgbunit = document.getElementById('th_hgbunit');
+                  let th_hgbnormal =document.getElementById('th_hgbnormal');
+                   //-----------------HCT--------------------/
+                  let tr_hct = document.getElementById('hct');
+                  let th_hct = document.getElementById('th_hct');
+                  let th_hctunit = document.getElementById('th_hctunit');
+                  let th_hctnormal =document.getElementById('th_hctnormal');
+                  //-----------------MCV--------------------/
+                  let tr_mcv = document.getElementById('mcv');
+                  let th_mcv = document.getElementById('th_mcv');
+                  let th_mcvunit = document.getElementById('th_mcvunit');
+                  let th_mcvnormal =document.getElementById('th_mcvnormal');
+                  //-----------------MCH--------------------/
+                  let tr_mch = document.getElementById('mch');
+                  let th_mch = document.getElementById('th_mch');
+                  let th_mchunit = document.getElementById('th_mchunit');
+                  let th_mchnormal =document.getElementById('th_mchnormal');
+                  //-----------------MCHC--------------------/
+                  let tr_mchc = document.getElementById('mchc');
+                  let th_mchc = document.getElementById('th_mchc');
+                  let th_mchcunit = document.getElementById('th_mchcunit');
+                  let th_mchcnormal = document.getElementById('th_mchcnormal');
+                   //-----------------PLT--------------------/
+                  let tr_plt = document.getElementById('plt');
+                  let th_plt = document.getElementById('th_plt');
+                  let th_pltunit = document.getElementById('th_pltunit');
+                  let th_pltnormal =document.getElementById('th_pltnormal');
+
                 let petnameinputs = document.getElementById('petnameinputs'); 
                 let ownernameinputs = document.getElementById('ownernameinputs');
                 let genderinputs = document.getElementById('genderselect'); 
@@ -193,15 +262,16 @@
 
             function doc_withautoincrement(){
               var emailused = document.getElementById("email2"); 
-              var doc = db.collection("MNCHIPV5").doc(PIDinput.innerHTML); 
+              var doc = db.collection("patientvalues2").doc(PIDinput.innerHTML); 
               doc.get().then((docSnapshot) => {
                 if (docSnapshot.exists) {
                   document.getElementById("error1").innerHTML = "Data Exists in the Database: " + "PID: " + PIDinput.innerHTML;
                   $('#errormodal').modal('show');
                 } else {
                   // document does not exist (only on online)
-                  db.collection("MNCHIPV5").doc(PIDinput.innerHTML).set(
+                  db.collection("patientvalues2").doc(PIDinput.innerHTML).set(
                   {
+                  //mnchip v5
                   /**ALB**/
                   ALB : th_alb.innerHTML,
                   ALBUNIT : th_albunit.innerHTML,
@@ -241,6 +311,16 @@
                   CHOL : th_chol.innerHTML,
                   CHOLUNIT   : th_cholunit.innerHTML,
                   CHOLNORMAL : th_cholnormal.innerHTML,
+
+                  /**ALT**/
+                  ALT : th_alt.innerHTML,
+                  ALTUNIT   : th_altunit.innerHTML,
+                  ALTNORMAL : th_altnormal.innerHTML,
+                  
+                  /**TBIL**/
+                  TBIL : th_tbil.innerHTML,
+                  TBILUNIT   : th_tbilunit.innerHTML,
+                  TBILNORMAL : th_tbilnormal.innerHTML,        
                   
                   /**ALP**/
                   ALP : th_alp.innerHTML,
@@ -256,21 +336,76 @@
                   CK : th_ck.innerHTML,
                   CKUNIT: th_ckunit.innerHTML,
                   CKNORMAL: th_cknormal.innerHTML,
+
+                  /**WBC**/
+                  WBC : th_wbc.innerHTML,
+                  WBCUNIT : th_wbcunit.innerHTML,
+                  WBCNORMAL : th_wbcnormal.innerHTML,
+          
+                  /**LYM**/
+                  LYM : th_lym.innerHTML,
+                  LYMUNIT  : th_lymunit.innerHTML,
+                  LYMNORMAL  : th_lymnormal.innerHTML,
+        
+                  /**MON**/
+                  MON : th_mon.innerHTML,
+                  MONUNIT  : th_monunit.innerHTML,
+                  MONNORMAL: th_monnormal.innerHTML,
+
+                  //mythic 18 vet
+                  /**GRA**/
+                  GRA : th_gra.innerHTML,
+                  GRAUNIT  : th_graunit.innerHTML,
+                  GRANORMAL : th_granormal.innerHTML,
+                  
+                  /**RBC**/
+                  RBC : th_rbc.innerHTML,
+                  RBCUNIT : th_rbcunit.innerHTML,
+                  RBCNORMAL  : th_rbcnormal.innerHTML,
+        
+                  /**HGB**/
+                  HGB : th_hgb.innerHTML,
+                  HGBUNIT : th_hgbunit.innerHTML,
+                  HGBNORMAL   : th_hgbnormal.innerHTML, 
+        
+                  /**HCT**/
+                  HCT : th_hct.innerHTML,
+                  HCTUNIT : th_hctunit.innerHTML,
+                  HCTNORMAL  : th_hctnormal.innerHTML,
+        
+                  /**MCV**/
+                  MCV : th_mcv.innerHTML,
+                  MCVUNIT   : th_mcvunit.innerHTML,
+                  MCVNORMAL : th_mcvnormal.innerHTML,
+                  
+                  /**MCH**/
+                  MCH : th_mch.innerHTML,
+                   MCHUNIT: th_mchunit.innerHTML,
+                   MCHNORMAL  : th_mchnormal.innerHTML,
+        
+                  /**MCHC**/
+                  MCHC : th_mchc.innerHTML,
+                  MCHCUNIT : th_mchcunit.innerHTML,
+                  MCHCNORMAL  : th_mchcnormal.innerHTML,
+        
+                  /**PLT**/
+                  PLT : th_plt.innerHTML,
+                  PLTUNIT: th_pltunit.innerHTML,
+                  PLTNORMAL   : th_pltnormal.innerHTML,  
                   
                   /**DATA**/
                   PetName : petvariable, 
                   OwnerName : ownervariable,
                   Gender : genderinputs.value, 
                   Age : ageinputs.value,
-                  BLOOD: bloodinputs.value,
                   DATE : DATEinput.innerText, 
                   TIME : TIMEinput.innerHTML, 
                   PID : PIDinput.innerText,
                   Doctor: pinputs.value,
-                  Machine : machinename.innerHTML, 
+                  Machine : "MNCHIP V5 | Mythic 18 Vet", 
                   barcode : PIDinput.innerText, 
-                  User : emailused.innerHTML
-                 
+                  User : emailused.innerHTML, 
+                
                  }).then(function (){
                    console.log(); 
                    document.getElementById("error1").innerHTML = "Data Written! " + "PID: " + PIDinput.innerText;
@@ -285,15 +420,12 @@
              });
          
            }
-
-
              function changeFunc() {
-            
                            var socket = io();
               //SID DATA
                  socket.on('data', function(data) {
                    if (data !== null ){
-                     console.log(data); 
+                    //  console.log(data); 
                    } 
                  });   
                  var selectBox = document.getElementById("specieselect");
@@ -626,17 +758,12 @@
           let gn = document.getElementById('genderselect'); 
           let an = document.getElementById('ageinputs');
           let pn = document.getElementById('physicianinputs');
-          let bn = document.getElementById('bloodselect');
-          let bnn1 = document.getElementById('bloodselect'); 
-          let bnn2 = document.getElementById('th_blood'); 
-          if (fn !== null && fn.value === "" || ln !== null && ln.value === "" || an !== null && an.value === "" || gn !== null && gn.value === "" || pn !== null && pn.value === "" || bn !== null && bn.value === "" )
+          if (fn !== null && fn.value === "" || ln !== null && ln.value === "" || an !== null && an.value === "" || gn !== null && gn.value === "" || pn !== null && pn.value === "")
           {    
             document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
             $('#errormodal').modal('show');
           }
           else{
-            bnn2.innerHTML = "<b>" + bnn1.value + "</b>"; 
-          
             JsBarcode("#barcode1", (PIDinput.innerText), {
                      format: "CODE39",
              flat : true,
@@ -726,88 +853,86 @@
         let bn = document.getElementById('bloodselect');
         let bnn1 = document.getElementById('bloodselect'); 
         let bnn2 = document.getElementById('th_blood'); 
-        if (fn !== null && fn.value === "" || ln !== null && ln.value === "" || an !== null && an.value === "" || gn !== null && gn.value === "" || pn !== null && pn.value === "" || bn !== null && bn.value === ""  )
+        if (fn !== null && fn.value === "" 
+        || ln !== null && ln.value === "" 
+        || an !== null && an.value === "" 
+        || gn !== null && gn.value === "" 
+        || pn !== null && pn.value === "" 
+        || bn !== null && bn.value === ""
+        || th_cknormal !== null && th_cknormal.innerHTML)
         {
        
           document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
           $('#errormodal').modal('show');
         }
         else{
-        
           bnn2.innerHTML = "<b>" + bnn1.value + "</b>"; 
         
-          doc_withautoincrement(); 
-         window.print();
-          
-         JsBarcode("#barcode1", (PIDinput.innerText), {
-           format: "CODE39",
+          JsBarcode("#barcode1", (PIDinput.innerText), {
+                   format: "CODE39",
            flat : true,
          lineColor: "#0aa",
                          width: 1,
-                         height: 50,
-                         displayValue: true
+                         height: 50
          })
-         db.collection("Timestamp").doc("Counting").get().then((doc) => {
-          var count1 = doc.data().counting; 
-         if (count1 == "0") 
-        {
-         db.collection("Timestamp").doc("Constant").set(
-           {
-             dateran : date2.innerText + " " + clock1.innerText,
-             date : DATEinput.innerText,
-             PID : PIDinput.innerText
-           })
-           db.collection("Timestamp").doc("Counting").set(
-             {
-               counting : "1"  
-             })
-        }
-        else if (count1 == "1") 
-        {
-         db.collection("Timestamp").doc("Counting").set(
-           {
-             counting : "0"  
-           })
-         db.collection("Timestamp").doc("Constant2").set(
-           {
-             dateran : date2.innerText + " " + clock1.innerText,
-             date : DATEinput.innerText,
-             PID : PIDinput.innerText,
-           })
-        }
-        })
-        var emailused3 = document.getElementById("email2"); 
+         doc_withautoincrement(); 
+         window.print(); 
+         db.collection("Timestamp MNCHIP V5").doc("Counting").get().then((doc) => {
+           var count1 = doc.data().counting; 
+          if (count1 == "0") 
+         {
+          db.collection("Timestamp MNCHIP V5").doc("Constant").set(
+            {
+              dateran : date2.innerText + " " + clock1.innerText,
+              date : DATEinput.innerText,
+              PID : PIDinput.innerText
+            })
+            db.collection("Timestamp MNCHIP V5").doc("Counting").set(
+              {
+                counting : "1"  
+              })
+         }
+         else if (count1 == "1") 
+         {
+          db.collection("Timestamp MNCHIP V5").doc("Counting").set(
+            {
+              counting : "0"  
+            })
+          db.collection("Timestamp MNCHIP V5").doc("Constant2").set(
+            {
+              dateran : date2.innerText + " " + clock1.innerText,
+              date : DATEinput.innerText,
+              PID : PIDinput.innerText,
+            })
+         }
+         })
+         var emailused2 = document.getElementById("email2"); 
          db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
            {
-           id : emailused3.innerHTML,
+           id : emailused2.innerHTML,
            PID : PIDinput.innerText,
            Test_Run_Date : DATEinput.innerText,
            Activity : "Run Sample",
-           Machine : machinename,
+           Machine : machinename.innerHTML,
            DateDid : date2.innerText + " " + clock1.innerText 
            })
         // setTimeout(function(){    
-        //   //  window.location.reload();  
-        // }, 1000);
+        //    window.location.reload();  
+        
+        // }, 1500);
         }
 } 
     }); 
     socket.on('data', function(data) {
       if (data !== null ){
-        console.log(data); 
+        // console.log(data); 
       } 
     });     
     var selectBox = document.getElementById("specieselect");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
    db.collection("Reference Ranges").doc("Mythic 18 Vet - "+ String(selectedValue)).get()  
    .then((doc) => {
-         //SID DATA
-    socket.on('SID', function(SID) {
-      if (SID !== null ){
-        document.getElementById('SID').innerHTML = String(SID).substr(4);
-        
-      } 
-    });
+
           //DATE DATA
           socket.on('DATE', function(DATE) {
             // if (DATE !== null ){
@@ -821,6 +946,13 @@
               } 
             });
 //WBC DATA
+      //SID DATA
+      socket.on('SID', function(SID) {
+        if (SID !== null ){
+          SIDinput.innerHTML = String(SID).substr(4);
+          
+        } 
+      });
 socket.on('WBC', function(WBC) {
 if (WBC !== null ){
   th_wbcunit.innerHTML = "x10<sup>3</sup>/µL" ;     
@@ -1063,6 +1195,79 @@ socket.on('MCHC', function(MCHC) {
           } 
           th_mchcnormal.innerHTML = mchcb + " - " + mchcc
     } 
+    if (! $('#th_mchcnormal').children().length > 0 ) 
+      {
+        var fn = document.getElementById("petnameinputs");
+        var ln = document.getElementById("ownernameinputs");
+        let gn = document.getElementById('genderselect'); 
+        let an = document.getElementById('ageinputs');
+        let pn = document.getElementById('physicianinputs');
+        
+        if (fn !== null && fn.value === "" 
+        || ln !== null && ln.value === "" 
+        || an !== null && an.value === "" 
+        || gn !== null && gn.value === "" 
+        || pn !== null && pn.value === "" 
+        || th_mchcnormal !== null && th_mchcnormal.innerHTML)
+        {
+          document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
+          $('#errormodal').modal('show');
+        }
+        else{
+          JsBarcode("#barcode1", (PIDinput.innerText), {
+                   format: "CODE39",
+           flat : true,
+         lineColor: "#0aa",
+                         width: 1,
+                         height: 50
+         })
+         doc_withautoincrement(); 
+         window.print(); 
+         db.collection("Timestamp Mythic 18 Vet").doc("Counting").get().then((doc) => {
+           var count1 = doc.data().counting; 
+          if (count1 == "0") 
+         {
+          db.collection("Timestamp Mythic 18 Vet").doc("Constant").set(
+            {
+              dateran : date2.innerText + " " + clock1.innerText,
+              date : DATEinput.innerText,
+              SID : SIDinput.innerText
+            })
+            db.collection("Timestamp Mythic 18 Vet").doc("Counting").set(
+              {
+                counting : "1"  
+              })
+         }
+         else if (count1 == "1") 
+         {
+          db.collection("Timestamp Mythic 18 Vet").doc("Counting").set(
+            {
+              counting : "0"  
+            })
+          db.collection("Timestamp Mythic 18 Vet").doc("Constant2").set(
+            {
+              dateran : date2.innerText + " " + clock1.innerText,
+              date : DATEinput.innerText,
+              SID : SIDinput.innerText,
+            })
+         }
+         })
+         var emailused2 = document.getElementById("email2"); 
+         db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
+           {
+           id : emailused2.innerHTML,
+           SID : SIDinput.innerText,
+           Test_Run_Date : DATEinput.innerText,
+           Activity : "Run Sample",
+           Machine : "MNCHIP V5 | Mythic 18 Vet",
+           DateDid : date2.innerText + " " + clock1.innerText 
+           })
+        // setTimeout(function(){    
+        //    window.location.reload();  
+        
+        // }, 1500);
+        }
+      }
   });
 
 

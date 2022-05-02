@@ -29,8 +29,36 @@ const db = getFirestore();
 let db2 = firebase.firestore();
 var auto_inc; 
 var logresultstable = document.getElementById("logresults");
-  function AddItemToTable(activity, date, machine, sid, testdate, username) {
+  function AddItemToTable(pid,petname, ownername, gender, 
+    age,date,time,doctor,machine,barcode,user,
+    //mnchip v5
+    alb,albunit,albnormal,
+    tp,tpunit,tpnormal,
+    ca,caunit,canormal, 
+    glu,gluunit,glunormal,
+    bun,bununit,bunnormal,
+    p,punit,pnormal,
+    amy,amyunit,amynormal,
+    chol,cholunit,cholnormal,
+    alp,alpunit,alpnormal,
+    cre,creunit,crenormal,
+    ck,ckunit,cknormal,
+    wbc,wbcunit,wbcnormal,
+    lym,lymunit,lymnormal,
+    mon,monunit,monnormal,
+    gra,graunit,granormal,
+    rbc,rbcunit,rbcnormal,
+    hgb,hgbunit,hgbnormal,
+    hct,hctunit,hctnormal,
+    mcv,mcvunit,mcvnormal,
+    mch,mchunit,mchnormal,
+    mchc,mchcunit,mchcnormal,
+    plt,pltunit,pltnormal,
+    tbil,tbilunit,tbilnormal,
+    alt,altunit,altnormal) {
+
     let tr_data = document.createElement('tr');
+    let td0 = document.createElement('td');
     let td1 = document.createElement('td');
     let td2 = document.createElement('td');
     let td3 = document.createElement('td');
@@ -38,13 +66,196 @@ var logresultstable = document.getElementById("logresults");
     let td5 = document.createElement('td');
     let td6 = document.createElement('td');
     let td7 = document.createElement('td');
-    td1.innerHTML = ++auto_inc;
-    td2.innerHTML = activity;
-    td3.innerHTML = date;
-    td4.innerHTML = machine;
-    td5.innerHTML = sid;
-    td6.innerHTML = testdate;
-    td7.innerHTML = username;
+    let td8 = document.createElement('td');
+    let td9 = document.createElement('td');
+    let td10 = document.createElement('td');
+    let td11 = document.createElement('td');
+    let td12 = document.createElement('td');
+    let td13 = document.createElement('td');
+    let td14 = document.createElement('td');
+    let td15 = document.createElement('td');
+    let td16 = document.createElement('td');
+    let td17 = document.createElement('td');
+    let td18 = document.createElement('td');
+    let td19 = document.createElement('td');
+    let td20 = document.createElement('td');
+    let td21 = document.createElement('td');
+    let td22 = document.createElement('td');
+    let td23 = document.createElement('td');
+    let td24 = document.createElement('td');
+    let td25 = document.createElement('td');
+    let td26 = document.createElement('td');
+    let td27 = document.createElement('td');
+    let td28 = document.createElement('td');
+    let td29 = document.createElement('td');
+    let td30 = document.createElement('td');
+    let td31 = document.createElement('td');
+    let td32 = document.createElement('td');
+    let td33 = document.createElement('td');
+    let td34 = document.createElement('td');
+    let td35 = document.createElement('td');
+    let td36 = document.createElement('td');
+    let td37 = document.createElement('td');
+    let td38 = document.createElement('td');
+    let td39 = document.createElement('td');
+    let td40 = document.createElement('td');
+    let td41 = document.createElement('td');
+    let td42 = document.createElement('td');
+    let td43 = document.createElement('td');
+    let td44 = document.createElement('td');
+    let td45 = document.createElement('td');
+    let td46 = document.createElement('td');
+    let td47 = document.createElement('td');
+    let td48 = document.createElement('td');
+    let td49 = document.createElement('td');
+    let td50 = document.createElement('td');
+    let td51 = document.createElement('td');
+    let td52 = document.createElement('td');
+    let td53 = document.createElement('td');
+    let td54 = document.createElement('td');
+    let td55 = document.createElement('td');
+    let td56 = document.createElement('td');
+    let td57 = document.createElement('td');
+    let td58 = document.createElement('td');
+    let td59 = document.createElement('td');
+    let td60 = document.createElement('td');
+    let td61 = document.createElement('td');
+    let td62 = document.createElement('td');
+    let td63 = document.createElement('td');
+    let td64 = document.createElement('td');
+    let td65 = document.createElement('td');
+    let td66 = document.createElement('td');
+    let td67 = document.createElement('td');
+    let td68 = document.createElement('td');
+    let td69 = document.createElement('td');
+    let td70 = document.createElement('td');
+    let td71 = document.createElement('td');
+    let td72 = document.createElement('td');
+    let td73 = document.createElement('td');
+    let td74 = document.createElement('td');
+    let td75 = document.createElement('td');
+    let td76 = document.createElement('td');
+    let td77 = document.createElement('td');
+    let td78 = document.createElement('td');
+    let td79 = document.createElement('td');
+    let td80 = document.createElement('td');
+    let td81 = document.createElement('td');
+    let td82 = document.createElement('td');
+  
+    
+
+    td0.innerHTML = pid;
+    td1.innerHTML = petname;
+    td2.innerHTML = ownername;
+    td3.innerHTML = gender;
+    td4.innerHTML = age;
+    td5.innerHTML = date;
+    td6.innerHTML = time;
+    td7.innerHTML = doctor;
+    td8.innerHTML = machine;
+    td9.innerHTML = barcode;
+    td10.innerHTML = user;
+
+    td11.innerHTML = alb;
+    td12.innerHTML = albunit;
+    td13.innerHTML = albnormal;
+
+    td14.innerHTML = tp;
+    td15.innerHTML = tpunit;
+    td16.innerHTML = tpnormal;
+
+    td17.innerHTML = ca;
+    td18.innerHTML = caunit;
+    td19.innerHTML = canormal;
+
+    td20.innerHTML = glu;
+    td21.innerHTML = gluunit;
+    td22.innerHTML = glunormal;
+
+    td23.innerHTML = bun;
+    td24.innerHTML = bununit;
+    td25.innerHTML = bunnormal;
+
+    td26.innerHTML = p;
+    td27.innerHTML = punit;
+    td28.innerHTML = pnormal;
+
+    td29.innerHTML = amy;
+    td30.innerHTML = amyunit;
+    td31.innerHTML = amynormal;
+
+    td32.innerHTML = chol;
+    td33.innerHTML = cholunit;
+    td34.innerHTML = cholnormal;
+
+    td35.innerHTML = alp;
+    td36.innerHTML = alpunit;
+    td37.innerHTML = alpnormal;
+
+    td38.innerHTML = cre;
+    td39.innerHTML = creunit;
+    td40.innerHTML = crenormal;
+
+    td41.innerHTML = ck;
+    td42.innerHTML = ckunit;
+    td43.innerHTML = cknormal;
+
+    td44.innerHTML = wbc;
+    td45.innerHTML = wbcunit;
+    td46.innerHTML = wbcnormal;
+
+    td47.innerHTML = lym;
+    td48.innerHTML = lymunit;
+    td49.innerHTML = lymnormal;
+    
+    td50.innerHTML = mon;
+    td51.innerHTML = monunit;
+    td52.innerHTML = monnormal;
+
+    td53.innerHTML = gra;
+    td54.innerHTML = graunit;
+    td55.innerHTML = granormal;
+
+    td56.innerHTML = rbc;
+    td57.innerHTML = rbcunit;
+    td58.innerHTML = rbcnormal;
+
+    td59.innerHTML = hgb;
+    td60.innerHTML = hgbunit;
+    td61.innerHTML = hgbnormal;
+
+    td62.innerHTML = hct;
+    td63.innerHTML = hctunit;
+    td64.innerHTML = hctnormal;
+
+    td65.innerHTML = mcv;
+    td66.innerHTML = mcvunit;
+    td67.innerHTML = mcvnormal;
+
+    td68.innerHTML = mch;
+    td69.innerHTML = mchunit;
+    td70.innerHTML = mchnormal;
+
+    td71.innerHTML = mchc;
+    td72.innerHTML = mchcunit;
+    td73.innerHTML = mchcnormal;
+
+    td74.innerHTML = plt;
+    td75.innerHTML = pltunit;
+    td76.innerHTML = pltnormal;
+
+    td77.innerHTML = tbil;
+    td78.innerHTML = tbilunit;
+    td79.innerHTML = tbilnormal;
+
+    td80.innerHTML = alt;
+    td81.innerHTML = altunit;
+    td82.innerHTML = altnormal;
+
+
+    
+
+    tr_data.appendChild(td0);
     tr_data.appendChild(td1);
     tr_data.appendChild(td2);
     tr_data.appendChild(td3);
@@ -52,18 +263,122 @@ var logresultstable = document.getElementById("logresults");
     tr_data.appendChild(td5);
     tr_data.appendChild(td6);
     tr_data.appendChild(td7);
+    tr_data.appendChild(td8); 
+    tr_data.appendChild(td9);
+    tr_data.appendChild(td10);
+    tr_data.appendChild(td11);
+    tr_data.appendChild(td12);
+    tr_data.appendChild(td13);
+    tr_data.appendChild(td14);
+    tr_data.appendChild(td15);
+    tr_data.appendChild(td16);
+    tr_data.appendChild(td17);
+    tr_data.appendChild(td18);
+    tr_data.appendChild(td19);
+    tr_data.appendChild(td20);
+    tr_data.appendChild(td21);
+    tr_data.appendChild(td22);
+    tr_data.appendChild(td23);
+    tr_data.appendChild(td24);
+    tr_data.appendChild(td25);
+    tr_data.appendChild(td26);
+    tr_data.appendChild(td27);
+    tr_data.appendChild(td28);
+    tr_data.appendChild(td29);
+    tr_data.appendChild(td30);
+    tr_data.appendChild(td31);
+    tr_data.appendChild(td32);
+    tr_data.appendChild(td33);
+    tr_data.appendChild(td34);
+    tr_data.appendChild(td35);
+    tr_data.appendChild(td36);
+    tr_data.appendChild(td37);
+    tr_data.appendChild(td38);
+    tr_data.appendChild(td39);
+    tr_data.appendChild(td40);
+    tr_data.appendChild(td41);
+    tr_data.appendChild(td42);
+    tr_data.appendChild(td43);
+    tr_data.appendChild(td44);
+    tr_data.appendChild(td45);
+    tr_data.appendChild(td46);
+    tr_data.appendChild(td47);
+    tr_data.appendChild(td48);
+    tr_data.appendChild(td49);
+    tr_data.appendChild(td50);
+    tr_data.appendChild(td51);
+    tr_data.appendChild(td52);
+    tr_data.appendChild(td53);
+    tr_data.appendChild(td54);
+    tr_data.appendChild(td55);
+    tr_data.appendChild(td56);
+    tr_data.appendChild(td57);
+    tr_data.appendChild(td58);
+    tr_data.appendChild(td59);
+    tr_data.appendChild(td60);
+    tr_data.appendChild(td61);
+    tr_data.appendChild(td62);
+    tr_data.appendChild(td63);
+    tr_data.appendChild(td64);
+    tr_data.appendChild(td65);
+    tr_data.appendChild(td66);
+    tr_data.appendChild(td67);
+    tr_data.appendChild(td68);
+    tr_data.appendChild(td69);
+    tr_data.appendChild(td70);
+    tr_data.appendChild(td71);
+    tr_data.appendChild(td72);
+    tr_data.appendChild(td73);
+    tr_data.appendChild(td74);
+    tr_data.appendChild(td75);
+    tr_data.appendChild(td76);
+    tr_data.appendChild(td77);
+    tr_data.appendChild(td78);
+    tr_data.appendChild(td79);
+    tr_data.appendChild(td80);
+    tr_data.appendChild(td81);
+    tr_data.appendChild(td82);
+    
     logresultstable.appendChild(tr_data);
   } 
 
-  function AddAllItemsToTable(auditlog) {
-    auto_inc = 0;
+  function AddAllItemsToTable(patientdata) {
     logresultstable.innerHTML = "";
-    auditlog.forEach(element => {
-      AddItemToTable(element.Activity, element.DateDid, element.Machine, element.SID, element.Test_Run_Date, element.id);
+    patientdata.forEach(element => {
+      AddItemToTable(element.PID, 
+        element.PetName, element.OwnerName, 
+        element.Gender, element.Age, 
+        element.DATE,element.TIME, element.Doctor,element.Machine, element.barcode, element.User,
+        //mnchip v5
+        element.ALB,element.ALBUNIT,element.ALBNORMAL,
+        element.TP,element.TPUNIT,element.TPNORMAL,
+        element.CA,element.CAUNIT,element.CANORMAL,
+        element.GLU,element.GLUUNIT,element.GLUNORMAL,
+        element.BUN,element.BUNUNIT,element.BUNNORMAL,
+        element.P,element.PUNIT,element.PNORMAL,
+        element.AMY,element.AMYUNIT,element.AMYNORMAL,
+        element.CHOL,element.CHOLUNIT,element.CHOLNORMAL,
+        element.ALP,element.ALPUNIT,element.ALPNORMAL,
+        element.CRE,element.CREUNIT,element.CRENORMAL,
+        element.CK,element.CKUNIT,element.CKNORMAL,
+        element.WBC,element.WBCUNIT,element.WBCNORMAL,
+        element.LYM,element.LYMUNIT,element.LYMNORMAL,
+        element.MON,element.MONUNIT,element.MONNORMAL,
+        element.GRA,element.GRAUNIT,element.GRANORMAL,
+        element.RBC,element.RBCUNIT,element.RBCNORMAL,
+        element.HGB,element.HGBUNIT,element.HGBNORMAL,
+        element.HCT,element.HCTUNIT,element.HCTNORMAL,
+        element.MCV,element.MCVUNIT,element.MCVNORMAL,
+        element.MCH,element.MCHUNIT,element.MCHNORMAL,
+        element.MCHC,element.MCHCUNIT,element.MCHCNORMAL,
+        element.PLT,element.PLTUNIT,element.PLTNORMAL,
+        element.TBIL,element.TBILUNIT,element.TBILNORMAL,
+        element.ALT,element.ALTUNIT,element.ALTNORMAL,
+        );
     });
   }
   async function GetAllDataOnce() {
-    const q = query(collection(db, "auditlog"));
+    const q = query(collection(db, "patientvalues2"));
     const querySnapshot = await getDocs(q);
     var datalog = [];
     querySnapshot.forEach(doc => {
@@ -75,7 +390,7 @@ var logresultstable = document.getElementById("logresults");
 
   async function RealTimeData() {
 
-    const dbRef = collection(db, "auditlog");
+    const dbRef = collection(db, "patientvalues2");
     onSnapshot(dbRef, (querySnapshot) => {
       var datalog = [];
       querySnapshot.forEach(doc => {
@@ -86,7 +401,7 @@ var logresultstable = document.getElementById("logresults");
 
     })
   }
-  //RealTimeData();
+  GetAllDataOnce();
   setTimeout(function (wews) {
     $(document).ready(function () {
 
@@ -128,36 +443,28 @@ var logresultstable = document.getElementById("logresults");
             orderable: true,
           },
           {
-            "targets": [3],
-            "visible": false,
-            "searchable": true,
-            orderable: true,
-          },
-          {
-            "targets": [4],
-            "visible": false,
-            "searchable": true,
-            orderable: true,
-          },
-          {
             "targets": [5],
+            "visible": true,
+            "searchable": true,
+            orderable: true,
+          },
+          {
+            "targets": [10],
             "visible": false,
             "searchable": true,
             orderable: true,
           },
           {
-            "targets": [6],
+            "targets": [3,4,6,7,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82],
             "visible": false,
             "searchable": true,
-            orderable: true
+            orderable: true,
           },
           { width: "10px", targets: 0 },
           { width: "500px", targets: 1 },
           { width: "500px", targets: 2 },
-          { width: "500px", targets: 3 },
-          { width: "500px", targets: 4 },
           { width: "500px", targets: 5 },
-          { width: "500px", targets: 6 },
+          { width: "500px", targets: 10 },
         ],
         fixedColumns: true,
         "dom": '<lf<t>ip>',
@@ -227,13 +534,115 @@ var logresultstable = document.getElementById("logresults");
       var table = $('#example').DataTable();
       $('#example tbody').on('click', 'tr', function () {
         $(".modal-body div span").text("");
-        $("#number1").text(table.row(this).data()[0]);
-        $("#activity1").text(table.row(this).data()[1]);
-        $("#date6").text(table.row(this).data()[2]);
-        $("#serial1").text(table.row(this).data()[3]);
-        $("#machine1").text(table.row(this).data()[4]);
-        $("#idnumber1").text(table.row(this).data()[5]);
-        $("#username63").text(table.row(this).data()[6]);
+        $("#pidinfo").text(table.row(this).data()[0]);
+        $("#petname").text(table.row(this).data()[1]);
+        $("#ownername").text(table.row(this).data()[2]);    
+        $("#gender").text(table.row(this).data()[3]);
+        $("#age").text(table.row(this).data()[4]);
+        $("#date5").text(table.row(this).data()[5]);
+        $("#time").text(table.row(this).data()[6]);
+        $("#doctor").text(table.row(this).data()[7]);
+        $("#machine1").text(table.row(this).data()[8]);
+        $("#barcode1").text(table.row(this).data()[9]);
+        $("#user5").text(table.row(this).data()[10]);
+        
+        $("#th_alb").text(table.row(this).data()[11]);
+        $("#th_albunit").text(table.row(this).data()[12]);
+        $("#th_albnormal").text(table.row(this).data()[13]);
+        
+        $("#th_tp").text(table.row(this).data()[14]);
+        $("#th_tpunit").text(table.row(this).data()[15]);
+        $("#th_tpnormal").text(table.row(this).data()[16]);
+        
+        $("#th_ca").text(table.row(this).data()[17]);
+        $("#th_caunit").text(table.row(this).data()[18]);
+        $("#th_canormal").text(table.row(this).data()[19]);
+        
+        $("#th_glu").text(table.row(this).data()[20]);
+        $("#th_gluunit").text(table.row(this).data()[21]);
+        $("#th_glunormal").text(table.row(this).data()[22]);
+
+        $("#th_bun").text(table.row(this).data()[23]);
+        $("#th_bununit").text(table.row(this).data()[24]);
+        $("#th_bunnormal").text(table.row(this).data()[25]);
+        
+        $("#th_p").text(table.row(this).data()[26]);
+        $("#th_punit").text(table.row(this).data()[27]);
+        $("#th_pnormal").text(table.row(this).data()[28]);
+
+        $("#th_amy").text(table.row(this).data()[29]);
+        $("#th_amyunit").text(table.row(this).data()[30]);
+        $("#th_amynormal").text(table.row(this).data()[31]);
+        
+        $("#th_chol").text(table.row(this).data()[32]);
+        $("#th_cholunit").text(table.row(this).data()[33]);
+        $("#th_cholnormal").text(table.row(this).data()[34]);
+        
+        $("#th_alp").text(table.row(this).data()[35]);
+        $("#th_alpunit").text(table.row(this).data()[36]);
+        $("#th_alpnormal").text(table.row(this).data()[37]);
+
+        $("#th_cre").text(table.row(this).data()[38]);
+        $("#th_creunit").text(table.row(this).data()[39]);
+        $("#th_crenormal").text(table.row(this).data()[40]);
+        
+        $("#th_ck").text(table.row(this).data()[41]);
+        $("#th_ckunit").text(table.row(this).data()[42]);
+        $("#th_cknormal").text(table.row(this).data()[43]);
+
+        $("#th_wbc").text(table.row(this).data()[44]);
+        $("#th_wbcunit").text(table.row(this).data()[45]);
+        $("#th_wbcnormal").text(table.row(this).data()[46]);
+        
+        $("#th_lym").text(table.row(this).data()[47]);
+        $("#th_lymunit").text(table.row(this).data()[48]);
+        $("#th_lymnormal").text(table.row(this).data()[49]);
+
+        $("#th_mon").text(table.row(this).data()[50]);
+        $("#th_monunit").text(table.row(this).data()[51]);
+        $("#th_monnormal").text(table.row(this).data()[52]);
+
+        $("#th_gra").text(table.row(this).data()[53]);
+        $("#th_graunit").text(table.row(this).data()[54]);
+        $("#th_granormal").text(table.row(this).data()[55]);
+        
+        $("#th_rbc").text(table.row(this).data()[56]);
+        $("#th_rbcunit").text(table.row(this).data()[57]);
+        $("#th_rbcnormal").text(table.row(this).data()[58]);
+
+        $("#th_hgb").text(table.row(this).data()[59]);
+        $("#th_hgbunit").text(table.row(this).data()[60]);
+        $("#th_hgbnormal").text(table.row(this).data()[61]);
+        
+        $("#th_hct").text(table.row(this).data()[62]);
+        $("#th_hctunit").text(table.row(this).data()[63]);
+        $("#th_hctnormal").text(table.row(this).data()[64]);
+        
+        $("#th_mcv").text(table.row(this).data()[65]);
+        $("#th_mcvunit").text(table.row(this).data()[66]);
+        $("#th_mcvnormal").text(table.row(this).data()[67]);
+        
+        $("#th_mch").text(table.row(this).data()[68]);
+        $("#th_mchunit").text(table.row(this).data()[69]);
+        $("#th_mchnormal").text(table.row(this).data()[70]);
+        
+        $("#th_mchc").text(table.row(this).data()[71]);
+        $("#th_mchcunit").text(table.row(this).data()[72]);
+        $("#th_mchcnormal").text(table.row(this).data()[73]);
+        
+        $("#th_plt").text(table.row(this).data()[74]);
+        $("#th_pltunit").text(table.row(this).data()[75]);
+        $("#th_pltnormal").text(table.row(this).data()[76]);
+
+        $("#th_tbil").text(table.row(this).data()[77]);
+        $("#th_tbilunit").text(table.row(this).data()[78]);
+        $("#th_tbilnormal").text(table.row(this).data()[79]);
+
+        $("#th_alt").text(table.row(this).data()[80]);
+        $("#th_altunit").text(table.row(this).data()[81]);
+        $("#th_altnormal").text(table.row(this).data()[82]);
+
+      
         $("#messagemodal").modal("show");
       });
     });

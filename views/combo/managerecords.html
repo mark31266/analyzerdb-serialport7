@@ -89,6 +89,7 @@
                   aria-expanded="false" style="color:white">
                   <div id="date"></div>
                   <div id="date1"></div>
+               
                 </a>
               </li>
             </ul>
@@ -129,9 +130,85 @@
             <table class="table " id="example" style="width:100%">
               <thead>
                 <tr>
-                  <th data-sortable="false">Number</th>
-                  <th data-sortable="false">Activity</th>
+                  <th data-sortable="false">PID</th>
+                  <th data-sortable="false">Pet Name</th>
+                  <th data-sortable="false">Owner Name</th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
                   <th data-sortable="false">Date</th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false">User</th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
+                  <th data-sortable="false"></th>
                   <th data-sortable="false"></th>
                   <th data-sortable="false"></th>
                   <th data-sortable="false"></th>
@@ -166,12 +243,11 @@
                       <table class="table table-borderless table-fluid">
                         <thead>
                           <tr id="sid1" class="w-30">
-                            <th id="sss" class="w-30" style="text-align:left">SID:
-                            <th class="no-gutters" style="text-align:left"></b><select id="sidselect"
-                                class="selectpicker select-sid" data-size="4" data-live-search="true" data-width="80%">
-                                <option disabled selected value>Select an Option</option>
-
-                              </select></b>
+                            <th id="sss" class="w-30" style="text-align:left">PID:
+                            <th class="no-gutters" style="text-align:left"><div id="pidinfo"></div>
+                              <div id="user5"></div>
+                              <div id="machine1"></div>
+                              <div id="barcode1"></div>
                     </div>
                     </th>
                     </th>
@@ -187,11 +263,7 @@
                       <th id="trd" class="w-30" style="text-align:left">Test Run Date:
                       <th class="no-gutters" style="text-align:left">
                         <div class="dropdown bootstrap-select fit-width show"></div>
-                        <select class="selectpicker select-dte" id="dateselect1" onchange="sidfunction()" data-size="4"
-                          data-live-search="true" data-width="85%">
-                          <option disabled selected value>Select an Option</option>
-
-                        </select>
+                        <div id="date5"></div>
                 </div>
 
               </div>
@@ -232,14 +304,13 @@
                 <thead>
                   <tr id="fn1">
                     <th class="w-30" style="text-align:left">
-                      <div class="inputBoxFname">Pet Name: <input id="petinputs" type="text" required="" /></div>
+                      <div class="inputBoxFname">Pet Name: <div id="petname"></div></div>
                     </th>
                   </tr>
                   </tr>
                   <tr id="ln1">
                     <th class="w-30" style="text-align:left">
-                      <div class="inputBoxLname">Owner Name: <input id="ownerinputs" type="text"
-                          oninput="Update(this.value,'LastName')" required="" /></div>
+                      <div class="inputBoxLname">Owner Name: <div id="ownername"></div></div>
                     </th>
                   </tr>
                 </thead>
@@ -252,20 +323,14 @@
                 <thead>
                   <tr id="age1">
                     <th class="w-30" style="text-align:left">
-                      <div class="inputBoxAge">Age:</div> <input id="ageinputs" type="number" min="1" max="99"
-                        required="" />
+                      <div class="inputBoxAge">Age:</div> <div id="age"></div>
                     </th>
                   </tr>
                   </tr>
                   <tr id="gender1">
                     <th class="w-30" style="text-align:left">
                       <div class="inputBoxGender">Gender:
-                        <select id="genderselect" class="selectpicker select-gen" data-size="3" data-width="85%">
-                          <option disabled selected value>Gender</option>
-                          <option>Male</option>
-                          <option>Female</option>
-                        </select></b>
-                      </div>
+                        <div id="gender"></div>
                     </th>
                     </th>
             </div>
@@ -280,14 +345,13 @@
               <thead>
                 <tr id="pn1">
                   <th class="w-40" style="text-align:left">
-                    <div class="inputBoxDocname">Requesting Physician:<input id="physicianinputs" type="text"
-                        required=""></input></div>
+                    <div class="inputBoxDocname">Requesting Physician:<div id="doctor"></div></div>
                   </th>
                 </tr>
 
                 <tr id="time">
                   <th class="time" style="text-align:initial">
-                    <div class="inputBoxTime">Time:<u></div><input id='timeinputs' disabled>
+                    <div class="inputBoxTime">Time:<u></div><div id='time'></div>
                   </th>
                 </tr>
 
@@ -296,32 +360,109 @@
             </table>
           </div>
 
-          <div class="col-md-2">
-            <table id="bldtyp" class="table table-striped table-borderless table-fluid">
-              <thead>
-                <tr id="bld1">
-                  <th class="w-40" style="text-align:left">
-                    <div class="inputBloodType"><b>Blood Type:</b><select class="selectpicker select-bld"
-                        id="bloodselect" required="" data-size="3" data-width="67%">
-                        <option disabled selected value>Type</option>
-                        <option>A+</option>
-                        <option>AB+</option>
-                        <option>B+</option>
-                        <option>O+</option>
-                        <option>A-</option>
-                        <option>AB-</option>
-                        <option>B-</option>
-                        <option>O-</option>
-                        <option>-</option>
-                      </select></div>
-                  </th>
-                </tr>
-
-              </thead>
-              </tbody>
-            </table>
-          </div>
         </div>
+        
+        <div class="column1">
+          <div class="chip">Blood Chem (MNCHIP V5)</div>
+          <table id="results" class="table table-bordered">
+
+            <tr id="seq">
+              <th>Test</th>
+              <th>Results</th>
+              <th>Reference Range</th>
+              <th>Unit</th>
+
+            </tr>
+            <tr class="WBC_Count" id="alb">
+              <td id="seq2">ALB</td>
+              <td id="th_alb"></td>
+              <td id="th_albnormal"></td>
+              <td id="th_albunit"></td>
+            </tr>
+            <tr id="tp">
+              <td id="seq2">TP</td>
+              <td id="th_tp"></td>
+              <td id="th_tpnormal"></td>
+              <td id="th_tpunit"></td>
+            </tr>
+
+            <tr id="ca">
+              <td id="seq2">Ca</td>
+              <td id="th_ca"></td>
+              <td id="th_canormal"></td>
+              <td id="th_caunit"></td>
+            </tr>
+
+            <tr id="glu">
+              <td id="seq2">GLU</td>
+              <td id="th_glu"></td>
+              <td id="th_glunormal"></td>
+              <td id="th_gluunit"></td>
+            </tr>
+            <tr class="RBC_Count" id="bun">
+              <td id="seq2">BUN</td>
+              <td id="th_bun"></td>
+              <td id="th_bunnormal"></td>
+              <td id="th_bununit"></td>
+            </tr>
+
+            <tr class="HGB" id="p">
+              <td id="seq2">P</td>
+              <td id="th_p"></td>
+              <td id="th_pnormal"></td>
+              <td id="th_punit"></td>
+            </tr>
+
+            <tr class="HCT" id="amy">
+              <td id="seq2">AMY</td>
+              <td id="th_amy"></td>
+              <td id="th_amynormal"></td>
+              <td id="th_amyunit"></td>
+            </tr>
+
+            <tr id="chol">
+              <td id="seq2">CHOL</td>
+              <td id="th_chol"></td>
+              <td id="th_cholnormal"></td>
+              <td id="th_cholunit"></td>
+            </tr>
+
+            <tr id="alt">
+              <td id="seq2">ALT</td>
+              <td id="th_alt"></td>
+              <td id="th_altnormal"></td>
+              <td id="th_altunit"></td>
+            </tr>
+
+            <tr id="tbil">
+              <td id="seq2">TBIL</td>
+              <td id="th_tbil"></td>
+              <td id="th_tbilnormal"></td>
+              <td id="th_tbilunit"></td>
+            </tr>
+            <tr class="PLT" id="alp">
+              <td id="seq2">ALP</td>
+              <td id="th_alp"></td>
+              <td id="th_alpnormal"></td>
+              <td id="th_alpunit"></td>
+            </tr>
+            <tr id="cre">
+              <td id="seq2">CRE</td>
+              <td id="th_cre"></td>
+              <td id="th_crenormal"></td>
+              <td id="th_creunit"></td>
+            </tr>
+            <tr id="ck">
+              <td id="seq2">CK</td>
+              <td id="th_ck"></td>
+              <td id="th_cknormal"></td>
+              <td id="th_ckunit"></td>
+            </tr>
+           
+          </table>
+        </div>
+        <div class="column2">
+          <div class="cbc">CBC (Mythic 18 Vet)</div>
         <table id="results" class="table table-bordered">
           <tr id="seq">
             <th>Test</th>
@@ -332,48 +473,78 @@
 
           <tr id="wbc1">
             <td id="seq2">WBC Count</td>
+            <td id="th_wbc"></td>
+            <td id="th_wbcnormal"></td>
+            <td id="th_wbcunit"></td>
           </tr>
 
           <tr id="lym1">
-            <td id="seq2">Lymphocyte</td>
+            <td id="seq2">LYM</td>
+            <td id="th_lym"></td>
+            <td id="th_lymnormal"></td>
+            <td id="th_lymunit"></td>
           </tr>
 
           <tr id="mon1">
-            <td id="seq2">Monocyte</td>
+            <td id="seq2">MON</td>
+            <td id="th_mon"></td>
+            <td id="th_monnormal"></td>
+            <td id="th_monunit"></td>
           </tr>
 
           <tr id="gra1">
-            <td id="seq2">Granulocyte</td>
+            <td id="seq2">GRA</td>
+            <td id="th_gra"></td>
+            <td id="th_granormal"></td>
+            <td id="th_graunit"></td>
           </tr>
 
           <tr id="rbc1">
-            <td id="seq2">RBC Count</td>
+            <td id="seq2">RBC</td>
+            <td id="th_rbc"></td>
+            <td id="th_rbcnormal"></td>
+            <td id="th_rbcunit"></td>
           </tr>
 
           <tr id="hgb1">
             <td id="seq2">HGB</td>
+            <td id="th_hgb"></td>
+            <td id="th_hgbnormal"></td>
+            <td id="th_hgbunit"></td>  
           </tr>
 
           <tr id="hct1">
             <td id="seq2">HCT</td>
+            <td id="th_hct"></td>
+            <td id="th_hctnormal"></td>
+            <td id="th_hctunit"></td>
           </tr>
 
           <tr id="mcv1">
             <td id="seq2">MCV</td>
+            <td id="th_mcv"></td>
+            <td id="th_mcvnormal"></td>
+            <td id="th_mcvunit"></td>
           </tr>
 
           <tr id="mch1">
             <td id="seq2">MCH</td>
+            <td id="th_mch"></td>
+            <td id="th_mchnormal"></td>
+            <td id="th_mchunit"></td>
           </tr>
 
           <tr id="mchc1">
             <td id="seq2">MCHC</td>
+            <td id="th_mchc"></td>
+            <td id="th_mchcnormal"></td>
+            <td id="th_mchcunit"></td>
           </tr>
           <tr id="plt1">
             <td id="seq2">PLT</td>
-          </tr>
-          <tr id="bloodtype1">
-            <td id="seq2">Blood Type/Group</td>
+            <td id="th_plt"></td>
+            <td id="th_pltnormal"></td>
+            <td id="th_pltunit"></td>
           </tr>
         </table>
       </div>
@@ -501,7 +672,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-  <script type="module" src="/jscodes/mnchipv5/managerecords.js"></script>
+  <script type="module" src="/jscodes/combo/managerecords.js"></script>
   <script src="/jscodes/navbutton.js"></script>
   <script src="/jscodes/dateresults.js"></script>
   <script src="/jscodes/machine.js"></script>

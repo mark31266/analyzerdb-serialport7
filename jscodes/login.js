@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
         firebase.firestore().settings({
           cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED
       });
-      
+    
     });
     document.getElementById("login")
     .addEventListener("submit", (event) => {

@@ -874,7 +874,6 @@ td {
   color: white;
 }
 
-
 #myModal {
   background-color: rgba(10, 10, 10, 0.45);
 }
@@ -919,6 +918,6 @@ a:focus {
 
 #user1,
 #email2,
-#user5 {
+#user5, #SID {
   display: none;
 }

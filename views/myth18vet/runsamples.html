@@ -99,6 +99,9 @@
                   <a class="nav-link mr-2 my-1 clock" href="#" id="navbarDropdown" aria-haspopup="true"
                     aria-expanded="false" style="color:white">
                     <div id="clock"></div>
+                    <div id="user1"></div>
+                    <div id="email2"></div>
+                    <div id="user5"></div>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -174,14 +177,14 @@
                 <thead>
                   <tr id="fn1">
                     <th class="w-30" style="text-align:left">
-                      <div class="inputBoxPetname">Pet Name:<input id="petnameinputs1" type="text"
+                      <div class="inputBoxPetname">Pet Name:<input id="petnameinputs" type="text"
                           oninput="Update(this.value,'FirstName')" required="" /></div>
                     </th>
                   </tr>
                   </tr>
                   <tr id="ln1">
                     <th class="w-30" style="text-align:left">
-                      <div class="inputBoxOwnername">Owner Name : <input id="ownernameinputs1" type="text"
+                      <div class="inputBoxOwnername">Owner Name : <input id="ownernameinputs" type="text"
                           oninput="Update(this.value,'LastName')" required="" /></div>
                     </th>
                   </tr>
@@ -235,10 +238,8 @@
                       <div class="inputBoxSpecies">Type Select:
                         <div class="dropdown bootstrap-select fit-width show"></div>
                           <select class="selectpicker select-typeSlct" id="specieselect" data-size="4"
-                            data-live-search="true" data-width="85%">
+                            data-live-search="true" data-width="85%" onchange="changeFunc();">
                               <option disabled selected value>Select an Option</option>
-                              <option>Lion</option>
-                              <option>Giraffe</option>
                               </select>
 
               </thead>
@@ -288,27 +289,27 @@
 
           </tr>
           <tr class="WBC_Count" id="wbc">
-            <td id="seq2">WBC Count</td>
+            <td id="seq2">WBC</td>
             <td id="th_wbc"></td>
             <td id="th_wbcnormal"></td>
             <td id="th_wbcunit"></td>
           </tr>
           <tr id="lym">
-            <td id="seq2">Lymphocyte</td>
+            <td id="seq2">LYM</td>
             <td id="th_lym"></td>
             <td id="th_lymnormal"></td>
             <td id="th_lymunit"></td>
           </tr>
 
           <tr id="mon">
-            <td id="seq2">Monocyte</td>
+            <td id="seq2">MON</td>
             <td id="th_mon"></td>
             <td id="th_monnormal"></td>
             <td id="th_monunit"></td>
           </tr>
 
           <tr id="gra">
-            <td id="seq2">Granulocyte</td>
+            <td id="seq2">GRA</td>
             <td id="th_gra"></td>
             <td id="th_granormal"></td>
             <td id="th_graunit"></td>
@@ -424,6 +425,23 @@
     </div>
   </div>
 
+     <!-- The Modal -->
+     <div class="modal fade" id="errormodal" tabindex="-1" role="dialog" data-backdrop="false" data-target="#myModal"
+     aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title"></h5>
+           <div id="error1"></div>
+           </h5>
+           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-rst text-light" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+     </div>
+   </div>
 
 
 

@@ -4,6 +4,8 @@
            var timeinputs = document.getElementById("timeinputs"); 
            var PIDinput = document.getElementById('PID'); 
            var navdate = document.getElementById("date1"); 
+
+                  //MNCHIP V5
                 //-----------------ALB--------------------/
                 const results1 = document.querySelector('#results');
                 let tr_alb = document.getElementById('alb');
@@ -60,11 +62,73 @@
                 let th_ck = document.getElementById('th_ck');
                 let th_ckunit = document.getElementById('th_ckunit');
                 let th_cknormal =document.getElementById('th_cknormal');
-                 //-----------------PLT--------------------/
-                let tr_plt = document.getElementById('plt');
-                let th_plt = document.getElementById('th_plt');
-                let th_pltunit = document.getElementById('th_pltunit');
-                let th_pltnormal =document.getElementById('th_pltnormal');
+                //Mythic 18 Vet
+                  //-----------------WBC--------------------/
+                  let tr_wbc = document.getElementById('wbc');
+                  let th_wbc = document.getElementById('th_wbc');
+                  let th_wbcunit = document.getElementById('th_wbcunit');
+                  let th_wbcnormal =document.getElementById('th_wbcnormal');
+                   //-----------------NEU--------------------/
+                  let tr_neu = document.getElementById('neu');
+                  let th_neu = document.getElementById('th_neu');
+                  let th_neuunit = document.getElementById('th_neuunit');
+                  let th_neunormal =document.getElementById('th_neunormal');
+                      //-----------------LYM--------------------/
+                  let tr_lym = document.getElementById('lym');
+                  let th_lym = document.getElementById('th_lym');
+                  let th_lymunit = document.getElementById('th_lymunit');
+                  let th_lymnormal =document.getElementById('th_lymnormal');
+                   //-----------------MON--------------------/
+                  let tr_mon = document.getElementById('mon');
+                  let th_mon = document.getElementById('th_mon');
+                  let th_monunit = document.getElementById('th_monunit');
+                  let th_monnormal =document.getElementById('th_monnormal');
+                   //-----------------EOS--------------------/
+                  let tr_eos = document.getElementById('eos');
+                  let th_eos = document.getElementById('th_eos');
+                  let th_eosunit = document.getElementById('th_eosunit');
+                  let th_eosnormal =document.getElementById('th_eosnormal');
+                   //-----------------GRA--------------------/
+                  let tr_gra = document.getElementById('gra');
+                  let th_gra = document.getElementById('th_gra');
+                  let th_graunit = document.getElementById('th_graunit');
+                  let th_granormal =document.getElementById('th_granormal');
+                    //-----------------RBC--------------------/
+                  let tr_rbc = document.getElementById('rbc');
+                  let th_rbc = document.getElementById('th_rbc');
+                  let th_rbcunit = document.getElementById('th_rbcunit');
+                  let th_rbcnormal =document.getElementById('th_rbcnormal');
+                  //-----------------HGB--------------------/
+                  let tr_hgb = document.getElementById('hgb');
+                  let th_hgb = document.getElementById('th_hgb');
+                  let th_hgbunit = document.getElementById('th_hgbunit');
+                  let th_hgbnormal =document.getElementById('th_hgbnormal');
+                   //-----------------HCT--------------------/
+                  let tr_hct = document.getElementById('hct');
+                  let th_hct = document.getElementById('th_hct');
+                  let th_hctunit = document.getElementById('th_hctunit');
+                  let th_hctnormal =document.getElementById('th_hctnormal');
+                  //-----------------MCV--------------------/
+                  let tr_mcv = document.getElementById('mcv');
+                  let th_mcv = document.getElementById('th_mcv');
+                  let th_mcvunit = document.getElementById('th_mcvunit');
+                  let th_mcvnormal =document.getElementById('th_mcvnormal');
+                  //-----------------MCH--------------------/
+                  let tr_mch = document.getElementById('mch');
+                  let th_mch = document.getElementById('th_mch');
+                  let th_mchunit = document.getElementById('th_mchunit');
+                  let th_mchnormal =document.getElementById('th_mchnormal');
+                  //-----------------MCHC--------------------/
+                  let tr_mchc = document.getElementById('mchc');
+                  let th_mchc = document.getElementById('th_mchc');
+                  let th_mchcunit = document.getElementById('th_mchcunit');
+                  let th_mchcnormal = document.getElementById('th_mchcnormal');
+                   //-----------------PLT--------------------/
+                  let tr_plt = document.getElementById('plt');
+                  let th_plt = document.getElementById('th_plt');
+                  let th_pltunit = document.getElementById('th_pltunit');
+                  let th_pltnormal =document.getElementById('th_pltnormal');
+              
                 let petnameinputs = document.getElementById('petnameinputs'); 
                 let ownernameinputs = document.getElementById('ownernameinputs');
                 let genderinputs = document.getElementById('genderselect'); 
@@ -117,8 +181,7 @@
               //    });
               //  });
                let db = firebase.firestore(); 
-             //-----------------------------------------String to Date Function-------------------------------//
-               //--------------writing data---------------------//
+               //--------------Reference Range Data---------------------//
                db.collection("Reference Ranges").where("Machine", "==", "MNCHIP V5")
                .get().then(querySnapshot => {
                 querySnapshot.forEach(doc => result1.push(doc.id));
@@ -200,7 +263,7 @@
                   $('#errormodal').modal('show');
                 } else {
                   // document does not exist (only on online)
-                  db.collection("MNCHIPV5").doc(PIDinput.innerHTML).set(
+                  db.collection("patientvalues2").doc("MNCHIP V5 " + PIDinput.innerHTML).set(
                   {
                   /**ALB**/
                   ALB : th_alb.innerHTML,
@@ -267,7 +330,7 @@
                   TIME : TIMEinput.innerHTML, 
                   PID : PIDinput.innerText,
                   Doctor: pinputs.value,
-                  Machine : machinename.innerHTML, 
+                  Machine : "MNCHIP V5", 
                   barcode : PIDinput.innerText, 
                   User : emailused.innerHTML
                  
@@ -627,10 +690,7 @@
           let gn = document.getElementById('genderselect'); 
           let an = document.getElementById('ageinputs');
           let pn = document.getElementById('physicianinputs');
-          let bn = document.getElementById('bloodselect');
-          let bnn1 = document.getElementById('bloodselect'); 
-          let bnn2 = document.getElementById('th_blood'); 
-          if (fn !== null && fn.value === "" || ln !== null && ln.value === "" || an !== null && an.value === "" || gn !== null && gn.value === "" || pn !== null && pn.value === "" || bn !== null && bn.value === "" )
+          if (fn !== null && fn.value === "" || ln !== null && ln.value === "" || an !== null && an.value === "" || gn !== null && gn.value === "" || pn !== null && pn.value === "")
           {    
             document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
             $('#errormodal').modal('show');

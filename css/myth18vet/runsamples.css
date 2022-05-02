@@ -853,7 +853,7 @@ td {
   border: none;
   outline: none;
   border-bottom: 0.065rem solid #333232;
-  width: 34%;
+  width: 70%;
   background: transparent;
   margin-top: 2px;
 }
@@ -905,6 +905,10 @@ a:focus {
   background-color: rgba(10, 10, 10, 0.45);
 }
 
+#errormodal {
+  background-color: rgba(10, 10, 10, 0.45);
+}
+
 a,
 a:hover,
 a:focus {
@@ -916,4 +920,9 @@ a:focus {
 #UniqueID {
   font-family: 'Segoe UI';
   font-size: 16px;
+}
+#user1,
+#email2,
+#user5 {
+  display: none;
 }
