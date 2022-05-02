@@ -84,6 +84,7 @@ $('#myModal1').modal('show');
               .signInWithEmailAndPassword(username1, password)
               .then(({ user }) => {
                 return user.getIdToken().then((idToken) => {
+                 
                   return fetch("/sessionLogin", {
                     method: "POST",
                     headers: {
@@ -91,7 +92,8 @@ $('#myModal1').modal('show');
                       "Content-Type": "application/json",
                       "CSRF-Token": Cookies.get("XSRF-TOKEN"),
                     },
-                    body: JSON.stringify({ idToken }),
+                    body: JSON.stringify({ idToken } ),
+                    
                   });
                 });
               }).then(() => {
