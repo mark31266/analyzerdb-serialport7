@@ -708,7 +708,10 @@ body {
 #myModal {
   background-color: rgba(10, 10, 10, 0.45);
 }
-
+.modal-body1 {
+  padding-left: 2%;
+  padding-top: 2%;
+}
 a,
 a:hover,
 a:focus {

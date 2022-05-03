@@ -5,6 +5,7 @@
            var PIDinput = document.getElementById('PID'); 
            var SIDinput = document.getElementById('SID'); 
            var navdate = document.getElementById("date1"); 
+           var specie = document.getElementById("specieselect"); 
                 //-----------------ALB--------------------/
                 const results1 = document.querySelector('#results');
                 let tr_alb = document.getElementById('alb');
@@ -404,7 +405,8 @@
                   Doctor: pinputs.value,
                   Machine : "MNCHIP V5 | Mythic 18 Vet", 
                   barcode : PIDinput.innerText, 
-                  User : emailused.innerHTML, 
+                  User : emailused.innerHTMeL, 
+                  Specie : specie.value
                 
                  }).then(function (){
                    console.log(); 

@@ -436,17 +436,22 @@ body {
   background: transparent;
   font-family: "Segoe UI Semibold";
   }
-  .inputBoxTime input{  
+  .inputBoxTime div{  
     width: 100%;
     padding-left:5px;
     font-size: 30px;
     color: #333232;
     border: none;
-    border-bottom: 0.065rem solid #333232;
+    border-bottom: none;
     outline: none;
     background: transparent;
-    font-family: "Segoe UI Semibold";
+    font-family: "Segoe UI Light";
+    text-transform: none;
     }
+    .inputBoxTime{  
+      font-family: "Segoe UI Light";
+      }
+ 
     .inputBloodType input{  
       width: 100%;
       padding-left:5px;
@@ -502,6 +507,45 @@ body {
     background-color: #277277 !important;
     -webkit-print-color-adjust: exact; 
   }
+  .modal-header {
+    display: none;  
+   }
+   .modal-body {
+     width: auto;
+     height: auto;
+     overflow: visible !important;  
+     outline: 0;
+   }
+   ::-webkit-scrollbar {
+     display: none;
+ }
+ .modal-dialog.modal-dialog-centered.modal-xl {
+  display: contents;
+}
+header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
+  display: none;
+}
+  #results {
+    align-items: center;
+    width: 450px;
+  }
+
+  .column1, .column2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column1 {
+    float: left;
+    width: 50%;
+  }
+
+  .column2
+  {
+    padding-left:50px;
+  }
+
+ 
   #results tr {
     background-color: #277277 !important;
     -webkit-print-color-adjust: exact; 
@@ -615,11 +659,7 @@ body {
   font-size: 22px;
   }
   
-  input#timeinputs{ 
-  border-bottom: none;
-  font-weight: bold;
-  font-size: 22px;
-  }
+ 
   
   #bld1{
   visibility: hidden;
@@ -760,15 +800,10 @@ body {
   }
   
   #timeinputs{
-    font-family: "Segoe UI Semibold";
-    font-size: 1.5rem;
-      padding-left:5px;
-      border:none;
-      outline:none;
-      border-bottom: none;
+    font-family: "Segoe UI Light";
       width: 34%;
       background: transparent;
-      margin-top:8px;
+      text-transform: none;
   }
   
   
@@ -796,6 +831,7 @@ body {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
+    display:none !important;
   }
   
   .select-bld{
@@ -837,6 +873,8 @@ body {
     -webkit-appearance: none;
     appearance: none
     }
+
+
   
     button.btn.dropdown-toggle.bs-placeholder.btn-light option{
       font-size:30px !important;
@@ -870,13 +908,13 @@ body {
   border-bottom: 0.065rem solid #333232;
   }
   
-  #timeinputs{
+  #time{
   font-family: "Segoe UI Semibold";
   font-size: 1.3rem;
     padding-left:5px;
     border:none;
     outline:none;
-    border-bottom: 0.065rem solid #333232;
+    border-bottom: none;
     width: 40;
     background: transparent;
   }
@@ -949,9 +987,10 @@ body {
       display: none;
     }
   
-    #trd{
-      padding-bottom: 20px !important;
-    }
+     #d{
+      margin-left: -50px;
+      padding-left: -50%;
+    } 
     
     #sss{
       padding-bottom: 20px !important;
@@ -1004,5 +1043,75 @@ body {
   .page-link {
     color: #000000;
   }
+  #user5, #machine1, #barcode1 {
 
+    display: none;
+  }
+
+  #pidinfo{
+    padding-bottom: 9px !important;
+    text-align: left;
+  }
  
+
+  
+  
+
+  #speciesinput{
+    display: none; 
+  }
+
+  .inpUpdate1{
+    padding-left: 5px;
+    font-size: 16px;
+    color: #333232;
+    border: none;
+    border-bottom: 0.065rem solid #333232;
+    outline: none;
+    background: transparent;
+    font-family: "Segoe UI Semibold";
+    display: none;
+  }
+
+.inpUpdate2 {
+    padding-left: 5px;
+    font-size: 16px;
+    color: #333232;
+    border: none;
+    border-bottom: 0.065rem solid #333232;
+    width: 40px;
+    outline: none;
+    background: transparent;
+    font-family: "Segoe UI Semibold";
+    display: none; 
+  }
+  .modal-dialog {
+    max-height: fit-content;
+    max-width: fit-content;
+    min-width: 77%;
+    align-items: center;
+    min-height: 181%;
+}
+  @media (max-width: 768px) {
+  .modal-dialog {
+    max-height: fit-content;
+    max-width: fit-content;
+    min-width: 103%;
+    align-items: center;
+    min-height: 181%;
+}
+  }
+
+  .select-spc{
+    color: #333232;
+    border: none;
+    border-bottom: 0.065rem solid #333232;
+    outline: none;
+    background: transparent;
+    font-size: 1.3rem;
+    font-family: "Segoe UI Semibold";
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    display: none !important;
+  }

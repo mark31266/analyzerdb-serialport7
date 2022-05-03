@@ -489,7 +489,17 @@ div.subtabletext {
 
 @media print {
 
- 
+
+  .BOTTOMTEXT
+  {
+    float: left;
+  }
+
+  #PID,
+  #DATE {
+    font-family: 'Segoe UI Semibold';
+  }
+
   #results {
     align-items: center;
     width: 450px;
@@ -510,15 +520,6 @@ div.subtabletext {
     padding-left:50px;
   }
 
-  .BOTTOMTEXT
-  {
-    float: left;
-  }
-
-  #PID,
-  #DATE {
-    font-family: 'Segoe UI Semibold';
-  }
 
   .inputBoxPetsName input,
   .inputBoxOwnername input {
@@ -604,13 +605,14 @@ div.subtabletext {
   }
 
   .inputBoxTime input {
-    padding-left: 0px;
+    padding-left: -25px;
     width: 5px;
     font-size: 100px;
     border-bottom: none;
     font-weight: bold;
   }
 
+  
 
   select#genderselect.form-select.select-gen {
     border-bottom: none;
@@ -930,3 +932,4 @@ a:focus {
 #user5 {
   display: none;
 }
+

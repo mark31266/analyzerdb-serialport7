@@ -429,7 +429,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         });
         var table = $('#example').DataTable();
         $('#example tbody').on('click', 'tr', function () {
-          $(".modal-body div span").text("");
+          $(".modal-body1 div span").text("");
           $("#number1").text(table.row(this).data()[0]);
           $("#activity1").text(table.row(this).data()[1]);
           $("#date6").text(table.row(this).data()[2]);

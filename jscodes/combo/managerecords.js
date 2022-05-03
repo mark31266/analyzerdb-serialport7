@@ -28,6 +28,53 @@ import {
 const db = getFirestore();
 let db2 = firebase.firestore();
 var auto_inc; 
+firebase.auth().onAuthStateChanged(function (user) {
+ 
+
+  var myimg = document.getElementById("signatories1"); 
+  var myimg2 = document.getElementById("logo1"); 
+  var myimg3 = document.getElementById("header1"); 
+  //Automatic Image Data (Signatories)!!
+  var docRef = db2.collection("Images").doc("signatories.png");
+docRef.get().then((doc) => {
+    if (doc.exists) {
+       myimg.src = doc.data().ImageURL; 
+       console.log("Signatories Present")
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
+//Automatic Image Data (Logo)!!
+var docRef = db2.collection("Images").doc("logo.png");
+docRef.get().then((doc) => {
+    if (doc.exists) {
+       myimg2.src = doc.data().ImageURL; 
+       console.log("Logo Present")
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
+//Automatic Image Data (Header)!!
+var docRef = db2.collection("Images").doc("header.png");
+docRef.get().then((doc) => {
+    if (doc.exists) {
+       myimg3.src = doc.data().ImageURL; 
+       console.log("Header Present")
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch((error) => {
+    console.log("Error getting document:", error);
+});
+
+
 var logresultstable = document.getElementById("logresults");
   function AddItemToTable(pid,petname, ownername, gender, 
     age,date,time,doctor,machine,barcode,user,
@@ -55,7 +102,8 @@ var logresultstable = document.getElementById("logresults");
     mchc,mchcunit,mchcnormal,
     plt,pltunit,pltnormal,
     tbil,tbilunit,tbilnormal,
-    alt,altunit,altnormal) {
+    alt,altunit,altnormal,specie) {
+
 
     let tr_data = document.createElement('tr');
     let td0 = document.createElement('td');
@@ -141,7 +189,7 @@ var logresultstable = document.getElementById("logresults");
     let td80 = document.createElement('td');
     let td81 = document.createElement('td');
     let td82 = document.createElement('td');
-  
+    let td83 = document.createElement('td');
     
 
     td0.innerHTML = pid;
@@ -252,8 +300,7 @@ var logresultstable = document.getElementById("logresults");
     td81.innerHTML = altunit;
     td82.innerHTML = altnormal;
 
-
-    
+    td83.innerHTML = specie;
 
     tr_data.appendChild(td0);
     tr_data.appendChild(td1);
@@ -338,7 +385,8 @@ var logresultstable = document.getElementById("logresults");
     tr_data.appendChild(td80);
     tr_data.appendChild(td81);
     tr_data.appendChild(td82);
-    
+
+    tr_data.appendChild(td83);
     logresultstable.appendChild(tr_data);
   } 
 
@@ -374,7 +422,7 @@ var logresultstable = document.getElementById("logresults");
         element.PLT,element.PLTUNIT,element.PLTNORMAL,
         element.TBIL,element.TBILUNIT,element.TBILNORMAL,
         element.ALT,element.ALTUNIT,element.ALTNORMAL,
-        );
+        element.Specie);
     });
   }
   async function GetAllDataOnce() {
@@ -455,7 +503,12 @@ var logresultstable = document.getElementById("logresults");
             orderable: true,
           },
           {
-            "targets": [3,4,6,7,8,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82],
+            "targets": [3,4,6,7,8,9,11,12,13,14,15,
+              16,17,18,19,20,21,22,23,24,25,26,27,28,29,
+              30,31,32,33,34,35,36,37,38,39,40,41,42,43,
+              44,45,46,47,48,49,50,51,52,53,54,55,56,57,
+              58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,
+              73,74,75,76,77,78,79,80,81,82,83],
             "visible": false,
             "searchable": true,
             orderable: true,
@@ -534,117 +587,128 @@ var logresultstable = document.getElementById("logresults");
       var table = $('#example').DataTable();
       $('#example tbody').on('click', 'tr', function () {
         $(".modal-body div span").text("");
-        $("#pidinfo").text(table.row(this).data()[0]);
-        $("#petname").text(table.row(this).data()[1]);
-        $("#ownername").text(table.row(this).data()[2]);    
-        $("#gender").text(table.row(this).data()[3]);
-        $("#age").text(table.row(this).data()[4]);
-        $("#date5").text(table.row(this).data()[5]);
-        $("#time").text(table.row(this).data()[6]);
-        $("#doctor").text(table.row(this).data()[7]);
-        $("#machine1").text(table.row(this).data()[8]);
-        $("#barcode1").text(table.row(this).data()[9]);
-        $("#user5").text(table.row(this).data()[10]);
-        
-        $("#th_alb").text(table.row(this).data()[11]);
-        $("#th_albunit").text(table.row(this).data()[12]);
-        $("#th_albnormal").text(table.row(this).data()[13]);
-        
-        $("#th_tp").text(table.row(this).data()[14]);
-        $("#th_tpunit").text(table.row(this).data()[15]);
-        $("#th_tpnormal").text(table.row(this).data()[16]);
-        
-        $("#th_ca").text(table.row(this).data()[17]);
-        $("#th_caunit").text(table.row(this).data()[18]);
-        $("#th_canormal").text(table.row(this).data()[19]);
-        
-        $("#th_glu").text(table.row(this).data()[20]);
-        $("#th_gluunit").text(table.row(this).data()[21]);
-        $("#th_glunormal").text(table.row(this).data()[22]);
+        $("#pidinfo").html(table.row(this).data()[0]);
+        $("#petname").html(table.row(this).data()[1]);
+        $("#ownername").html(table.row(this).data()[2]);    
+        $("#gender").html(table.row(this).data()[3]);
+        $("#age").html(table.row(this).data()[4]);
+        $("#date5").html(table.row(this).data()[5]);
+        $("#timeinputs").html(table.row(this).data()[6]);
+        $("#doctor").html(table.row(this).data()[7]);
+        $("#machine1").html(table.row(this).data()[8]);
+        $("#species").html(table.row(this).data()[83]);
+        $("#last-barcode").html(table.row(this).data()[9]);
+        var barcode5 = document.getElementById("last-barcode").innerText; 
+          //barcode
+    JsBarcode("#barcode3", barcode5, {
+      format: "CODE39",
+      flat : true,
+    lineColor: "#0aa",
+                    width: 1,
+                    height: 50,
+                    displayValue: true
+                  })
 
-        $("#th_bun").text(table.row(this).data()[23]);
-        $("#th_bununit").text(table.row(this).data()[24]);
-        $("#th_bunnormal").text(table.row(this).data()[25]);
+        $("#user5").html(table.row(this).data()[10]);
         
-        $("#th_p").text(table.row(this).data()[26]);
-        $("#th_punit").text(table.row(this).data()[27]);
-        $("#th_pnormal").text(table.row(this).data()[28]);
+        $("#th_alb").html(table.row(this).data()[11]); 
+        $("#th_albunit").html(table.row(this).data()[12]);
+        $("#th_albnormal").html(table.row(this).data()[13]);
+        
+        $("#th_tp").html(table.row(this).data()[14]);
+        $("#th_tpunit").html(table.row(this).data()[15]);
+        $("#th_tpnormal").html(table.row(this).data()[16]);
+        
+        $("#th_ca").html(table.row(this).data()[17]);
+        $("#th_caunit").html(table.row(this).data()[18]);
+        $("#th_canormal").html(table.row(this).data()[19]);
+        
+        $("#th_glu").html(table.row(this).data()[20]);
+        $("#th_gluunit").html(table.row(this).data()[21]);
+        $("#th_glunormal").html(table.row(this).data()[22]);
 
-        $("#th_amy").text(table.row(this).data()[29]);
-        $("#th_amyunit").text(table.row(this).data()[30]);
-        $("#th_amynormal").text(table.row(this).data()[31]);
+        $("#th_bun").html(table.row(this).data()[23]);
+        $("#th_bununit").html(table.row(this).data()[24]);
+        $("#th_bunnormal").html(table.row(this).data()[25]);
         
-        $("#th_chol").text(table.row(this).data()[32]);
-        $("#th_cholunit").text(table.row(this).data()[33]);
-        $("#th_cholnormal").text(table.row(this).data()[34]);
-        
-        $("#th_alp").text(table.row(this).data()[35]);
-        $("#th_alpunit").text(table.row(this).data()[36]);
-        $("#th_alpnormal").text(table.row(this).data()[37]);
+        $("#th_p").html(table.row(this).data()[26]);
+        $("#th_punit").html(table.row(this).data()[27]);
+        $("#th_pnormal").html(table.row(this).data()[28]);
 
-        $("#th_cre").text(table.row(this).data()[38]);
-        $("#th_creunit").text(table.row(this).data()[39]);
-        $("#th_crenormal").text(table.row(this).data()[40]);
+        $("#th_amy").html(table.row(this).data()[29]);
+        $("#th_amyunit").html(table.row(this).data()[30]);
+        $("#th_amynormal").html(table.row(this).data()[31]);
         
-        $("#th_ck").text(table.row(this).data()[41]);
-        $("#th_ckunit").text(table.row(this).data()[42]);
-        $("#th_cknormal").text(table.row(this).data()[43]);
+        $("#th_chol").html(table.row(this).data()[32]);
+        $("#th_cholunit").html(table.row(this).data()[33]);
+        $("#th_cholnormal").html(table.row(this).data()[34]);
+        
+        $("#th_alp").html(table.row(this).data()[35]);
+        $("#th_alpunit").html(table.row(this).data()[36]);
+        $("#th_alpnormal").html(table.row(this).data()[37]);
 
-        $("#th_wbc").text(table.row(this).data()[44]);
-        $("#th_wbcunit").text(table.row(this).data()[45]);
-        $("#th_wbcnormal").text(table.row(this).data()[46]);
+        $("#th_cre").html(table.row(this).data()[38]);
+        $("#th_creunit").html(table.row(this).data()[39]);
+        $("#th_crenormal").html(table.row(this).data()[40]);
         
-        $("#th_lym").text(table.row(this).data()[47]);
-        $("#th_lymunit").text(table.row(this).data()[48]);
-        $("#th_lymnormal").text(table.row(this).data()[49]);
+        $("#th_ck").html(table.row(this).data()[41]);
+        $("#th_ckunit").html(table.row(this).data()[42]);
+        $("#th_cknormal").html(table.row(this).data()[43]);
 
-        $("#th_mon").text(table.row(this).data()[50]);
-        $("#th_monunit").text(table.row(this).data()[51]);
-        $("#th_monnormal").text(table.row(this).data()[52]);
+        $("#th_wbc").html(table.row(this).data()[44]);
+        $("#th_wbcunit").html(table.row(this).data()[45]);
+        $("#th_wbcnormal").html(table.row(this).data()[46]);
+        
+        $("#th_lym").html(table.row(this).data()[47]);
+        $("#th_lymunit").html(table.row(this).data()[48]);
+        $("#th_lymnormal").html(table.row(this).data()[49]);
 
-        $("#th_gra").text(table.row(this).data()[53]);
-        $("#th_graunit").text(table.row(this).data()[54]);
-        $("#th_granormal").text(table.row(this).data()[55]);
-        
-        $("#th_rbc").text(table.row(this).data()[56]);
-        $("#th_rbcunit").text(table.row(this).data()[57]);
-        $("#th_rbcnormal").text(table.row(this).data()[58]);
+        $("#th_mon").html(table.row(this).data()[50]);
+        $("#th_monunit").html(table.row(this).data()[51]);
+        $("#th_monnormal").html(table.row(this).data()[52]);
 
-        $("#th_hgb").text(table.row(this).data()[59]);
-        $("#th_hgbunit").text(table.row(this).data()[60]);
-        $("#th_hgbnormal").text(table.row(this).data()[61]);
+        $("#th_gra").html(table.row(this).data()[53]);
+        $("#th_graunit").html(table.row(this).data()[54]);
+        $("#th_granormal").html(table.row(this).data()[55]);
         
-        $("#th_hct").text(table.row(this).data()[62]);
-        $("#th_hctunit").text(table.row(this).data()[63]);
-        $("#th_hctnormal").text(table.row(this).data()[64]);
-        
-        $("#th_mcv").text(table.row(this).data()[65]);
-        $("#th_mcvunit").text(table.row(this).data()[66]);
-        $("#th_mcvnormal").text(table.row(this).data()[67]);
-        
-        $("#th_mch").text(table.row(this).data()[68]);
-        $("#th_mchunit").text(table.row(this).data()[69]);
-        $("#th_mchnormal").text(table.row(this).data()[70]);
-        
-        $("#th_mchc").text(table.row(this).data()[71]);
-        $("#th_mchcunit").text(table.row(this).data()[72]);
-        $("#th_mchcnormal").text(table.row(this).data()[73]);
-        
-        $("#th_plt").text(table.row(this).data()[74]);
-        $("#th_pltunit").text(table.row(this).data()[75]);
-        $("#th_pltnormal").text(table.row(this).data()[76]);
+        $("#th_rbc").html(table.row(this).data()[56]);
+        $("#th_rbcunit").html(table.row(this).data()[57]);
+        $("#th_rbcnormal").html(table.row(this).data()[58]);
 
-        $("#th_tbil").text(table.row(this).data()[77]);
-        $("#th_tbilunit").text(table.row(this).data()[78]);
-        $("#th_tbilnormal").text(table.row(this).data()[79]);
+        $("#th_hgb").html(table.row(this).data()[59]);
+        $("#th_hgbunit").html(table.row(this).data()[60]);
+        $("#th_hgbnormal").html(table.row(this).data()[61]);
+        
+        $("#th_hct").html(table.row(this).data()[62]);
+        $("#th_hctunit").html(table.row(this).data()[63]);
+        $("#th_hctnormal").html(table.row(this).data()[64]);
+        
+        $("#th_mcv").html(table.row(this).data()[65]);
+        $("#th_mcvunit").html(table.row(this).data()[66]);
+        $("#th_mcvnormal").html(table.row(this).data()[67]);
+        
+        $("#th_mch").html(table.row(this).data()[68]);
+        $("#th_mchunit").html(table.row(this).data()[69]);
+        $("#th_mchnormal").html(table.row(this).data()[70]);
+        
+        $("#th_mchc").html(table.row(this).data()[71]);
+        $("#th_mchcunit").html(table.row(this).data()[72]);
+        $("#th_mchcnormal").html(table.row(this).data()[73]);
+        
+        $("#th_plt").html(table.row(this).data()[74]);
+        $("#th_pltunit").html(table.row(this).data()[75]);
+        $("#th_pltnormal").html(table.row(this).data()[76]);
 
-        $("#th_alt").text(table.row(this).data()[80]);
-        $("#th_altunit").text(table.row(this).data()[81]);
-        $("#th_altnormal").text(table.row(this).data()[82]);
+        $("#th_tbil").html(table.row(this).data()[77]);
+        $("#th_tbilunit").html(table.row(this).data()[78]);
+        $("#th_tbilnormal").html(table.row(this).data()[79]);
 
-      
+        $("#th_alt").html(table.row(this).data()[80]);
+        $("#th_altunit").html(table.row(this).data()[81]);
+        $("#th_altnormal").html(table.row(this).data()[82]);
+
         $("#messagemodal").modal("show");
       });
     });
   }, 2000);
-  
+})
