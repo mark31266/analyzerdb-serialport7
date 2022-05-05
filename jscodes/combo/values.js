@@ -151,6 +151,7 @@
                 var date2 = document.getElementById("date1");  
                 var clock1 = document.getElementById("clock");  
                 var machinename = document.getElementById("machinename"); 
+                var remarks = document.getElementById("results-textarea"); 
                 var result1 = [] ; 
                 
                 function Update(val,type) 
@@ -275,7 +276,7 @@
                   $('#errormodal').modal('show');
                 } else {
                   // document does not exist (only on online)
-                  db.collection("patientvalues2").doc(PIDinput.innerHTML).set(
+                  db.collection("patientvalues2").doc(PIDinput.innerHTML + SIDinput.innerHTML).set(
                   {
                   //mnchip v5
                   /**ALB**/
@@ -417,16 +418,17 @@
                   Age : ageinputs.value,
                   DATE : DATEinput.innerText, 
                   TIME : TIMEinput.innerHTML, 
-                  PID : PIDinput.innerText,
+                  PID : PIDinput.innerHTML + SIDinput.innerHTML,
                   Doctor: pinputs.value,
                   Machine : "MNCHIP V5 | Mythic 18 Vet", 
-                  barcode : PIDinput.innerText, 
+                  barcode : PIDinput.innerText + SIDinput.innerHTML,
                   User : emailused.innerHTML, 
-                  Specie : specie.value
+                  Specie : specie.value,
+                  Remarks : remarks.value
                 
                  }).then(function (){
                    console.log(); 
-                   document.getElementById("error1").innerHTML = "Data Written! " + "PID: " + PIDinput.innerText;
+                   document.getElementById("error1").innerHTML = "Data Written! " + "PID: " + PIDinput.innerHTML + SIDinput.innerHTML;
                    $('#errormodal').modal('show');
                }).catch(function(error)
                {
@@ -782,7 +784,7 @@
             $('#errormodal').modal('show');
           }
           else{
-            JsBarcode("#barcode1", (PIDinput.innerText), {
+            JsBarcode("#barcode1", (PIDinput.innerText + SIDinput.innerHTML), {
                      format: "CODE39",
              flat : true,
            lineColor: "#0aa",
@@ -799,7 +801,7 @@
               {
                 dateran : date2.innerText + " " + clock1.innerText,
                 date : DATEinput.innerText,
-                PID : PIDinput.innerText
+                PID : PIDinput.innerText + SIDinput.innerHTML
               })
               db.collection("Timestamp MNCHIP V5").doc("Counting").set(
                 {
@@ -816,7 +818,7 @@
               {
                 dateran : date2.innerText + " " + clock1.innerText,
                 date : DATEinput.innerText,
-                PID : PIDinput.innerText,
+                PID : PIDinput.innerText + SIDinput.innerHTML,
               })
            }
            })
@@ -824,7 +826,7 @@
            db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
              {
              id : emailused2.innerHTML,
-             PID : PIDinput.innerText,
+             PID : PIDinput.innerText + SIDinput.innerHTML,
              Test_Run_Date : DATEinput.innerText,
              Activity : "Run Sample",
              Machine : machinename.innerHTML,
@@ -886,7 +888,7 @@
         else{
           bnn2.innerHTML = "<b>" + bnn1.value + "</b>"; 
         
-          JsBarcode("#barcode1", (PIDinput.innerText), {
+          JsBarcode("#barcode1", (PIDinput.innerText + SIDinput.innerHTML), {
                    format: "CODE39",
            flat : true,
          lineColor: "#0aa",
@@ -903,7 +905,7 @@
             {
               dateran : date2.innerText + " " + clock1.innerText,
               date : DATEinput.innerText,
-              PID : PIDinput.innerText
+              PID : PIDinput.innerText + SIDinput.innerHTML
             })
             db.collection("Timestamp MNCHIP V5").doc("Counting").set(
               {
@@ -920,7 +922,7 @@
             {
               dateran : date2.innerText + " " + clock1.innerText,
               date : DATEinput.innerText,
-              PID : PIDinput.innerText,
+              PID : PIDinput.innerText + SIDinput.innerHTML
             })
          }
          })
@@ -928,7 +930,7 @@
          db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
            {
            id : emailused2.innerHTML,
-           PID : PIDinput.innerText,
+           PID : PIDinput.innerText + SIDinput.innerHTML,
            Test_Run_Date : DATEinput.innerText,
            Activity : "Run Sample",
            Machine : machinename.innerHTML,
@@ -1306,7 +1308,7 @@ socket.on('MCHC', function(MCHC) {
           $('#errormodal').modal('show');
         }
         else{
-          JsBarcode("#barcode1", (PIDinput.innerText), {
+          JsBarcode("#barcode1", (PIDinput.innerText + SIDinput.innerHTML), {
                    format: "CODE39",
            flat : true,
          lineColor: "#0aa",

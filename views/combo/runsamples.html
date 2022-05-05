@@ -123,8 +123,8 @@
                     <thead>
                       <tr id="sid1" class="w-30">
                         <th class="w-30">PID:</th>
-                        <th id="PID"></th>
-                        <th id="SID"></th>
+                        <th id="PID">&nbsp;</th>
+                        <th id="SID">&nbsp;</th>
                 </div>
                 </th>
                 </th>
@@ -157,7 +157,7 @@
         </div>
 
         <div class="tabletext">
-          <div class="row">
+          <div class="row ">
             <!--<div class="col-md-1"></div>-->
             <div class="col-md-4">
               <table id="fname1" class="table table-borderless table-fluid">
@@ -165,9 +165,9 @@
                   <tr id="fn1">
                     <th class="w-30" style="text-align:left">
                       <div class="row">
-                        <div class="col-4 border">
+                        <div class="col-5">
                       <div class="inputBoxPetsName">Pet's Name: </div></div>
-                      <div class="col-8 border"><input id="petnameinputs" class="inpUpdate1" type="text"
+                      <div class="col-7 "><input id="petnameinputs" class="inpUpdate1" type="text"
                           oninput="Update(this.value,'Pet')" required="" /></div>
                     </th>
                   </tr>
@@ -175,26 +175,26 @@
                   <tr id="ln1">
                     <th class="w-30" style="text-align:left">
                       <div class="row">
-                        <div class="col-5 border">
+                        <div class="col-5">
                       <div class="inputBoxOwnername">Owner's Name: </div></div>
-                      <div class="col-7 border"><input id="ownernameinputs" class="inpUpdate1-2" type="text"
+                      <div class="col-7 "><input id="ownernameinputs" class="inpUpdate1-2" type="text"
                           oninput="Update(this.value,'Owner')" required="" /></div></div>
                     </th>
                   </tr>
-
+                  
                 </thead>
                 </tbody>
               </table>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 ">
               <table id="lname1" class="table table-borderless table-fluid">
                 <thead>
                   <tr id="age1">
                     <th class="w-30" style="text-align:left">
                       <div class="row">
-                        <div class="col-3 border">
+                        <div class="col-3 ">
                       <div class="inputBoxAge">Age: </div></div>
-                      <div class="col border"><input id="ageinputs" class="inpUpdate2" type="number" min="1" max="99"
+                      <div class="col"><input id="ageinputs" class="inpUpdate2" type="number" min="1" max="99"
                         required="" /></div></div>
                     </th>
                   </tr>
@@ -226,7 +226,7 @@
                   <th class="w-100" style="text-align:left">
                     <div class="row">
                       <div class="col-6 border">
-                    <div class="inputBoxDocname">Requesting Physician:</div></div>
+                    <div class="inputBoxDocname">Veterinarist:</div></div>
                       <div class="col border"><input id="physicianinputs" type="text" required=""></input>
                     </div></div>
                   </th>
@@ -264,10 +264,10 @@
           </div>
         </div>
 
-       <div class = "horizontal_line"></div>
+       <div class="horizontal_line"></div>
        <br>
         <div class="column1">
-          <div class="chip">Chemistry</div>
+          <div class="chip">CHEMISTRY</div>
             <table id ="column1" cellspacing="0" cellpadding="5">
             
 
@@ -372,7 +372,7 @@
 
         <div class="column2">
 
-          <div class="cbc">Hematology</div>
+          <div class="cbc">HEMATOLOGY</div>
             <table id="column2" cellspacing="0" cellpadding="5">
             
 
@@ -481,11 +481,26 @@
             </tr>
 
           </table>
-      
-   
-          
       </div>
-
+      <div class="horizontal_line2"></div>
+      <br>
+      <div class="row">
+      <div id="textareaposition">
+        <div class="chip">REMARKS</div>
+      <textarea id="remarks-textarea" required></textarea>
+      <div class="signatoriesyes">
+     
+        
+            <div id="signatories"><img id="signatories1" width="450px" height="100px"></div>
+          </div>
+          </div
+        </div>
+      </div>
+    </div>
+    <div class="horizontal_line3"></div>
+       
+    <div class="col-pl-3"><svg id="barcode1"></svg></div>
+    <br>
       <div class="BOTTOMTEXT">
         <!-- <div class="IDDisplay">
           <small>Unique ID: <small id="UniqueID"></small></small>
@@ -507,14 +522,7 @@
           </div>
         </div>
 
-        <div class="signatoriesyes">
-          <div class="row">
-            <div class="col-pl-3"><svg id="barcode1"></svg></div>
-            <div class="col-md-2">
-              <div id="signatories"><img id="signatories1" width="730px" height="118px"></div>
-            </div>
-          </div>
-        </div>
+      
       </div>
 
       <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-backdrop="false" data-target="#myModal"

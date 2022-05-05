@@ -833,7 +833,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    display:;
+    /* display:; */
   }
 
   .btn-light{
@@ -1114,7 +1114,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     outline: none;
     background: transparent;
     font-family: "Segoe UI Semibold";
-    display: ; 
+    /* display: ;  */
   }
   .modal-dialog {
     max-height: fit-content;
@@ -1144,5 +1144,5 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    display: ;
+    /* display: ; */
   }
