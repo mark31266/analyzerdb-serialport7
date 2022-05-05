@@ -358,7 +358,7 @@ div.subtabletext {
   text-align: center;
   width: 30%
 }
-
+ 
 
 
 #results1 tr:nth-child(even) {
@@ -378,17 +378,15 @@ div.subtabletext {
 }
 
 #seq {
-  background-color: #277277;
-  color: white;
+  color: rgb(10, 9, 9);
   font-family: 'Segoe UI';
   font-size: 18px;
 }
 
 #seq2 {
-  background-color: white;
-  color: black;
+  color: rgb(10, 9, 9);
   font-family: 'Segoe UI';
-  font-size: 18px;
+  font-size: 17px;
 }
 
 
@@ -484,6 +482,8 @@ div.subtabletext {
 {
   font-family: 'Segoe UI Semibold';
   text-align: left;
+  font-size: 20px;
+  padding-bottom: 12px;
 }
 
 
@@ -508,16 +508,18 @@ div.subtabletext {
   .column1, .column2 {
     display: flex;
     flex-direction: column;
+    
   }
 
   .column1 {
     float: left;
     width: 50%;
+    padding-left: 40px;
   }
 
   .column2
   {
-    padding-left:50px;
+    padding-left:24px;
   }
 
 
@@ -532,6 +534,7 @@ div.subtabletext {
     display: block;
     width: 250px;
     font-weight: bold;
+  
   }
 
   #refreshbtn {
@@ -564,11 +567,14 @@ div.subtabletext {
     color: black;
   }
 
-  #results th {
+/*   #results th,tr {
     color: white;
     background-color: #277277 !important;
     -webkit-print-color-adjust: exact;
-  }
+    border: none;
+    border-collapse: collapse;
+  } */
+
 
   #sidebar {
     display: none;
@@ -605,7 +611,7 @@ div.subtabletext {
   }
 
   .inputBoxTime input {
-    padding-left: -25px;
+    padding-left: -295px;
     width: 5px;
     font-size: 100px;
     border-bottom: none;
@@ -649,20 +655,20 @@ div.subtabletext {
   
   button.btn {
     border-color: transparent;
-    font-size: 22px;
+    font-size: 11px;
   }
 
   button.btn.dropdown-toggle.placeholder.btn-light {
     border-color: transparent;
-    font-size: 22px;
+    font-size: 11px;
   }
 
   div.filter-option {
-    font-size: 22px !important;
+    font-size: 11px !important;
   }
 
   .dropdown-menu {
-    font-size: 22px !important;
+    font-size: 11px !important;
   }
 
   .dropdown-toggle::after {
@@ -683,7 +689,12 @@ div.subtabletext {
     background: transparent;
   }
   
-
+  .bootstrap-select>.dropdown-toggle {
+    font-size: 11px;
+  }
+  .bootstrap-select .dropdown-menu.inner {
+    font-size: 11px;
+  }
 
 }
 
@@ -716,18 +727,18 @@ div.subtabletext {
 
 
 tr {
-  text-align: center;
+  text-align: left;
   font-size: 23px
 }
 
 th {
-  text-align: center;
-
+  text-align: left;
+  font-size: 15px;
 }
 
 td {
-  text-align: center;
-  font-size: 18px;
+  text-align: left;
+  font-size: 15px;
 }
 
 
@@ -786,7 +797,7 @@ td {
   border-bottom: 0.065rem solid #333232;
   outline: none;
   background: transparent;
-  font-size: 1.3rem;
+  font-size: 15px;
   font-family: "Segoe UI Semibold";
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -799,7 +810,7 @@ td {
   border-bottom: 0.065rem solid #333232;
   outline: none;
   background: transparent;
-  font-size: 1.3rem;
+  font-size: 15px;
   font-family: "Segoe UI Semibold";
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -822,7 +833,7 @@ td {
 
 #ageinputs {
   font-family: "Segoe UI Semibold";
-  font-size: 1.3rem;
+  font-size: 15px;
   padding-left: 5px;
   border: none;
   outline: none;
@@ -835,7 +846,7 @@ td {
 #physicianinputs {
   font-family: "Segoe UI Semibold";
   margin-top: 6px;
-  font-size: 21px;
+  font-size: 15px;
   border: none;
   outline: none;
   border-bottom: 0.065rem solid #333232;
@@ -933,3 +944,121 @@ a:focus {
   display: none;
 }
 
+#results {
+  align-items: center;
+  width: 450px;
+ 
+}
+
+.column1, .column2, #vertical {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.column1 {
+  float: left;
+  width: 50%;
+  padding-left: 58px;
+}
+.column2
+{
+  padding-left:3px;
+ 
+}
+
+u {
+  text-decoration: none;
+}
+body {
+  line-height: unset;
+}
+
+.horizontal_line {
+  background-color: black;
+  width: 100%;
+  height: 2px;
+  border-top:  black;
+  line-height: 50%;
+
+}
+
+.vertical {
+
+  background-color: black;
+  width: 1px;
+  height: 500px;
+  line-height: 90%;
+  position: relative;
+  float: left; 
+  margin-left: -31px;
+}
+
+#column1 {
+  width: 90%; 
+}
+#column2 {
+  width: 90%
+}
+
+.yay{
+  text-align: center;
+}
+.no-gutters {
+  padding-top: 38px; 
+}
+
+.inpUpdate1{
+  padding-left: 5px;
+  font-size: 15px;
+  color: #333232;
+  width:200px;
+  border: none;
+  border-bottom: 0.065rem solid #333232;
+  outline: none;
+  background: transparent;
+  font-family: "Segoe UI Semibold";
+}
+
+.inpUpdate1-2{
+  padding-left: 5px;
+  font-size: 15px;
+  color: #333232;
+  width:178px;
+  border: none;
+  border-bottom: 0.065rem solid #333232;
+  outline: none;
+  background: transparent;
+  font-family: "Segoe UI Semibold";
+}
+
+.inpUpdate1-3{
+  padding-left: 5px;
+  font-size: 15px;
+  color: #333232;
+  width:130px;
+  border: none;
+  border-bottom: 0.065rem solid #333232;
+  outline: none;
+  background: transparent;
+  font-family: "Segoe UI Semibold";
+}
+
+.inpUpdate2 {
+  padding-left: 5px;
+  font-size: 15px;
+  color: #333232;
+  border: none;
+  border-bottom: 0.065rem solid #333232;
+  width: 40px;
+  outline: none;
+  background: transparent;
+  font-family: "Segoe UI Semibold";
+  /* display: ;  */
+}
+.bootstrap-select>.dropdown-toggle {
+  font-size: 11px;
+}
+.bootstrap-select .dropdown-menu.inner {
+  font-size: 11px;
+}

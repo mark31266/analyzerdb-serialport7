@@ -74,11 +74,6 @@
                   let th_wbc = document.getElementById('th_wbc');
                   let th_wbcunit = document.getElementById('th_wbcunit');
                   let th_wbcnormal =document.getElementById('th_wbcnormal');
-                   //-----------------NEU--------------------/
-                  let tr_neu = document.getElementById('neu');
-                  let th_neu = document.getElementById('th_neu');
-                  let th_neuunit = document.getElementById('th_neuunit');
-                  let th_neunormal =document.getElementById('th_neunormal');
                       //-----------------LYM--------------------/
                   let tr_lym = document.getElementById('lym');
                   let th_lym = document.getElementById('th_lym');
@@ -89,16 +84,26 @@
                   let th_mon = document.getElementById('th_mon');
                   let th_monunit = document.getElementById('th_monunit');
                   let th_monnormal =document.getElementById('th_monnormal');
-                   //-----------------EOS--------------------/
-                  let tr_eos = document.getElementById('eos');
-                  let th_eos = document.getElementById('th_eos');
-                  let th_eosunit = document.getElementById('th_eosunit');
-                  let th_eosnormal =document.getElementById('th_eosnormal');
                    //-----------------GRA--------------------/
                   let tr_gra = document.getElementById('gra');
                   let th_gra = document.getElementById('th_gra');
                   let th_graunit = document.getElementById('th_graunit');
                   let th_granormal =document.getElementById('th_granormal');
+                  //-----------------LYM%--------------------/
+                  let tr_lymn = document.getElementById('lymn');
+                  let th_lymn = document.getElementById('th_lymn');
+                  let th_lymunitn = document.getElementById('th_lymunitn');
+                  let th_lymnormaln =document.getElementById('th_lymnormaln');
+                   //-----------------MON%--------------------/
+                  let tr_monn = document.getElementById('monn');
+                  let th_monn = document.getElementById('th_monn');
+                  let th_monunitn = document.getElementById('th_monunitn');
+                  let th_monnormaln =document.getElementById('th_monnormaln');
+                   //-----------------GRA%--------------------/
+                  let tr_gran = document.getElementById('gran');
+                  let th_gran = document.getElementById('th_gran');
+                  let th_graunitn = document.getElementById('th_graunitn');
+                  let th_granormaln =document.getElementById('th_granormaln');        
                     //-----------------RBC--------------------/
                   let tr_rbc = document.getElementById('rbc');
                   let th_rbc = document.getElementById('th_rbc');
@@ -337,7 +342,7 @@
                   CK : th_ck.innerHTML,
                   CKUNIT: th_ckunit.innerHTML,
                   CKNORMAL: th_cknormal.innerHTML,
-
+                  //mythic 18 vet
                   /**WBC**/
                   WBC : th_wbc.innerHTML,
                   WBCUNIT : th_wbcunit.innerHTML,
@@ -347,17 +352,28 @@
                   LYM : th_lym.innerHTML,
                   LYMUNIT  : th_lymunit.innerHTML,
                   LYMNORMAL  : th_lymnormal.innerHTML,
+                  
+                  LYMN : th_lymn.innerHTML,
+                  LYMUNITN  : th_lymunitn.innerHTML,
+                  LYMNORMALN  : th_lymnormaln.innerHTML,  
         
                   /**MON**/
                   MON : th_mon.innerHTML,
                   MONUNIT  : th_monunit.innerHTML,
                   MONNORMAL: th_monnormal.innerHTML,
 
-                  //mythic 18 vet
+                  MONN : th_monn.innerHTML,
+                  MONUNITN  : th_monunitn.innerHTML,
+                  MONNORMALN: th_monnormaln.innerHTML,    
+
                   /**GRA**/
                   GRA : th_gra.innerHTML,
                   GRAUNIT  : th_graunit.innerHTML,
                   GRANORMAL : th_granormal.innerHTML,
+
+                  GRAN : th_gran.innerHTML,
+                  GRAUNITN  : th_graunitn.innerHTML,
+                  GRANORMALN : th_granormaln.innerHTML,
                   
                   /**RBC**/
                   RBC : th_rbc.innerHTML,
@@ -368,7 +384,7 @@
                   HGB : th_hgb.innerHTML,
                   HGBUNIT : th_hgbunit.innerHTML,
                   HGBNORMAL   : th_hgbnormal.innerHTML, 
-        
+                  
                   /**HCT**/
                   HCT : th_hct.innerHTML,
                   HCTUNIT : th_hctunit.innerHTML,
@@ -405,7 +421,7 @@
                   Doctor: pinputs.value,
                   Machine : "MNCHIP V5 | Mythic 18 Vet", 
                   barcode : PIDinput.innerText, 
-                  User : emailused.innerHTMeL, 
+                  User : emailused.innerHTML, 
                   Specie : specie.value
                 
                  }).then(function (){
@@ -475,9 +491,9 @@
              if (TP !== null ){
                 th_tpunit.innerHTML = "g/dL" ;
                 var tpa0 = String(TP).split(",");
-                var tpa = tpa0[1]; 
-                /*low */ var tpb = String(doc.data().TPLower); 
-                /* high */ var tpc = String(doc.data().TPUpper);    
+                var tpa = tpa0[1]; //14.3
+                /*low */ var tpb = String(doc.data().TPLower); //5.2
+                /* high */ var tpc = String(doc.data().TPUpper); //8.2
               
                   if (parseFloat(tpa) > parseFloat(tpc) || tpa.includes(">"))
                       {
@@ -1003,6 +1019,56 @@ if (LYM !== null ){
     }
 });
 
+//LYM DATA
+socket.on('LYMN', function(LYMN) {
+  if (LYMN !== null ){
+     th_lymunitn.innerHTML = "x10<sup>9</sup>/L" ;
+     var lymNa =  String(LYMN).substr(4,4); 
+     /*low */ var lymNb = String(doc.data().LymNLower); 
+     /* high */ var lymNc = String(doc.data().LymNUpper); ;    
+   
+       if (parseFloat(lymNa) > parseFloat(lymNc))
+           {
+            th_lymn.innerHTML = "<b>" + lymNa + "&nbsp↑</b>" 
+           }
+          else if (parseFloat(lymNa) < parseFloat(lymNb))
+           {
+            th_lymn.innerHTML = "<b>" + lymNa + "&nbsp↓</b>" 
+           }
+           else 
+           {
+            th_lymn.innerHTML = "" + lymNa + "" 
+           }
+        //LYML DATA
+         th_lymnormaln.innerHTML = lymNb + " - " + lymNc;
+      }
+  });
+
+//MON DATA
+socket.on('MONN', function(MONN) {   
+  if (MONN !== null ){
+    th_monunitn.innerHTML = "x10<sup>9</sup>/L" ;
+    var monNa =  String(MONN).substr(4,4); 
+    /*low */ var monNb = String(doc.data().MonNLower); 
+    /* high */ var monNc = String(doc.data().MonNUpper);    
+  
+      if (parseFloat(monNa) > parseFloat(monNc))
+          {
+           th_monn.innerHTML = "<b>" + monNa + "&nbsp↑</b>" 
+          }
+         else if (parseFloat(monNa) < parseFloat(monNb))
+          {
+           th_monn.innerHTML = "<b>" + monNa + "&nbsp↓</b>" 
+          }
+          else 
+          {
+           th_monn.innerHTML = "" + monNa + "" 
+          }
+          th_monnormaln.innerHTML = monNb + " - " + monNc 
+   }
+  });
+
+
 //MON DATA
 socket.on('MON', function(MON) {   
 if (MON !== null ){
@@ -1050,6 +1116,30 @@ if (GRA !== null ){
         th_granormal.innerHTML = grab + " - " + grac
  }   
 });
+
+//GRAN DATA
+socket.on('GRAN', function(GRAN) {
+  if (GRAN !== null ){
+    th_graunitn.innerHTML = "x10<sup>9</sup>/L" ;
+    var graNa =  String(GRAN).substr(4,4); 
+    /*low */ var graNb = String(doc.data().GraNLower); 
+    /* high */ var graNc = String(doc.data().GraNUpper);    
+  
+      if (parseFloat(graNa) > parseFloat(graNc))
+          {
+           th_gran.innerHTML = "<b>" + graNa + "&nbsp↑</b>" 
+          }
+         else if (parseFloat(graNa) < parseFloat(graNb))
+          {
+           th_gran.innerHTML = "<b>" + graNa + "&nbsp↓</b>" 
+          }
+          else 
+          {
+           th_gran.innerHTML = "" + graNa + "" 
+          }
+          th_granormaln.innerHTML = graNb + " - " + graNc
+   }   
+  });
 
 //RBC DATA
 socket.on('RBC', function(RBC) {

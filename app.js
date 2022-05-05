@@ -252,7 +252,7 @@
   //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^app usages^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
   io.on('connection', function(io) {
   }) 
-  //mythic 18
+  //MNCHIP V5
   const parser2 = port3.pipe(new Regex({ regex: /[\r\n]+/ }))
   parser2.on('data', function(data) {
     console.log(data); 
@@ -306,6 +306,7 @@
   let CK = data.match(/\|CK\|(.*?)\|/);
   io.emit('CK', CK)
   })
+  //Mythic 18 Vet
   const parser = port.pipe(new Regex({ regex: /[\r\n]+/ }))
   parser.on('data', function(data) {
     io.emit('data', data)
@@ -349,6 +350,19 @@
       //4 MON Data
     let MON = data.match(/^MON%;.+/);
     io.emit('MON', MON)
+
+
+  let LYMN = data.match(/^LYM;.+/);
+    io.emit('LYMN',LYMN)
+    
+    let MONN = data.match(/^MON;.+/);
+    io.emit('MONN', MONN)
+
+
+    let GRAN = data.match(/^GRA;.+/);
+    io.emit('GRAN', GRAN)   
+
+
   //MONL Data
   let MONL = data.match(/^MON%;.+/);
   io.emit('MONL', MONL)  
@@ -410,6 +424,7 @@
   //PLTL Data
   let PLTL = data.match(/^PLT;.+/);
   io.emit('PLTL', PLTL)
+  
   })
 
 

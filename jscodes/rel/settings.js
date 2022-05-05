@@ -542,15 +542,31 @@ firebase.auth().onAuthStateChanged(function (user) {
     var lyml2 = document.getElementById("lyml2");
     var lymu2 = document.getElementById("lymu2");
 
+    var lyml1n = document.getElementById("lymln");
+    var lymu1n = document.getElementById("lymun");
+    var lyml2n = document.getElementById("lyml2n");
+    var lymu2n = document.getElementById("lymu2n");
+
     var monl1 = document.getElementById("monl");
     var monu1 = document.getElementById("monu");
     var monl2 = document.getElementById("monl2");
     var monu2 = document.getElementById("monu2");
 
+    var monl1n = document.getElementById("monln");
+    var monu1n = document.getElementById("monun");
+    var monl2n = document.getElementById("monl2n");
+    var monu2n = document.getElementById("monu2n");
+
     var gral1 = document.getElementById("gral");
     var grau1 = document.getElementById("grau");
     var gral2 = document.getElementById("gral2");
     var grau2 = document.getElementById("grau2");
+
+    var gral1n = document.getElementById("graln");
+    var grau1n = document.getElementById("graun");
+    var gral2n = document.getElementById("gral2n");
+    var grau2n = document.getElementById("grau2n");
+
 
     var rbcl1 = document.getElementById("rbcl");
     var rbcu1 = document.getElementById("rbcu");
@@ -610,6 +626,15 @@ firebase.auth().onAuthStateChanged(function (user) {
             document.getElementById("monu2").value = parseFloat(doc.data().MonUpper); 
             document.getElementById("gral2").value = parseFloat(doc.data().GraLower); 
             document.getElementById("grau2").value = parseFloat(doc.data().GraUpper); 
+
+            document.getElementById("lyml2n").value = parseFloat(doc.data().LymNLower); 
+            document.getElementById("lymu2n").value = parseFloat(doc.data().LymNUpper); 
+            document.getElementById("monl2n").value = parseFloat(doc.data().MonNLower); 
+            document.getElementById("monu2n").value = parseFloat(doc.data().MonNUpper); 
+            document.getElementById("gral2n").value = parseFloat(doc.data().GraNLower); 
+            document.getElementById("grau2n").value = parseFloat(doc.data().GraNUpper); 
+            
+
             document.getElementById("rbcl2").value = parseFloat(doc.data().RBCLower); 
             document.getElementById("rbcu2").value = parseFloat(doc.data().RBCUpper); 
             document.getElementById("hgbl2").value = parseFloat(doc.data().HGBLower); 
@@ -735,6 +760,15 @@ firebase.auth().onAuthStateChanged(function (user) {
           MonUpper: monu1.value,
           GraLower: gral1.value,
           GraUpper: grau1.value,
+         
+          LymNLower: lyml1n.value,
+          LymNUpper: lymu1n.value,
+          MonNLower: monl1n.value,
+          MonNUpper: monu1n.value,
+          GraNLower: gral1n.value,
+          GraNUpper: grau1n.value,
+          
+          GraUpper: grau1.value,
           RBCLower: rbcl1.value,
           RBCUpper: rbcu1.value,
           HGBLower: hgbl1.value,
@@ -778,6 +812,14 @@ firebase.auth().onAuthStateChanged(function (user) {
       monu2 !== null && monu2.value === "" ||
       gral2 !== null && gral2.value === "" ||
       grau2 !== null && grau2.value === "" ||
+
+      lyml2n !== null && lyml2n.value === "" ||
+      lymu2n !== null && lymu2n.value === "" ||
+      monl2n !== null && monl2n.value === "" ||
+      monu2n !== null && monu2n.value === "" ||
+      gral2n !== null && gral2n.value === "" ||
+      grau2n !== null && grau2n.value === "" ||
+
       rbcl2 !== null && rbcl2.value === "" ||
       rbcu2 !== null && rbcu2.value === "" ||
       hgbl2 !== null && hgbl2.value === "" ||
@@ -806,6 +848,15 @@ firebase.auth().onAuthStateChanged(function (user) {
           MonUpper: monu2.value,
           GraLower: gral2.value,
           GraUpper: grau2.value,
+
+          LymNLower: lyml2n.value,
+          LymNUpper: lymu2n.value,
+          MonNLower: monl2n.value,
+          MonNUpper: monu2n.value,
+          GraNLower: gral2n.value,
+          GraNUpper: grau2n.value,
+
+
           RBCLower: rbcl2.value,
           RBCUpper: rbcu2.value,
           HGBLower: hgbl2.value,
@@ -935,6 +986,15 @@ firebase.auth().onAuthStateChanged(function (user) {
           monu1 !== null && monu1.value === "" ||
           gral1 !== null && gral1.value === "" ||
           grau1 !== null && grau1.value === "" ||
+
+          lyml2n !== null && lyml2n.value === "" ||
+          lymu2n !== null && lymu2n.value === "" ||
+          monl2n !== null && monl2n.value === "" ||
+          monu2n !== null && monu2n.value === "" ||
+          gral2n !== null && gral2n.value === "" ||
+          grau2n !== null && grau2n.value === "" ||
+
+
           rbcl1 !== null && rbcl1.value === "" ||
           rbcu1 !== null && rbcu1.value === "" ||
           hgbl1 !== null && hgbl1.value === "" ||

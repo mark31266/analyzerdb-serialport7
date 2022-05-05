@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Settings</title>
   <meta charset="utf-8">
@@ -27,19 +26,15 @@
   <script src='/jscodes/moment.js'></script>
   <script src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>
   <script src='https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js'></script>
-
   <!--try-->
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
-
   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
-
 </head>
 <link rel="stylesheet" href="/css/rel/settings.css">
-
 <body>
   <div class="wrapper">
     <!-- Sidebar Holder -->
+
     <nav id="sidebar">
       <div class="sidebar-header">
         <a href="/home">
@@ -48,38 +43,25 @@
         </a>
       </div>
       <ul class="list-unstyled components">
-        <!-- <p class="search" id="machinename" style="font-size:22px;"></p> -->
+        <p class="search" id="machinename" style="font-size:22px;"></p>
         <li>
           <a href="/home">Main Dashboard</a>
         </li>
         <li>
-          <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Run Samples</a>
-          <ul class="collapse list-unstyled show" id="homeSubmenu1">
-
-          </ul>
+          <a href="/combo/run">Run Samples</a>
         </li>
         <li>
-          <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Manage Records</a>
-          <ul class="collapse list-unstyled" id="homeSubmenu">
-            <li>
-              <a href="/mnchipv5/records">MNCHIP v5</a>
-            </li>
-            <li>
-              <a href="/myth18vet/records">Mythic 18 Vet</a>
-            </li>
-            <li>
-              <a href="/combo/records">Combo Machines</a>
-            </li>
-          </ul>
+          <a href="/combo/records">Manage Records</a>
         </li>
         <li>
           <a href="/about">Contact Us</a>
         </li>
-        <li class="active">
+        <li>
           <a href="/settings">Settings</a>
         </li>
         </µL>
     </nav>
+
     <!-- Page Content Holder -->
     <div id="content">
       <nav class="navbar navbar-expand-lg navbar-custom">
@@ -450,19 +432,19 @@
                                     </tr>
 
                                     <tr id="lym">
-                                      <td id="seq2">Lymphocyte</td>
+                                      <td id="seq2">% Lymphocytes</td>
                                       <td><input id="lyml" class="noBorderInp" type="number"></td>
                                       <td><input id="lymu" class="noBorderInp" type="number"></td>
                                     </tr>
 
                                     <tr id="mon">
-                                      <td id="seq2">Monocyte</td>
+                                      <td id="seq2">% Monocytes</td>
                                       <td><input id="monl" class="noBorderInp" type="number"></td>
                                       <td><input id="monu" class="noBorderInp" type="number"></td>
                                     </tr>
 
                                     <tr id="gra">
-                                      <td id="seq2">Granulocyte</td>
+                                      <td id="seq2">% Granulocytes</td>
                                       <td><input id="gral" class="noBorderInp" type="number"></td>
                                       <td><input id="grau" class="noBorderInp" type="number"></td>
                                     </tr>
@@ -471,6 +453,24 @@
                                       <td id="seq2">RBC Count</td>
                                       <td><input id="rbcl" class="noBorderInp" type="number"></td>
                                       <td><input id="rbcu" class="noBorderInp" type="number"></td>
+                                    </tr>
+
+                                    <tr id="lymn">
+                                      <td id="seq2">Lymphocytes</td>
+                                      <td><input id="lymln" class="noBorderInp" type="number"></td>
+                                      <td><input id="lymun" class="noBorderInp" type="number"></td>
+                                    </tr>
+
+                                    <tr id="monn">
+                                      <td id="seq2">Monocytes</td>
+                                      <td><input id="monln" class="noBorderInp" type="number"></td>
+                                      <td><input id="monun" class="noBorderInp" type="number"></td>
+                                    </tr>
+
+                                    <tr id="gran">
+                                      <td id="seq2">Granulocytes</td>
+                                      <td><input id="graln" class="noBorderInp" type="number"></td>
+                                      <td><input id="graun" class="noBorderInp" type="number"></td>
                                     </tr>
 
                                     <tr id="hgb">
@@ -686,7 +686,7 @@
                           </tr>
 
                           <tr id="lym">
-                            <td id="seq2">Lymphocyte</td>
+                            <td id="seq2">% Lymphocytes</td>
                             <td>
                               <div id="lyml1"></div><input id="lyml2" class="noBorderInp1" type="number">
                             </td>
@@ -696,7 +696,7 @@
                           </tr>
 
                           <tr id="mon">
-                            <td id="seq2">Monocyte</td>
+                            <td id="seq2">% Monocytes</td>
                             <td>
                               <div id="monl1"></div><input id="monl2" class="noBorderInp1" type="number">
                             </td>
@@ -706,7 +706,7 @@
                           </tr>
 
                           <tr id="gra">
-                            <td id="seq2">Granulocyte</td>
+                            <td id="seq2">% Granulocytes</td>
                             <td>
                               <div id="gral1"></div><input id="gral2" class="noBorderInp1" type="number">
                             </td>
@@ -725,10 +725,40 @@
                             </td>
                           </tr>
 
+                          <tr id="lymn">
+                            <td id="seq2">Lymphocytes</td>
+                            <td>
+                              <div id="lyml1n"></div><input id="lyml2n" class="noBorderInp1" type="number">
+                            </td>
+                            <td>
+                              <div id="lymu1n"></div><input id="lymu2n" class="noBorderInp1" type="number">
+                            </td>
+                          </tr>
+
+                          <tr id="monn">
+                            <td id="seq2">Monocytes</td>
+                            <td>
+                              <div id="monl1n"></div><input id="monl2n" class="noBorderInp1" type="number">
+                            </td>
+                            <td>
+                              <div id="monu1n"></div><input id="monu2n" class="noBorderInp1" type="number">
+                            </td>
+                          </tr>
+
+                          <tr id="gran">
+                            <td id="seq2">Granulocytes</td>
+                            <td>
+                              <div id="gral1n"></div><input id="gral2n" class="noBorderInp1" type="number">
+                            </td>
+                            <td>
+                              <div id="grau1n"></div><input id="grau2n" class="noBorderInp1" type="number">
+                            </td>
+                          </tr>
+
                           <tr id="hgb">
                             <td id="seq2">HGB</td>
                             <td>
-                              <div id="hgbl1"></div><input id="hgbl2" class="noBorderInp1" type="number">
+                              <div id="hgbl1n"></div><input id="hgbl2" class="noBorderInp1" type="number">
                             </td>
                             <td>
                               <div id="hgbu1"></div><input id="hgbu2" class="noBorderInp1" type="number">
@@ -919,7 +949,6 @@
       
       <script src="/jscodes/date.js"></script>
       <script src="/jscodes/bigdate.js"></script>
-      <script src="/jscodes/machine.js"></script>
       <script>
         // Add the following code if you want the name of the file appear on select
         $(".custom-file-input").on("change", function () {
