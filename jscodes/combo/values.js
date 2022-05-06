@@ -145,20 +145,13 @@
                 let genderinputs = document.getElementById('genderselect'); 
                 let ageinputs = document.getElementById('ageinputs');
                 let bloodinputs = document.getElementById('bloodselect');
-                let petvariable = petnameinputs.value; 
-                let ownervariable = ownernameinputs.value; 
                 let pinputs = document.getElementById('physicianinputs');
                 var date2 = document.getElementById("date1");  
                 var clock1 = document.getElementById("clock");  
                 var machinename = document.getElementById("machinename"); 
-                var remarks = document.getElementById("results-textarea"); 
+                var remarks = document.getElementById("remarks-textarea"); 
                 var result1 = [] ; 
                 
-                function Update(val,type) 
-                {
-                  if(type=='Pet') petvariable=val; 
-                  else if(type=='Owner') ownervariable=val; 
-                }
                 var firebaseConfig = {
                  apiKey: "AIzaSyBJspFr6QSvhEAmONVu3Tl7lZrRFQSA-8I",
                  authDomain: "analyzerdb.firebaseapp.com",
@@ -269,7 +262,7 @@
 
             function doc_withautoincrement(){
               var emailused = document.getElementById("email2"); 
-              var doc = db.collection("patientvalues2").doc(PIDinput.innerHTML); 
+              var doc = db.collection("patientvalues2").doc(PIDinput.innerHTML + SIDinput.innerHTML); 
               doc.get().then((docSnapshot) => {
                 if (docSnapshot.exists) {
                   document.getElementById("error1").innerHTML = "Data Exists in the Database: " + "PID: " + PIDinput.innerHTML;
@@ -412,8 +405,8 @@
                   PLTNORMAL   : th_pltnormal.innerHTML,  
                   
                   /**DATA**/
-                  PetName : petvariable, 
-                  OwnerName : ownervariable,
+                  PetName : petnameinputs.value, 
+                  OwnerName : ownernameinputs.value,
                   Gender : genderinputs.value, 
                   Age : ageinputs.value,
                   DATE : DATEinput.innerText, 
@@ -458,8 +451,8 @@
                      document.getElementById('PID').innerHTML = String(OBR).substring(14,28); 
                      document.getElementById('DATE').innerHTML = date2.innerHTML; 
                      timeinputs.value = TIMEinput.innerHTML 
-                  document.getElementById('UniqueID').innerHTML = (navdate.innerText.replace("-","").replace("-","") 
-                  + TIMEinput.innerText.replace(":","")).replace(":","") ; 
+                  // document.getElementById('UniqueID').innerHTML = (navdate.innerText.replace("-","").replace("-","") 
+                  // + TIMEinput.innerText.replace(":","")).replace(":","") ; 
                     document.getElementById("submitbtn").style.display = "block"; 
                     } 
                  });
@@ -500,14 +493,20 @@
                   if (parseFloat(tpa) > parseFloat(tpc) || tpa.includes(">"))
                       {
                        th_tp.innerHTML = "<b>" + tpa + "&nbsp↑</b>" 
+                       th_tp.style.color = "red"
+                       document.getElementById("th_tp2").style.color = "red"; 
                       }
                      else if (parseFloat(tpa) < parseFloat(tpb))
                       {
-                       th_tp.innerHTML = "<b>" + tpa + "&nbsp↓</b>" 
+                       th_tp.innerHTML = "<b>" + tpa + "&nbsp↓</b>"
+                       th_tp.style.color = "red"
+                       document.getElementById("th_tp2").style.color = "red";  
                       }
                       else 
                       {
                        th_tp.innerHTML = "" + tpa + "" 
+                       document.getElementById("th_tp").style.color = "black"; 
+                       document.getElementById("th_tp2").style.color = "black"; 
                       }
                   //ALB Limit DATA
                   th_tpnormal.innerHTML =  tpb + " - " + tpc ;
@@ -527,14 +526,20 @@
                  if (parseFloat(caa) > parseFloat(cac) || caa.includes(">"))
                      {
                       th_ca.innerHTML = "<b>" + caa + "&nbsp↑</b>" 
+                      th_ca.style.color = "red"
+                      document.getElementById("th_ca2").style.color = "red"; 
                      }
                     else if (parseFloat(caa) < parseFloat(cab))
                      {
                       th_ca.innerHTML = "<b>" + caa + "&nbsp↓</b>" 
+                      th_ca.style.color = "red"
+                      document.getElementById("th_ca2").style.color = "red"; 
                      }
                      else 
                      {
                       th_ca.innerHTML = "" + caa + "" 
+                      document.getElementById("th_ca").style.color = "black"; 
+                      document.getElementById("th_ca2").style.color = "black"; 
                      }
                       //Ca DATA
                       th_canormal.innerHTML =  cab + " - " + cac ;
@@ -548,18 +553,23 @@
                var glua = glu0[1]; 
                /*low */ var glub = String(doc.data().GLULower); 
                /* high */ var gluc = String(doc.data().GLUUpper); 
-             
                  if (parseFloat(glua) > parseFloat(gluc) || glua.includes(">"))
                      {
                       th_glu.innerHTML = "<b>" + glua + "&nbsp↑</b>" 
+                      th_glu.style.color = "red"
+                      document.getElementById("th_glu2").style.color = "red"; 
                      }
                     else if (parseFloat(glua) < parseFloat(glub))
                      {
                       th_glu.innerHTML = "<b>" + glua + "&nbsp↓</b>" 
+                      th_glu.style.color = "red"
+                      document.getElementById("th_glu2").style.color = "red"; 
                      }
                      else 
                      {
                       th_glu.innerHTML = "" + glua + "" 
+                      document.getElementById("th_glu").style.color = "black"; 
+                      document.getElementById("th_glu2").style.color = "black"; 
                      }
                           //GLU DATA
                           th_glunormal.innerHTML =  glub + " - " + gluc ;
@@ -577,14 +587,20 @@
                  if (parseFloat(buna) > parseFloat(bunc) || buna.includes(">"))
                      {
                       th_bun.innerHTML = "<b>" + buna + "&nbsp↑</b>" 
+                      th_bun.style.color = "red"
+                      document.getElementById("th_bun2").style.color = "red"; 
                      }
                     else if (parseFloat(buna) < parseFloat(bunb))
                      {
                       th_bun.innerHTML = "<b>" + buna + "&nbsp↓</b>" 
+                      th_bun.style.color = "red"
+                      document.getElementById("th_bun2").style.color = "red"; 
                      }
                      else 
                      {
                       th_bun.innerHTML = "" + buna + "" 
+                      document.getElementById("th_bun").style.color = "black"; 
+                      document.getElementById("th_bun2").style.color = "black"; 
                      }
                        //BUN DATA
                        th_bunnormal.innerHTML =  bunb + " - " + bunc ;
@@ -602,14 +618,20 @@
                   if (parseFloat(pa) > parseFloat(pc) || pa.includes(">"))
                       {
                        th_p.innerHTML = "<b>" + pa + "&nbsp↑</b>" 
+                       th_p.style.color = "red"
+                       document.getElementById("th_p2").style.color = "red"; 
                       }
                      else if (parseFloat(pa) < parseFloat(pb))
                       {
                        th_p.innerHTML = "<b>" + pa + "&nbsp↓</b>" 
+                       th_p.style.color = "red"
+                       document.getElementById("th_p2").style.color = "red"; 
                       }
                       else 
                       {
                        th_p.innerHTML = "" + pa + "" 
+                       document.getElementById("th_p").style.color = "black"; 
+                       document.getElementById("th_p2").style.color = "black"; 
                       }
                       //P DATA
                       th_pnormal.innerHTML =  pb + " - " + pc ;
@@ -627,14 +649,20 @@
                  if (parseFloat(amya) > parseFloat(amyc) || amya.includes(">"))
                      {
                       th_amy.innerHTML = "<b>" + amya + "&nbsp↑</b>" 
+                      th_amy.style.color = "red"
+                      document.getElementById("th_amy2").style.color = "red"; 
                      }
                     else if (parseFloat(amya) < parseFloat(amyb))
                      {
                       th_amy.innerHTML = "<b>" + amya + "&nbsp↓</b>" 
+                      th_amy.style.color = "red"
+                      document.getElementById("th_amy2").style.color = "red"; 
                      }
                      else 
                      {
                       th_amy.innerHTML = "" + amya + "" 
+                      document.getElementById("th_amy").style.color = "black"; 
+                      document.getElementById("th_amy2").style.color = "black"; 
                      }
                       //AMY DATA
                       th_amynormal.innerHTML =  amyb + " - " + amyc ;
@@ -653,14 +681,20 @@
                   if (parseFloat(chola) > parseFloat(cholc) || chola.includes(">"))
                       {
                        th_chol.innerHTML = "<b>" + chola + "&nbsp↑</b>" 
+                       th_chol.style.color = "red"
+                       document.getElementById("th_chol2").style.color = "red"; 
                       }
                      else if (parseFloat(chola) < parseFloat(cholb))
                       {
                        th_chol.innerHTML = "<b>" + chola + "&nbsp↓</b>" 
+                       th_chol.style.color = "red"
+                       document.getElementById("th_chol2").style.color = "red"; 
                       }
                       else 
                       {
                        th_chol.innerHTML = "" + chola + "" 
+                       document.getElementById("th_chol").style.color = "black"; 
+                       document.getElementById("th_chol2").style.color = "black"; 
                       }
                            //CHOL DATA
                            th_cholnormal.innerHTML =  cholb + " - " + cholc ;
@@ -678,14 +712,20 @@
                    if (parseFloat(alta) > parseFloat(altc) || alta.includes(">"))
                        {
                         th_alt.innerHTML = "<b>" + alta + "&nbsp↑</b>" 
+                        th_alt.style.color = "red"
+                        document.getElementById("th_alt2").style.color = "red"; 
                        }
                       else if (parseFloat(alta) < parseFloat(altb))
                        {
                         th_alt.innerHTML = "<b>" + alta + "&nbsp↓</b>" 
+                        th_alt.style.color = "red"
+                        document.getElementById("th_alt2").style.color = "red"; 
                        }
                        else 
                        {
                         th_alt.innerHTML = "" + alta + "" 
+                        document.getElementById("th_alt").style.color = "black"; 
+                        document.getElementById("th_alt2").style.color = "black"; 
                        }
                         //ALT DATA
                         th_altnormal.innerHTML =  altb + " - " + altc ;
@@ -703,14 +743,20 @@
                    if (parseFloat(tbila) > parseFloat(tbilc) || tbila.includes(">"))
                        {
                         th_tbil.innerHTML = "<b>" + tbila + "&nbsp↑</b>" 
+                        th_tbil.style.color = "red"
+                        document.getElementById("th_tbil2").style.color = "red"; 
                        }
                       else if (parseFloat(tbila) < parseFloat(tbilb))
                        {
                         th_tbil.innerHTML = "<b>" + tbila + "&nbsp↓</b>" 
+                        th_tbil.style.color = "red"
+                        document.getElementById("th_tbil2").style.color = "red"; 
                        }
                        else 
                        {
                         th_tbil.innerHTML = "" + tbila + "" 
+                        document.getElementById("th_tbil").style.color = "black"; 
+                        document.getElementById("th_tbil2").style.color = "black"; 
                        } 
                              //ALT DATA
                              th_tbilnormal.innerHTML =  tbilb + " - " + tbilc ;
@@ -730,14 +776,20 @@
                   if (parseFloat(alpa) > parseFloat(alpc) || alpa.includes(">"))
                       {
                        th_alp.innerHTML = "<b>" + alpa + "&nbsp↑</b>" 
+                       th_alp.style.color = "red"
+                       document.getElementById("th_alp2").style.color = "red"; 
                       }
                      else if (parseFloat(alpa) < parseFloat(alpb))
                       {
                        th_alp.innerHTML = "<b>" + alpa + "&nbsp↓</b>" 
+                       th_alp.style.color = "red"
+                       document.getElementById("th_alp2").style.color = "red"; 
                       }
                       else 
                       {
                        th_alp.innerHTML = "" + alpa + "" 
+                       document.getElementById("th_alp").style.color = "black"; 
+                       document.getElementById("th_alp2").style.color = "black"; 
                       }
                                   //ALP DATA
                                   th_alpnormal.innerHTML =  alpb + " - " + alpc ;
@@ -759,14 +811,20 @@
              if (parseFloat(crea) > parseFloat(crec) || crea.includes(">"))
                  {
                   th_cre.innerHTML = "<b>" + crea + "&nbsp↑</b>" 
+                  th_cre.style.color = "red"
+                  document.getElementById("th_cre2").style.color = "red"; 
                  }
                 else if (parseFloat(crea) < parseFloat(creb))
                  {
                   th_cre.innerHTML = "<b>" + crea + "&nbsp↓</b>" 
+                  th_cre.style.color = "red"
+                  document.getElementById("th_cre2").style.color = "red"; 
                  }
                  else 
                  {
                   th_cre.innerHTML = "" + crea + "" 
+                  document.getElementById("th_cre").style.color = "black"; 
+                  document.getElementById("th_cre2").style.color = "black"; 
                  }
                    //CRE DATA
                    th_crenormal.innerHTML =  creb + " - " + crec ;
@@ -851,14 +909,20 @@
          if (parseFloat(cka) > parseFloat(ckc))
              {
               th_ck.innerHTML = "<b>" + cka + "&nbsp↑</b>" 
+              th_ck.style.color = "red"
+              document.getElementById("th_ck2").style.color = "red"; 
              }
             else if (parseFloat(cka) < parseFloat(ckb))
              {
               th_ck.innerHTML = "<b>" + cka + "&nbsp↓</b>" 
+              th_ck.style.color = "red"
+              document.getElementById("th_ck2").style.color = "red"; 
              }
              else 
              {
               th_ck.innerHTML = "" + cka + "" 
+              document.getElementById("th_ck").style.color = "black"; 
+              document.getElementById("th_ck2").style.color = "black"; 
              }
                //CK DATA
                th_cknormal.innerHTML =  ckb + " - " + ckc ;
@@ -937,8 +1001,7 @@
            DateDid : date2.innerText + " " + clock1.innerText 
            })
         // setTimeout(function(){    
-        //    window.location.reload();  
-        
+        //    window.location.reload();        
         // }, 1500);
         }
 } 
@@ -970,27 +1033,31 @@
       socket.on('SID', function(SID) {
         if (SID !== null ){
           SIDinput.innerHTML = String(SID).substr(4);
-          
         } 
       });
 socket.on('WBC', function(WBC) {
 if (WBC !== null ){
   th_wbcunit.innerHTML = "x10<sup>3</sup>/µL" ;     
   var wbca = String(WBC).substr(3,5).replace(";", "").replace(";", ""); 
- /*low */ var wbcb = String(doc.data().WBCLower) 
+ /*low */ var wbcb = String(doc.data().WBCLower); 
  /* high */ var wbcc = String(doc.data().WBCUpper);    
-
    if (parseFloat(wbca) > parseFloat(wbcc))
        {
-        th_wbc.innerHTML = "<b>" + wbca + "&nbsp↑</b>" 
+        th_wbc.innerHTML = "<b>" + wbca + "&nbsp↑</b>"
+        th_wbc.style.color = "red"
+        document.getElementById("th_wbc2").style.color = "red"; 
        }
       else if (parseFloat(wbca) < parseFloat(wbcb))
        {
         th_wbc.innerHTML = "<b>" + wbca + "&nbsp↓</b>" 
+        th_wbc.style.color = "red"
+        document.getElementById("th_wbc2").style.color = "red"; 
        }
        else 
        {
-        th_wbc.innerHTML = "" + wbca + "" 
+        th_wbc.innerHTML = "" + wbca + ""
+        document.getElementById("th_wbc").style.color = "black"; 
+        document.getElementById("th_wbc2").style.color = "black"; 
        }
        //WBCL DATA
        th_wbcnormal.innerHTML = wbcb + " - " + wbcc;
@@ -1007,14 +1074,20 @@ if (LYM !== null ){
      if (parseFloat(lyma) > parseFloat(lymc))
          {
           th_lym.innerHTML = "<b>" + lyma + "&nbsp↑</b>" 
+          th_lym.style.color = "red"
+          document.getElementById("th_lym2").style.color = "red"; 
          }
         else if (parseFloat(lyma) < parseFloat(lymb))
          {
           th_lym.innerHTML = "<b>" + lyma + "&nbsp↓</b>" 
+          th_lym.style.color = "red"
+          document.getElementById("th_lym2").style.color = "red"; 
          }
          else 
          {
           th_lym.innerHTML = "" + lyma + "" 
+          document.getElementById("th_lym").style.color = "black"; 
+          document.getElementById("th_lym2").style.color = "black"; 
          }
       //LYML DATA
        th_lymnormal.innerHTML = lymb + " - " + lymc;
@@ -1032,14 +1105,20 @@ socket.on('LYMN', function(LYMN) {
        if (parseFloat(lymNa) > parseFloat(lymNc))
            {
             th_lymn.innerHTML = "<b>" + lymNa + "&nbsp↑</b>" 
+            th_lymn.style.color = "red"
+            document.getElementById("th_lym2n").style.color = "red"; 
            }
           else if (parseFloat(lymNa) < parseFloat(lymNb))
            {
             th_lymn.innerHTML = "<b>" + lymNa + "&nbsp↓</b>" 
+            th_lymn.style.color = "red"
+            document.getElementById("th_lym2n").style.color = "red"; 
            }
            else 
            {
             th_lymn.innerHTML = "" + lymNa + "" 
+            document.getElementById("th_lymn").style.color = "black"; 
+            document.getElementById("th_lym2n").style.color = "black"; 
            }
         //LYML DATA
          th_lymnormaln.innerHTML = lymNb + " - " + lymNc;
@@ -1056,15 +1135,21 @@ socket.on('MONN', function(MONN) {
   
       if (parseFloat(monNa) > parseFloat(monNc))
           {
-           th_monn.innerHTML = "<b>" + monNa + "&nbsp↑</b>" 
+           th_monn.innerHTML = "<b>" + monNa + "&nbsp↑</b>"
+           th_monn.style.color = "red"
+           document.getElementById("th_mon2n").style.color = "red";  
           }
          else if (parseFloat(monNa) < parseFloat(monNb))
           {
            th_monn.innerHTML = "<b>" + monNa + "&nbsp↓</b>" 
+           th_monn.style.color = "red"
+           document.getElementById("th_mon2n").style.color = "red";  
           }
           else 
           {
            th_monn.innerHTML = "" + monNa + "" 
+           document.getElementById("th_mon").style.color = "black"; 
+           document.getElementById("th_mon2n").style.color = "black";
           }
           th_monnormaln.innerHTML = monNb + " - " + monNc 
    }
@@ -1082,14 +1167,20 @@ if (MON !== null ){
     if (parseFloat(mona) > parseFloat(monc))
         {
          th_mon.innerHTML = "<b>" + mona + "&nbsp↑</b>" 
+         th_mon.style.color = "red"
+         document.getElementById("th_mon2").style.color = "red"; 
         }
        else if (parseFloat(mona) < parseFloat(monb))
         {
          th_mon.innerHTML = "<b>" + mona + "&nbsp↓</b>" 
+         th_mon.style.color = "red"
+         document.getElementById("th_mon2").style.color = "red"; 
         }
         else 
         {
          th_mon.innerHTML = "" + mona + "" 
+         document.getElementById("th_mon").style.color = "black"; 
+         document.getElementById("th_mon2").style.color = "black"; 
         }
         th_monnormal.innerHTML = monb + " - " + monc 
  }
@@ -1106,14 +1197,20 @@ if (GRA !== null ){
     if (parseFloat(graa) > parseFloat(grac))
         {
          th_gra.innerHTML = "<b>" + graa + "&nbsp↑</b>" 
+         th_gra.style.color = "red"
+         document.getElementById("th_gra2").style.color = "red"; 
         }
        else if (parseFloat(graa) < parseFloat(grab))
         {
          th_gra.innerHTML = "<b>" + graa + "&nbsp↓</b>" 
+         th_gra.style.color = "red"
+         document.getElementById("th_gra2").style.color = "red"; 
         }
         else 
         {
          th_gra.innerHTML = "" + graa + "" 
+         document.getElementById("th_gra").style.color = "black"; 
+         document.getElementById("th_gra2").style.color = "black"; 
         }
         th_granormal.innerHTML = grab + " - " + grac
  }   
@@ -1130,14 +1227,20 @@ socket.on('GRAN', function(GRAN) {
       if (parseFloat(graNa) > parseFloat(graNc))
           {
            th_gran.innerHTML = "<b>" + graNa + "&nbsp↑</b>" 
+           th_gran.style.color = "red"
+           document.getElementById("th_gra2n").style.color = "red"; 
           }
          else if (parseFloat(graNa) < parseFloat(graNb))
           {
            th_gran.innerHTML = "<b>" + graNa + "&nbsp↓</b>" 
+           th_gran.style.color = "red"
+           document.getElementById("th_gra2n").style.color = "red"; 
           }
           else 
           {
            th_gran.innerHTML = "" + graNa + "" 
+           document.getElementById("th_gran").style.color = "black"; 
+           document.getElementById("th_gra2n").style.color = "black"; 
           }
           th_granormaln.innerHTML = graNb + " - " + graNc
    }   
@@ -1154,14 +1257,20 @@ if (RBC !== null ) {
     if (parseFloat(rbca) > parseFloat(rbcc))
         {
          th_rbc.innerHTML = "<b>" + rbca + "&nbsp↑</b>" 
+         th_rbc.style.color = "red"
+         document.getElementById("th_rbc2").style.color = "red"; 
         }
        else if (parseFloat(rbca) < parseFloat(rbcb))
         {
          th_rbc.innerHTML = "<b>" + rbca + "&nbsp↓</b>" 
+         th_rbc.style.color = "red"
+         document.getElementById("th_rbc2").style.color = "red"; 
         }
         else 
         {
          th_rbc.innerHTML = "" + rbca + "" 
+         document.getElementById("th_rbc").style.color = "black"; 
+         document.getElementById("th_rbc2").style.color = "black"; 
         }
         th_rbcnormal.innerHTML = rbcb + " - " + rbcc
 } 
@@ -1179,14 +1288,20 @@ socket.on('HGB', function(HGB) {
      if (parseFloat(hgba) > parseFloat(hgbc))
          {
           th_hgb.innerHTML = "<b>" + hgba + "&nbsp↑</b>" 
+          th_hgb.style.color = "red"
+          document.getElementById("th_hgb2").style.color = "red"; 
          }
         else if (parseFloat(hgba) < parseFloat(hgbb))
          {
           th_hgb.innerHTML = "<b>" + hgba + "&nbsp↓</b>" 
+          th_hgb.style.color = "red"
+          document.getElementById("th_hgb2").style.color = "red"; 
          }
          else 
          {
           th_hgb.innerHTML = "" + hgba + "" 
+          document.getElementById("th_hgb").style.color = "black"; 
+          document.getElementById("th_hgb2").style.color = "black"; 
          }
          th_hgbnormal.innerHTML = hgbb + " - " + hgbc
   } 
@@ -1204,14 +1319,20 @@ if (HCT !== null ){
     if (parseFloat(hcta) > parseFloat(hctc))
         {
          th_hct.innerHTML = "<b>" + hcta + "&nbsp↑</b>" 
+         th_hct.style.color = "red"
+         document.getElementById("th_hct2").style.color = "red"; 
         }
        else if (parseFloat(hcta) < parseFloat(hctb))
         {
          th_hct.innerHTML = "<b>" + hcta + "&nbsp↓</b>" 
+         th_hct.style.color = "red"
+         document.getElementById("th_hct2").style.color = "red"; 
         }
         else 
         {
          th_hct.innerHTML = "" + hcta + "" 
+         document.getElementById("th_hct").style.color = "black"; 
+         document.getElementById("th_hct2").style.color = "black"; 
         }
         th_hctnormal.innerHTML = hctb + " - " + hctc
   } 
@@ -1229,14 +1350,20 @@ if (MCV !== null ){
      if (parseFloat(mcva) > parseFloat(mcvc))
          {
           th_mcv.innerHTML = "<b>" + mcva + "&nbsp↑</b>" 
+          th_mcv.style.color = "red"
+          document.getElementById("th_mcv2").style.color = "red"; 
          }
         else if (parseFloat(mcva) < parseFloat(mcvb))
          {
           th_mcv.innerHTML = "<b>" + mcva + "&nbsp↓</b>" 
+          th_mcv.style.color = "red"
+          document.getElementById("th_mcv2").style.color = "red";
          }
          else 
          {
           th_mcv.innerHTML = "" + mcva + "" 
+          document.getElementById("th_mcv").style.color = "black"; 
+          document.getElementById("th_mcv2").style.color = "black"; 
          }
          th_mcvnormal.innerHTML = mcvb + " - " + mcvc
  } 
@@ -1254,14 +1381,20 @@ socket.on('MCH', function(MCH) {
       if (parseFloat(mcha) > parseFloat(mchc))
           {
            th_mch.innerHTML = "<b>" + mcha + "&nbsp↑</b>" 
+           th_mch.style.color = "red"
+           document.getElementById("th_mch2").style.color = "red"; 
           }
          else if (parseFloat(mcha) < parseFloat(mchb))
           {
            th_mch.innerHTML = "<b>" + mcha + "&nbsp↓</b>" 
+           th_mch.style.color = "red"
+           document.getElementById("th_mch2").style.color = "red"; 
           }
           else 
           {
            th_mch.innerHTML = "" + mcha + "" 
+           document.getElementById("th_mch").style.color = "black"; 
+           document.getElementById("th_mch2").style.color = "black"; 
           }
           th_mchnormal.innerHTML = mchb + " - " + mchc
    } 
@@ -1278,14 +1411,20 @@ socket.on('MCHC', function(MCHC) {
       if (parseFloat(mchca) > parseFloat(mchcc))
           {
            th_mchc.innerHTML = "<b>" + mchca + "&nbsp↑</b>" 
+           th_mchc.style.color = "red"
+           document.getElementById("th_mchc2").style.color = "red"; 
           }
          else if (parseFloat(mchca) < parseFloat(mchcb))
           {
            th_mchc.innerHTML = "<b>" + mchca + "&nbsp↓</b>" 
+           th_mchc.style.color = "red"
+           document.getElementById("th_mchc2").style.color = "red"; 
           }
           else 
           {
            th_mchc.innerHTML = "" + mchca + "" 
+           document.getElementById("th_mchc").style.color = "black"; 
+           document.getElementById("th_mchc2").style.color = "black"; 
           } 
           th_mchcnormal.innerHTML = mchcb + " - " + mchcc
     } 
@@ -1376,14 +1515,20 @@ if (PLT !== null ){
      if (parseFloat(plta) > parseFloat(pltc))
          {
           th_plt.innerHTML = "<b>" + plta + "&nbsp↑</b>" 
+          th_plt.style.color = "red"
+          document.getElementById("th_plt2").style.color = "red"; 
          }
         else if (parseFloat(plta) < parseFloat(pltb))
          {
           th_plt.innerHTML = "<b>" + plta + "&nbsp↓</b>" 
+          th_plt.style.color = "red"
+          document.getElementById("th_plt2").style.color = "red"; 
          }
          else 
          {
           th_plt.innerHTML = "" + plta + "" 
+          document.getElementById("th_plt").style.color = "black"; 
+          document.getElementById("th_plt2").style.color = "black"; 
          }
          th_pltnormal.innerHTML = pltb + " - " + pltc
  } 
