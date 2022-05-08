@@ -305,7 +305,7 @@ body {
   
   
   div.run {
-    font-size: 40px; 
+    font-size: 35px; 
     color:#277277; 
     font-family: 'Segoe UI';
   }
@@ -363,22 +363,21 @@ body {
   }
   
   #seq {
-  background-color: #277277;
-   color: white;
-   font-family: 'Segoe UI';
-  font-size: 18px;
+    color: rgb(10, 9, 9);
+    font-family: 'Segoe UI';
+    font-size: 18px;
   }
   
   #seq2{
-  background-color: white;
-  color: black;
-  font-family: 'Segoe UI';
-  font-size: 18px;
+    color: rgb(10, 9, 9);
+    font-family: 'Segoe UI';
+    font-size: 17px;
+  }
   }
   
-  .inputBoxFname input{  
+  .inputBoxPetsName input {
     width: 100%;
-    padding-left:5px;
+    padding-left: 5px;
     font-size: 21px;
     color: #333232;
     border: none;
@@ -386,34 +385,48 @@ body {
     outline: none;
     background: transparent;
     font-family: "Segoe UI Semibold";
-    margin-top:8px;
+    margin-top: 6px;
+    
   }
-  
-  .inputBoxDocname input{  
-  
-    padding-left:5px;
-    font-size: 21px;
+
+  .inputBoxOwnername input {
+    width: 100%;
+    padding-left: 5px;
+    font-size: 22px;
     color: #333232;
     border: none;
     border-bottom: 0.065rem solid #333232;
     outline: none;
     background: transparent;
     font-family: "Segoe UI Semibold";
-    width: 100%;
+    margin-top: 4px;
   }
   
-  .inputBoxLname input{  
-    width: 100%;
-    padding-left:5px;
-    font-size: 21px;
+  
+  .inputBoxDocname input {
+
+    padding-left: 5px;
+    font-size: 16px;
     color: #333232;
     border: none;
     border-bottom: 0.065rem solid #333232;
     outline: none;
     background: transparent;
     font-family: "Segoe UI Semibold";
-    margin-top:8px;
   }
+  
+  .inputBoxBreedname input {
+
+    padding-left: 5px;
+    font-size: 16px;
+    color: #333232;
+    border: none;
+    border-bottom: 0.065rem solid #333232;
+    outline: none;
+    background: transparent;
+    font-family: "Segoe UI Semibold";
+  }
+
   .inputBoxGender input{  
     width: 100%;
     padding-left:5px;
@@ -436,22 +449,42 @@ body {
   background: transparent;
   font-family: "Segoe UI Semibold";
   }
-  .inputBoxTime div{  
+
+  .inputBoxSpecies input {
     width: 100%;
-    padding-left:5px;
+    padding-left: 5px;
+    font-size: 16px;
+    color: #333232;
+    border: none;
+    border-bottom: 0.065rem solid #333232;
+    outline: none;
+    background: transparent;
+    font-family: "Segoe UI Semibold";
+  }
+
+  .inputBoxBreedname input {
+
+    padding-left: 5px;
+    font-size: 16px;
+    color: #333232;
+    border: none;
+    border-bottom: 0.065rem solid #333232;
+    outline: none;
+    background: transparent;
+    font-family: "Segoe UI Semibold";
+  }
+
+  .inputBoxTime input {
+    width: 100%;
+    padding-left: 5px;
     font-size: 30px;
     color: #333232;
     border: none;
-    border-bottom: none;
+    border-bottom: 0.065rem solid #333232;
     outline: none;
     background: transparent;
-    font-family: "Segoe UI Light";
-    text-transform: none;
-    }
-    .inputBoxTime{  
-      font-family: "Segoe UI Light";
-      padding-left:15px;
-      }
+    font-family: "Segoe UI Semibold";
+  }
  
     .inputBloodType input{  
       width: 100%;
@@ -498,6 +531,53 @@ body {
   {
   display: block; 
   }
+
+  .horizontal_line {
+    background-color: black;
+    width: 100%;
+    height: 2px;
+    border-top:  black;
+    line-height: 50%;
+    visibility: hidden;
+  }
+  .horizontal_line2 {
+    background-color: black;
+    width: 100%;
+    height: 2px;
+    border-top:  black;
+    line-height: 50%;
+    margin-top: 28px; 
+    visibility: hidden;
+  }
+  .horizontal_line3{
+    background-color: black;
+    width: 100%;
+    height: 2px;
+    border-top:  black;
+    line-height: 50%;
+    margin-top: 28px;
+    visibility: hidden;
+  }
+  .vertical {
+    -webkit-print-color-adjust: exact;
+    background-color: black;
+    width: 1px;
+    height: 489px;
+    line-height: 90%;
+    position: relative;
+    float: left; 
+    margin-left: -18px;
+    visibility: hidden;
+  }
+  
+  #column1 {
+    width: 90%; 
+    color: black;
+  }
+  #column2 {
+    width: 132%;
+    color : black
+  }
   /* Print Function */
   @media print {
   body
@@ -531,7 +611,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     width: 450px;
   }
 
-  .column1, .column2 {
+  .column1, .column2, #vertical {
     display: flex;
     flex-direction: column;
   }
@@ -539,11 +619,82 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
   .column1 {
     float: left;
     width: 50%;
+    padding-left: 58px;
   }
 
   .column2
   {
-    padding-left:50px;
+    padding-left:53px;
+  }
+
+  #column2 {
+    width: 132%;
+    color : black
+  }
+
+  .inputBoxPetsName input,
+  .inputBoxOwnername input
+   {
+    width: 120%;
+    border-bottom: none;
+    font-weight: bold;
+
+  }
+
+  .inputBoxTime {
+    display: block;
+    width: 250px;
+    font-weight: bold;
+  
+  }
+
+  .horizontal_line{
+    background-color: black;
+  width: 100%;
+  height: 2px;
+  border-top:  black;
+  line-height: 50%;
+  -webkit-print-color-adjust: exact;
+  visibility: visible;
+  }
+   .horizontal_line2{
+    background-color: black;
+    width: 100%;
+    height: 2px;
+    border-top:  black;
+    line-height: 50%;
+    -webkit-print-color-adjust: exact;
+    visibility: visible;
+  }
+  .horizontal_line3 {
+    background-color: black;
+    width: 100%;
+    height: 2px;
+    border-top:  black;
+    line-height: 50%;
+    -webkit-print-color-adjust: exact;
+    visibility: visible; 
+  }
+  .vertical {
+
+    visibility: visible;
+  }
+
+  .column1, .column2, #vertical {
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .column1 {
+    float: left;
+    width: 50%;
+    padding-left: 15px;
+  }
+
+  .column2
+  {
+    padding-left:53px;
   }
 
  
@@ -625,11 +776,10 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
   width:120%
   }
   
-  input#physicianinputs{
-  border-bottom: none;
-  font-weight: bold;
-  font-size: 22px;
-  width:200%;
+  input#physicianinputs {
+    width: 200%;
+    border-bottom: none;
+    font-weight: bold;
   }
   
   .inputBoxLname input{
@@ -641,6 +791,20 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
   .inputBoxBloodType input{
   border-bottom: none;
   font-weight: bold;
+  }
+
+  input#breedinputs {
+    width: 200%;
+    border-bottom: none;
+    font-weight: bold;
+  }
+
+  .inputBoxTime input {
+    padding-left: -295px;
+    width: 5px;
+    font-size: 100px;
+    border-bottom: none;
+    font-weight: bold;
   }
   
   select#genderselect.form-select.select-gen{ 
@@ -660,11 +824,20 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
   font-size: 22px;
   }
   
- 
+  input#timeinputs {
+    border-bottom: none;
+    font-weight: bold;
+  }
   
   #bld1{
   visibility: hidden;
   }
+
+  select#specieselect.form-select.select-spc {
+    border-bottom: none;
+    font-weight: bold;
+  }
+
   
   .select-bld{
     border: none;
@@ -722,16 +895,17 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
   
   }
   tr {
-    text-align:center;
+    text-align:left;
+    font-size: 23px;
           
   }
   th {
-    text-align:center;
-          
+    text-align:left;
+    font-size: 15px;     
   }
   td {
-    text-align:center;
-    font-size:18px; 
+    text-align:left;
+    font-size:15px; 
   }
   
   
@@ -781,7 +955,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
   
   #ageinputs{
     font-family: "Segoe UI Semibold";
-    font-size: 1.5rem;
+    font-size: 15px;
       padding-left:5px;
       border:none;
       outline:none;
@@ -791,13 +965,14 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
       margin-top:8px;
   }
   
-  #physicianinputs{
-    font-family: "Segoe UI Semibold";
-    font-size: 1.5rem;
-    border:none;
-    outline:none;
-    border-bottom: none;
-    margin-top:8px;
+  #physicianinputs {
+    background-color: transparent;
+    font-family: "Segoe UI Semibold"; 
+    font-size: 15px;
+    border: none;
+    outline: none;
+    border-bottom: 0.065rem solid #333232;
+    width: 90%
   }
   
   #timeinputs{
@@ -806,6 +981,16 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
       background: transparent;
       text-transform: none;
       padding-left: 15px;
+  }
+
+  #breedinputs {
+    background-color: transparent;
+    font-family: "Segoe UI Semibold"; 
+    font-size: 15px;
+    border: none;
+    outline: none;
+    border-bottom: 0.065rem solid #333232;
+    width: 50%
   }
   
   
@@ -907,13 +1092,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     background: transparent;
   }
   
-  #physicianinputs{
-  font-family: "Segoe UI Semibold";
-  font-size: 1.3rem;
-  border:none;
-  outline:none;
-  border-bottom: 0.065rem solid #333232;
-  }
+ 
   
   #time{
   font-family: "Segoe UI Semibold";
@@ -989,7 +1168,20 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
       font-family: Segoe UI Light;
       color:white;
     }
-  
+
+    #timeinputs {
+      font-family: "Segoe UI Semibold";
+      font-size: 15px;
+      padding-left: 5px;
+      border: none;
+      outline: none;
+      border-bottom: 0.065rem solid #333232;
+      width: 60%;
+      background: transparent;
+      
+    }
+    
+
     #date1{
       display: none;
     }
@@ -1133,6 +1325,10 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
 }
   }
 
+  .yay{
+    text-align: center;
+  }
+  
   .select-spc{
     color: #333232;
     border: none;
@@ -1145,4 +1341,108 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     -webkit-appearance: none;
     appearance: none;
     /* display: ; */
+  }
+
+  .inpUpdate1{
+    padding-left: 5px;
+    font-size: 15px;
+    color: #333232;
+    width:170px;
+    border: none;
+    border-bottom: 0.065rem solid #333232;
+    outline: none;
+    background: transparent;
+    font-family: "Segoe UI Semibold";
+    
+  }
+  
+  .inpUpdate1-2{
+    padding-left: 5px;
+    font-size: 15px;
+    color: #333232;
+    width:170px;
+    border: none;
+    border-bottom: 0.065rem solid #333232;
+    outline: none;
+    background: transparent;
+    font-family: "Segoe UI Semibold";
+  }
+  
+  .inpUpdate1-3{
+    padding-left: 5px;
+    font-size: 15px;
+    color: #333232;
+    width:130px;
+    border: none;
+    border-bottom: 0.065rem solid #333232;
+    outline: none;
+    background: transparent;
+    font-family: "Segoe UI Semibold";
+  }
+  
+  .inpUpdate2 {
+    padding-left: 5px;
+    font-size: 15px;
+    color: #333232;
+    border: none;
+    border-bottom: 0.065rem solid #333232;
+    width: 50px;
+    outline: none;
+    background: transparent;
+    font-family: "Segoe UI Semibold";
+    /* display: ;  */
+  }
+  
+  
+  .bootstrap-select>.dropdown-toggle {
+    font-size: 11px;
+  }
+  .bootstrap-select .dropdown-menu.inner {
+    font-size: 11px;
+  }
+  
+  #textareaposition {
+  
+    padding-top: 10px;
+    padding-left: 53px;
+    float:left
+  }
+  #remarks-textarea {
+  
+    width: 400px;
+    height: 100px; 
+  }
+  
+  
+  .bootstrap-select>.dropdown-toggle.bs-placeholder{
+    height: 5px;
+  }
+  
+  .bootstrap-select>.dropdown-toggle::before {
+    position: relative;
+    width: 100%;
+    text-align: right;
+    white-space: nowrap;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    height: 28px;
+    
+  }
+  .chip, .cbc
+  {
+    font-family: 'Segoe UI Semibold';
+    text-align: left;
+    font-size: 20px;
+    padding-bottom: 12px;
+    color: black; 
   }
