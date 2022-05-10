@@ -144,7 +144,7 @@
                 let ownernameinputs = document.getElementById('ownernameinputs');
                 let genderinputs = document.getElementById('genderselect'); 
                 let ageinputs = document.getElementById('ageinputs');
-                let bloodinputs = document.getElementById('bloodselect');
+                let breedinputs = document.getElementById('breedinputs');
                 let pinputs = document.getElementById('physicianinputs');
                 var date2 = document.getElementById("date1");  
                 var clock1 = document.getElementById("clock");  
@@ -265,7 +265,7 @@
               var doc = db.collection("patientvalues2").doc(PIDinput.innerHTML + SIDinput.innerHTML); 
               doc.get().then((docSnapshot) => {
                 if (docSnapshot.exists) {
-                  document.getElementById("error1").innerHTML = "Data Exists in the Database: " + "PID: " + PIDinput.innerHTML;
+                  document.getElementById("error1").innerHTML = "Data Exists in the Database: " + "PID: " + PIDinput.innerHTML + SIDinput.innerHTML;
                   $('#errormodal').modal('show');
                 } else {
                   // document does not exist (only on online)
@@ -417,10 +417,10 @@
                   barcode : PIDinput.innerText + SIDinput.innerHTML,
                   User : emailused.innerHTML, 
                   Specie : specie.value,
-                  Remarks : remarks.value
+                  Remarks : remarks.value,
+                  Breed : breedinputs.value
                 
                  }).then(function (){
-                   console.log(); 
                    document.getElementById("error1").innerHTML = "Data Written! " + "PID: " + PIDinput.innerHTML + SIDinput.innerHTML;
                    $('#errormodal').modal('show');
                }).catch(function(error)
@@ -842,7 +842,7 @@
             $('#errormodal').modal('show');
           }
           else{
-            JsBarcode("#barcode1", (PIDinput.innerText + SIDinput.innerHTML), {
+            JsBarcode("#barcode1", (PIDinput.innerText + SIDinput.innerText), {
                      format: "CODE39",
              flat : true,
            lineColor: "#0aa",
@@ -894,6 +894,7 @@
           //    window.location.reload();  
           
           // }, 1500);
+     
           }
         }); 
 
@@ -934,75 +935,23 @@
         let gn = document.getElementById('genderselect'); 
         let an = document.getElementById('ageinputs');
         let pn = document.getElementById('physicianinputs');
-        let bn = document.getElementById('bloodselect');
-        let bnn1 = document.getElementById('bloodselect'); 
-        let bnn2 = document.getElementById('th_blood'); 
         if (fn !== null && fn.value === "" 
         || ln !== null && ln.value === "" 
         || an !== null && an.value === "" 
         || gn !== null && gn.value === "" 
-        || pn !== null && pn.value === "" 
-        || bn !== null && bn.value === ""
-        || th_cknormal !== null && th_cknormal.innerHTML)
+        || pn !== null && pn.value === "")
         {
        
           document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
           $('#errormodal').modal('show');
         }
         else{
-          bnn2.innerHTML = "<b>" + bnn1.value + "</b>"; 
-        
-          JsBarcode("#barcode1", (PIDinput.innerText + SIDinput.innerHTML), {
-                   format: "CODE39",
-           flat : true,
-         lineColor: "#0aa",
-                         width: 1,
-                         height: 50
-         })
-         doc_withautoincrement(); 
-         window.print(); 
-         db.collection("Timestamp MNCHIP V5").doc("Counting").get().then((doc) => {
-           var count1 = doc.data().counting; 
-          if (count1 == "0") 
-         {
-          db.collection("Timestamp MNCHIP V5").doc("Constant").set(
-            {
-              dateran : date2.innerText + " " + clock1.innerText,
-              date : DATEinput.innerText,
-              PID : PIDinput.innerText + SIDinput.innerHTML
-            })
-            db.collection("Timestamp MNCHIP V5").doc("Counting").set(
-              {
-                counting : "1"  
-              })
-         }
-         else if (count1 == "1") 
-         {
-          db.collection("Timestamp MNCHIP V5").doc("Counting").set(
-            {
-              counting : "0"  
-            })
-          db.collection("Timestamp MNCHIP V5").doc("Constant2").set(
-            {
-              dateran : date2.innerText + " " + clock1.innerText,
-              date : DATEinput.innerText,
-              PID : PIDinput.innerText + SIDinput.innerHTML
-            })
-         }
-         })
-         var emailused2 = document.getElementById("email2"); 
-         db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
-           {
-           id : emailused2.innerHTML,
-           PID : PIDinput.innerText + SIDinput.innerHTML,
-           Test_Run_Date : DATEinput.innerText,
-           Activity : "Run Sample",
-           Machine : machinename.innerHTML,
-           DateDid : date2.innerText + " " + clock1.innerText 
-           })
-        // setTimeout(function(){    
-        //    window.location.reload();        
-        // }, 1500);
+         
+          document.getElementById("error1").innerHTML = "Blood Chemistry Test Done";
+          $('#errormodal').modal('show');
+          setTimeout(() => {
+            $('#errormodal').modal('show');
+          }, 500);
         }
 } 
     }); 
@@ -1446,60 +1395,60 @@ socket.on('MCHC', function(MCHC) {
           document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
           $('#errormodal').modal('show');
         }
-        else{
-          JsBarcode("#barcode1", (PIDinput.innerText + SIDinput.innerHTML), {
-                   format: "CODE39",
-           flat : true,
-         lineColor: "#0aa",
-                         width: 1,
-                         height: 50
-         })
-         doc_withautoincrement(); 
-         window.print(); 
-         db.collection("Timestamp Mythic 18 Vet").doc("Counting").get().then((doc) => {
-           var count1 = doc.data().counting; 
-          if (count1 == "0") 
-         {
-          db.collection("Timestamp Mythic 18 Vet").doc("Constant").set(
-            {
-              dateran : date2.innerText + " " + clock1.innerText,
-              date : DATEinput.innerText,
-              SID : SIDinput.innerText
-            })
-            db.collection("Timestamp Mythic 18 Vet").doc("Counting").set(
-              {
-                counting : "1"  
-              })
-         }
-         else if (count1 == "1") 
-         {
-          db.collection("Timestamp Mythic 18 Vet").doc("Counting").set(
-            {
-              counting : "0"  
-            })
-          db.collection("Timestamp Mythic 18 Vet").doc("Constant2").set(
-            {
-              dateran : date2.innerText + " " + clock1.innerText,
-              date : DATEinput.innerText,
-              SID : SIDinput.innerText,
-            })
-         }
-         })
-         var emailused2 = document.getElementById("email2"); 
-         db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
-           {
-           id : emailused2.innerHTML,
-           SID : SIDinput.innerText,
-           Test_Run_Date : DATEinput.innerText,
-           Activity : "Run Sample",
-           Machine : "MNCHIP V5 | Mythic 18 Vet",
-           DateDid : date2.innerText + " " + clock1.innerText 
-           })
-        // setTimeout(function(){    
-        //    window.location.reload();  
+        // else{
+        //   JsBarcode("#barcode1", (PIDinput.innerText + SIDinput.innerHTML), {
+        //            format: "CODE39",
+        //    flat : true,
+        //  lineColor: "#0aa",
+        //                  width: 1,
+        //                  height: 50
+        //  })
+        //  window.print(); 
+        //  doc_withautoincrement(); 
+        //  db.collection("Timestamp Mythic 18 Vet").doc("Counting").get().then((doc) => {
+        //    var count1 = doc.data().counting; 
+        //   if (count1 == "0") 
+        //  {
+        //   db.collection("Timestamp Mythic 18 Vet").doc("Constant").set(
+        //     {
+        //       dateran : date2.innerText + " " + clock1.innerText,
+        //       date : DATEinput.innerText,
+        //       SID : SIDinput.innerText
+        //     })
+        //     db.collection("Timestamp Mythic 18 Vet").doc("Counting").set(
+        //       {
+        //         counting : "1"  
+        //       })
+        //  }
+        //  else if (count1 == "1") 
+        //  {
+        //   db.collection("Timestamp Mythic 18 Vet").doc("Counting").set(
+        //     {
+        //       counting : "0"  
+        //     })
+        //   db.collection("Timestamp Mythic 18 Vet").doc("Constant2").set(
+        //     {
+        //       dateran : date2.innerText + " " + clock1.innerText,
+        //       date : DATEinput.innerText,
+        //       SID : SIDinput.innerText,
+        //     })
+        //  }
+        //  })
+        //  var emailused2 = document.getElementById("email2"); 
+        //  db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
+        //    {
+        //    id : emailused2.innerHTML,
+        //    SID : SIDinput.innerText,
+        //    Test_Run_Date : DATEinput.innerText,
+        //    Activity : "Run Sample",
+        //    Machine : "MNCHIP V5 | Mythic 18 Vet",
+        //    DateDid : date2.innerText + " " + clock1.innerText 
+        //    })
+        // // setTimeout(function(){    
+        // //    window.location.reload();  
         
-        // }, 1500);
-        }
+        // // }, 1500);
+        // }
       }
   });
 

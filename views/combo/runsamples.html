@@ -137,8 +137,8 @@
                         </div>
                         <div class="col-7 ">
                           <div class="row">
-                          <div class="col-7 " id="PID"></div>
-                          <div class="col-3 " id="SID">&nbsp;</div></div>
+                          <div class="col-7 " id="PID">-</div>
+                          <div class="col-3 " id="SID">-</div></div>
                         </div>
                       </div>
                    
@@ -368,7 +368,6 @@
 
 
         <div class="column2">
-
           <div class="cbc">HEMATOLOGY</div>
           <table id="column2" cellspacing="0" cellpadding="5">
             
@@ -505,7 +504,10 @@
 
         <div class="row no-gutters">
           <div class="col-12">
-            <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">           
+            <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+              <div class="btn-group mr-1 " role="group">
+                <button id="submitbtn" class="btn btn-sbt text-light">Submit</button>
+              </div>
               <div class="btn-group mr-1 " role="group">
                 <button id="printbtn" class="btn btn-prnt text-light" onClick="printfunction()">Print</button>
               </div>
@@ -515,10 +517,7 @@
             </div>
           </div>
         </div>
-
-      
       </div>
-
       <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-backdrop="false" data-target="#myModal"
           aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">

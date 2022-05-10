@@ -1,6 +1,7 @@
 body {
     font-family: 'Segoe UI';
-    background: #fafafa;
+
+    line-height: unset;
   }
   div.header
   {
@@ -373,7 +374,7 @@ body {
     font-family: 'Segoe UI';
     font-size: 17px;
   }
-  }
+  
   
   .inputBoxPetsName input {
     width: 100%;
@@ -430,7 +431,7 @@ body {
   .inputBoxGender input{  
     width: 100%;
     padding-left:5px;
-    font-size: 21px;
+    font-size: 15px;
     color: #333232;
     border: none;
     border-bottom: 0.065rem solid #333232;
@@ -499,12 +500,14 @@ body {
      
       }
   
-  .ageinputs {
+  #ageinputs {
   font-size: 30px;
-  
+  /* position: absolute !important; */
   }
   
-  
+  #genderselect{
+    font-size: 30px;
+  }
   #opname 
   {
   display: none;
@@ -563,334 +566,305 @@ body {
     background-color: black;
     width: 1px;
     height: 489px;
-    line-height: 90%;
+    line-height: 110%;
     position: relative;
     float: left; 
     margin-left: -18px;
     visibility: hidden;
   }
   
-  #column1 {
-    width: 90%; 
-    color: black;
-  }
-  #column2 {
-    width: 132%;
-    color : black
-  }
+
   /* Print Function */
   @media print {
-  body
-  {
-    color:black; 
-  }
-  #results th {
-    background-color: #277277 !important;
-    -webkit-print-color-adjust: exact; 
-  }
-  .modal-header {
-    display: none;  
-   }
-   .modal-body {
-     width: auto;
-     height: auto;
-     overflow: visible !important;  
-     outline: 0;
-   }
-   ::-webkit-scrollbar {
-     display: none;
- }
- .modal-dialog.modal-dialog-centered.modal-xl {
-  display: contents;
-}
-header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
-  display: none;
-}
-  #results {
-    align-items: center;
-    width: 450px;
-  }
-
-  .column1, .column2, #vertical {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .column1 {
-    float: left;
-    width: 50%;
-    padding-left: 58px;
-  }
-
-  .column2
-  {
-    padding-left:53px;
-  }
-
-  #column2 {
-    width: 132%;
-    color : black
-  }
-
-  .inputBoxPetsName input,
-  .inputBoxOwnername input
-   {
-    width: 120%;
-    border-bottom: none;
-    font-weight: bold;
-
-  }
-
-  .inputBoxTime {
-    display: block;
-    width: 250px;
-    font-weight: bold;
-  
-  }
-
-  .horizontal_line{
-    background-color: black;
-  width: 100%;
-  height: 2px;
-  border-top:  black;
-  line-height: 50%;
-  -webkit-print-color-adjust: exact;
-  visibility: visible;
-  }
-   .horizontal_line2{
-    background-color: black;
-    width: 100%;
-    height: 2px;
-    border-top:  black;
-    line-height: 50%;
-    -webkit-print-color-adjust: exact;
-    visibility: visible;
-  }
-  .horizontal_line3 {
-    background-color: black;
-    width: 100%;
-    height: 2px;
-    border-top:  black;
-    line-height: 50%;
-    -webkit-print-color-adjust: exact;
-    visibility: visible; 
-  }
-  .vertical {
-
-    visibility: visible;
-  }
-
-  .column1, .column2, #vertical {
-    display: flex;
-    flex-direction: column;
-    
-  }
-
-  .column1 {
-    float: left;
-    width: 50%;
-    padding-left: 15px;
-  }
-
-  .column2
-  {
-    padding-left:53px;
-  }
 
  
-  #results tr {
-    background-color: #277277 !important;
-    -webkit-print-color-adjust: exact; 
-  }
-  #closebtn {
-    display:none;
-  }
-    #resetbtn {
+    #printbtn{
       display: none;
     }
-    #printbtn {
-        display: none;
-      }
-    #updatebtn {
+
+    #deletebtn{
       display: none;
-      }
-    #deletebtn {
+    }
+
+    #scnrbtn{
       display: none;
-      }
-      #scnrbtn {
-        display: none;
-      }
-      #submitdata {
-        display: none;
-      }
-      #seq
-      {
-        color:white
-      }
-      #insertBtn {
-        display: none;
-      }
-      #sidebar
-      {
-        display: none;
-      }
-      #signatories
-      {
-        display: inline-block;
-        position: relative;
-      }
-      #barcode2{
-        display:block;
-      margin-top:30px;
-      
-      width: 250px;
-      }
-      #searchboxx 
-      {
-        display: none;
-      }
-  
-      #sidselect{
-        -moz-appearance: none;
-        -webkit-appearance: none;
-        appearance: none;
     }
-    #dateselect{
-      -moz-appearance: none;
-      -webkit-appearance: none;
-      appearance: none;
-  }
-  
-  div.run
-  {
-  display: none; 
-  }
-  div.header
-  {
-  display: block;
-  }
-  
-  .inputBoxFname input{  
-  border-bottom: none;
-  font-weight: bold;
-  width:120%
-  }
-  
-  input#physicianinputs {
-    width: 200%;
-    border-bottom: none;
-    font-weight: bold;
-  }
-  
-  .inputBoxLname input{
-  border-bottom: none;
-  font-weight: bold;
-  width:120%
-  }
-  
-  .inputBoxBloodType input{
-  border-bottom: none;
-  font-weight: bold;
-  }
 
-  input#breedinputs {
-    width: 200%;
-    border-bottom: none;
-    font-weight: bold;
-  }
-
-  .inputBoxTime input {
-    padding-left: -295px;
-    width: 5px;
-    font-size: 100px;
-    border-bottom: none;
-    font-weight: bold;
-  }
-  
-  select#genderselect.form-select.select-gen{ 
-  border-bottom: none;
-  font-weight: bold;
-  }
-  
-  select#bloodselect.form-select.select-bld{ 
-  border-bottom: none;
-  font-weight: bold;
-  }
-  
-  input#ageinputs{
-  border-bottom: none;
-  font-weight: bold;
-  width: 120%;
-  font-size: 22px;
-  }
-  
-  input#timeinputs {
-    border-bottom: none;
-    font-weight: bold;
-  }
-  
-  #bld1{
-  visibility: hidden;
-  }
-
-  select#specieselect.form-select.select-spc {
-    border-bottom: none;
-    font-weight: bold;
-  }
-
-  
-  .select-bld{
-    border: none;
-    border-bottom: none !important;
-    outline: none;
-    background: transparent;
+    #updatebtn{
+      display: none;
     }
-    
-    .select-dte{
-      border: none;
-      border-bottom: none !important;
-      outline: none;
-      background: transparent;
+
+    #closebtn2{
+      display: none;
+    }
+
+
+  
+    div#new-row {
+      padding-top: 120px;
+  }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    #column2 {
+      width: 130%;
+      color : black
+    }
+  .signatoriesyes {
+    float: right;
+  } 
+    .horizontal_line{
+      background-color: black;
+    width: 100%;
+    height: 2px;
+    border-top:  black;
+    line-height: 50%;
+    -webkit-print-color-adjust: exact;
+    visibility: visible;
+    }
+     .horizontal_line2{
+      background-color: black;
+      width: 100%;
+      height: 2px;
+      border-top:  black;
+      line-height: 50%;
+      -webkit-print-color-adjust: exact;
+      visibility: visible;
+    }
+    .horizontal_line3 {
+      background-color: black;
+      width: 100%;
+      height: 2px;
+      border-top:  black;
+      line-height: 50%;
+      -webkit-print-color-adjust: exact;
+      visibility: visible; 
+    }
+    .vertical {
+  
+      visibility: visible;
+    }
+    #remarks-textarea {
       background-color: transparent;
-    }
-    
-    .select-sid{
       border: none;
-      border-bottom: none !important;
-      outline: none;
-      background: transparent;
+      float:left;
+      resize: none; 
+      text-align: justify;
+      white-space: normal;
     }
-    .select-gen{
-      border: none;
-      border-bottom: none !important;
-      outline: none;
-      background: transparent;
+    #textareaposition {
+      float: left;
     }
+   
+    .BOTTOMTEXT
+    {
+      float: left;
+    }
+  
+    #PID,
+    #DATE {
+      font-family: 'Segoe UI Semibold';
+    }
+  
+    #results {
+      align-items: center;
+      width: 450px;
+    }
+    .column1, .column2 {
+      display: flex;
+      flex-direction: column;
+    }
+    .column1 {
+      float: left;
+      width: 50%;
+      padding-left: 15px;
+    }
+    .column2
+    {
+      padding-left:53px;
+    }
+    .inputBoxPetsName input,
+    .inputBoxOwnername input
+     {
+      width: 120%;
+      border-bottom: none;
+      font-weight: bold;
+  
+    }
+  
+    .inputBoxTime {
+      display: block;
+      width: 250px;
+      font-weight: bold;
     
-    button.btn{
-      border-color:transparent;
-      font-size: 22px;
     }
   
-    button.btn.dropdown-toggle.placeholder.btn-light{
-      border-color:transparent;
-      font-size: 22px;
+    #refreshbtn {
+      display: none;
     }
   
-    div.filter-option{
-      font-size: 22px !important;
+    #resetBtn {
+      display: none;
     }
   
-    .dropdown-menu{
-      font-size: 22px !important;
+    #submitbtn,
+    .btn-sbt {
+      display: none;
+      visibility: hidden;
+    }
+  
+    #printbtn {
+      display: none;
+    }
+  
+    #submitbtn {
+      display: none
+    }
+  
+    #insertBtn {
+      display: none;
+    }
+  
+    #seq {
+      color:white
+    }
+  
+  /*   #results th,tr {
+      color: white;
+      background-color: #277277 !important;
+      -webkit-print-color-adjust: exact;
+      border: none;
+      border-collapse: collapse;
+    } */
+  
+  
+    #sidebar {
+      display: none;
+    }
+  
+    div.run {
+      display: none;
+    }
+  
+    #notes {
+      display: none;
+    }
+  
+    #signatories {
+      display: inline-block;
+      position: fixed;
+    }
+  
+  
+    div.header {
+      display: block;
+    }
+  
+    /* #barcode1 {
+      display: block;
+      margin-top: 30px;
+      width: 250px;
+    }
+   */
+  
+    input#physicianinputs {
+      width: 200%;
+      border-bottom: none;
+      font-weight: bold;
+    }
+  
+    input#breedinputs {
+      width: 200%;
+      border-bottom: none;
+      font-weight: bold;
+    }
+  
+    .inputBoxTime input {
+      padding-left: -295px;
+      width: 5px;
+      font-size: 100px;
+      border-bottom: none;
+      font-weight: bold;
+    }
+  
+    
+  
+    select#genderselect.form-select.select-gen {
+      border-bottom: none;
+      font-weight: bold;
+     
+      
+    }
+  
+    select#bloodselect.form-select.select-bld {
+      padding-left: 120px;
+      border-bottom: none;
+      font-weight: bold;
+    }
+  
+    select#specieselect.form-select.select-spc {
+      border-bottom: none;
+      font-weight: bold;
+    }
+  
+  
+    input#ageinputs {
+      width: 120%;
+      border-bottom: none;
+      font-weight: bold;
+    }
+  
+    input#timeinputs {
+      border-bottom: none;
+      font-weight: bold;
+    }
+  
+    #bld1 {
+      visibility: hidden;
+    }
+  
+    
+    button.btn {
+      border-color: transparent;
+      font-size: 11px;
+    }
+  
+    button.btn.dropdown-toggle.placeholder.btn-light {
+      border-color: transparent;
+      font-size: 11px;
+    }
+  
+    div.filter-option {
+      font-size: 11px !important;
+    }
+  
+    .dropdown-menu {
+      font-size: 11px !important;
     }
   
     .dropdown-toggle::after {
-      content:none;
+      content: none;
     }
   
-    .modal-footer{
-      display:none;
+    .select-gen {
+      border: none;
+      border-bottom: none !important;
+      outline: none;
+      background: transparent;
+    }
+  
+    .select-spc {
+      border: none;
+      border-bottom: none !important;
+      outline: none;
+      background: transparent;
+    }
+    
+    .bootstrap-select>.dropdown-toggle {
+      font-size: 11px;
+    }
+    .bootstrap-select .dropdown-menu.inner {
+      font-size: 11px;
     }
   
   }
@@ -1006,6 +980,12 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     text-align: left;
     float:left;
   }
+  /* #pn11{
+    width: 100%;
+    padding-left:10px;
+    text-align: left;
+    float:left;
+  } */
   
   .select-gen{
     color: #333232;
@@ -1013,12 +993,11 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     border-bottom: 0.065rem solid #333232;
     outline: none;
     background: transparent;
-    font-size: 1.3rem;
+    font-size: 15px;
     font-family: "Segoe UI Semibold";
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    /* display:; */
   }
 
   .btn-light{
@@ -1074,7 +1053,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     }
     
     div.filter-option{
-      font-size: 18px;
+      font-size: 15px;
     }
     
     .dropdown-menu{
@@ -1083,7 +1062,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
   
   #ageinputs{
   font-family: "Segoe UI Semibold";
-  font-size: 1.3rem;
+  font-size: 15px;
     padding-left:5px;
     border:none;
     outline:none;
@@ -1249,6 +1228,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
 
   #pidinfo{
     padding-bottom: 9px !important;
+    margin-left:6px;
     text-align: left;
   }
  
@@ -1264,7 +1244,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     padding-left: 5px;
     font-size: 16px;
     color: #333232;
-    width:200px;
+    width:110px !important;
     border: none;
     border-bottom: 0.065rem solid #333232;
     outline: none;
@@ -1276,7 +1256,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     padding-left: 5px;
     font-size: 16px;
     color: #333232;
-    width:178px;
+    width:110px;
     border: none;
     border-bottom: 0.065rem solid #333232;
     outline: none;
@@ -1311,7 +1291,7 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
   .modal-dialog {
     max-height: fit-content;
     max-width: fit-content;
-    min-width: 77%;
+    min-width: 60%;
     align-items: center;
     min-height: 181%;
 }
@@ -1343,55 +1323,6 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     /* display: ; */
   }
 
-  .inpUpdate1{
-    padding-left: 5px;
-    font-size: 15px;
-    color: #333232;
-    width:170px;
-    border: none;
-    border-bottom: 0.065rem solid #333232;
-    outline: none;
-    background: transparent;
-    font-family: "Segoe UI Semibold";
-    
-  }
-  
-  .inpUpdate1-2{
-    padding-left: 5px;
-    font-size: 15px;
-    color: #333232;
-    width:170px;
-    border: none;
-    border-bottom: 0.065rem solid #333232;
-    outline: none;
-    background: transparent;
-    font-family: "Segoe UI Semibold";
-  }
-  
-  .inpUpdate1-3{
-    padding-left: 5px;
-    font-size: 15px;
-    color: #333232;
-    width:130px;
-    border: none;
-    border-bottom: 0.065rem solid #333232;
-    outline: none;
-    background: transparent;
-    font-family: "Segoe UI Semibold";
-  }
-  
-  .inpUpdate2 {
-    padding-left: 5px;
-    font-size: 15px;
-    color: #333232;
-    border: none;
-    border-bottom: 0.065rem solid #333232;
-    width: 50px;
-    outline: none;
-    background: transparent;
-    font-family: "Segoe UI Semibold";
-    /* display: ;  */
-  }
   
   
   .bootstrap-select>.dropdown-toggle {
@@ -1411,8 +1342,22 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
   
     width: 400px;
     height: 100px; 
+    background-color: transparent;
+    border: none;
+    float:left;
+    text-align: justify;
+    white-space: normal;
   }
+  #remarks-textarea2 {
   
+    width: 400px;
+    height: 100px; 
+    background-color: transparent;
+    border: none;
+    float:left;
+    text-align: justify;
+    white-space: normal;
+  }
   
   .bootstrap-select>.dropdown-toggle.bs-placeholder{
     height: 5px;
@@ -1436,7 +1381,6 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     -ms-flex-pack: justify;
     justify-content: space-between;
     height: 28px;
-    
   }
   .chip, .cbc
   {
@@ -1446,3 +1390,59 @@ header, footer, aside, nav, form, iframe, .menu, .hero, .adslot {
     padding-bottom: 12px;
     color: black; 
   }
+ 
+  .column1, .column2, .vertical {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .column1 {
+    float: left;
+    width: 50%;
+    padding-left: 58px;
+  }
+  .column2
+  {
+    padding-left:58px;
+    width: 50%;
+  }
+
+  #column1 {
+    width: 90%; 
+    color: black;
+  }
+  #column2 {
+    width: 90%;
+    color : black
+  }
+
+  .column1, .column2 {
+    display: flex;
+    flex-direction: column;
+  }
+  .column1 {
+    float: left;
+    width: 50%;
+    padding-left: 15px;
+  }
+  .column2
+  {
+    padding-left:53px;
+  }
+.inpUpdate1,
+.inpUpdate1-2,
+.inpUpdate2,
+#breedinputs,
+#physicianinputs, 
+#remarks-textarea2{
+display: none; 
+}
+#age {
+  margin-top: 6px;
+}
+.dropdown.bootstrap-select.select-gen{
+  display: none;
+}
+#ageinputs {
+  margin-top: 3px;
+}

@@ -30,7 +30,7 @@ let db2 = firebase.firestore();
 var auto_inc; 
 firebase.auth().onAuthStateChanged(function (user) {
  
-
+  var clicks2 = document.getElementById("clicks"); 
   var myimg = document.getElementById("signatories1"); 
   var myimg2 = document.getElementById("logo1"); 
   var myimg3 = document.getElementById("header1"); 
@@ -102,7 +102,11 @@ var logresultstable = document.getElementById("logresults");
     mchc,mchcunit,mchcnormal,
     plt,pltunit,pltnormal,
     tbil,tbilunit,tbilnormal,
-    alt,altunit,altnormal,specie) {
+    alt,altunit,altnormal,
+    specie,lymn,lymunitn,lymnormaln,
+    monn,monunitn,monnormaln,
+    gran,graunitn,granormaln,
+    breed,remarks) {
 
 
     let tr_data = document.createElement('tr');
@@ -190,7 +194,17 @@ var logresultstable = document.getElementById("logresults");
     let td81 = document.createElement('td');
     let td82 = document.createElement('td');
     let td83 = document.createElement('td');
-    
+    let td84 = document.createElement('td');
+    let td85 = document.createElement('td');
+    let td86 = document.createElement('td');
+    let td87 = document.createElement('td');
+    let td88 = document.createElement('td');
+    let td89 = document.createElement('td');
+    let td90 = document.createElement('td');
+    let td91 = document.createElement('td');
+    let td92 = document.createElement('td');
+    let td93 = document.createElement('td');
+    let td94 = document.createElement('td');
 
     td0.innerHTML = pid;
     td1.innerHTML = petname;
@@ -302,6 +316,21 @@ var logresultstable = document.getElementById("logresults");
 
     td83.innerHTML = specie;
 
+    td84.innerHTML = lymn;
+    td85.innerHTML = lymunitn;
+    td86.innerHTML = lymnormaln;
+
+    td87.innerHTML = monn;
+    td88.innerHTML = monunitn;
+    td89.innerHTML = monnormaln;
+
+    td90.innerHTML = gran;
+    td91.innerHTML = graunitn;
+    td92.innerHTML = granormaln;
+
+    td93.innerHTML = breed;
+    td94.innerHTML = remarks;
+
     tr_data.appendChild(td0);
     tr_data.appendChild(td1);
     tr_data.appendChild(td2);
@@ -387,6 +416,21 @@ var logresultstable = document.getElementById("logresults");
     tr_data.appendChild(td82);
 
     tr_data.appendChild(td83);
+
+    tr_data.appendChild(td84);
+    tr_data.appendChild(td85);
+    tr_data.appendChild(td86);
+    tr_data.appendChild(td87);
+    tr_data.appendChild(td88);
+    tr_data.appendChild(td89);
+    tr_data.appendChild(td90);
+    tr_data.appendChild(td91);
+    tr_data.appendChild(td92);
+
+    tr_data.appendChild(td93);
+    tr_data.appendChild(td94);
+
+
     logresultstable.appendChild(tr_data);
   } 
 
@@ -422,7 +466,11 @@ var logresultstable = document.getElementById("logresults");
         element.PLT,element.PLTUNIT,element.PLTNORMAL,
         element.TBIL,element.TBILUNIT,element.TBILNORMAL,
         element.ALT,element.ALTUNIT,element.ALTNORMAL,
-        element.Specie);
+        element.Specie,
+        element.LYMN,element.LYMUNITN, element.LYMNORMALN,
+        element.MONN,element.MONUNITN, element.MONNORMALN,
+        element.GRAN,element.GRAUNITN, element.GRANORMALN,
+        element.Breed,element.Remarks);
     });
   }
   async function GetAllDataOnce() {
@@ -508,7 +556,8 @@ var logresultstable = document.getElementById("logresults");
               30,31,32,33,34,35,36,37,38,39,40,41,42,43,
               44,45,46,47,48,49,50,51,52,53,54,55,56,57,
               58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,
-              73,74,75,76,77,78,79,80,81,82,83],
+              73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,
+            89,90,91,92,93,94],
             "visible": false,
             "searchable": true,
             orderable: true,
@@ -584,20 +633,91 @@ var logresultstable = document.getElementById("logresults");
             });
         },
       });
+
+     
+      
       var table = $('#example').DataTable();
+      var container = $('<div/>').insertBefore(table.table().container());
+ 
+      var chart = Highcharts.chart(container[0], {
+          chart: {
+              type: 'pie',
+          },
+          title: {
+              text: '',
+          },
+          series: [
+              {
+                  data: chartData(table),
+              },
+          ],
+      });
+   
+      // On each draw, update the data in the chart
+      table.on('draw', function () {
+          chart.series[0].setData(chartData(table));
+      });
+  
+  function chartData(table) {
+      var counts = {};
+   
+      // Count the number of entries for each position
+      table
+          .column(5, { search: 'applied' })
+          .data()
+          .each(function (val) {
+              if (counts[val]) {
+                  counts[val] += 1;
+              } else {
+                  counts[val] = 1;
+              }
+          });
+   
+      // And map it to the format highcharts uses
+      return $.map(counts, function (val, key) {
+          return {
+              name: key,
+              y: val,
+          };
+      });
+  }
       $('#example tbody').on('click', 'tr', function () {
         $(".modal-body div span").text("");
         $("#pidinfo").html(table.row(this).data()[0]);
+
+
         $("#petname").html(table.row(this).data()[1]);
+        $("#petnameinputs").val(table.row(this).data()[1]);
+
+
         $("#ownername").html(table.row(this).data()[2]);    
+        $("#ownernameinputs").val(table.row(this).data()[2]);    
+
+
         $("#gender").html(table.row(this).data()[3]);
+        $("#genderselect").val(table.row(this).data()[3]);
+        $('#genderselect').selectpicker('refresh');
+
+
         $("#age").html(table.row(this).data()[4]);
-        $("#date5").html(table.row(this).data()[5]);
+        $("#ageinputs").val(table.row(this).data( )[4]);
+
+        $("#DATE").html(table.row(this).data()[5]);
         $("#timeinputs").html(table.row(this).data()[6]);
-        $("#doctor").html(table.row(this).data()[7]);
+
+        
+        $("#physicianinputs").val(table.row(this).data()[7]);
+        $("#vet").html(table.row(this).data()[7]);
+
         $("#machine1").html(table.row(this).data()[8]);
-        $("#species").html(table.row(this).data()[83]);
+        $("#specieselect").html(table.row(this).data()[83]);
         $("#last-barcode").html(table.row(this).data()[9]);
+
+        $("#breedinputs").val(table.row(this).data()[93]);
+        $("#breed").html(table.row(this).data()[93]);
+
+        $("#remarks-textarea").html(table.row(this).data()[94]);
+        $("#remarks-textarea2").html(table.row(this).data()[94]);
         var barcode5 = document.getElementById("last-barcode").innerText; 
           //barcode
     JsBarcode("#barcode3", barcode5, {
@@ -608,7 +728,6 @@ var logresultstable = document.getElementById("logresults");
                     height: 50,
                     displayValue: true
                   })
-
         $("#user5").html(table.row(this).data()[10]);
         
         $("#th_alb").html(table.row(this).data()[11]); 
@@ -707,8 +826,48 @@ var logresultstable = document.getElementById("logresults");
         $("#th_altunit").html(table.row(this).data()[81]);
         $("#th_altnormal").html(table.row(this).data()[82]);
 
+        $("#th_lymn").html(table.row(this).data()[84]);
+        $("#th_lymunitn").html(table.row(this).data()[85]);
+        $("#th_lymnormaln").html(table.row(this).data()[86]);
+
+        $("#th_monn").html(table.row(this).data()[87]);
+        $("#th_monunitn").html(table.row(this).data()[88]);
+        $("#th_monnormaln").html(table.row(this).data()[89]);
+
+        $("#th_gran").html(table.row(this).data()[90]);
+        $("#th_graunitn").html(table.row(this).data()[91]);
+        $("#th_granormaln").html(table.row(this).data()[92]);
+  
         $("#messagemodal").modal("show");
       });
     });
   }, 2000);
+
+  $('#updatebtn').click(function() {
+    $(".hideelements"). css("display", "none");
+    $("#remarks-textarea"). css("display", "none");
+    $(".inpUpdate1"). css("display", "block");
+    $(".inpUpdate1-2"). css("display", "block");
+    $(".inpUpdate2"). css("display", "block");
+    $(".dropdown.bootstrap-select.select-gen"). css("display", "block");
+    $("#breedinputs"). css("display", "block");
+    $("#physicianinputs"). css("display", "block");
+    $("#remarks-textarea2"). css("display", "block");
+  })
+
+  $('#closebtn2').click(function() {
+    $(".hideelements"). css("display", "block");
+    $("#remarks-textarea"). css("display", "block");
+    $(".inpUpdate1"). css("display", "none");
+    $(".inpUpdate1-2"). css("display", "none");
+    $(".inpUpdate2"). css("display", "none");
+    $(".dropdown.bootstrap-select.select-gen"). css("display", "none");
+    $("#breedinputs"). css("display", "none");
+    $("#physicianinputs"). css("display", "none");
+    $("#remarks-textarea2"). css("display", "none");
+    if (parseFloat(clicks2.innerText) >= 1) {
+      window.location.reload(); 
+    }
+  })
+  
 })
