@@ -34,8 +34,21 @@
           </div>
         </a>
       </div>
+
+      <div id="usernamelevel"></div>
       <ul class="list-unstyled components">
-        <p class="search" id="machinename" style="font-size:22px;"></p>
+        
+      <div class="wrap">
+        <div class="search">
+          <form action="/combo/records">  
+           <input id="textvalue" type="text" class="searchTerm" placeholder="Search">
+           <button type="submit" class="searchButton" onclick="passvalues();" /><i class="fa fa-search"></i></button>   
+          </div>  
+          </form> 
+        
+     </div>
+     
+      
         <li>
           <a href="/home">Main Dashboard</a>
         </li>
@@ -103,6 +116,7 @@
           <div class="p-1 row">
             <div class="col-lg-8">
               <div class="run">Manage Records</div>
+              <div id="searchfunction"></div>
             </div>
           </div>
           <div id='wews' object align=right>
@@ -222,7 +236,7 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-              <div id="conten ">
+              <div id="content">
                 <div id="container" class="container">
                   <div id="container" class="container">
                    <div class="header">
@@ -241,47 +255,49 @@
       <div class="tabletext">
         <div class="row border ">
 
-          <div class="col-md-5 border">
+          <div class="col-md-4 border ">
             <table id="fname1" class="table table-striped  table-borderless table-fluid">
               <thead>
                 <tr id="fn1">
                   <th class="w-100" style="text-align:left">
                     <div class="row">
-                      <div class="col-4 border">
+                      <div class="col-3 border ">
                         <div class="inputBoxPetsName">PID: </div>
                       </div>
-                      <div class="col-7 border">
-                        <div class="row">
-                        <div class="col-7 " id="pidinfo"></div>
-                        <div class="col-3 " id="SID">&nbsp;</div></div>
-                      </div>
+                      <!--<div class="col-8">-->
+                        <div class="col-7" id="pidinfo"></div>
+                      <!--</div>-->
                     </div>
-                 
+                  </div>
+
+
                     &nbsp;                   
-                
+                    
                     <div class="row">
-                      <div class="col-4 border">
+                      <div class="col-5 border">
                     <div class="inputBoxPetsName">Pet's Name: </div></div><div id="petname" class="hideelements"></div>
-                    <div class="col-7 "><b><input id="petnameinputs" onload="this.value = this.value.toUpperCase()"  class="inpUpdate1" type="text">
-                    </b></div></div></div>
+                    <div class="col-7"><b><input id="petnameinputs" onload="this.value = this.value.toUpperCase()"  class="inpUpdate1" type="text">
+                    </b></div></div>
                   </th>
                 </tr>
 
                 <tr id="ln1">
                   <th class="w-30 " style="text-align:left">
                     <div class="row">
-                      <div class="col-4 border">
+                      <div class="col-5 border">
                     <div class="inputBoxOwnername">Owner's Name: </div></div><div id="ownername" class="hideelements"></div>
-                    <div class="col-7 "><input id="ownernameinputs" onload="this.value = this.value.toUpperCase()" class="inpUpdate1-2" type="text"></div>
+                    <div class="col-7"><input id="ownernameinputs" onload="this.value = this.value.toUpperCase()" class="inpUpdate1-2" type="text"></div>
                   </div></div></div>
                   </th>
                 </tr>
-                
+              </div>
               </thead>
               </tbody>
             </table>
           </div>
-          <div class="col-md-3 border ">
+
+        <!--   /* 2nd COLUMN */ -->
+          <div class="col-md-4 border ">
             <table id="lname1" class="table table-borderless table-fluid">
               <thead>
                 <tr id="fn1">
@@ -296,9 +312,10 @@
                     &nbsp;                   
                 
                     <div class="row">
-                      <div class="col-4 ">
-                    <div class="inputBoxGender">Gender: </div></div><div id="gender" class="hideelements"></div>
-                    <div class="col-6 "><select id="genderselect" class="selectpicker select-gen" data-size="3" data-width="67%">
+                      <div class="col-4">
+                    <div class="inputBoxGender">Gender: </div></div>
+                    <div class="col-gen"><div id="gender" class="hideelements"></div></div>
+                    <div class="col-8"><select id="genderselect" class="selectpicker select-gen" data-size="3" data-width="67%">
                         <option disabled selected value>Gender</option>
                         <option>Male</option>
                         <option>Female</option>
@@ -310,19 +327,20 @@
                 <tr id="ln1">
                   <th class="w-30 " style="text-align:left">
                     <div class="row">
-                      <div class="col-3 ">
+                      <div class="col-3">
                         <div class="inputBoxSpecies">Species: </div></div>
+                        <div class="col">
                         <div class="col-2"><div id="specieselect"class="dropdown bootstrap-select fit-width show"></div>
-   </div></div>
+   </div></div></div>
                   </th>
                 </tr>
                 <tr id="pn1">
                   <th class="w-100" style="text-align:left">
                     <div class="row">
-                      <div class="col-4 ">
+                      <div class="col-3">
                     <div class="inputBoxBreedname">Breed:</div></div>
-                      <div class="col-2 "><input id="breedinputs" type="text" oninput="this.value = this.value.toUpperCase()" required=""></input>
-                        <div id="breed" class="hideelements"></div></div></div>
+                      <div class="col"><div class="col-8 "><input id="breedinputs" type="text" oninput="this.value = this.value.toUpperCase()" required=""></input>
+                        <div id="breed" class="hideelements"></div></div></div></div>
                   </th>
                 </tr>
               
@@ -330,6 +348,8 @@
           </tbody>
           </table>
         </div>
+
+        <!--   /* 3Rd COLUMN */ -->
         <div class="col-md-4 border">
           <table id="timephys" class="table table-striped table-borderless table-fluid">
             <thead>
@@ -486,7 +506,7 @@
              <tr id="seq">
                <th>Test</th>
                <th>Results</th>
-               <th class="yay">Reference Range</th>
+               <th class="yay" id="yay1">Reference Range</th>
                <th>Unit</th>
  
              </tr>
@@ -597,13 +617,13 @@
       <div id="textareaposition">
         <div class="chip">REMARKS</div>
       <textarea id="remarks-textarea" disabled></textarea>
-      <textarea id="remarks-textarea2" required></textarea>
+      <textarea id="remarks-textarea2" required></textarea></div>
       <div class="signatoriesyes">
      
         
             <div id="signatories"><img id="signatories1" width="450px" height="100px"></div>
           </div>
-          </div
+        </div>
         </div>
       </div>
     </div>
@@ -616,6 +636,10 @@
       <!-- LOCALHOST6969: MYTHIC 22 -->
       <div class="row no-gutters">
         <div class="col-12">
+          <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-1 " role="group">
+              <button id="submitbtn" class="btn btn-updt text-info" onclick="onClick();">Submit</button>
+            </div>
           <div class="btn-toolbar float-right" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-1 " role="group">
               <button id="updatebtn" class="btn btn-updt text-info" onclick="onClick();">Update</button>
@@ -643,7 +667,7 @@
             <div class="btn-group mr-1 " role="group">
               <button id="scnrbtn" class="btn btn-scnr text-light" data-toggle="modal"
                 data-target="#ModalCenterScn">Barcode Scanner</button>
-                <button type="button" class="btn btn-rst text-light" data-dismiss="modal" id="closebtn2">Close</button>
+                <button id="printbtn" class="btn btn-prnt text-light" onClick="window.print();">Print</button>
             </div>
             <div class="modal fade" id="ModalCenterScn" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
               aria-hidden="true" data-backdrop="false">
@@ -669,7 +693,9 @@
               </div>
             </div>
             <div class="btn-group mr-1 " role="group">
-              <button id="printbtn" class="btn btn-prnt text-light" onClick="window.print();">Print</button>
+              <button type="button" class="btn btn-rst text-light" data-dismiss="modal" id="closebtn2">Close</button>
+
+        
             </div>
           </div>
         </div>
@@ -677,13 +703,13 @@
     </div>
   </div>
 
-  <div class="signatoriesyes">
+  <!-- <div class="signatoriesyes">
     <div class="row">
       <div class="col-pl-3"><svg id="barcode1"></svg></div>
-      <div class="col-md-2">
+      <div class="col-md-2"></div>
         <div id="signatories"><img id="signatories1" width="730px" height="118px"></div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 
@@ -709,6 +735,23 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="updatemodal" tabindex="-1" role="dialog" data-backdrop="false" data-target="#updatemodal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <div id="error5"></div>
+        </h5>
+        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+      </div>
+      <div class="modal-footer">
+        <button id="updateyes"type="button" class="btn btn-rst text-light">Yes</button>
+        <button type="button" class="btn btn-rst text-light" onclick="$('#updatemodal').modal('hide');">No</button>
+      </div>
+    </div>
+  </div>
+</div>
   &nbsp;
   <a id="clicks"></a>
   <script>
@@ -717,6 +760,7 @@
       clicks += 1;
       document.getElementById("clicks").innerHTML = clicks; };</script>
   <script type="module" src="/jscodes/combo/managerecords.js"></script>
+
   <script src="/jscodes/date.js"></script>
   <!-- Latest compiled and minified CSS -->
 

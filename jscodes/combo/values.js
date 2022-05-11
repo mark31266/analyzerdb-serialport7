@@ -210,11 +210,12 @@
             document.getElementById("email2").innerHTML = user.email; 
             var uid5 = document.getElementById("user1").innerHTML; 
             db.collection("users").doc(uid5).get().then((doc) => {
+              var email10 = doc.data().Username; 
+              var userlevel10 = doc.data().UserLevel; 
               document.getElementById("user5").innerHTML = String(doc.data().Username); 
+              document.getElementById("usernamelevel").innerHTML = String(email10) + " | " + String(userlevel10)
             })
           })
-
-
              function dataonload() {
               var myimg = document.getElementById("signatories1"); 
               var myimg2 = document.getElementById("logo1"); 
@@ -468,14 +469,20 @@
                 if (parseFloat(alba) > parseFloat(albc) || alba.includes(">"))
                     {
                      th_alb.innerHTML = "<b>" + alba + "&nbsp↑</b>" 
+                     th_alb.style.color = "red"
+                     document.getElementById("th_alb2").style.color = "red"; 
                     }
                    else if (parseFloat(alba) < parseFloat(albb))
                     {
                      th_alb.innerHTML = "<b>" + alba + "&nbsp↓</b>" 
+                     th_alb.style.color = "red"
+                     document.getElementById("th_alb2").style.color = "red"; 
                     }
                     else 
                     {
                      th_alb.innerHTML = "" + alba + "" 
+                     document.getElementById("th_alb").style.color = "black"; 
+                     document.getElementById("th_alb2").style.color = "black"; 
                     }
                         //ALB Limit DATA
               th_albnormal.innerHTML =  albb + " - " + albc ;

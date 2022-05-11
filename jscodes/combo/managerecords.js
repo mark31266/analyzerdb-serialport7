@@ -28,7 +28,16 @@ import {
 const db = getFirestore();
 let db2 = firebase.firestore();
 var auto_inc; 
+var uid10; 
 firebase.auth().onAuthStateChanged(function (user) {
+  uid10 = user.uid; 
+  db2.collection("users").doc(uid10).get().then((doc) => {
+      var email10 = doc.data().Username; 
+      var userlevel10 = doc.data().UserLevel; 
+      document.getElementById("usernamelevel").innerHTML = String(email10) + " | " + String(userlevel10)
+  }); 
+  
+ 
  
   var clicks2 = document.getElementById("clicks"); 
   var myimg = document.getElementById("signatories1"); 
@@ -499,8 +508,19 @@ var logresultstable = document.getElementById("logresults");
   }
   GetAllDataOnce();
   setTimeout(function (wews) {
-    $(document).ready(function () {
 
+    $(document).ready(function () {
+      setTimeout(() => {
+        var table = $('#example').DataTable();
+        if(localStorage.getItem("textvalue") == null)
+        {
+            console.log("No Data in Local Storage")
+        }
+        else {
+          table.search(localStorage.getItem("textvalue")).draw();
+        }
+        localStorage.clear();
+      }, 500);
       $('#example').dataTable({
         iDisplayLength: 5,
         pagingType: "full_numbers",
@@ -729,102 +749,599 @@ var logresultstable = document.getElementById("logresults");
                     displayValue: true
                   })
         $("#user5").html(table.row(this).data()[10]);
+
+        var mnchipspecie = document.getElementById("specieselect"); 
+        db2.collection("Reference Ranges").doc("MNCHIP V5 - "+ String(mnchipspecie.innerText)).get()  
+        .then((doc) => {
         
+
         $("#th_alb").html(table.row(this).data()[11]); 
+        var alba = String(document.getElementById("th_alb").innerText);  
+        /*low */ var albb = String(doc.data().ALBLower);
+        /* high */ var albc = String(doc.data().ALBUpper);    
+      
+          if (parseFloat(alba) > parseFloat(albc) || alba.includes(">"))
+              {
+               th_alb.style.color = "red"
+               document.getElementById("th_alb2").style.color = "red"; 
+              }
+             else if (parseFloat(alba) < parseFloat(albb))
+              {
+               th_alb.style.color = "red"
+               document.getElementById("th_alb2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_alb").style.color = "black"; 
+               document.getElementById("th_alb2").style.color = "black"; 
+              }
+
         $("#th_albunit").html(table.row(this).data()[12]);
         $("#th_albnormal").html(table.row(this).data()[13]);
+
         
+
         $("#th_tp").html(table.row(this).data()[14]);
+        var tpa = String(document.getElementById("th_tp").innerText);  
+        /*low */ var tpb =  String(doc.data().TPLower)
+        /* high */ var tpc =  String(doc.data().TPUpper)
+        if (parseFloat(tpa) > parseFloat(tpc) || tpa.includes(">"))
+        {
+         th_tp.style.color = "red"
+         document.getElementById("th_tp2").style.color = "red"; 
+        }
+       else if (parseFloat(tpa) < parseFloat(tpb))
+        {
+         th_tp.style.color = "red"
+         document.getElementById("th_tp2").style.color = "red"; 
+        }
+        else 
+        {
+         document.getElementById("th_tp").style.color = "black"; 
+         document.getElementById("th_tp2").style.color = "black"; 
+        }
         $("#th_tpunit").html(table.row(this).data()[15]);
         $("#th_tpnormal").html(table.row(this).data()[16]);
         
+
         $("#th_ca").html(table.row(this).data()[17]);
+        var caa = String(document.getElementById("th_ca").innerText);  
+        /*low */ var cab = String(doc.data().CaLower); 
+        /* high */ var cac = String(doc.data().CaUpper);     
+          if (parseFloat(caa) > parseFloat(cac) || caa.includes(">"))
+              {
+               th_ca.style.color = "red"
+               document.getElementById("th_ca2").style.color = "red"; 
+              }
+             else if (parseFloat(caa) < parseFloat(cab))
+              {
+               th_ca.style.color = "red"
+               document.getElementById("th_ca2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_ca").style.color = "black"; 
+               document.getElementById("th_ca2").style.color = "black"; 
+              }
+
         $("#th_caunit").html(table.row(this).data()[18]);
         $("#th_canormal").html(table.row(this).data()[19]);
+
+
         
         $("#th_glu").html(table.row(this).data()[20]);
+        var glua = String(document.getElementById("th_glu").innerText);  
+        /*low */ var glub = String(doc.data().GLULower); 
+        /* high */ var gluc = String(doc.data().GLUUpper); 
+          if (parseFloat(glua) > parseFloat(gluc) || glua.includes(">"))
+              {
+               th_glu.style.color = "red"
+               document.getElementById("th_glu2").style.color = "red"; 
+              }
+             else if (parseFloat(glua) < parseFloat(glub))
+              {
+               th_glu.style.color = "red"
+               document.getElementById("th_glu2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_glu").style.color = "black"; 
+               document.getElementById("th_glu2").style.color = "black"; 
+              }
+
         $("#th_gluunit").html(table.row(this).data()[21]);
         $("#th_glunormal").html(table.row(this).data()[22]);
 
+
+
         $("#th_bun").html(table.row(this).data()[23]);
+        var buna = String(document.getElementById("th_bun").innerText);
+        /*low */ var bunb = String(doc.data().BUNLower)
+        /* high */ var bunc =  String(doc.data().BUNUpper)
+      
+          if (parseFloat(buna) > parseFloat(bunc) || buna.includes(">"))
+              {
+               th_bun.style.color = "red"
+               document.getElementById("th_bun2").style.color = "red"; 
+              }
+             else if (parseFloat(buna) < parseFloat(bunb))
+              {
+               th_bun.style.color = "red"
+               document.getElementById("th_bun2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_bun").style.color = "black"; 
+               document.getElementById("th_bun2").style.color = "black"; 
+              }
+
         $("#th_bununit").html(table.row(this).data()[24]);
         $("#th_bunnormal").html(table.row(this).data()[25]);
+
+
         
         $("#th_p").html(table.row(this).data()[26]);
+        var pa = String(document.getElementById("th_p").innerText);  
+        /*low */ var pb =  String(doc.data().PLower)
+        /* high */ var pc =  String(doc.data().PUpper)  
+      
+          if (parseFloat(pa) > parseFloat(pc) || pa.includes(">"))
+              {
+               th_p.style.color = "red"
+               document.getElementById("th_p2").style.color = "red"; 
+              }
+             else if (parseFloat(pa) < parseFloat(pb))
+              {
+               th_p.style.color = "red"
+               document.getElementById("th_p2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_p").style.color = "black"; 
+               document.getElementById("th_p2").style.color = "black"; 
+              }        
+
         $("#th_punit").html(table.row(this).data()[27]);
         $("#th_pnormal").html(table.row(this).data()[28]);
 
+
+        
         $("#th_amy").html(table.row(this).data()[29]);
+        var amya = String(document.getElementById("th_amy").innerText);  
+         /*low */ var amyb = String(doc.data().AMYLower); 
+               /* high */ var amyc = String(doc.data().AMYUpper);   
+             
+               if (parseFloat(amya) > parseFloat(amyc) || amya.includes(">"))
+               {              
+                th_amy.style.color = "red"
+                document.getElementById("th_amy2").style.color = "red"; 
+               }
+              else if (parseFloat(amya) < parseFloat(amyb))
+               {            
+                th_amy.style.color = "red"
+                document.getElementById("th_amy2").style.color = "red"; 
+               }
+               else 
+               {              
+                document.getElementById("th_amy").style.color = "black"; 
+                document.getElementById("th_amy2").style.color = "black"; 
+               }
+
         $("#th_amyunit").html(table.row(this).data()[30]);
         $("#th_amynormal").html(table.row(this).data()[31]);
+
+
         
         $("#th_chol").html(table.row(this).data()[32]);
+        var chola = String(document.getElementById("th_chol").innerText);  
+         /*low */ var cholb =  String(doc.data().CholLower)
+                /* high */ var cholc =  String(doc.data().CholUpper)  
+              
+                if (parseFloat(chola) > parseFloat(cholc) || chola.includes(">"))
+                {             
+                 th_chol.style.color = "red"
+                 document.getElementById("th_chol2").style.color = "red"; 
+                }
+               else if (parseFloat(chola) < parseFloat(cholb))
+                {              
+                 th_chol.style.color = "red"
+                 document.getElementById("th_chol2").style.color = "red"; 
+                }
+                else 
+                {              
+                 document.getElementById("th_chol").style.color = "black"; 
+                 document.getElementById("th_chol2").style.color = "black"; 
+                }
+
         $("#th_cholunit").html(table.row(this).data()[33]);
         $("#th_cholnormal").html(table.row(this).data()[34]);
+
+
         
         $("#th_alp").html(table.row(this).data()[35]);
+        var alpa = String(document.getElementById("th_alp").innerText);  
+          /*low */ var alpb =  String(doc.data().AlpLower)
+                /* high */ var alpc =  String(doc.data().AlpUpper)   
+                if (parseFloat(alpa) > parseFloat(alpc) || alpa.includes(">"))
+                {            
+                 th_alp.style.color = "red"
+                 document.getElementById("th_alp2").style.color = "red"; 
+                }
+               else if (parseFloat(alpa) < parseFloat(alpb))
+                {             
+                 th_alp.style.color = "red"
+                 document.getElementById("th_alp2").style.color = "red"; 
+                }
+                else 
+                {             
+                 document.getElementById("th_alp").style.color = "black"; 
+                 document.getElementById("th_alp2").style.color = "black"; 
+                }
+
         $("#th_alpunit").html(table.row(this).data()[36]);
         $("#th_alpnormal").html(table.row(this).data()[37]);
 
+
         $("#th_cre").html(table.row(this).data()[38]);
+        var crea = String(document.getElementById("th_cre").innerText);  
+          /*low */ var creb = String(doc.data().CreLower)
+           /* high */ var crec = String(doc.data().CreUpper)
+         
+           if (parseFloat(crea) > parseFloat(crec) || crea.includes(">"))
+           {
+            th_cre.style.color = "red"
+            document.getElementById("th_cre2").style.color = "red"; 
+           }
+          else if (parseFloat(crea) < parseFloat(creb))
+           {
+            th_cre.style.color = "red"
+            document.getElementById("th_cre2").style.color = "red"; 
+           }
+           else 
+           {
+            document.getElementById("th_cre").style.color = "black"; 
+            document.getElementById("th_cre2").style.color = "black"; 
+           }
         $("#th_creunit").html(table.row(this).data()[39]);
         $("#th_crenormal").html(table.row(this).data()[40]);
+
         
         $("#th_ck").html(table.row(this).data()[41]);
+        var cka = String(document.getElementById("th_ck").innerText);  
+        /*low */ var ckb = String(doc.data().CkLower)
+       /* high */ var ckc = String(doc.data().CkUpper)
+     
+       if (parseFloat(cka) > parseFloat(ckc))
+       {     
+        th_ck.style.color = "red"
+        document.getElementById("th_ck2").style.color = "red"; 
+       }
+      else if (parseFloat(cka) < parseFloat(ckb))
+       {        
+        th_ck.style.color = "red"
+        document.getElementById("th_ck2").style.color = "red"; 
+       }
+       else 
+       {
+        document.getElementById("th_ck").style.color = "black"; 
+        document.getElementById("th_ck2").style.color = "black"; 
+       }
+
         $("#th_ckunit").html(table.row(this).data()[42]);
         $("#th_cknormal").html(table.row(this).data()[43]);
 
-        $("#th_wbc").html(table.row(this).data()[44]);
+       
+        $("#th_tbil").html(table.row(this).data()[77]); 
+        var tbila = String(document.getElementById("th_tbil").innerText);  
+        /*low */ var tbilb = String(doc.data().TbilLower)
+        /* high */ var tbilc = String(doc.data().TbilUpper)  
+      
+          if (parseFloat(tbila) > parseFloat(tbilc) || tbila.includes(">"))
+              {
+               th_tbil.style.color = "red"
+               document.getElementById("th_tbil2").style.color = "red"; 
+              }
+             else if (parseFloat(tbila) < parseFloat(tbilb))
+              {
+               th_tbil.style.color = "red"
+               document.getElementById("th_tbil2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_tbil").style.color = "black"; 
+               document.getElementById("th_tbil2").style.color = "black"; 
+              } 
+        $("#th_tbilunit").html(table.row(this).data()[78]);
+        $("#th_tbilnormal").html(table.row(this).data()[79]);
+
+        $("#th_alt").html(table.row(this).data()[80]);  
+        var alta = String(document.getElementById("th_alt").innerText);  
+        /*low */ var altb = String(doc.data().AltLower)
+        /* high */ var altc = String(doc.data().AltUpper)   
+          if (parseFloat(alta) > parseFloat(altc) || alta.includes(">"))
+              {
+               th_alt.style.color = "red"
+               document.getElementById("th_alt2").style.color = "red"; 
+              }
+             else if (parseFloat(alta) < parseFloat(altb))
+              {
+               th_alt.style.color = "red"
+               document.getElementById("th_alt2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_alt").style.color = "black"; 
+               document.getElementById("th_alt2").style.color = "black"; 
+              }
+        $("#th_altunit").html(table.row(this).data()[81]);
+        $("#th_altnormal").html(table.row(this).data()[82]);
+
+
+        //-----
+        })
+        var mythicspecie = document.getElementById("specieselect"); 
+        db2.collection("Reference Ranges").doc("Mythic 18 Vet - "+ String(mythicspecie.innerText)).get()  
+        .then((doc) => {
+
+        $("#th_wbc").html(table.row(this).data()[44]); 
+        var wbca = String(document.getElementById("th_wbc").innerText);  
+        /*low */ var wbcb = String(doc.data().WBCLower); 
+        /* high */ var wbcc = String(doc.data().WBCUpper);    
+          if (parseFloat(wbca) > parseFloat(wbcc))
+              {            
+               th_wbc.style.color = "red"
+               document.getElementById("th_wbc2").style.color = "red"; 
+              }
+             else if (parseFloat(wbca) < parseFloat(wbcb))
+              {
+               th_wbc.style.color = "red"
+               document.getElementById("th_wbc2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_wbc").style.color = "black"; 
+               document.getElementById("th_wbc2").style.color = "black"; 
+              }
+        
         $("#th_wbcunit").html(table.row(this).data()[45]);
         $("#th_wbcnormal").html(table.row(this).data()[46]);
         
-        $("#th_lym").html(table.row(this).data()[47]);
+        $("#th_lym").html(table.row(this).data()[47]); 
+        var lyma = String(document.getElementById("th_lym").innerText);  
+        /*low */ var lymb = String(doc.data().LymLower); 
+        /* high */ var lymc = String(doc.data().LymUpper); ;    
+      
+          if (parseFloat(lyma) > parseFloat(lymc))
+              {            
+               th_lym.style.color = "red"
+               document.getElementById("th_lym2").style.color = "red"; 
+              }
+             else if (parseFloat(lyma) < parseFloat(lymb))
+              {            
+               th_lym.style.color = "red"
+               document.getElementById("th_lym2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_lym").style.color = "black"; 
+               document.getElementById("th_lym2").style.color = "black"; 
+              }
+
         $("#th_lymunit").html(table.row(this).data()[48]);
         $("#th_lymnormal").html(table.row(this).data()[49]);
 
-        $("#th_mon").html(table.row(this).data()[50]);
+        $("#th_mon").html(table.row(this).data()[50]); 
+        var mona = String(document.getElementById("th_mon").innerText);  
+        /*low */ var monb = String(doc.data().MonLower); 
+        /* high */ var monc = String(doc.data().MonUpper);    
+      
+          if (parseFloat(mona) > parseFloat(monc))
+              {
+               th_mon.style.color = "red"
+               document.getElementById("th_mon2").style.color = "red"; 
+              }
+             else if (parseFloat(mona) < parseFloat(monb))
+              {
+               th_mon.style.color = "red"
+               document.getElementById("th_mon2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_mon").style.color = "black"; 
+               document.getElementById("th_mon2").style.color = "black"; 
+              }
+    
         $("#th_monunit").html(table.row(this).data()[51]);
         $("#th_monnormal").html(table.row(this).data()[52]);
 
-        $("#th_gra").html(table.row(this).data()[53]);
+        $("#th_gra").html(table.row(this).data()[53]); 
+        var graa = String(document.getElementById("th_gra").innerText);  
+        /*low */ var grab = String(doc.data().GraLower); 
+        /* high */ var grac = String(doc.data().GraUpper);    
+      
+          if (parseFloat(graa) > parseFloat(grac))
+              {
+               th_gra.style.color = "red"
+               document.getElementById("th_gra2").style.color = "red"; 
+              }
+             else if (parseFloat(graa) < parseFloat(grab))
+              {
+               th_gra.style.color = "red"
+               document.getElementById("th_gra2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_gra").style.color = "black"; 
+               document.getElementById("th_gra2").style.color = "black"; 
+              }
+
         $("#th_graunit").html(table.row(this).data()[54]);
         $("#th_granormal").html(table.row(this).data()[55]);
         
-        $("#th_rbc").html(table.row(this).data()[56]);
+        $("#th_rbc").html(table.row(this).data()[56]); 
+        var rbca = String(document.getElementById("th_rbc").innerText);  
+        /*low */ var rbcb = String(doc.data().RBCLower); 
+        /* high */ var rbcc =  String(doc.data().RBCUpper); 
+      
+          if (parseFloat(rbca) > parseFloat(rbcc))
+              {
+               th_rbc.style.color = "red"
+               document.getElementById("th_rbc2").style.color = "red"; 
+              }
+             else if (parseFloat(rbca) < parseFloat(rbcb))
+              {
+               th_rbc.style.color = "red"
+               document.getElementById("th_rbc2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_rbc").style.color = "black"; 
+               document.getElementById("th_rbc2").style.color = "black"; 
+              }
+
         $("#th_rbcunit").html(table.row(this).data()[57]);
         $("#th_rbcnormal").html(table.row(this).data()[58]);
 
-        $("#th_hgb").html(table.row(this).data()[59]);
+        $("#th_hgb").html(table.row(this).data()[59]); 
+        var hgba = String(document.getElementById("th_hgb").innerText);  
+        /*low */ var hgbb =  String(doc.data().HGBLower); 
+        /* high */ var hgbc =  String(doc.data().HGBUpper); 
+      
+          if (parseFloat(hgba) > parseFloat(hgbc))
+              {
+               th_hgb.style.color = "red"
+               document.getElementById("th_hgb2").style.color = "red"; 
+              }
+             else if (parseFloat(hgba) < parseFloat(hgbb))
+              {
+               th_hgb.style.color = "red"
+               document.getElementById("th_hgb2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_hgb").style.color = "black"; 
+               document.getElementById("th_hgb2").style.color = "black"; 
+              }
         $("#th_hgbunit").html(table.row(this).data()[60]);
         $("#th_hgbnormal").html(table.row(this).data()[61]);
         
         $("#th_hct").html(table.row(this).data()[62]);
+        var hcta = String(document.getElementById("th_hct").innerText);  
+        /*low */ var hctb = String(doc.data().HCTLower); 
+        /* high */ var hctc = String(doc.data().HCTUpper); 
+      
+          if (parseFloat(hcta) > parseFloat(hctc))
+              {          
+               th_hct.style.color = "red"
+               document.getElementById("th_hct2").style.color = "red"; 
+              }
+             else if (parseFloat(hcta) < parseFloat(hctb))
+              {
+             
+               th_hct.style.color = "red"
+               document.getElementById("th_hct2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_hct").style.color = "black"; 
+               document.getElementById("th_hct2").style.color = "black"; 
+              }
         $("#th_hctunit").html(table.row(this).data()[63]);
         $("#th_hctnormal").html(table.row(this).data()[64]);
         
-        $("#th_mcv").html(table.row(this).data()[65]);
+        $("#th_mcv").html(table.row(this).data()[65]);  
+        var mcva = String(document.getElementById("th_mcv").innerText);  
+        /*low */ var mcvb =  String(doc.data().MCVLower); 
+        /* high */ var mcvc =  String(doc.data().MCVUpper); 
+      
+          if (parseFloat(mcva) > parseFloat(mcvc))
+              {
+               th_mcv.style.color = "red"
+               document.getElementById("th_mcv2").style.color = "red"; 
+              }
+             else if (parseFloat(mcva) < parseFloat(mcvb))
+              {
+               th_mcv.style.color = "red"
+               document.getElementById("th_mcv2").style.color = "red";
+              }
+              else 
+              {
+               document.getElementById("th_mcv").style.color = "black"; 
+               document.getElementById("th_mcv2").style.color = "black"; 
+              }
         $("#th_mcvunit").html(table.row(this).data()[66]);
         $("#th_mcvnormal").html(table.row(this).data()[67]);
         
-        $("#th_mch").html(table.row(this).data()[68]);
+        $("#th_mch").html(table.row(this).data()[68]); 
+        var mcha = String(document.getElementById("th_mch").innerText);  
+         /*low */ var mchb = String(doc.data().MCHLower); 
+        /* high */ var mchc = String(doc.data().MCHUpper); 
+      
+          if (parseFloat(mcha) > parseFloat(mchc))
+              {
+               th_mch.style.color = "red"
+               document.getElementById("th_mch2").style.color = "red"; 
+              }
+             else if (parseFloat(mcha) < parseFloat(mchb))
+              {
+               th_mch.style.color = "red"
+               document.getElementById("th_mch2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_mch").style.color = "black"; 
+               document.getElementById("th_mch2").style.color = "black"; 
+              }
         $("#th_mchunit").html(table.row(this).data()[69]);
         $("#th_mchnormal").html(table.row(this).data()[70]);
         
-        $("#th_mchc").html(table.row(this).data()[71]);
+        $("#th_mchc").html(table.row(this).data()[71]); 
+        var mchca = String(document.getElementById("th_mchc").innerText);  
+        /*low */ var mchcb = String(doc.data().MCHCLower); 
+        /* high */ var mchcc = String(doc.data().MCHCUpper); 
+      
+          if (parseFloat(mchca) > parseFloat(mchcc))
+              {
+               th_mchc.style.color = "red"
+               document.getElementById("th_mchc2").style.color = "red"; 
+              }
+             else if (parseFloat(mchca) < parseFloat(mchcb))
+              {
+               th_mchc.style.color = "red"
+               document.getElementById("th_mchc2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_mchc").style.color = "black"; 
+               document.getElementById("th_mchc2").style.color = "black"; 
+              } 
         $("#th_mchcunit").html(table.row(this).data()[72]);
         $("#th_mchcnormal").html(table.row(this).data()[73]);
         
         $("#th_plt").html(table.row(this).data()[74]);
+        var plta = String(document.getElementById("th_plt").innerText);  
+         /*low */ var pltb =  String(doc.data().PLTLower); 
+        /* high */ var pltc =  String(doc.data().PLTUpper); 
+      
+          if (parseFloat(plta) > parseFloat(pltc))
+              {
+               th_plt.style.color = "red"
+               document.getElementById("th_plt2").style.color = "red"; 
+              }
+             else if (parseFloat(plta) < parseFloat(pltb))
+              {
+               th_plt.style.color = "red"
+               document.getElementById("th_plt2").style.color = "red"; 
+              }
+              else 
+              {
+               document.getElementById("th_plt").style.color = "black"; 
+               document.getElementById("th_plt2").style.color = "black"; 
+              }
         $("#th_pltunit").html(table.row(this).data()[75]);
         $("#th_pltnormal").html(table.row(this).data()[76]);
 
-        $("#th_tbil").html(table.row(this).data()[77]);
-        $("#th_tbilunit").html(table.row(this).data()[78]);
-        $("#th_tbilnormal").html(table.row(this).data()[79]);
-
-        $("#th_alt").html(table.row(this).data()[80]);
-        $("#th_altunit").html(table.row(this).data()[81]);
-        $("#th_altnormal").html(table.row(this).data()[82]);
+  
 
         $("#th_lymn").html(table.row(this).data()[84]);
         $("#th_lymunitn").html(table.row(this).data()[85]);
@@ -837,13 +1354,19 @@ var logresultstable = document.getElementById("logresults");
         $("#th_gran").html(table.row(this).data()[90]);
         $("#th_graunitn").html(table.row(this).data()[91]);
         $("#th_granormaln").html(table.row(this).data()[92]);
-  
+        })
+        
         $("#messagemodal").modal("show");
+        $("body.modal-open"). css("padding-right", "unset");
       });
+      
     });
   }, 2000);
 
   $('#updatebtn').click(function() {
+    $("#updatebtn").css("display","none");
+    $("#submitbtn").css("display","block");
+    $(".col-gen").css("display","none");
     $(".hideelements"). css("display", "none");
     $("#remarks-textarea"). css("display", "none");
     $(".inpUpdate1"). css("display", "block");
@@ -853,9 +1376,19 @@ var logresultstable = document.getElementById("logresults");
     $("#breedinputs"). css("display", "block");
     $("#physicianinputs"). css("display", "block");
     $("#remarks-textarea2"). css("display", "block");
+
+
+
+  })
+
+  $('#submitbtn').click(function() {
+    document.getElementById("error5").innerHTML = "Are you sure you want to update this data?"
+    $('#updatemodal').modal("show"); 
   })
 
   $('#closebtn2').click(function() {
+    $("#updatebtn").css("display","block");
+    $("#submitbtn").css("display","none");
     $(".hideelements"). css("display", "block");
     $("#remarks-textarea"). css("display", "block");
     $(".inpUpdate1"). css("display", "none");
