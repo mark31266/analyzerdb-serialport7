@@ -1225,3 +1225,43 @@ table.dataTable tbody tr:hover {
 {
   padding-right: 220px;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.searchTerm {
+  border: 3px solid #336e74;
+  border-right: none;
+  padding: 4px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #336e74;
+}
+
+.searchTerm:focus{
+  color: #336e74;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #336e74;
+  background: #336e74;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+#example, #example_wrapper {
+  visibility: hidden;
+}

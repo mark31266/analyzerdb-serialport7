@@ -19,9 +19,16 @@ var machinename;
 var name1 = document.getElementById("name-input"); 
 var email = document.getElementById("email-input"); 
 var message = document.getElementById("message-textarea"); 
+var uid10; 
 firebase.auth().onAuthStateChanged(function(user) {
   var user = firebase.auth().currentUser;
   username = user.email;
+  uid10 = user.uid; 
+  db.collection("users").doc(uid10).get().then((doc) => {
+      var email10 = doc.data().Username; 
+      var userlevel10 = doc.data().UserLevel; 
+      document.getElementById("usernamelevel").innerHTML = String(email10) + " | " + String(userlevel10)
+  }); 
 })
 
 document.getElementById("sendMsgbtn").addEventListener("click", function(event) {
@@ -45,4 +52,10 @@ if(message.value === "" || message.value === null || name1.value === "" || name1
      
      }
 }); 
+
+function passvalues() {
+  var name = document.getElementById("textvalue").value; 
+  localStorage.setItem("textvalue",name); 
+  return false; 
+  }
 

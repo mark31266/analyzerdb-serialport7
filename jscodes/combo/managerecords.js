@@ -508,8 +508,8 @@ var logresultstable = document.getElementById("logresults");
   }
   GetAllDataOnce();
   setTimeout(function (wews) {
-
     $(document).ready(function () {
+
       setTimeout(() => {
         var table = $('#example').DataTable();
         if(localStorage.getItem("textvalue") == null)
@@ -520,9 +520,20 @@ var logresultstable = document.getElementById("logresults");
           table.search(localStorage.getItem("textvalue")).draw();
         }
         localStorage.clear();
+        $('#searchsubmit').click(function() {
+         table.search($("#textvalue1").val()).draw();
+         console.log($("#textvalue1").val())
+        })
+   
       }, 500);
+      setTimeout(() => {
+        $("#example"). css("visibility", "visible");
+        $("#example_wrapper"). css("visibility", "visible");
+      }, 300);
       $('#example').dataTable({
         iDisplayLength: 5,
+        dom: '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>',
+        dom: "Bfrltip",
         pagingType: "full_numbers",
         searching: true,
         paginate: true,
@@ -661,23 +672,76 @@ var logresultstable = document.getElementById("logresults");
  
       var chart = Highcharts.chart(container[0], {
           chart: {
-              type: 'pie',
+              type: 'line',
           },
           title: {
               text: '',
           },
+          yAxis: {
+            title: {
+                text: 'Number of Test Ran'
+            }
+        },
+    
+        xAxis: {
+          allowDecimals: false
+        },
+    
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+    
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: true
+                },
+            
+            },
+            line: {
+              dataLabels: {
+                  enabled: true
+              },
+          }
+        },
           series: [
               {
+                  name: "Tests",
+                  type: 'line',
                   data: chartData(table),
+                  zoneAxis: 'x',
+                  zones: [{
+                      value: 0,
+                      color: '#336e74'
+                  }, {
+                      value: 1,
+                      color: '#483374'
+                  }, {
+                      value: 2,
+                      color: '#5c264c'
+                    }, {
+                      value: 3,
+                      color: '#483374'
+                    }, {
+                      value: 4,
+                      color: '#336e74'
+                    }, {
+                      value: 5,
+                      color: '#5c264c'
+                  }, {
+                      color: 'red'
+                      
+                  }]
               },
           ],
       });
-   
       // On each draw, update the data in the chart
       table.on('draw', function () {
           chart.series[0].setData(chartData(table));
+
       });
-  
   function chartData(table) {
       var counts = {};
    
@@ -701,6 +765,8 @@ var logresultstable = document.getElementById("logresults");
           };
       });
   }
+
+
       $('#example tbody').on('click', 'tr', function () {
         $(".modal-body div span").text("");
         $("#pidinfo").html(table.row(this).data()[0]);
@@ -1361,6 +1427,7 @@ var logresultstable = document.getElementById("logresults");
       });
       
     });
+ 
   }, 2000);
 
   $('#updatebtn').click(function() {

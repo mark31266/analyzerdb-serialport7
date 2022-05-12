@@ -525,7 +525,8 @@ body {
   }
   #signatories
   {
-  /* display: none;  */
+    float: right;
+    display: block;
   }
   #barcode2{
     display:none;
@@ -558,38 +559,46 @@ body {
     height: 2px;
     border-top:  black;
     line-height: 50%;
-    margin-top: 28px;
+    margin-top: -70px;
     visibility: hidden;
   }
   .vertical {
     -webkit-print-color-adjust: exact;
     background-color: black;
     width: 1px;
-    height: 489px;
+    height: 600px;
     line-height: 110%;
     position: relative;
     float: left; 
-    margin-left: -18px;
+    margin-left: -9px;
     visibility: hidden;
   }
+
+  #signatories {
+    display:none;
+ 
+  } 
   
 
   /* Print Function */
   @media print {
     
-    .modal-header {
-      display: none;
-    }
     .modal-content {
       outline: 0;
       border: none;
+
     }
     .modal-body {
   
       outline: 0;
+      border: none;
     }
 
     #printbtn{
+      display: none;
+    }
+
+    #updatebtn{
       display: none;
     }
 
@@ -602,46 +611,61 @@ body {
     }
 
     #updatebtn{
-      display: none;
+   display: none;
     }
 
     #closebtn2{
       display: none;
     }
 
+    .btn-close{
+      display:none;
+    }
 
   
     div#new-row {
       padding-top: 120px;
   }
+  
     ::-webkit-scrollbar {
       display: none;
     }
+
+    #column1 {
+      width: 120%;
+      color : black
+    }
+    
     #column2 {
-      width: 130%;
+      width: 115%;
       color : black
     }
    .signatoriesyes {
     /* float: left; */
-    position: sticky;
+    padding-left: 50%;
+    float: right;
+    visibility: block;
+    margin-top: -8%;
   } 
   #signatories {
     /* display: inline-block; */
     position: static;
+    display: block;
+    float: right;
     
   } 
     .horizontal_line{
       background-color: black;
-    width: 100%;
-    height: 2px;
-    border-top:  black;
-    line-height: 50%;
-    -webkit-print-color-adjust: exact;
-    visibility: visible;
+      width: 105%;
+      height: 2px;
+      border-top:  black;
+      line-height: 50%;
+      -webkit-print-color-adjust: exact;
+      visibility: visible;
     }
      .horizontal_line2{
       background-color: black;
-      width: 100%;
+      width: 104%;
       height: 2px;
       border-top:  black;
       line-height: 50%;
@@ -650,15 +674,23 @@ body {
     }
     .horizontal_line3 {
       background-color: black;
-      width: 100%;
+      width: 103%;
       height: 2px;
       border-top:  black;
       line-height: 50%;
       -webkit-print-color-adjust: exact;
       visibility: visible; 
+      margin-top: -90px;
     }
     .vertical {
   
+      -webkit-print-color-adjust: exact;
+      background-color: black;
+      width: 1px;
+      height: 650px;
+      line-height: 0%;
+      float: left; 
+      margin-left: 80px;
       visibility: visible;
     }
     #remarks-textarea {
@@ -693,8 +725,8 @@ body {
     }
     .column1 {
       float: left;
-      width: 50%;
-      padding-left: 15px;
+      margin-left:-40px;
+      width:80%;
     }
     .column2
     {
@@ -706,7 +738,6 @@ body {
       width: 120%;
       border-bottom: none;
       font-weight: bold;
-  
     }
   
     .inputBoxTime {
@@ -1209,6 +1240,9 @@ body {
     align-content: center;
   }
   
+.dataTables_scrollBody{
+    max-height: 385px !important; 
+  }
  
     div.dataTables_wrapper div.dataTables_filter input {
       margin-left: .5em;
@@ -1421,7 +1455,6 @@ body {
     width: 50%;
   }
 
- 
   .column1 {
    
     width: 45%;
@@ -1429,10 +1462,10 @@ body {
   }
   .column2
   {
-  
     width: 50%;
     padding-left: 5%;
   }
+
 .inpUpdate1,
 .inpUpdate1-2,
 .inpUpdate2,
@@ -1474,6 +1507,7 @@ div.tabletext {
   width: 100%;
   position: relative;
   display: flex;
+  padding-bottom: 10px;
 }
 
 .searchTerm {
@@ -1501,4 +1535,6 @@ div.tabletext {
   cursor: pointer;
   font-size: 20px;
 }
-
+#example, #example_wrapper {
+  visibility: hidden;
+}

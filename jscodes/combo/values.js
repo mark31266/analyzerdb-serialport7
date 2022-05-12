@@ -1493,4 +1493,8 @@ if (PLT !== null ){
   })
 }
 
-  
+function passvalues() {
+  var name = document.getElementById("textvalue").value; 
+  localStorage.setItem("textvalue",name); 
+  return false; 
+  }

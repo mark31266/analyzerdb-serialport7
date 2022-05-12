@@ -32,8 +32,17 @@
           </div>
         </a>
       </div>
+      <div style="text-align: center;" id="usernamelevel"></div>
       <ul class="list-unstyled components">
-        <p class="search" id="machinename" style="font-size:22px;"></p>
+        <div class="wrap">
+          <form action="/combo/records">  
+          <div class="search">
+             <input id="textvalue" type="text" class="searchTerm" placeholder="Search">
+             <button type="submit" class="searchButton" id="searchsubmit" onclick="passvalues();" /><i class="fa fa-search"></i></button>   
+            </div>  
+            </form> 
+          
+       </div>
         <li>
           <a href="/home">Main Dashboard</a>
         </li>
@@ -43,7 +52,7 @@
         <li>
           <a href="/combo/records">Manage Records</a>
         </li>
-        <li>
+        <li class="active">
           <a href="/about">Contact Us</a>
         </li>
         <li>

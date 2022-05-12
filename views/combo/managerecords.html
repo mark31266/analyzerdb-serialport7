@@ -22,6 +22,10 @@
   <script src='/jscodes/moment.js'></script>
   <script src='https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js'></script>
   <script src='https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js'></script>
+  <script src='https://cdn.datatables.net/searchpanes/2.0.0/js/dataTables.searchPanes.min.js'></script>
+  <script src='https://cdn.datatables.net/searchpanes/2.0.0/js/searchPanes.jqueryui.min.js'></script>
+  <script src='https://cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js'></script>
+
 </head>
 <link rel="stylesheet" href="/css/combo/managerecords.css">
 <body>
@@ -35,16 +39,16 @@
         </a>
       </div>
 
-      <div id="usernamelevel"></div>
+      <div style="text-align: center;" id="usernamelevel"></div>
       <ul class="list-unstyled components">
         
       <div class="wrap">
-        <div class="search">
-          <form action="/combo/records">  
-           <input id="textvalue" type="text" class="searchTerm" placeholder="Search">
-           <button type="submit" class="searchButton" onclick="passvalues();" /><i class="fa fa-search"></i></button>   
+       
+        <div class="search"> 
+           <input id="textvalue1" type="text" class="searchTerm" placeholder="Search">
+           <button type="submit" id="searchsubmit" class="searchButton" onclick="passvalues();" /><i class="fa fa-search"></i></button>   
           </div>  
-          </form> 
+        
         
      </div>
      
@@ -55,7 +59,7 @@
         <li>
           <a href="/combo/run">Run Samples</a>
         </li>
-        <li>
+        <li class="active">
           <a href="/combo/records">Manage Records</a>
         </li>
         <li>
@@ -120,10 +124,10 @@
             </div>
           </div>
           <div id='wews' object align=right>
-            <table class="table " id="example" style="width:100%">
+            <table class="table" id="example" style="width:100%">
               <thead>
                 <tr>
-                  <th data-sortable="false">PID</th>
+                  <th data-sortable="true">PID</th>
                   <th data-sortable="false">Pet Name</th>
                   <th data-sortable="false">Owner Name</th>
                   <th data-sortable="false"></th>
@@ -229,11 +233,11 @@
       </div>
       &nbsp;
       <div class="modal fade" id="messagemodal" role="dialog" data-backdrop="false" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="width:20%;" role="document"  >
+        <div class="modal-dialog modal-dialog-centered modal-manage" style="width:100%;" role="document"  >
           <div class="modal-content" >
             <div class="modal-header">
               <!--<h4 class="modal-title">Manage Records</h4>-->
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <button type="button" class="close btn-close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
               <div id="content">
@@ -253,15 +257,15 @@
           </div>
           </table>
       <div class="tabletext">
-        <div class="row border ">
+        <div class="row">
 
-          <div class="col-md-4 border ">
+          <div class="col-md-4">
             <table id="fname1" class="table table-striped  table-borderless table-fluid">
               <thead>
                 <tr id="fn1">
                   <th class="w-100" style="text-align:left">
                     <div class="row">
-                      <div class="col-3 border ">
+                      <div class="col-3">
                         <div class="inputBoxPetsName">PID: </div>
                       </div>
                       <!--<div class="col-8">-->
@@ -274,7 +278,7 @@
                     &nbsp;                   
                     
                     <div class="row">
-                      <div class="col-5 border">
+                      <div class="col-5">
                     <div class="inputBoxPetsName">Pet's Name: </div></div><div id="petname" class="hideelements"></div>
                     <div class="col-7"><b><input id="petnameinputs" onload="this.value = this.value.toUpperCase()"  class="inpUpdate1" type="text">
                     </b></div></div>
@@ -284,7 +288,7 @@
                 <tr id="ln1">
                   <th class="w-30 " style="text-align:left">
                     <div class="row">
-                      <div class="col-5 border">
+                      <div class="col-5">
                     <div class="inputBoxOwnername">Owner's Name: </div></div><div id="ownername" class="hideelements"></div>
                     <div class="col-7"><input id="ownernameinputs" onload="this.value = this.value.toUpperCase()" class="inpUpdate1-2" type="text"></div>
                   </div></div></div>
@@ -297,7 +301,7 @@
           </div>
 
         <!--   /* 2nd COLUMN */ -->
-          <div class="col-md-4 border ">
+          <div class="col-md-4">
             <table id="lname1" class="table table-borderless table-fluid">
               <thead>
                 <tr id="fn1">
@@ -350,7 +354,7 @@
         </div>
 
         <!--   /* 3Rd COLUMN */ -->
-        <div class="col-md-4 border">
+        <div class="col-md-4">
           <table id="timephys" class="table table-striped table-borderless table-fluid">
             <thead>
               <tr id="pn1">
@@ -618,9 +622,7 @@
         <div class="chip">REMARKS</div>
       <textarea id="remarks-textarea" disabled></textarea>
       <textarea id="remarks-textarea2" required></textarea></div>
-      <div class="signatoriesyes">
-     
-        
+      <div class="signatoriesyes">       
             <div id="signatories"><img id="signatories1" width="450px" height="100px"></div>
           </div>
         </div>

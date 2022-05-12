@@ -125,7 +125,11 @@ var logresultstable = document.getElementById("logresults");
 firebase.auth().onAuthStateChanged(function (user) {
   uid1 = user.uid
   console.log(uid1);
-
+      db2.collection("users").doc(uid1).get().then((doc) => {
+          var email10 = doc.data().Username; 
+          var userlevel10 = doc.data().UserLevel; 
+          document.getElementById("usernamelevel").innerHTML = String(email10) + " | " + String(userlevel10)
+      }); 
   db2.collection("users").doc(uid1).get().then((doc) => {
     username5.innerHTML = String(doc.data().Name);
     userlvl1.innerHTML = String(doc.data().UserLevel);
@@ -292,6 +296,11 @@ firebase.auth().onAuthStateChanged(function (user) {
     RealTimeData();
     setTimeout(function () {
       $(document).ready(function () {
+
+        setTimeout(() => {
+          $("#example"). css("visibility", "visible");
+          $("#example_wrapper"). css("visibility", "visible");
+        }, 300);
 
         $('#example').dataTable({
           iDisplayLength: 5,
