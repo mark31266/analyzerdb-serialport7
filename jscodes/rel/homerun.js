@@ -56,103 +56,22 @@ socket.on('uptimedata', function(uptimedata)
        
       //count data
 
-    db.collection("auditlog").where("Activity", "==", "Run Sample").get()
+    db.collection("Audit Log").where("Activity", "==", "Run Sample").get()
   .then( snapshot => document.getElementById("data1").innerHTML = snapshot.size) ;
 
-  db.collection("auditlog").where("Activity", "==", "Update").get()
+  db.collection("Audit Log").where("Activity", "==", "Update").get()
   .then( 
     snapshot => document.getElementById("data2").innerHTML = snapshot.size) ;
   
-    db.collection("auditlog").where("Activity", "==", "Run Sample").get()
+    db.collection("Audit Log").where("Activity", "==", "Run Sample").get()
   .then( snapshot => document.getElementById("data3").innerHTML = String((parseFloat(snapshot.size) / 7).toFixed(2))) ;
 
   
   db.collection("users").get()
   .then( snapshot => document.getElementById("data4").innerHTML = snapshot.size) ;
 
-  db.collection("Timestamp").doc("Constant").get().then((doc) => {
-    var testdate1 = doc.data().date;
-    var testsid1 = doc.data().sid;
-  db.collection("patientvalues").doc(username + " Mythic 22").collection("DATE").doc(testdate1).collection("SID").doc(testsid1).collection("DATA")
-     .get()  
-     .then(snapshot => {
-       snapshot.forEach(doc => {
-           var date0 = doc.data().DATE;
-           var sid1 = doc.data().SID;
-           var wbc1 = doc.data().WBC;
-           var lym1 = doc.data().LYM;
-           var eos1 = doc.data().EOS;
-           var rbc1 = doc.data().RBC;
-           var hct1 = doc.data().HCT;
-           var neu1 = doc.data().NEU;
-           var mon1 = doc.data().MON;
-           var bas1 = doc.data().BAS;
-           var hgb1 = doc.data().HGB;
-           var mcv1 = doc.data().MCV;
-           var fname1 = doc.data().FirstName;
-           var lname1 = doc.data().LastName;
-           document.getElementById('date0').innerHTML += date0;
-           document.getElementById('sid1').innerHTML += sid1;
-           document.getElementById('wbc1').innerHTML += wbc1;
-           document.getElementById('lym1').innerHTML += lym1;
-           document.getElementById('eos1').innerHTML += eos1;
-           document.getElementById('rbc1').innerHTML += rbc1;
-           document.getElementById('hct1').innerHTML += hct1;
-           document.getElementById('neu1').innerHTML += neu1;
-           document.getElementById('mon1').innerHTML += mon1;
-           document.getElementById('bas1').innerHTML += bas1;
-           document.getElementById('mcv1').innerHTML += mcv1;
-           document.getElementById('hgb1').innerHTML += hgb1;
-           document.getElementById('fname1').innerHTML += fname1;
-           document.getElementById('lname1').innerHTML += lname1;
-       });
-     })
-     .catch(err => {
-       console.log('Error getting documents', err);
-     });
-    })
-   //-----------------------Card2---------------------------------//
-   db.collection("Timestamp").doc("Constant2").get().then((doc) => {
-    var testdate2 = doc.data().date;
-    var testsid2 = doc.data().sid;
-   db.collection("patientvalues").doc(username + " Mythic 22").collection("DATE").doc(testdate2).collection("SID").doc(testsid2).collection("DATA")
-   .get()  
-   .then(snapshot => {
-     snapshot.forEach(doc => {
-         var date2 = doc.data().DATE;
-         var sid2 = doc.data().SID;
-         var wbc2 = doc.data().WBC;
-         var lym2 = doc.data().LYM;
-         var eos2 = doc.data().EOS;
-         var rbc2 = doc.data().RBC;
-         var hct2 = doc.data().HCT;
-         var neu2 = doc.data().NEU;
-         var mon2 = doc.data().MON;
-         var bas2 = doc.data().BAS;
-         var hgb2 = doc.data().HGB;
-         var mcv2 = doc.data().MCV;
-         var fname2 = doc.data().FirstName;
-         var lname2 = doc.data().LastName;
-         document.getElementById('date2').innerHTML += date2;
-         document.getElementById('sid2').innerHTML += sid2;
-         document.getElementById('wbc2').innerHTML += wbc2;
-         document.getElementById('lym2').innerHTML += lym2;
-         document.getElementById('eos2').innerHTML += eos2;
-         document.getElementById('rbc2').innerHTML += rbc2;
-         document.getElementById('hct2').innerHTML += hct2;
-         document.getElementById('neu2').innerHTML += neu2;
-         document.getElementById('mon2').innerHTML += mon2;
-         document.getElementById('bas2').innerHTML += bas2;
-         document.getElementById('mcv2').innerHTML += mcv2;
-         document.getElementById('hgb2').innerHTML += hgb2;
-         document.getElementById('fname2').innerHTML += fname2;
-         document.getElementById('lname2').innerHTML += lname2;
-     });
-   })
-   .catch(err => {
-     console.log('Error getting documents', err);
-   });
-  })
+
+
 
 
     })
@@ -753,8 +672,8 @@ socket.on('uptimedata', function(uptimedata)
       
       var table = $('#example').DataTable();
       var container = $('<div/>').insertBefore(table.table().container());
- 
       var chart = Highcharts.chart(container[0], {
+        
           chart: {
               type: 'pie',
           },
@@ -778,6 +697,22 @@ socket.on('uptimedata', function(uptimedata)
         },
     
         plotOptions: {
+          pie: {
+            colors: [
+              '#3b474d', 
+              '#326e75', 
+              '#5099a9', 
+              '#80cdcc', 
+              '#57c8ad',
+              '#b5f4d4', 
+            ],
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: false
+            },
+            showInLegend: true
+          },
             series: {
                 label: {
                     connectorAllowed: true
@@ -792,32 +727,9 @@ socket.on('uptimedata', function(uptimedata)
         },
           series: [
               {
-                  name: "Dates",
-                  type: 'pie',
+               
                   data: chartData(table),
-                  zoneAxis: 'x',
-                  zones: [{
-                      value: 0,
-                      color: '#336e74'
-                  }, {
-                      value: 1,
-                      color: '#483374'
-                  }, {
-                      value: 2,
-                      color: '#5c264c'
-                    }, {
-                      value: 3,
-                      color: '#483374'
-                    }, {
-                      value: 4,
-                      color: '#336e74'
-                    }, {
-                      value: 5,
-                      color: '#5c264c'
-                  }, {
-                      color: 'red'
-                      
-                  }]
+                
               },
           ],
       });
@@ -1512,4 +1424,188 @@ socket.on('uptimedata', function(uptimedata)
       
     });
   }, 1000);
+
+  var gaugeOptions = {
+    chart: {
+        type: 'solidgauge'
+    },
+
+    title: null,
+
+    pane: {
+        center: ['50%', '85%'],
+        size: '140%',
+        startAngle: -90,
+        endAngle: 90,
+        background: {
+            backgroundColor:
+                Highcharts.defaultOptions.legend.backgroundColor || '#EEE',
+            innerRadius: '60%',
+            outerRadius: '100%',
+            shape: 'arc'
+        }
+    },
+
+    exporting: {
+        enabled: false
+    },
+
+    tooltip: {
+        enabled: false
+    },
+
+    // the value axis
+    yAxis: {
+        stops: [
+            [0.1, '#50bfb9'], 
+            [0.5, '#1dab8c'], 
+            [0.9, '#4599a8'] 
+        ],
+        lineWidth: 0,
+        tickWidth: 0,
+        minorTickInterval: null,
+        tickAmount: 2,
+        title: {
+            y: -70
+        },
+        labels: {
+            y: 16
+        }
+    },
+
+    plotOptions: {
+        solidgauge: {
+            dataLabels: {
+                y: 5,
+                borderWidth: 0,
+                useHTML: true
+            }
+        }
+    }
+};
+setTimeout(() => {
+  
+
+var totaldata = document.getElementById("data1").innerHTML; 
+var averagedata = document.getElementById("data3").innerHTML; 
+var updatedata = document.getElementById("data2").innerHTML; 
+var accdata = document.getElementById("data4").innerHTML; 
+// The speed gauge
+var chartSpeed = Highcharts.chart('container-total', Highcharts.merge(gaugeOptions, {
+    yAxis: {
+        min: 0,
+        max: parseFloat(totaldata) * 5 -200,
+        title: {
+            text: 'Total Test Runs'
+        }
+    },
+
+    credits: {
+        enabled: false
+    },
+
+    series: [{
+        name: 'Speed',
+        data: [parseFloat(totaldata)],
+        dataLabels: {
+            format:
+                '<div style="text-align:center">' +
+                '<span style="font-size:25px">{y}</span><br/>' +
+                '<span style="font-size:12px;opacity:0.4">Tests</span>' +
+                '</div>'
+        },
+        tooltip: {
+            valueSuffix: ' Tests '
+        }
+    }]
+
+}));
+var chartRpm = Highcharts.chart('container-avg', Highcharts.merge(gaugeOptions, {
+  yAxis: {
+      min: 0,
+      max: parseFloat(averagedata) * 5 -10,
+      title: {
+          text: 'Average Test per Day'
+      }
+  },
+
+  credits: {
+      enabled: false
+  },
+
+  series: [{
+      name: 'Speed',
+      data: [parseFloat(averagedata)],
+      dataLabels: {
+          format:
+              '<div style="text-align:center">' +
+              '<span style="font-size:25px">{y}</span><br/>' +
+              '<span style="font-size:12px;opacity:0.4">Tests</span>' +
+              '</div>'
+      },
+      tooltip: {
+          valueSuffix: ' Tests '
+      }
+  }]
+}));
+var chartUpd = Highcharts.chart('container-upd', Highcharts.merge(gaugeOptions, {
+  yAxis: {
+      min: 0,
+      max: parseFloat(updatedata) * 5 -10,
+      title: {
+          text: 'Total Test Updates'
+      }
+  },
+
+  credits: {
+      enabled: false
+  },
+
+  series: [{
+      name: 'Speed',
+      data: [parseFloat(updatedata)],
+      dataLabels: {
+          format:
+              '<div style="text-align:center">' +
+              '<span style="font-size:25px">{y}</span><br/>' +
+              '<span style="font-size:12px;opacity:0.4">Tests</span>' +
+              '</div>'
+      },
+      tooltip: {
+          valueSuffix: ' Tests '
+      }
+  }]
+}));
+var chartAcc = Highcharts.chart('container-acc', Highcharts.merge(gaugeOptions, {
+  yAxis: {
+      min: 0,
+      max: parseFloat(accdata) * 5 -10,
+      title: {
+          text: 'Total Accounts Registered'
+      }
+  },
+
+  credits: {
+      enabled: false
+  },
+
+  series: [{
+      name: 'Speed',
+      data: [parseFloat(accdata)],
+      dataLabels: {
+          format:
+              '<div style="text-align:center">' +
+              '<span style="font-size:25px">{y}</span><br/>' +
+              '<span style="font-size:12px;opacity:0.4">Accounts</span>' +
+              '</div>'
+      },
+      tooltip: {
+          valueSuffix: ' Accounts '
+      }
+  }]
+}));
+
+}, 1000);
+
+
   

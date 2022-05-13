@@ -136,14 +136,11 @@
                     <div id="bloodlabel">Date Comitted:</div>
                     <div class="modaltexts" id="date6"></div>
 
-                    <div id="bloodlabel">Serial Number:</div>
-                    <div class="modaltexts" id="serial1"></div>
+                    <div id="bloodlabel">PID:</div>
+                    <div class="modaltexts" id="pid1"></div>
 
-                    <div id="bloodlabel">Machine:</div>
-                    <div class="modaltexts" id="machine1"></div>
-
-                    <div id="bloodlabel">Number Identifier:</div>
-                    <div class="modaltexts" id="idnumber1"></div>
+                    <div id="bloodlabel">Sample Date:</div>
+                    <div class="modaltexts" id="sampledate1"></div>
 
                     <div id="bloodlabel">User Comitted:</div>
                     <div class="modaltexts" id="username63"></div>
@@ -161,9 +158,11 @@
                 <!--  Name and User Level -->
                 <h2>
                   <div id="username5"></div>
+                  <div class="credentials"><input id="name1inputs"></div>
                 </h2>
                 <h5>
                   <div id="userlvl1"></div>
+               
                 </h5>
                 <thead>
                   <tr id="desc">
@@ -847,16 +846,73 @@
                 <div class="modal fade" id="ModalPic" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
                   aria-hidden="true" data-backdrop="false">
                   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
-                    <div class="modal-content" style="width:150%; height:300px;">
+                    <div id="modal-printelements" class="modal-content">
 
                       <div class="modal-header">
-                        <h5 class="modal-title text-modal-header" id="ModalLongTitle">Upload Photo</h5>
+                        <h5 class="modal-title text-modal-header" id="ModalLongTitle">Change Print Elements</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body1">
-                        <form>
+                        <button id="uprint" class="btn text-center text-light">Upload Print Elements</button>
+                        <button id="ctext" class="btn text-center text-light">Change Text Elements</button>
+                       
+                       <div id="textelements">
+                        <div class="row">
+                          <table id="fname1" class="table table-borderless table-fluid">
+                              <thead>
+                                  <tr id="fn1">
+                                      <th class="w-30" style="text-align:left">
+                                          <div class="inputtext1">Clinic Name: <input
+                                                  id="clinicinputs1" type="text" required="" /></div>
+                                      </th>
+                                  </tr>
+                                  <tr id="fn1">
+                                    <th class="w-30" style="text-align:left">
+                                        <div class="inputtext1">Address: <input
+                                                id="addressinputs1" type="text" required="" /></div>
+                                    </th>
+                                </tr>
+                                <tr id="fn1">
+                                  <th class="w-30" style="text-align:left">
+                                      <div class="inputtext1">Person 1: <input
+                                              id="labtechnician1" type="text" required="" /></div>
+                                  </th>
+                              </tr>
+                              <tr id="fn1">
+                                <th class="w-30" style="text-align:left">
+                                    <div class="inputtext1">Details 1: <input
+                                            id="details10" type="text" required="" /></div>
+                                </th>
+                            </tr>
+                              <tr id="fn1">
+                                <th class="w-30" style="text-align:left">
+                                    <div class="inputtext1">Person 2: <input
+                                            id="vetinputs1" type="text" required="" /></div>
+                                </th>
+                            </tr>
+                            <tr id="fn1">
+                              <th class="w-30" style="text-align:left">
+                                  <div class="inputtext1">Details 2: <input
+                                          id="details2" type="text" required="" /></div>
+                              </th>
+                          </tr>
+                            <tr id="fn1">
+                              <th class="w-30" style="text-align:left">
+                                <button id="textsubmit" class="btn text-center text-light">Submit</button>
+                              </th>
+                          </tr>
+                               
+
+                              </thead>
+                              </tbody>
+                          </table>
+
+                      </div>
+                       
+                       </div>
+                        <form id="printelements">
                           <div class="row">
                             <div class="col">
                             </div>
@@ -869,13 +925,13 @@
                                   <option selected value style="text-align:center;" disabled>Select an Option
                                   </option>
                                   <option style="text-align:center;">Logo</option>
-                                  <option style="text-align:center;">Header</option>
-                                  <option style="text-align:center;">Signatories</option>
+                                  <option style="text-align:center;">Person 1 E-Signature</option>
+                                  <option style="text-align:center;">Person 2 E-Signature</option>
                                 </select>
                               </div>
                               <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" accept="image/jpeg, image/jpg"
-                                  value="Choose a file" name="profilepic[]" id="uploadre" name="filename">
+                                <input type="file" class="custom-file-input" accept="image/*"
+                                  value="Choose a file" name="profilepic[]" id="uploadre" name="filename" disabled>
                                 <label class="custom-file-label" id="filenamelabel" for="customFile">Choose a
                                   file</label>
                                 <label id="upprogress"></label>
@@ -915,17 +971,20 @@
                   <div class="run">Audit Log</div>
                 </div>
               </div>
+              <div class="d-flex justify-content-center">
+              <div class="spinner-grow spinner-custom" role="status">
+                <span class="sr-only">Loading...</span>
+              </div></div>
               <table class="table " id="example" style="width:100%">
 
                 <thead>
                   <tr>
                     <th data-sortable="false">Number</th>
                     <th data-sortable="false">Activity</th>
-                    <th data-sortable="false">Date</th>
                     <th data-sortable="false"></th>
                     <th data-sortable="false"></th>
                     <th data-sortable="false"></th>
-                    <th data-sortable="false"></th>
+                    <th data-sortable="false">Date Committed</th>
                   </tr>
                 </thead>
                 <tbody id="logresults">

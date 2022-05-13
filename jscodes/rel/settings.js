@@ -28,9 +28,22 @@ import {
 
 const db = getFirestore();
  //--------Image Upload---------//
+
+ $('#uprint').click(function () {
+  $("#printelements").css("display","block");
+  $("#textelements").css("display","none");
+});
+$('#ctext').click(function () {
+  $("#printelements").css("display","none");
+  $("#textelements").css("display","block");
+
+});
+
+
  var reader = new FileReader();
  var proglab = document.getElementById("upprogress");
- document.getElementById("filenamelabel").innerHTML += " ";
+ var filename1 = document.getElementById("optionselect"); 
+ document.getElementById("filenamelabel").innerHTML = filename1.value; ;
  function readURL() {
    var $input = $(this);
    var $newinput = $(this).parent().parent().parent().find('.portimg ');
@@ -42,7 +55,7 @@ const db = getFirestore();
      }
      reader.readAsDataURL(this.files[0]);
      var ImgToUpload = this.files[0];
-     var ImgName = document.getElementById("filenamelabel").innerText;
+     var ImgName = document.getElementById("optionselect").value;
      const metaData = {
        contentType: ImgToUpload.type
      }
@@ -84,7 +97,7 @@ const db = getFirestore();
    }
  }
  async function SaveURLtoFirestore(url) {
-   var filename = document.getElementById("filenamelabel").innerText;
+   var filename = document.getElementById("optionselect").value;
 
    var ref = doc(db, "Images/" + filename);
 
@@ -107,7 +120,7 @@ var forgotbtn1 = document.getElementById("forgotBTN");
 var closebtn1 = document.getElementById("closeBTN");
 let username5 = document.getElementById("username5");
 let userlvl1 = document.getElementById("userlvl1");
-let date2 = document.getElementById("date1");
+let date2 = document.getElementById("date");
 let clock1 = document.getElementById("clock");
 
 let desc1 = document.getElementById("desc1");
@@ -118,6 +131,10 @@ let email1inputs = document.getElementById("email1inputs");
 
 let username1 = document.getElementById("username1");
 let username1inputs = document.getElementById("username1inputs");
+
+let name1 = document.getElementById("username5");
+let name1inputs = document.getElementById("name1inputs");
+
 
 var uid1;
 var auto_inc = 0;
@@ -151,6 +168,11 @@ firebase.auth().onAuthStateChanged(function (user) {
       username1inputs.style.display = "block";
       username1inputs.value = username1.innerHTML
 
+      //Name
+      name1.style.display = "none";
+      name1inputs.style.display = "block";
+      name1inputs.value = username5.innerHTML  
+
       closebtn1.style.display = "inline-block"
       submitbtn1.style.display = "inline-block";
       updatebtn1.style.display = "none";
@@ -163,16 +185,15 @@ firebase.auth().onAuthStateChanged(function (user) {
       desc1.style.display = "none";
       email1.style.display = "none";
       username1.style.display = "none";
+      username5.style.display = "none";
 
       db2.collection("Audit Log").doc(date2.innerText + " " + clock1.innerText).set(
         {
-          NumberIdentifier: "-",
-          Client: "-",
-          Machine: "-",
-          SerialDescription: "-",
-          User: String(user.email),
-          ExactDate: date2.innerText + " " + clock1.innerText,
-          ChangeMode: "Changed Account Details",
+        ID : String(user.email),
+        PID : "-",
+        Date : "-",
+        Activity : "Change Account Details",
+        DateDid : date2.innerText + " " + clock1.innerText 
         })
       db2.collection("username").doc(username1inputs.value).set(
         {
@@ -189,6 +210,7 @@ firebase.auth().onAuthStateChanged(function (user) {
           ExactDate: date2.innerText + " " + clock1.innerText,
           Username: username1inputs.value,
           EMail: email1inputs.value,
+          Name: name1inputs.value,
         }, { merge: true }).then(function (event) {
           document.getElementById("error1").innerHTML = "Update Submitted";
           $('#myModal').modal('show');
@@ -202,16 +224,80 @@ firebase.auth().onAuthStateChanged(function (user) {
       desc1inputs.style.display = "none";
       email1inputs.style.display = "none";
       username1inputs.style.display = "none";
+      name1inputs.style.display = "none";
 
       desc1.style.display = "block";
       email1.style.display = "block";
       username1.style.display = "block";
+      username5.style.display = "block";
 
       closebtn1.style.display = "none";
       submitbtn1.style.display = "none";
       updatebtn1.style.display = "inline-block";
       forgotbtn1.style.display = "inline-block";
 
+
+      // are you sure you want to discard changes
+    });
+    $("#optionselect").change(function(){
+
+      $('#uploadre').prop("disabled", false);
+
+  });
+    
+    var clinic1 = document.getElementById("clinicinputs1"); 
+    var address1 = document.getElementById("addressinputs1"); 
+    var labtechnician1 = document.getElementById("labtechnician1"); 
+    var details10 = document.getElementById("details10"); 
+    var vet1 = document.getElementById("vetinputs1"); 
+    var details2 = document.getElementById("details2"); 
+
+    db2.collection("Details").doc("Clinic Details").get().then((doc) => {
+      clinic1.value = String(doc.data().Clinic);
+      address1.value = String(doc.data().Address);
+      labtechnician1.value = String(doc.data().LabTechnician);
+      details10.value = String(doc.data().Details1);
+      vet1.value = String(doc.data().Veterinarian);
+      details2.value = String(doc.data().Details2);
+    })
+
+    $('#textsubmit').click(function () {
+      if (clinic1 !== null && clinic1.value === "" ||
+          address1 !== null && address1.value === ""
+          || labtechnician1 !== null && labtechnician1.value === ""
+          || vet1 !== null && vet1.value === "" 
+          || details10 !== null && details10.value === ""
+          || details2 !== null && details2.value === "") 
+          {
+            document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
+            $('#myModal').modal('show');
+          }
+      else {
+        db2.collection("Audit Log").doc(date2.innerText + " " + clock1.innerText).set(
+          {
+          ID : String(user.email),
+          PID : "-",
+          Date : "-",
+          Activity : "Update Text Elements",
+          DateDid : date2.innerText + " " + clock1.innerText 
+          })
+        db2.collection("Details").doc("Clinic Details").set(
+          {
+            Clinic : clinic1.value,
+            Address : address1.value, 
+            LabTechnician : labtechnician1.value,
+            Details1 : details10.value,
+            Veterinarian : vet1.value,
+            Details2 : details2.value
+          }, {merge: true}).then(() => {
+            document.getElementById("error1").innerHTML = "Clinic Data Updated!";
+            $('#myModal').modal('show');
+            window.location.reload(); 
+        }).catch((error) => {
+          document.getElementById("error1").innerHTML = error.message;
+          $('#myModal').modal('show');
+      });
+      }
 
       // are you sure you want to discard changes
     });
@@ -236,29 +322,26 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         });
     }
-    function AddItemToTable(activity, date, machine, sid, testdate, username) {
+    function AddItemToTable(activity, id, pid, sampledate,datedid) {
       let tr_data = document.createElement('tr');
+      let td0 = document.createElement('td');
       let td1 = document.createElement('td');
       let td2 = document.createElement('td');
       let td3 = document.createElement('td');
       let td4 = document.createElement('td');
       let td5 = document.createElement('td');
-      let td6 = document.createElement('td');
-      let td7 = document.createElement('td');
-      td1.innerHTML = ++auto_inc;
-      td2.innerHTML = activity;
-      td3.innerHTML = date;
-      td4.innerHTML = machine;
-      td5.innerHTML = sid;
-      td6.innerHTML = testdate;
-      td7.innerHTML = username;
+      td0.innerHTML = ++auto_inc;
+      td1.innerHTML = activity;
+      td2.innerHTML = id;
+      td3.innerHTML = pid;
+      td4.innerHTML = sampledate;
+      td5.innerHTML = datedid;
+      tr_data.appendChild(td0);
       tr_data.appendChild(td1);
       tr_data.appendChild(td2);
       tr_data.appendChild(td3);
       tr_data.appendChild(td4);
       tr_data.appendChild(td5);
-      tr_data.appendChild(td6);
-      tr_data.appendChild(td7);
       logresultstable.appendChild(tr_data);
     }
 
@@ -266,11 +349,11 @@ firebase.auth().onAuthStateChanged(function (user) {
       auto_inc = 0;
       logresultstable.innerHTML = "";
       auditlog.forEach(element => {
-        AddItemToTable(element.Activity, element.DateDid, element.Machine, element.SID, element.Test_Run_Date, element.id);
+        AddItemToTable(element.Activity, element.ID, element.PID, element.Date, element.DateDid);
       });
     }
     async function GetAllDataOnce() {
-      const q = query(collection(db, "auditlog"));
+      const q = query(collection(db, "Audit Log"));
       const querySnapshot = await getDocs(q);
       var datalog = [];
       querySnapshot.forEach(doc => {
@@ -282,7 +365,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     async function RealTimeData() {
 
-      const dbRef = collection(db, "auditlog");
+      const dbRef = collection(db, "Audit Log");
       onSnapshot(dbRef, (querySnapshot) => {
         var datalog = [];
         querySnapshot.forEach(doc => {
@@ -300,7 +383,9 @@ firebase.auth().onAuthStateChanged(function (user) {
         setTimeout(() => {
           $("#example"). css("visibility", "visible");
           $("#example_wrapper"). css("visibility", "visible");
+          $(".spinner-grow"). css("display", "none");
         }, 300);
+        
 
         $('#example').dataTable({
           iDisplayLength: 5,
@@ -335,41 +420,33 @@ firebase.auth().onAuthStateChanged(function (user) {
             },
             {
               "targets": [2],
-              "visible": true,
+              "visible": false,
               "searchable": true,
-              orderable: true,
+
             },
             {
               "targets": [3],
               "visible": false,
               "searchable": true,
-              orderable: true,
             },
             {
               "targets": [4],
               "visible": false,
               "searchable": true,
-              orderable: true,
             },
             {
               "targets": [5],
-              "visible": false,
+              "visible": true,
               "searchable": true,
               orderable: true,
             },
-            {
-              "targets": [6],
-              "visible": false,
-              "searchable": true,
-              orderable: true
-            },
+
             { width: "10px", targets: 0 },
             { width: "500px", targets: 1 },
             { width: "500px", targets: 2 },
             { width: "500px", targets: 3 },
             { width: "500px", targets: 4 },
             { width: "500px", targets: 5 },
-            { width: "500px", targets: 6 },
           ],
           fixedColumns: true,
           "dom": '<lf<t>ip>',
@@ -441,11 +518,11 @@ firebase.auth().onAuthStateChanged(function (user) {
           $(".modal-body1 div span").text("");
           $("#number1").text(table.row(this).data()[0]);
           $("#activity1").text(table.row(this).data()[1]);
-          $("#date6").text(table.row(this).data()[2]);
-          $("#serial1").text(table.row(this).data()[3]);
-          $("#machine1").text(table.row(this).data()[4]);
-          $("#idnumber1").text(table.row(this).data()[5]);
-          $("#username63").text(table.row(this).data()[6]);
+          $("#username63").text(table.row(this).data()[2]);
+          $("#pid1").text(table.row(this).data()[3]);
+          $("#sampledate1").text(table.row(this).data()[4]);
+          $("#date6").text(table.row(this).data()[5]);
+        
           $("#messagemodal").modal("show");
         });
       });
@@ -720,6 +797,14 @@ firebase.auth().onAuthStateChanged(function (user) {
     })
     //------------breakpoint-------------------------//
     function adddatatodb1() {
+      db2.collection("Audit Log").doc(date2.innerText + " " + clock1.innerText).set(
+        {
+        ID : String(user.email),
+        PID : "MNCHIP V5 Reference Range " + speciesinput.value,
+        Date : "-",
+        Activity : "Add Reference Range",
+        DateDid : date2.innerText + " " + clock1.innerText 
+        })
       db2.collection("Reference Ranges").doc(machineselect1.value + " - " + speciesinput.value).set(
         {
           ALBLower: albl1.value,
@@ -759,6 +844,14 @@ firebase.auth().onAuthStateChanged(function (user) {
     });
     }
     function adddatatodb() {
+      db2.collection("Audit Log").doc(date2.innerText + " " + clock1.innerText).set(
+        {
+        ID : String(user.email),
+        PID : "Mythic 18 Vet Reference Range " + speciesinput.value,
+        Date : "-",
+        Activity : "Add Reference Range",
+        DateDid : date2.innerText + " " + clock1.innerText 
+        })
       db2.collection("Reference Ranges").doc(machineselect1.value + " - " + speciesinput.value).set(
         {
           WBCLower: wbcl1.value,
@@ -847,6 +940,14 @@ firebase.auth().onAuthStateChanged(function (user) {
       $('#myModal').modal('show');
     }
     else {
+      db2.collection("Audit Log").doc(date2.innerText + " " + clock1.innerText).set(
+        {
+        ID : String(user.email),
+        PID : msselect1.value,
+        Date : "-",
+        Activity : "Update Reference Range",
+        DateDid : date2.innerText + " " + clock1.innerText 
+        })
       db2.collection("Reference Ranges").doc(msselect1.value).set(
         {
           WBCLower: wbcl2.value,
@@ -922,6 +1023,14 @@ firebase.auth().onAuthStateChanged(function (user) {
       $('#myModal').modal('show');
     }
     else {
+      db2.collection("Audit Log").doc(date2.innerText + " " + clock1.innerText).set(
+        {
+        ID : String(user.email),
+        PID : msselect1.value,
+        Date : "-",
+        Activity : "Update Reference Range",
+        DateDid : date2.innerText + " " + clock1.innerText 
+        })
       db2.collection("Reference Ranges").doc(msselect1.value).set(
         {
           ALBLower: albl2.value,

@@ -29,8 +29,10 @@ const db = getFirestore();
 let db2 = firebase.firestore();
 var auto_inc; 
 var uid10; 
+var email10; 
 firebase.auth().onAuthStateChanged(function (user) {
   uid10 = user.uid; 
+  email10 = user.email; 
   db2.collection("users").doc(uid10).get().then((doc) => {
       var email10 = doc.data().Username; 
       var userlevel10 = doc.data().UserLevel; 
@@ -529,7 +531,9 @@ var logresultstable = document.getElementById("logresults");
       setTimeout(() => {
         $("#example"). css("visibility", "visible");
         $("#example_wrapper"). css("visibility", "visible");
+        
       }, 300);
+      $(".spinner-grow"). css("display", "none");
       $('#example').dataTable({
         iDisplayLength: 5,
         dom: '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>',
@@ -1443,14 +1447,63 @@ var logresultstable = document.getElementById("logresults");
     $("#breedinputs"). css("display", "block");
     $("#physicianinputs"). css("display", "block");
     $("#remarks-textarea2"). css("display", "block");
-
-
-
   })
-
+  var date2 = document.getElementById("date"); 
+  var clock1 = document.getElementById("clock"); 
+  var pidinfo1 = document.getElementById("pidinfo"); 
+  var petname1 = document.getElementById("petnameinputs"); 
+  var ownername1 = document.getElementById("ownernameinputs"); 
+  var age1 = document.getElementById("ageinputs"); 
+  var gender1 = document.getElementById("genderselect"); 
+  var breed1 = document.getElementById("breedinputs"); 
+  var vet1 = document.getElementById("physicianinputs");
+  var remarks1 = document.getElementById("remarks-textarea2");
+  var sampledate = document.getElementById("DATE")
   $('#submitbtn').click(function() {
+    if (petname1 !== null && petname1.value === "" ||
+        ownername1 !== null && ownername1.value === "" ||
+        age1 !== null && age1.value === "" ||
+        gender1 !== null && gender1.value === "" ||
+        breed1 !== null && breed1.value === "" ||
+        vet1 !== null && vet1.value === "") {
+
+    document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s"
+    $('#myModal').modal("show"); 
+    }
+    else {
     document.getElementById("error5").innerHTML = "Are you sure you want to update this data?"
     $('#updatemodal').modal("show"); 
+    }
+  })
+ 
+  $('#updateyes').click(function() {
+    db2.collection("Audit Log").doc(date2.innerText + " " + clock1.innerText).set(
+      {
+      ID : String(email10),
+      PID : pidinfo1.innerHTML,
+      Date : sampledate.innerText,
+      Activity : "Update Test Credentials",
+      DateDid : date2.innerText + " " + clock1.innerText 
+      })
+    db2.collection("patientvalues2").doc(pidinfo1.innerHTML).set(
+      {
+      PetName : petname1.value,
+      OwnerName : ownername1.value, 
+      Age : age1.value, 
+      Gender : gender1.value,
+      Breed: breed1.value,
+      Doctor : vet1.value,
+      Remarks : remarks1.value
+      },{ merge: true }).then(function (event){ 
+        document.getElementById("error1").innerHTML = "Update Submitted";
+      $('#messagemodal').modal('show');
+      setTimeout(() => {
+        window.location.reload(); 
+      }, 200);
+        } , {once: true});   
+  })
+  $('#updateno').click(function() {
+    $('#updatemodal').modal('hide');
   })
 
   $('#closebtn2').click(function() {

@@ -858,45 +858,16 @@
            })
            doc_withautoincrement(); 
            window.print(); 
-           db.collection("Timestamp MNCHIP V5").doc("Counting").get().then((doc) => {
-             var count1 = doc.data().counting; 
-            if (count1 == "0") 
-           {
-            db.collection("Timestamp MNCHIP V5").doc("Constant").set(
-              {
-                dateran : date2.innerText + " " + clock1.innerText,
-                date : DATEinput.innerText,
-                PID : PIDinput.innerText + SIDinput.innerHTML
-              })
-              db.collection("Timestamp MNCHIP V5").doc("Counting").set(
-                {
-                  counting : "1"  
-                })
-           }
-           else if (count1 == "1") 
-           {
-            db.collection("Timestamp MNCHIP V5").doc("Counting").set(
-              {
-                counting : "0"  
-              })
-            db.collection("Timestamp MNCHIP V5").doc("Constant2").set(
-              {
-                dateran : date2.innerText + " " + clock1.innerText,
-                date : DATEinput.innerText,
-                PID : PIDinput.innerText + SIDinput.innerHTML,
-              })
-           }
-           })
+         
            var emailused2 = document.getElementById("email2"); 
-           db.collection("auditlog").doc(date2.innerText + " " + clock1.innerText).set(
-             {
-             id : emailused2.innerHTML,
-             PID : PIDinput.innerText + SIDinput.innerHTML,
-             Test_Run_Date : DATEinput.innerText,
-             Activity : "Run Sample",
-             Machine : machinename.innerHTML,
-             DateDid : date2.innerText + " " + clock1.innerText 
-             })
+           db.collection("Audit Log").doc(date2.innerText + " " + clock1.innerText).set(
+            {
+            ID : String(emailused2.innerHTML),
+            PID : pidinfo1.innerHTML,
+            Date : DATEinput.innerText,
+            Activity : "Run Sample",
+            DateDid : date2.innerText + " " + clock1.innerText 
+            })
           // setTimeout(function(){    
           //    window.location.reload();  
           

@@ -20,11 +20,12 @@ a:focus {
 }
 
 .navbar {
-  padding: 15px 10px;
+  padding: 10px 10px;
   background: #fff;
   border: none;
   border-radius: 0;
   margin-bottom: 40px;
+  margin: 20px !important;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -46,9 +47,10 @@ a:focus {
   margin: 40px 0;
 }
 
-a.date1 {
+#date1 {
   font-family: 'Segoe UI';
   font-size: 30px;
+  display: none
 }
 
 a.clock1 {
@@ -317,19 +319,8 @@ ul.CTAs a {
 }
 
 #date {
-  width: 85%;
-  padding: 0.625rem 0;
-  font-size: 140%;
-  color: #556c6e;
-  border: none !important;
-  border-bottom: 0.065rem solid #fff;
-  outline: none;
-  background: transparent !important;
-  font-family: "Segoe UI Semibold" !important;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  display: none;
+  font-family: 'Segoe UI';
+  font-size: 30px;
 }
 
 #time {
@@ -663,6 +654,32 @@ select {
   font-size: 15px;
   font-weight: bold;
   border-radius: 25px;
+}
+#uprint {
+  background-color: #337277 !important;
+  padding: 7px 30px;
+  font-family: 'Segoe UI Light';
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 25px;
+}
+#ctext {
+  background-color: #337277 !important;
+  padding: 7px 30px;
+  font-family: 'Segoe UI Light';
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 25px;
+}
+#textsubmit {
+  background-color: #337277 !important;
+  padding: 7px 30px;
+  font-family: 'Segoe UI Light';
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 25px;
+  margin-right: 44%;
+  float: right;
 }
 
 #refbtn {
@@ -1108,7 +1125,7 @@ div.filter-option-inner-inner {
 #desc1inputs,
 #email1inputs,
 #username1inputs,
-#closeBTN {
+#closeBTN,#name1inputs {
   display: none;
 }
 
@@ -1171,6 +1188,18 @@ table.dataTable tbody tr:hover {
   text-align: left;
   width: 400%
 }
+.clinictexts input {
+  padding-left: 5px;
+  font-size: 16px;
+  color: #333232;
+  border: none;
+  border-bottom: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Segoe UI Semibold';
+  text-align: left;
+  width: 400%
+}
 
 .infotab {
   font-size: 17px;
@@ -1216,11 +1245,15 @@ table.dataTable tbody tr:hover {
   text-align: center;
 }
 
-#email1inputs, #username1inputs, #desc1inputs  {
+#email1inputs, #username1inputs, #desc1inputs {
    border-bottom: 0.065rem solid #333232;
    width: 340px
 }
-
+#name1inputs {
+  border-bottom: 0.065rem solid #333232;
+  width: 340px;
+  font-size: 30px; 
+}
 #FirstPart
 {
   padding-right: 220px;
@@ -1264,4 +1297,26 @@ table.dataTable tbody tr:hover {
 }
 #example, #example_wrapper {
   visibility: hidden;
+}
+
+.spinner-custom{
+  background-color: #326e75;
+  opacity: 20%;
+  margin-top:160px;
+  width: 6rem ;
+  height: 6rem ;
+}
+#printelements,#textelements{
+  display: none;
+}
+#modal-printelements {
+  max-height: fit-content;
+  min-height: 141px;
+  max-width: fit-content;
+  min-width: 166%;
+}
+.inputtext1 input {
+  border: none;
+  border-bottom: 0.065rem solid #333232;
+  width: 360px;
 }
