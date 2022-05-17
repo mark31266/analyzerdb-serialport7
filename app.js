@@ -3,7 +3,6 @@
   const csrf = require("csurf"); 
   const bodyParser = require("body-parser")
   const express = require('express')
-  const Regex = require('@serialport/parser-regex')
   const SerialPort = require('serialport')
   const HL7 = require('hl7-standard');
   var hl7parser = require("hl7parser");
@@ -25,7 +24,6 @@
     databaseURL: "https://analyzerdb-default-rtdb.firebaseio.com"
   });
   const Readline = SerialPort.parsers.Readline; 
-  const parsers = new Readline(); 
   const csrfMiddleware = csrf({cookie: true}); 
   //------------------------------app usages---------------------------------------//
   app.engine("html", require("ejs").renderFile); 
@@ -67,58 +65,6 @@
         })
         .catch((error) => {
           res.render("login.html");
-        });
-    });
-    app.get("/mnchipv5/run", function(req,res)
-    {
-      const sessionCookie = req.cookies.session || "";
-      admin
-        .auth()
-        .verifySessionCookie(sessionCookie, true)
-        .then(() => {
-          res.render("mnchipv5/runsamples.html");
-        })
-        .catch((error) => {
-          res.redirect("/login");
-        });
-    });
-    app.get("/myth18vet/run", function(req,res)
-    {
-      const sessionCookie = req.cookies.session || "";
-      admin
-        .auth()
-        .verifySessionCookie(sessionCookie, true)
-        .then(() => {
-          res.render("myth18vet/runsamples.html");
-        })
-        .catch((error) => {
-          res.redirect("/login");
-        });
-    });
-    app.get("/mnchipv5/records", function(req,res)
-    {
-      const sessionCookie = req.cookies.session || "";
-      admin
-        .auth()
-        .verifySessionCookie(sessionCookie, true)
-        .then(() => {
-          res.render("mnchipv5/managerecords.html");
-        })
-        .catch((error) => {
-          res.redirect("/login");
-        });
-    });
-    app.get("/myth18vet/records", function(req,res)
-    {
-      const sessionCookie = req.cookies.session || "";
-      admin
-        .auth()
-        .verifySessionCookie(sessionCookie, true)
-        .then(() => {
-          res.render("myth18vet/managerecords.html");
-        })
-        .catch((error) => {
-          res.redirect("/login");
         });
     });
     app.get("/combo/records", function(req,res)
@@ -194,6 +140,7 @@
         .auth()
         .verifySessionCookie(sessionCookie, true)
         .then(() => {
+        
           res.render("rel/home.html");
         })
         .catch((error) => {
@@ -253,7 +200,7 @@
   io.on('connection', function(io) {
   }) 
   //MNCHIP V5
-  const parser2 = port3.pipe(new Regex({ regex: /[\r\n]+/ }))
+  const parser2 = port3.pipe(new Readline());
   parser2.on('data', function(data) {
     console.log(data); 
     let MSH = data.match(/^MSH.+/);  
@@ -307,7 +254,7 @@
   io.emit('CK', CK)
   })
   //Mythic 18 Vet
-  const parser = port.pipe(new Regex({ regex: /[\r\n]+/ }))
+ const parser = port.pipe(new Readline());
   parser.on('data', function(data) {
     io.emit('data', data)
     // // port.write("DSR^Q03")
@@ -316,7 +263,7 @@
     let AMD = data.match(/^MYTHIC 1;/);
     io.emit('AMD', AMD)
       //SID Data
-      let SID = data.match(/^SID.+/);
+      let SID = data.match(/^SID.+/); 
       io.emit('SID', SID)
       console.log(JSON.stringify(SID))
       // console.log(SID)

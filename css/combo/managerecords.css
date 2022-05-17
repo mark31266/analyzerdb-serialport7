@@ -560,8 +560,27 @@ body {
     height: 2px;
     border-top:  black;
     line-height: 50%;
-    margin-top: -70px;
+    margin-top: -90px;
     visibility: hidden;
+  }
+
+  .horizontal_line4{
+    background-color: red;
+    width: 50%;
+    height: 2px;
+    border-top:  red;
+    line-height: 50%;
+    margin-top: 30px;
+   
+  }
+  .horizontal_line5{
+    background-color: green;
+    width: 50%;
+    height: 2px;
+    border-top:  green;
+    line-height: 50%;
+    margin-top: -10px;
+    
   }
   .vertical {
     -webkit-print-color-adjust: exact;
@@ -579,10 +598,52 @@ body {
     display:none;
  
   } 
+
+  .header12{
+    display:none;
+   
+  }
+  
+  .header123{
+    display:none;
+    
+  }
   
 
   /* Print Function */
   @media print {
+
+    .header12, .header123{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header12{
+      float: left;
+      display: block;
+      margin-top: 40px;
+      padding-left: 100px;
+    
+    }
+    .header123{
+      float: right;
+      display: block;
+      padding-right: 200px;
+      margin-top: 75px;
+    
+    }
+    #clinic1{
+      font-family: 'Segoe UI Semibold';
+      font-size: 35px;
+
+    }
+
+    #address{
+      padding-top: 20px;
+     text-align: center;
+      font-family: 'Segoe UI Light';
+      font-size: 20px;
+    }
     
     .modal-content {
       outline: 0;
@@ -645,7 +706,7 @@ body {
     /* float: left; */
     padding-left: 50%;
     float: right;
-    visibility: block;
+  
     margin-top: -8%;
   } 
   #labtechnician1{
@@ -682,6 +743,28 @@ body {
       -webkit-print-color-adjust: exact;
       visibility: visible; 
       margin-top: -90px;
+    }
+    .horizontal_line4 {
+      background-color: red;
+      width: 20%;
+      height: 2px;
+      border-top:  red;
+      line-height: 50%;
+      -webkit-print-color-adjust: exact;
+      visibility: visible; 
+      margin-top: 120px;
+      margin-left: 100px;
+    }
+    .horizontal_line5 {
+      background-color: green;
+      width: 30%;
+      height: 2px;
+      border-top:  green;
+      line-height: 50%;
+      -webkit-print-color-adjust: exact;
+      visibility: visible; 
+      margin-top: -60px;
+      
     }
     .vertical {
   
@@ -805,14 +888,7 @@ body {
     div.header {
       display: block;
     }
-  
-    /* #barcode1 {
-      display: block;
-      margin-top: 30px;
-      width: 250px;
-    }
-   */
-  
+
     input#physicianinputs {
       width: 200%;
       border-bottom: none;

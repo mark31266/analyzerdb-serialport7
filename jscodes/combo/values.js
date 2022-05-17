@@ -215,6 +215,24 @@
               document.getElementById("user5").innerHTML = String(doc.data().Username); 
               document.getElementById("usernamelevel").innerHTML = String(email10) + " | " + String(userlevel10)
             })
+  
+            db2.collection("Details").doc("Clinic Details").get()  
+            .then((doc) => {
+              var clinic1 = doc.data().Clinic; 
+              var address1 = doc.data().Address; 
+              var person1 = doc.data().LabTechnician; 
+              var details1 = doc.data().Details1; 
+              var vet1 = doc.data().Veterinarian;
+              var details2 = doc.data().Details2; 
+    
+              var clinicdiv = document.getElementById("clinic1"); 
+              var addressdiv =document.getElementById("address"); 
+    
+              clinicdiv.innerHTML = String(clinic1); 
+              addressdiv.innerHTML = String(address1); 
+            
+            })
+                              
           })
              function dataonload() {
               var myimg = document.getElementById("signatories1"); 

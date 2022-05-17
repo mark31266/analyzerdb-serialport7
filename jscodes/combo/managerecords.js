@@ -47,6 +47,23 @@ firebase.auth().onAuthStateChanged(function (user) {
   var myimg3 = document.getElementById("header1"); 
   //Automatic Image Data (Signatories)!!
   var docRef = db2.collection("Images").doc("signatories.png");
+
+  db2.collection("Details").doc("Clinic Details").get()  
+        .then((doc) => {
+          var clinic1 = doc.data().Clinic; 
+          var address1 = doc.data().Address; 
+          var person1 = doc.data().LabTechnician; 
+          var details1 = doc.data().Details1; 
+          var vet1 = doc.data().Veterinarian;
+          var details2 = doc.data().Details2; 
+
+          var clinicdiv = document.getElementById("clinic1"); 
+          var addressdiv =document.getElementById("address"); 
+
+          clinicdiv.innerHTML = String(clinic1); 
+          addressdiv.innerHTML = String(address1); 
+        
+        })
 docRef.get().then((doc) => {
     if (doc.exists) {
        myimg.src = doc.data().ImageURL; 
