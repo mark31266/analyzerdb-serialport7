@@ -202,9 +202,7 @@
               }) 
                   var uid; 
                   var username5; 
-            function printfunction() {
-              window.print();
-          }
+     
           firebase.auth().onAuthStateChanged(function (user) {
             document.getElementById("user1").innerHTML = user.uid
             document.getElementById("email2").innerHTML = user.email; 
@@ -216,22 +214,22 @@
               document.getElementById("usernamelevel").innerHTML = String(email10) + " | " + String(userlevel10)
             })
   
-            db2.collection("Details").doc("Clinic Details").get()  
-            .then((doc) => {
-              var clinic1 = doc.data().Clinic; 
-              var address1 = doc.data().Address; 
-              var person1 = doc.data().LabTechnician; 
-              var details1 = doc.data().Details1; 
-              var vet1 = doc.data().Veterinarian;
-              var details2 = doc.data().Details2; 
+            // db.collection("Details").doc("Clinic Details").get()  
+            // .then((doc) => {
+            //   var clinic1 = doc.data().Clinic; 
+            //   var address1 = doc.data().Address; 
+            //   var person1 = doc.data().LabTechnician; 
+            //   var details1 = doc.data().Details1; 
+            //   var vet1 = doc.data().Veterinarian;
+            //   var details2 = doc.data().Details2; 
     
-              var clinicdiv = document.getElementById("clinic1"); 
-              var addressdiv =document.getElementById("address"); 
+            //   var clinicdiv = document.getElementById("clinic1"); 
+            //   var addressdiv =document.getElementById("address"); 
     
-              clinicdiv.innerHTML = String(clinic1); 
-              addressdiv.innerHTML = String(address1); 
+            //   clinicdiv.innerHTML = String(clinic1); 
+            //   addressdiv.innerHTML = String(address1); 
             
-            })
+            // })
                               
           })
              function dataonload() {
@@ -875,13 +873,13 @@
                            height: 50
            })
            doc_withautoincrement(); 
-           window.print(); 
+         printfunction(); 
          
            var emailused2 = document.getElementById("email2"); 
            db.collection("Audit Log").doc(date2.innerText + " " + clock1.innerText).set(
             {
             ID : String(emailused2.innerHTML),
-            PID : pidinfo1.innerHTML,
+            PID : PIDinput.innerText + SIDinput.innerText,
             Date : DATEinput.innerText,
             Activity : "Run Sample",
             DateDid : date2.innerText + " " + clock1.innerText 
@@ -942,11 +940,10 @@
           $('#errormodal').modal('show');
         }
         else{
-         
           document.getElementById("error1").innerHTML = "Blood Chemistry Test Done";
           $('#errormodal').modal('show');
           setTimeout(() => {
-            $('#errormodal').modal('show');
+            $('#errormodal').modal('hide');
           }, 500);
         }
 } 
@@ -1385,11 +1382,17 @@ socket.on('MCHC', function(MCHC) {
         || ln !== null && ln.value === "" 
         || an !== null && an.value === "" 
         || gn !== null && gn.value === "" 
-        || pn !== null && pn.value === "" 
-        || th_mchcnormal !== null && th_mchcnormal.innerHTML)
+        || pn !== null && pn.value === "")
         {
           document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s and press submit";
           $('#errormodal').modal('show');
+        }
+        else{
+          document.getElementById("error1").innerHTML = "CBC Test Done";
+          $('#errormodal').modal('show');
+          setTimeout(() => {
+            $('#errormodal').modal('hide');
+          }, 500);
         }
         // else{
         //   JsBarcode("#barcode1", (PIDinput.innerText + SIDinput.innerHTML), {
@@ -1482,8 +1485,59 @@ if (PLT !== null ){
   })
 }
 
+function printfunction() {
+  var gender1 = document.getElementById("gender"); 
+  var gender2 = document.getElementById("genderselect"); 
+  $(".col-6"). css("display", "none");
+  $("#gender"). css("display", "block");
+  gender1.innerHTML = gender2.value; 
+
+  var species1 = document.getElementById("species"); 
+  var species2 = document.getElementById("specieselect"); 
+  $("#speciecol"). css("display", "none");
+  $("#species"). css("display", "block");
+  species1.innerHTML = species2.value; 
+
+
+  $("#labtechnician1"). css("display", "block");
+  $("#vet1"). css("display", "block");
+window.print(); 
+$(".col-6"). css("display", "block");
+$("#gender"). css("display", "none");
+
+$("#speciecol"). css("display", "block");
+$("#species"). css("display", "none");
+}
 function passvalues() {
   var name = document.getElementById("textvalue").value; 
   localStorage.setItem("textvalue",name); 
   return false; 
   }
+
+  $(function(){
+    $('#physicianinputs').inputfit();
+    $('#ownernameinputs').inputfit();
+    $('#petnameinputs').inputfit();
+    $('#breedinputs').inputfit();
+})
+
+db.collection("Details").doc("Clinic Details").get()  
+.then((doc) => {
+  var clinic1 = doc.data().Clinic; 
+  var address1 = doc.data().Address; 
+  var person1 = doc.data().LabTechnician; 
+  var details1 = doc.data().Details1; 
+  var person2 = doc.data().Veterinarian;
+  var details2 = doc.data().Details2; 
+
+  var clinicdiv = document.getElementById("clinic1"); 
+  var addressdiv =document.getElementById("address"); 
+  var labtech =document.getElementById("labtechnician1");
+  var vet1  =document.getElementById("vet1");
+
+  clinicdiv.innerHTML = String(clinic1); 
+  addressdiv.innerHTML = String(address1); 
+  labtech.innerHTML = String(person1); 
+  vet1.innerHTML = String(person2)
+
+})

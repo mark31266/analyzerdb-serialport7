@@ -484,10 +484,7 @@ div.subtabletext {
 }
 
 
-#labtechnician1 {
-  display: none;
-  padding-left: 60px;
-}
+
 
 #barcode1 {
   display: none;
@@ -503,9 +500,7 @@ div.subtabletext {
   color: black; 
 }
 
-#labtechnician1{
-  float: right;
-} 
+
 .column1, .column2, #vertical {
   display: flex;
   flex-direction: column;
@@ -546,6 +541,27 @@ div.subtabletext {
   margin-top: 28px;
   visibility: hidden;
 }
+
+.horizontal_line4{
+  background-color: black;
+  width: 50%;
+  height: 2px;
+  border-top:  black;
+  line-height: 50%;
+  margin-top: 30px;
+  visibility: hidden;
+ 
+}
+.horizontal_line5{
+  background-color: black;
+  width: 50%;
+  height: 2px;
+  border-top:  black;
+  line-height: 50%;
+  margin-top: -10px;
+  visibility: hidden;
+  
+}
 .vertical {
   -webkit-print-color-adjust: exact;
   background-color: black;
@@ -567,8 +583,81 @@ div.subtabletext {
   color : black
 }
 
-@media print {
+.header12{
+  display:none;
+ 
+}
+.header123{
+  display:none;
   
+}
+
+
+
+.signatoriesyes{
+  visibility: hidden;
+}
+
+@media print {
+
+ 
+
+  .header12, .header123{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header12{
+    float: left;
+    display: block;
+    margin-top: 40px;
+    padding-left: 100px;
+  
+  }
+  .header123{
+    float: right;
+    display: block;
+    padding-right: 200px;
+    margin-top: 75px;
+  
+  }
+
+  #clinic1{
+    font-family: 'Segoe UI Semibold';
+    font-size: 35px;
+
+  }
+
+  #address{
+    padding-top: 20px;
+   text-align: center;
+    font-family: 'Segoe UI Light';
+    font-size: 20px;
+  }
+  
+#gender{
+  padding-left: 15px;
+  background-color: transparent;
+  font-family: "Segoe UI Semibold"; 
+  font-size: 15px;
+  border: none;
+  outline: none;
+  text-transform:uppercase;
+
+}
+#species{
+  padding-left: 15px;
+  background-color: transparent;
+  font-family: "Segoe UI Semibold"; 
+  font-size: 15px;
+  border: none;
+  outline: none;
+  text-transform:uppercase;
+ 
+}
+  th {
+    color: black;
+  }
   div#new-row {
     padding-top: 120px;
 }
@@ -579,9 +668,29 @@ div.subtabletext {
     width: 130%;
     color : black
   }
-.signatoriesyes {
+
+#labtechnician1{
   float: right;
-} 
+  margin-top: -20px;
+  margin-right: 65px;
+  font-family: 'Segoe UI Semibold';
+    font-size: 14px;
+    visibility: visible;
+    color : black;
+    white-space: nowrap;
+}
+
+#vet1{
+  float: right;
+  margin-top: -20px;
+  margin-right: -220px;
+  font-family: 'Segoe UI Semibold';
+  font-size: 14px;
+  visibility: visible;
+  white-space: nowrap;
+  color : black;
+  
+}
   .horizontal_line{
     background-color: black;
   width: 100%;
@@ -609,6 +718,29 @@ div.subtabletext {
     -webkit-print-color-adjust: exact;
     visibility: visible; 
   }
+  .horizontal_line4 {
+    background-color: black;
+    width: 30%;
+    height: 2px;
+    border-top:  black;
+    line-height: 50%;
+    -webkit-print-color-adjust: exact;
+    visibility: visible; 
+    margin-top: 50px;
+    margin-left: 450px;
+  }
+  .horizontal_line5 {
+    background-color: black;
+    width: 30%;
+    height: 2px;
+    border-top:  black;
+    line-height: 50%;
+    -webkit-print-color-adjust: exact;
+    visibility: visible; 
+    margin-top: -2px;
+    margin-left: 720px;
+    
+  }
   .vertical {
 
     visibility: visible;
@@ -621,9 +753,7 @@ div.subtabletext {
     text-align: justify;
     white-space: normal;
   }
-  #textareaposition {
-    float: left;
-  }
+ 
  
   .BOTTOMTEXT
   {
@@ -652,13 +782,12 @@ div.subtabletext {
   {
     padding-left:53px;
   }
-  .inputBoxPetsName input,
-  .inputBoxOwnername input
+  input#ownernameinputs,
+  input#petnameinputs
    {
     width: 120%;
     border-bottom: none;
     font-weight: bold;
-
   }
 
   .inputBoxTime {
@@ -719,10 +848,7 @@ div.subtabletext {
     display: none;
   }
 
-  #labtechnician1 {
-    display: inline-block;
-    position: fixed;
-  }
+ 
 
 
   div.header {
@@ -830,10 +956,10 @@ div.subtabletext {
   }
   
   .bootstrap-select>.dropdown-toggle {
-    font-size: 11px;
+    font-size: 15px !important;
   }
   .bootstrap-select .dropdown-menu.inner {
-    font-size: 11px;
+    font-size: 15px!important;
   }
 
 }
@@ -1000,17 +1126,17 @@ td {
   border: none;
   outline: none;
   border-bottom: 0.065rem solid #333232;
-  width: 50%
+  width: 90%
 }
 
 #timeinputs {
   font-family: "Segoe UI Semibold";
-  font-size: 14px;
-  padding-left: 5px;
+  font-size: 15px;
+ padding-left: 13px;
   border: none;
   outline: none;
-  border-bottom: 0.065rem solid #333232;
-  width: 60%;
+  border-bottom: none; 
+ 
   background: transparent;
   
 }
@@ -1254,5 +1380,7 @@ body {
   text-align: center; 
   padding-bottom: 12px; 
 }
-
+#gender {
+  display: none;
+}
 

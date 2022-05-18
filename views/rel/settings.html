@@ -117,33 +117,42 @@
 
           <!-- Audit Log Modal -->
           <div class="modal fade" id="messagemodal" role="dialog" data-backdrop="false" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-audit" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <h4 class="modal-title">Audit Log</h4>
                   <button type="button" class="close" onclick="$('#messagemodal').modal('hide');">&times;</button>
                 </div>
-                <div class="modal-body1" style="height:380px;">
+                <div class="modal-body1" style="height:210px; width:700px;">
                   <div id="content">
 
                     <div class="row">
-                    <div class="col-1 border"><div id="bloodlabel">Log Number:</div></div>
-                    <div class="col ml-3 border"><div class="modaltexts" id="number1"></div></div></div>
+                    <div class="col-1"><div id="bloodlabel">Log Number:</div></div>
+                    <div class="col-5 ml-5"><div class="modaltexts" id="number1"></div></div>
 
-                    <div id="bloodlabel">Activity:</div>
-                    <div class="modaltexts" id="activity1"></div>
+                    <div class="col-1"><div id="bloodlabel">Activity:</div></div>
+                    <div class="col-4"><div class="modaltexts" id="activity1"></div></div></div>
 
-                    <div id="bloodlabel">Date Comitted:</div>
-                    <div class="modaltexts" id="date6"></div>
+                    <div class="row"><div class="col">&nbsp;</div></div>
 
-                    <div id="bloodlabel">PID:</div>
-                    <div class="modaltexts" id="pid1"></div>
+                    <div class="row">
+                    <div class="col-1"><div id="bloodlabel">Date Comitted:</div></div>
+                    <div class="col-5 ml-5"><div class="modaltexts" id="date6"></div></div>
+                    
+                    <div class="col-1"><div id="bloodlabel">PID:</div></div>
+                    <div class="col-4"><div class="modaltexts" id="pid1"></div></div></div>
 
-                    <div id="bloodlabel">Sample Date:</div>
-                    <div class="modaltexts" id="sampledate1"></div>
+                    <div class="row"><div class="col">&nbsp;</div></div>
 
-                    <div id="bloodlabel">User Comitted:</div>
-                    <div class="modaltexts" id="username63"></div>
+                    <div class="row">
+                    <div class="col-1"><div id="bloodlabel">Sample Date:</div></div>
+                    <div class="col-5 ml-5"><div class="modaltexts" id="sampledate1"></div></div></div>
+
+                    <div class="row"><div class="col">&nbsp;</div></div>
+                    
+                    <div class="row">
+                    <div class="col-1"><div id="bloodlabel">User Comitted:</div></div>
+                    <div class="col-4 ml-5"><div class="modaltexts" id="username63"></div></div></div>
 
                   </div>
                 </div>

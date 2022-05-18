@@ -31,6 +31,14 @@ var auto_inc;
 var uid10; 
 var email10; 
 firebase.auth().onAuthStateChanged(function (user) {
+
+  $(function(){
+    $('#petnameinputs').inputfit();
+    $('#ownernameinputs').inputfit();
+    $('#breedinputs').inputfit();
+    $('#physicianinputs').inputfit();
+  })
+
   uid10 = user.uid; 
   email10 = user.email; 
   db2.collection("users").doc(uid10).get().then((doc) => {
@@ -54,14 +62,18 @@ firebase.auth().onAuthStateChanged(function (user) {
           var address1 = doc.data().Address; 
           var person1 = doc.data().LabTechnician; 
           var details1 = doc.data().Details1; 
-          var vet1 = doc.data().Veterinarian;
+          var person2 = doc.data().Veterinarian;
           var details2 = doc.data().Details2; 
 
           var clinicdiv = document.getElementById("clinic1"); 
           var addressdiv =document.getElementById("address"); 
+          var labtech =document.getElementById("labtechnician1");
+          var vet1  =document.getElementById("vet1");
 
           clinicdiv.innerHTML = String(clinic1); 
           addressdiv.innerHTML = String(address1); 
+          labtech.innerHTML = String(person1); 
+          vet1.innerHTML = String(person2)
         
         })
 docRef.get().then((doc) => {
@@ -1464,6 +1476,8 @@ var logresultstable = document.getElementById("logresults");
     $("#breedinputs"). css("display", "block");
     $("#physicianinputs"). css("display", "block");
     $("#remarks-textarea2"). css("display", "block");
+    $("#printbtn2"). css("display", "block");
+    $("#printbtn"). css("display", "none");
   })
   var date2 = document.getElementById("date"); 
   var clock1 = document.getElementById("clock"); 
@@ -1535,9 +1549,23 @@ var logresultstable = document.getElementById("logresults");
     $("#breedinputs"). css("display", "none");
     $("#physicianinputs"). css("display", "none");
     $("#remarks-textarea2"). css("display", "none");
+    $("#printbtn"). css("display", "block");
+    $("#printbtn2"). css("display", "none");
     if (parseFloat(clicks2.innerText) >= 1) {
       window.location.reload(); 
     }
   })
+
+  $('#printbtn2').click(function() {
+    var gender1 = document.getElementById("gender"); 
+    var gender2 = document.getElementById("genderselect"); 
+    $(".col-gen").css("display","block");
+    $("#gender"). css("display", "block");
+    $("#genderselectcol"). css("display", "none");
+    gender1.innerHTML = gender2.value;   
+    window.print();
+  })
   
 })
+
+

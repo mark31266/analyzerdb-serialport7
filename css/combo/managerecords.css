@@ -204,7 +204,7 @@ body {
   #content {
     width: 100%;
     padding: 0px;
-    min-height: 100vh;
+    min-height: 81vh;
     transition: all 0.3s;
   }
   
@@ -524,11 +524,7 @@ body {
     color: #277277;
   
   }
-  #labtechnician1
-  {
-    float: right;
-    display: block;
-  }
+ 
   #barcode2{
     display:none;
   }
@@ -565,21 +561,23 @@ body {
   }
 
   .horizontal_line4{
-    background-color: red;
+    background-color: black;
     width: 50%;
     height: 2px;
-    border-top:  red;
+    border-top:  black;
     line-height: 50%;
     margin-top: 30px;
+    visibility: hidden;
    
   }
   .horizontal_line5{
-    background-color: green;
+    background-color: black;
     width: 50%;
     height: 2px;
-    border-top:  green;
+    border-top:  black;
     line-height: 50%;
     margin-top: -10px;
+    visibility: hidden;
     
   }
   .vertical {
@@ -594,10 +592,7 @@ body {
     visibility: hidden;
   }
 
-  #labtechnician1 {
-    display:none;
- 
-  } 
+  
 
   .header12{
     display:none;
@@ -608,11 +603,22 @@ body {
     display:none;
     
   }
+
+  #labtechnician1{
+    display:none;
+  }
+
+  #vet1{
+    display:none;
+  }
   
 
   /* Print Function */
   @media print {
 
+    th {
+      color: black; 
+    }
     .header12, .header123{
       display: flex;
       flex-direction: column;
@@ -685,9 +691,9 @@ body {
     }
 
   
-    div#new-row {
+    /* div#new-row {
       padding-top: 120px;
-  }
+  } */
   
     ::-webkit-scrollbar {
       display: none;
@@ -709,13 +715,22 @@ body {
   
     margin-top: -8%;
   } 
+ 
+
   #labtechnician1{
-    /* display: inline-block; */
-    position: static;
-    display: block;
-    float: right;
-    
-  } 
+    margin-top: 35px;
+    margin-left: -35px;
+    font-family: 'Segoe UI Semibold';
+      font-size: 15px;
+  }
+
+  #vet1{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-family: 'Segoe UI Semibold';
+    font-size: 15px;
+  }
+
     .horizontal_line{
       background-color: black;
       width: 105%;
@@ -742,28 +757,29 @@ body {
       line-height: 50%;
       -webkit-print-color-adjust: exact;
       visibility: visible; 
-      margin-top: -90px;
+      margin-top: -30px;
     }
     .horizontal_line4 {
-      background-color: red;
-      width: 20%;
+      background-color: black;
+      width: 25%;
       height: 2px;
-      border-top:  red;
+      border-top:  black;
       line-height: 50%;
       -webkit-print-color-adjust: exact;
       visibility: visible; 
-      margin-top: 120px;
-      margin-left: 100px;
+      margin-top: 90px;
+      margin-left: -10px;
     }
     .horizontal_line5 {
-      background-color: green;
-      width: 30%;
+      background-color: black;
+      width: 25%;
       height: 2px;
-      border-top:  green;
+      border-top:  black;
       line-height: 50%;
       -webkit-print-color-adjust: exact;
       visibility: visible; 
-      margin-top: -60px;
+      margin-top: -50px;
+      margin-left: 720px;
       
     }
     .vertical {
@@ -771,8 +787,7 @@ body {
       -webkit-print-color-adjust: exact;
       background-color: black;
       width: 1px;
-      height: 650px;
-      line-height: 0%;
+      height: 490px;   
       float: left; 
       margin-left: 80px;
       visibility: visible;
@@ -816,13 +831,13 @@ body {
     {
       padding-left:53px;
     }
-    .inputBoxPetsName input,
-    .inputBoxOwnername input
-     {
-      width: 120%;
-      border-bottom: none;
-      font-weight: bold;
-    }
+    input#ownernameinputs,
+    input#petnameinputs
+   {
+    width: 120%;
+    border-bottom: none;
+    font-weight: bold;
+  }
   
     .inputBoxTime {
       display: block;
@@ -1008,11 +1023,11 @@ body {
   
   
   
-  /**header**/
-  .container .header {
+  *header*
+  /* .container .header {
   height: 200px;
   
-  }
+  } */
   
   .container .header .image {
   background: url("https://firebasestorage.googleapis.com/v0/b/analyzerdb.appspot.com/o/clinic.png?alt=media&token=69feb547-661d-4cd1-8cd1-50191bf44cea") ;
@@ -1088,7 +1103,7 @@ body {
     border: none;
     outline: none;
     border-bottom: 0.065rem solid #333232;
-    width: 80%
+    width: 90%;
   }
   
   
@@ -1271,11 +1286,10 @@ body {
   
   }
 
-  .modal-header1{
-    background: #337277; 
-    height: 55px;
-  
-  }
+  .modal-header1 {
+    background: #337277;
+    height: 240px;
+}
 
   #error5{
     color:white;
@@ -1593,6 +1607,7 @@ display: none;
 }
 #age {
   margin-top: 6px;
+  margin-left: -10px;
 }
 .dropdown.bootstrap-select.select-gen{
   display: none;
@@ -1658,7 +1673,7 @@ div.tabletext {
 }
 
 #row1{
-padding-left: 5%;
+padding-left: 8%;
 }
 
 .spinner-custom{
@@ -1673,3 +1688,12 @@ padding-left: 5%;
   height:40px!important;
 }
 
+#printbtn2 {
+ display: none;
+}
+#breed {
+margin-left: -4px;
+}
+#specieselect {
+margin-left: -4px;
+}

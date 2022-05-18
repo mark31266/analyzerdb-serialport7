@@ -25,6 +25,7 @@
   <script src='https://cdn.datatables.net/searchpanes/2.0.0/js/dataTables.searchPanes.min.js'></script>
   <script src='https://cdn.datatables.net/searchpanes/2.0.0/js/searchPanes.jqueryui.min.js'></script>
   <script src='https://cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js'></script>
+  <script src='/rep/jquery.inputfit.js'></script>
 
 </head>
 <link rel="stylesheet" href="/css/combo/managerecords.css">
@@ -326,11 +327,13 @@
                       <div class="col-4">
                     <div class="inputBoxGender">Gender: </div></div>
                     <div class="col-gen"><div id="gender" class="hideelements"></div></div>
-                    <div class="col-8"><select id="genderselect" class="selectpicker select-gen" data-size="3" data-width="67%">
+                    <div class="col-8" id="genderselectcol"><select id="genderselect" class="selectpicker select-gen" data-size="3" data-width="67%">
                         <option disabled selected value>Gender</option>
                         <option>Male</option>
                         <option>Female</option>
                       </select></b></div>
+                   
+                        
                     </div>
                   </th>
                 </tr>
@@ -406,7 +409,7 @@
         <br>
          <div class="column1">
            <div class="chip">CHEMISTRY</div>
-             <table id="column1" cellspacing="0" cellpadding="10">
+             <table id="column1" cellspacing="0" cellpadding="5">
              
  
              <tr id="seq">
@@ -512,7 +515,7 @@
          
          <div class="column2 ">
            <div class="cbc">HEMATOLOGY</div>
-           <table id="column2" cellspacing="0" cellpadding="10">
+           <table id="column2" cellspacing="0" cellpadding="5">
              
  
              <tr id="seq">
@@ -636,6 +639,7 @@
       <div class="signatoriesyes">        
         <div id="labtechnician1"></div> 
         <div id="vet1"></div>   
+        <div id="signature"></div>
       </div>  
         </div>
         </div>
@@ -672,8 +676,8 @@
            
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-dlt text-light" onClick="deletefunction();">Delete</button>
-                    <button type="button" class="btn btn-rst text-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-dlt text-light" onClick="deletefunction();">Yes</button>
+                    <button type="button" class="btn btn-rst text-light" onclick="$('#ModalCenter').modal().hide();">No</button>
                   </div>
                 </div>
               </div>
@@ -681,7 +685,8 @@
             <div class="btn-group mr-1 " role="group">
               <button id="scnrbtn" class="btn btn-scnr text-light" data-toggle="modal"
                 data-target="#ModalCenterScn">Barcode Scanner</button>
-                <button id="printbtn" class="btn btn-prnt text-light" onClick="window.print();">Print</button>
+           
+               
             </div>
             <div class="modal fade" id="ModalCenterScn" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
               aria-hidden="true" data-backdrop="false">
@@ -696,20 +701,22 @@
                     </button>
                   </div>
                   <div class="modal-footer">
+                   
                     <div class="btn-group mr-1 " role="group">
-                      <button id="printbtn" class="btn btn-prnt text-light" onClick="window.print();">Print</button>
-                    </div>
-                    <div class="btn-group mr-1 " role="group">
-                      <button id="closebtn" class="btn btn-rst text-light" onclick="$('#ModalCenterScn').modal('hide');">Close</button>
+                      <button id="closebtn" class="btn btn-rst text-light" onclick="$('#ModalCenterScn').modal().hide();">Close</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="btn-group mr-1 " role="group">
+              <button id="printbtn" class="btn btn-prnt text-light" onclick="window.print();">Print</button>
+            </div>
+            <div class="btn-group mr-1 " role="group">
+              <button id="printbtn2" class="btn btn-prnt text-light">Print</button>
+           </div>
+            <div class="btn-group mr-1 " role="group">
               <button type="button" class="btn btn-rst text-light" data-dismiss="modal" id="closebtn2">Close</button>
-
-        
             </div>
           </div>
         </div>

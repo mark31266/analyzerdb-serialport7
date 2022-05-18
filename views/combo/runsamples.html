@@ -22,6 +22,7 @@
   <script defer src="/rep/solid.js" crossorigin="anonymous"></script>
   <script defer src="/rep/fontawesome.js" crossorigin="anonymous"></script>
   <script src='/jscodes/moment.js'></script>
+  <script src='/rep/jquery.inputfit.js'></script>
 </head>
 <link rel="stylesheet" type="text/css" href="/css/combo/runsamples.css">
 
@@ -115,14 +116,18 @@
           </div>
       </nav>
 
-      <div class="ContentInside" style="padding: 20px;">
-        <div id="new-row"></div>
+      <div id="content">
         <div id="container" class="container">
-          <div class="header">
+          <div id="container" class="container">
+           <div class="header12">
             <div class="logo image"><img id="logo1" width="155px" height="155px"></div>
-            <div class="header image"><img id="header1" width="550px" height="180px"></div>
-          </div>
-        </div>
+           </div>
+         </div>
+         <div class="header123">
+          <div id="clinic1"></div>
+          <div id="address"></div>
+         </div>
+       </div>
         <div class="container">
           <div class="first">
             <div class="p-1 row">
@@ -195,6 +200,7 @@
                           <option>Male</option>
                           <option>Female</option>
                         </select></b></div>
+                        <div class="col-gen"><div id="gender"></div></div>
                       </div>
                     </th>
                   </tr>
@@ -204,11 +210,13 @@
                       <div class="row">
                         <div class="col-4 ">
                           <div class="inputBoxSpecies">Species: </div></div>
-                          <div class="col"><div class="dropdown bootstrap-select fit-width show"></div>
+                          <div class="col" id="speciecol"><div class="dropdown bootstrap-select fit-width show"></div>
                           <select id="specieselect" class="selectpicker select-spc" data-size="4" data-live-search="false"
                             data-width="47%" onchange="changeFunc();">
                             <option disabled selected value>Select an Option</option>
-                          </select></div></div>
+                          </select>
+                        </div>
+                        <div class="col-gen"><div id="species"></div></div></div>
                     </th>
                   </tr>
                   <tr id="pn1">
@@ -248,16 +256,13 @@
                 </tr>
 
                 <tr id="time">
-                  <th class="w-30 time" style="text-align:left">
+                  <th class="w-10 time" style="text-align:left">
                    <div class="row">
-                     <div class="col-4">
+                     <div class="col-md-4">
                    <div class="inputBoxTime">Time:<u></div>
                   </div>
                     
-                    <div class="col"><input id="timeinputs" disabled></input>
-                    </div>
-                    </div>
-                      
+                    <div id="timeinputs" class="col-7"></div>
                     </div>
                   </th>
                 </tr>
@@ -484,10 +489,12 @@
       <div id="textareaposition">
         <div class="chip">REMARKS</div>
       <textarea id="remarks-textarea" required></textarea>
-      <div class="signatoriesyes">       
-        <div id="labtechnician1"></div>
-        <div id="vet1"></div>
-
+      <div class="horizontal_line4"></div>  
+      <div class="horizontal_line5"></div>
+        <div class="signatoriesyes">        
+          <div id="labtechnician1"></div> 
+          <div id="vet1"></div>   
+          <div id="signature"></div>
       </div>
           </div
         </div>
@@ -508,10 +515,10 @@
                 <button id="submitbtn" class="btn btn-sbt text-light">Submit</button>
               </div>
               <div class="btn-group mr-1 " role="group">
-                <button id="printbtn" class="btn btn-prnt text-light" onClick="printfunction()">Print</button>
+                <button id="printbtn" class="btn btn-prnt text-light" onclick="printfunction();">Print</button>
               </div>
               <div class="btn-group mr-1 " role="group">
-                <button id="resetBtn" class="btn btn-rst text-light" onClick="window.location.reload();">Reset</button>
+                <button id="resetBtn" class="btn btn-rst text-light" onclick="window.location.reload();">Reset</button>
               </div>
             </div>
           </div>
