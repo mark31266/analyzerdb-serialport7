@@ -233,15 +233,15 @@
                               
           })
              function dataonload() {
-              var myimg = document.getElementById("signatories1"); 
+              var myimg = document.getElementById("signature1"); 
               var myimg2 = document.getElementById("logo1"); 
-              var myimg3 = document.getElementById("header1"); 
+              var myimg3 = document.getElementById("signature2"); 
               //Automatic Image Data (Signatories)!!
-              var docRef = db.collection("Images").doc("signatories.png");
+              var docRef = db.collection("Images").doc("Person 1 E-Signature");
             docRef.get().then((doc) => {
                 if (doc.exists) {
                    myimg.src = doc.data().ImageURL; 
-                   console.log("Signatories Present")
+                   console.log("Signatories 1 Present")
                 } else {
                     // doc.data() will be undefined in this case
                     console.log("No such document!");
@@ -263,11 +263,11 @@
                 console.log("Error getting document:", error);
             });
             //Automatic Image Data (Header)!!
-            var docRef = db.collection("Images").doc("header.png");
+            var docRef = db.collection("Images").doc("Person 2 E-Signature");
             docRef.get().then((doc) => {
                 if (doc.exists) {
                    myimg3.src = doc.data().ImageURL; 
-                   console.log("Header Present")
+                   console.log("Signatories 2 Present")
                 } else {
                     // doc.data() will be undefined in this case
                     console.log("No such document!");
@@ -478,7 +478,7 @@
              if (ALB !== null ){
                th_albunit.innerHTML = "g/dL" ;     
                var alba0 = String(ALB).split(",");
-               var alba = alba0[1]; 
+               var alba = alba0[1].replace(">=",""); 
               /*low */ var albb = String(doc.data().ALBLower);
               /* high */ var albc = String(doc.data().ALBUpper);    
             
@@ -502,14 +502,40 @@
                     }
                         //ALB Limit DATA
               th_albnormal.innerHTML =  albb + " - " + albc ;
+              var data = [
+                {
+                  type: "indicator",
+                  mode: "gauge",
+                  value: parseFloat(alba),
+                  domain: { x: [0, 1], y: [0, 1] },
+                  gauge: { 
+                    shape: "bullet",
+                    axis: { range: [0, parseFloat(albc)]},
+                    bar: {color: "#296e74"}
+                  },
+             
+                  
+                }
+              ];
+              var layout = { 
+              width: 250, height: 200,
+              paper_bgcolor:"rgba(0,0,0,0)", 
+              font: {
+                family: 'Courier New, monospace',
+                size: 0,
+                color: '#FFFFFF'
+              }
+              };
+              Plotly.newPlot('alb1', data, layout);
              } 
+         
            });
           //TP DATA
             socket.on('TP', function(TP) {
              if (TP !== null ){
                 th_tpunit.innerHTML = "g/dL" ;
                 var tpa0 = String(TP).split(",");
-                var tpa = tpa0[1]; //14.3
+                var tpa = tpa0[1].replace(">=",""); //14.3
                 /*low */ var tpb = String(doc.data().TPLower); //5.2
                 /* high */ var tpc = String(doc.data().TPUpper); //8.2
               
@@ -533,6 +559,31 @@
                       }
                   //ALB Limit DATA
                   th_tpnormal.innerHTML =  tpb + " - " + tpc ;
+                  var data = [
+                    {
+                      type: "indicator",
+                      mode: "gauge",
+                      value: parseFloat(tpa),
+                      domain: { x: [0, 1], y: [0, 1] },
+                      gauge: { 
+                        shape: "bullet",
+                        axis: { range: [0, parseFloat(tpc)]},
+                        bar: {color: "#296e74"}
+                      },
+                 
+                    }
+                  ];
+                  var layout = { 
+                  width: 250, height: 200,
+                  paper_bgcolor:"rgba(0,0,0,0)", 
+                  font: {
+                    family: 'Courier New, monospace',
+                    size: 0,
+                    color: '#FFFFFF'
+                  }
+                  };
+                  var config = { responsive: true };
+                  Plotly.newPlot('tp1', data, layout,config);
                  }
              });
          
@@ -542,7 +593,7 @@
              if (CA !== null ){
                th_caunit.innerHTML = "mg/dL" ;
                var ca0 = String(CA).split(",");
-               var caa = ca0[1]; 
+               var caa = ca0[1].replace(">=",""); 
                /*low */ var cab = String(doc.data().CaLower); 
                /* high */ var cac = String(doc.data().CaUpper);     
              
@@ -566,6 +617,38 @@
                      }
                       //Ca DATA
                       th_canormal.innerHTML =  cab + " - " + cac ;
+
+
+
+                      var data = [
+                        {
+                          type: "indicator",
+                          mode: "gauge",
+                          value: parseFloat(caa),
+                          domain: { x: [0, 1], y: [0, 1] },
+                          gauge: { 
+                            shape: "bullet",
+                            axis: { range: [0, parseFloat(cac)]},
+                            bar: {color: "#296e74"}
+                          },
+                     
+                          
+                        }
+                      ];
+                      var layout = { 
+                      width: 250, height: 200,
+                      paper_bgcolor:"rgba(0,0,0,0)", 
+                      font: {
+                        family: 'Courier New, monospace',
+                        size: 0,
+                        color: '#FFFFFF'
+                      }
+                      };
+                      Plotly.newPlot('ca1', data, layout);
+
+
+
+
               }
             });
           //GLU DATA
@@ -573,7 +656,7 @@
             if (GLU !== null ){
                th_gluunit.innerHTML = "mg/dL" ;
                var glu0 = String(GLU).split(",");
-               var glua = glu0[1]; 
+               var glua = glu0[1].replace(">=","");
                /*low */ var glub = String(doc.data().GLULower); 
                /* high */ var gluc = String(doc.data().GLUUpper); 
                  if (parseFloat(glua) > parseFloat(gluc) || glua.includes(">"))
@@ -596,6 +679,31 @@
                      }
                           //GLU DATA
                           th_glunormal.innerHTML =  glub + " - " + gluc ;
+                          var data = [
+                            {
+                              type: "indicator",
+                              mode: "gauge",
+                              value: parseFloat(glua),
+                              domain: { x: [0, 1], y: [0, 1] },
+                              gauge: { 
+                                shape: "bullet",
+                                axis: { range: [0, parseFloat(gluc)]},
+                                bar: {color: "#296e74"}
+                              },
+                         
+                              
+                            }
+                          ];
+                          var layout = { 
+                          width: 250, height: 200,
+                          paper_bgcolor:"rgba(0,0,0,0)", 
+                          font: {
+                            family: 'Courier New, monospace',
+                            size: 0,
+                            color: '#FFFFFF'
+                          }
+                          };
+                          Plotly.newPlot('glu1', data, layout);
               }   
             }); 
            //BUN DATA
@@ -603,7 +711,7 @@
              if (BUN !== null ) {
                th_bununit.innerHTML = "mg/dL" ;
                var bun0 = String(BUN).split(",");
-               var buna = bun0[1];  
+               var buna = bun0[1].replace(">=","");  ;  
                /*low */ var bunb = String(doc.data().BUNLower)
                /* high */ var bunc =  String(doc.data().BUNUpper)
              
@@ -627,6 +735,32 @@
                      }
                        //BUN DATA
                        th_bunnormal.innerHTML =  bunb + " - " + bunc ;
+                       var data = [
+                        {
+                          type: "indicator",
+                          mode: "gauge",
+                          value: parseFloat(buna),
+                          domain: { x: [0, 1], y: [0, 1] },
+                          gauge: { 
+                            shape: "bullet",
+                            axis: { range: [0, parseFloat(bunc)]},
+                            bar: {color: "#296e74"}
+                          },
+                     
+                          
+                        }
+                      ];
+                      var layout = { 
+                      width: 250, height: 200,
+                      paper_bgcolor:"rgba(0,0,0,0)", 
+                      font: {
+                        family: 'Courier New, monospace',
+                        size: 0,
+                        color: '#FFFFFF'
+                      }
+                      };
+                      Plotly.newPlot('bun1', data, layout);
+
              } 
            });
           //P DATA
@@ -634,7 +768,7 @@
               if (P !== null ){
                 th_punit.innerHTML = "mg/dL" ;
                 var p0 = String(P).split(",");
-                var pa = p0[1];  
+                var pa = p0[1].replace(">=",""); 
                 /*low */ var pb =  String(doc.data().PLower)
                 /* high */ var pc =  String(doc.data().PUpper)  
               
@@ -658,6 +792,33 @@
                       }
                       //P DATA
                       th_pnormal.innerHTML =  pb + " - " + pc ;
+
+                      var data = [
+                        {
+                          type: "indicator",
+                          mode: "gauge",
+                          value: parseFloat(pa),
+                          domain: { x: [0, 1], y: [0, 1] },
+                          gauge: { 
+                            shape: "bullet",
+                            axis: { range: [0, parseFloat(pc)]},
+                            bar: {color: "#296e74"}
+                          },
+                     
+                          
+                        }
+                      ];
+                      var layout = { 
+                      width: 250, height: 200,
+                      paper_bgcolor:"rgba(0,0,0,0)", 
+                      font: {
+                        family: 'Courier New, monospace',
+                        size: 0,
+                        color: '#FFFFFF'
+                      }
+                      };
+                      Plotly.newPlot('p1', data, layout);
+
                } 
              });
           //AMY DATA
@@ -665,7 +826,7 @@
              if (AMY !== null ){
                 th_amyunit.innerHTML = "U/L" ;
                 var amy0 = String(AMY).split(",");
-                var amya = amy0[1];  
+                var amya = amy0[1].replace(">=","");  
                /*low */ var amyb = String(doc.data().AMYLower); 
                /* high */ var amyc = String(doc.data().AMYUpper);   
              
@@ -689,6 +850,33 @@
                      }
                       //AMY DATA
                       th_amynormal.innerHTML =  amyb + " - " + amyc ;
+
+                      var data = [
+                        {
+                          type: "indicator",
+                          mode: "gauge",
+                          value: parseFloat(amya),
+                          domain: { x: [0, 1], y: [0, 1] },
+                          gauge: { 
+                            shape: "bullet",
+                            axis: { range: [0, parseFloat(amyc)]},
+                            bar: {color: "#296e74"}
+                          },
+                     
+                          
+                        }
+                      ];
+                      var layout = { 
+                      width: 250, height: 200,
+                      paper_bgcolor:"rgba(0,0,0,0)", 
+                      font: {
+                        family: 'Courier New, monospace',
+                        size: 0,
+                        color: '#FFFFFF'
+                      }
+                      };
+                      Plotly.newPlot('amy1', data, layout);
+
                } 
              });
     
@@ -697,7 +885,7 @@
             if (CHOL !== null ){
                 th_cholunit.innerHTML = "mg/dL" ;
                 var chol0 = String(CHOL).split(",");
-                var chola = chol0[1]; 
+                var chola = chol0[1].replace(">=","");
                 /*low */ var cholb =  String(doc.data().CholLower)
                 /* high */ var cholc =  String(doc.data().CholUpper)  
               
@@ -721,6 +909,33 @@
                       }
                            //CHOL DATA
                            th_cholnormal.innerHTML =  cholb + " - " + cholc ;
+
+                           var data = [
+                            {
+                              type: "indicator",
+                              mode: "gauge",
+                              value: parseFloat(chola),
+                              domain: { x: [0, 1], y: [0, 1] },
+                              gauge: { 
+                                shape: "bullet",
+                                axis: { range: [0, parseFloat(cholc)]},
+                                bar: {color: "#296e74"}
+                              },
+                         
+                              
+                            }
+                          ];
+                          var layout = { 
+                          width: 250, height: 200,
+                          paper_bgcolor:"rgba(0,0,0,0)", 
+                          font: {
+                            family: 'Courier New, monospace',
+                            size: 0,
+                            color: '#FFFFFF'
+                          }
+                          };
+                          Plotly.newPlot('chol1', data, layout);
+
               } 
             });
 
@@ -729,7 +944,7 @@
               if (ALT !== null ){
                  th_altunit.innerHTML = "U/L" ;
                  var alt0 = String(ALT).split(",");
-                 var alta = alt0[1]; 
+                 var alta = alt0[1].replace(">=","");
                  /*low */ var altb = String(doc.data().AltLower)
                  /* high */ var altc = String(doc.data().AltUpper)   
                    if (parseFloat(alta) > parseFloat(altc) || alta.includes(">"))
@@ -752,6 +967,33 @@
                        }
                         //ALT DATA
                         th_altnormal.innerHTML =  altb + " - " + altc ;
+
+                        var data = [
+                          {
+                            type: "indicator",
+                            mode: "gauge",
+                            value: parseFloat(alta),
+                            domain: { x: [0, 1], y: [0, 1] },
+                            gauge: { 
+                              shape: "bullet",
+                              axis: { range: [0, parseFloat(altc)]},
+                              bar: {color: "#296e74"}
+                            },
+                       
+                            
+                          }
+                        ];
+                        var layout = { 
+                        width: 250, height: 200,
+                        paper_bgcolor:"rgba(0,0,0,0)", 
+                        font: {
+                          family: 'Courier New, monospace',
+                          size: 0,
+                          color: '#FFFFFF'
+                        }
+                        };
+                        Plotly.newPlot('alt1', data, layout);
+
                 } 
               });
           //TBIL DATA
@@ -759,7 +1001,7 @@
               if (TBIL !== null ){
                   th_tbilunit.innerHTML = "mg/dL" ;
                   var tbil0 = String(TBIL).split(",");
-                  var tbila = tbil0[1]; 
+                  var tbila = tbil0[1].replace(">=",""); 
                  /*low */ var tbilb = String(doc.data().TbilLower)
                  /* high */ var tbilc = String(doc.data().TbilUpper)  
                
@@ -781,8 +1023,35 @@
                         document.getElementById("th_tbil").style.color = "black"; 
                         document.getElementById("th_tbil2").style.color = "black"; 
                        } 
-                             //ALT DATA
+                             //TBIL DATA
                              th_tbilnormal.innerHTML =  tbilb + " - " + tbilc ;
+
+                             var data = [
+                              {
+                                type: "indicator",
+                                mode: "gauge",
+                                value: parseFloat(tbila),
+                                domain: { x: [0, 1], y: [0, 1] },
+                                gauge: { 
+                                  shape: "bullet",
+                                  axis: { range: [0, parseFloat(tbilc)]},
+                                  bar: {color: "#296e74"}
+                                },
+                           
+                                
+                              }
+                            ];
+                            var layout = { 
+                            width: 250, height: 200,
+                            paper_bgcolor:"rgba(0,0,0,0)", 
+                            font: {
+                              family: 'Courier New, monospace',
+                              size: 0,
+                              color: '#FFFFFF'
+                            }
+                            };
+                            Plotly.newPlot('tbil1', data, layout);
+
                  } 
                });
 
@@ -793,7 +1062,7 @@
             if (ALP !== null ){
                 th_alpunit.innerHTML = "U/L" ;
                 var alp0 = String(ALP).split(",");
-                  var alpa = alp0[1]; 
+                  var alpa = alp0[1].replace(">=","");
                 /*low */ var alpb =  String(doc.data().AlpLower)
                 /* high */ var alpc =  String(doc.data().AlpUpper)   
                   if (parseFloat(alpa) > parseFloat(alpc) || alpa.includes(">"))
@@ -816,6 +1085,33 @@
                       }
                                   //ALP DATA
                                   th_alpnormal.innerHTML =  alpb + " - " + alpc ;
+
+                                  var data = [
+                                    {
+                                      type: "indicator",
+                                      mode: "gauge",
+                                      value: parseFloat(alpa),
+                                      domain: { x: [0, 1], y: [0, 1] },
+                                      gauge: { 
+                                        shape: "bullet",
+                                        axis: { range: [0, parseFloat(alpc)]},
+                                        bar: {color: "#296e74"}
+                                      },
+                                 
+                                      
+                                    }
+                                  ];
+                                  var layout = { 
+                                  width: 250, height: 200,
+                                  paper_bgcolor:"rgba(0,0,0,0)", 
+                                  font: {
+                                    family: 'Courier New, monospace',
+                                    size: 0,
+                                    color: '#FFFFFF'
+                                  }
+                                  };
+                                  Plotly.newPlot('alp1', data, layout);
+
               } 
             });
          
@@ -827,7 +1123,7 @@
         if (CRE !== null ){
            th_creunit.innerHTML = "mg/dL" ;
            var cre0 = String(CRE).split(",");
-           var crea = cre0[1]; 
+           var crea = cre0[1].replace(">=",""); 
            /*low */ var creb = String(doc.data().CreLower)
            /* high */ var crec = String(doc.data().CreUpper)
          
@@ -851,6 +1147,33 @@
                  }
                    //CRE DATA
                    th_crenormal.innerHTML =  creb + " - " + crec ;
+
+                   var data = [
+                    {
+                      type: "indicator",
+                      mode: "gauge",
+                      value: parseFloat(crea),
+                      domain: { x: [0, 1], y: [0, 1] },
+                      gauge: { 
+                        shape: "bullet",
+                        axis: { range: [0, parseFloat(crec)]},
+                        bar: {color: "#296e74"}
+                      },
+                 
+                      
+                    }
+                  ];
+                  var layout = { 
+                  width: 250, height: 200,
+                  paper_bgcolor:"rgba(0,0,0,0)", 
+                  font: {
+                    family: 'Courier New, monospace',
+                    size: 0,
+                    color: '#FFFFFF'
+                  }
+                  };
+                  Plotly.newPlot('cre1', data, layout);
+
           } 
         }); 
         document.getElementById("submitbtn").addEventListener("click", function(event) {
@@ -897,7 +1220,7 @@
     if (CK !== null ){
        th_ckunit.innerHTML = "U/L" ;
        var ck0 = String(CK).split(",");
-       var cka = ck0[1]; 
+       var cka = ck0[1].replace(">=","");
        /*low */ var ckb = String(doc.data().CkLower)
        /* high */ var ckc = String(doc.data().CkUpper)
      
@@ -921,6 +1244,33 @@
              }
                //CK DATA
                th_cknormal.innerHTML =  ckb + " - " + ckc ;
+
+               var data = [
+                {
+                  type: "indicator",
+                  mode: "gauge",
+                  value: parseFloat(cka),
+                  domain: { x: [0, 1], y: [0, 1] },
+                  gauge: { 
+                    shape: "bullet",
+                    axis: { range: [0, parseFloat(ckc)]},
+                    bar: {color: "#296e74"}
+                  },
+             
+                  
+                }
+              ];
+              var layout = { 
+              width: 250, height: 200,
+              paper_bgcolor:"rgba(0,0,0,0)", 
+              font: {
+                family: 'Courier New, monospace',
+                size: 0,
+                color: '#FFFFFF'
+              }
+              };
+              Plotly.newPlot('ck1', data, layout);
+
       } 
       if (! $('#th_cknormal').children().length > 0 ) 
       {
@@ -1003,6 +1353,30 @@ if (WBC !== null ){
        }
        //WBCL DATA
        th_wbcnormal.innerHTML = wbcb + " - " + wbcc;
+       var data = [
+        {
+          type: "indicator",
+          mode: "gauge",
+          value: parseFloat(wbca),
+          domain: { x: [0, 1], y: [0, 1] },
+          gauge: { 
+            shape: "bullet",
+            axis: { range: [0, parseFloat(wbcc)]},
+            bar: {color: "#296e74"}
+          },
+     
+        }
+      ];
+      var layout = { 
+      width: 250, height: 200,
+      paper_bgcolor:"rgba(0,0,0,0)", 
+      font: {
+        family: 'Courier New, monospace',
+        size: 0,
+        color: '#FFFFFF'
+      }
+      };
+      Plotly.newPlot('wbc1', data, layout);
 } 
 });
 //LYM DATA
@@ -1033,6 +1407,30 @@ if (LYM !== null ){
          }
       //LYML DATA
        th_lymnormal.innerHTML = lymb + " - " + lymc;
+       var data = [
+        {
+          type: "indicator",
+          mode: "gauge",
+          value: parseFloat(lyma),
+          domain: { x: [0, 1], y: [0, 1] },
+          gauge: { 
+            shape: "bullet",
+            axis: { range: [0, parseFloat(lymc)]},
+            bar: {color: "#296e74"}
+          },
+     
+        }
+      ];
+      var layout = { 
+      width: 250, height: 200,
+      paper_bgcolor:"rgba(0,0,0,0)", 
+      font: {
+        family: 'Courier New, monospace',
+        size: 0,
+        color: '#FFFFFF'
+      }
+      };
+      Plotly.newPlot('lym1', data, layout);
     }
 });
 
@@ -1064,6 +1462,30 @@ socket.on('LYMN', function(LYMN) {
            }
         //LYML DATA
          th_lymnormaln.innerHTML = lymNb + " - " + lymNc;
+         var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(lymNa),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(lymNc)]},
+              bar: {color: "#296e74"}
+            },
+       
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('lymn1', data, layout);
       }
   });
 
@@ -1094,6 +1516,30 @@ socket.on('MONN', function(MONN) {
            document.getElementById("th_mon2n").style.color = "black";
           }
           th_monnormaln.innerHTML = monNb + " - " + monNc 
+          var data = [
+            {
+              type: "indicator",
+              mode: "gauge",
+              value: parseFloat(monNa),
+              domain: { x: [0, 1], y: [0, 1] },
+              gauge: { 
+                shape: "bullet",
+                axis: { range: [0, parseFloat(monNc)]},
+                bar: {color: "#296e74"}
+              },
+         
+            }
+          ];
+          var layout = { 
+          width: 250, height: 200,
+          paper_bgcolor:"rgba(0,0,0,0)", 
+          font: {
+            family: 'Courier New, monospace',
+            size: 0,
+            color: '#FFFFFF'
+          }
+          };
+          Plotly.newPlot('monn1', data, layout);
    }
   });
 
@@ -1125,6 +1571,30 @@ if (MON !== null ){
          document.getElementById("th_mon2").style.color = "black"; 
         }
         th_monnormal.innerHTML = monb + " - " + monc 
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(monb),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(monc)]},
+              bar: {color: "#296e74"}
+            },
+       
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('mon1', data, layout);
  }
 });
 
@@ -1155,6 +1625,30 @@ if (GRA !== null ){
          document.getElementById("th_gra2").style.color = "black"; 
         }
         th_granormal.innerHTML = grab + " - " + grac
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(grab),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(grac)]},
+              bar: {color: "#296e74"}
+            },
+       
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('gra1', data, layout);
  }   
 });
 
@@ -1185,6 +1679,26 @@ socket.on('GRAN', function(GRAN) {
            document.getElementById("th_gra2n").style.color = "black"; 
           }
           th_granormaln.innerHTML = graNb + " - " + graNc
+          var data = [
+            {
+              type: "indicator",
+              mode: "gauge",
+              gauge: { shape: "bullet" },
+              delta: { reference: parseFloat(graNc) },
+              value: parseFloat(graNa),
+              domain: { x: [0, 1], y: [0, 1] },
+            }
+          ];
+          var layout = { 
+          width: 250, height: 200,
+          paper_bgcolor:"rgba(0,0,0,0)", 
+          font: {
+            family: 'Courier New, monospace',
+            size: 0,
+            color: '#FFFFFF'
+          }
+          };
+          Plotly.newPlot('gran1', data, layout);
    }   
   });
 
@@ -1215,6 +1729,26 @@ if (RBC !== null ) {
          document.getElementById("th_rbc2").style.color = "black"; 
         }
         th_rbcnormal.innerHTML = rbcb + " - " + rbcc
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { shape: "bullet" },
+            delta: { reference: parseFloat(grac) },
+            value: parseFloat(graa),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('rbc1', data, layout);
 } 
 });
 
@@ -1246,6 +1780,26 @@ socket.on('HGB', function(HGB) {
           document.getElementById("th_hgb2").style.color = "black"; 
          }
          th_hgbnormal.innerHTML = hgbb + " - " + hgbc
+         var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { shape: "bullet" },
+            delta: { reference: parseFloat(hgbc) },
+            value: parseFloat(hgba),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('hgb1', data, layout);
   } 
 });
 
@@ -1277,6 +1831,26 @@ if (HCT !== null ){
          document.getElementById("th_hct2").style.color = "black"; 
         }
         th_hctnormal.innerHTML = hctb + " - " + hctc
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { shape: "bullet" },
+            delta: { reference: parseFloat(hctc) },
+            value: parseFloat(hcta),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('hct1', data, layout);
   } 
 });
       
@@ -1308,6 +1882,26 @@ if (MCV !== null ){
           document.getElementById("th_mcv2").style.color = "black"; 
          }
          th_mcvnormal.innerHTML = mcvb + " - " + mcvc
+         var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { shape: "bullet" },
+            delta: { reference: parseFloat(mcvc) },
+            value: parseFloat(mcva),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('mcv1', data, layout);
  } 
 });
 
@@ -1339,6 +1933,26 @@ socket.on('MCH', function(MCH) {
            document.getElementById("th_mch2").style.color = "black"; 
           }
           th_mchnormal.innerHTML = mchb + " - " + mchc
+          var data = [
+            {
+              type: "indicator",
+              mode: "gauge",
+              gauge: { shape: "bullet" },
+              delta: { reference: parseFloat(mchc) },
+              value: parseFloat(mcha),
+              domain: { x: [0, 1], y: [0, 1] },
+            }
+          ];
+          var layout = { 
+          width: 250, height: 200,
+          paper_bgcolor:"rgba(0,0,0,0)", 
+          font: {
+            family: 'Courier New, monospace',
+            size: 0,
+            color: '#FFFFFF'
+          }
+          };
+          Plotly.newPlot('mch1', data, layout);
    } 
  });
 
@@ -1369,6 +1983,26 @@ socket.on('MCHC', function(MCHC) {
            document.getElementById("th_mchc2").style.color = "black"; 
           } 
           th_mchcnormal.innerHTML = mchcb + " - " + mchcc
+          var data = [
+            {
+              type: "indicator",
+              mode: "gauge",
+              gauge: { shape: "bullet" },
+              delta: { reference: parseFloat(mchcc) },
+              value: parseFloat(mchca),
+              domain: { x: [0, 1], y: [0, 1] },
+            }
+          ];
+          var layout = { 
+          width: 250, height: 200,
+          paper_bgcolor:"rgba(0,0,0,0)", 
+          font: {
+            family: 'Courier New, monospace',
+            size: 0,
+            color: '#FFFFFF'
+          }
+          };
+          Plotly.newPlot('mchc1', data, layout);
     } 
     if (! $('#th_mchcnormal').children().length > 0 ) 
       {
@@ -1479,6 +2113,26 @@ if (PLT !== null ){
           document.getElementById("th_plt2").style.color = "black"; 
          }
          th_pltnormal.innerHTML = pltb + " - " + pltc
+         var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { shape: "bullet" },
+            delta: { reference: parseFloat(pltc) },
+            value: parseFloat(plta),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('plt1', data, layout);
  } 
 });
    }); 
@@ -1533,11 +2187,18 @@ db.collection("Details").doc("Clinic Details").get()
   var clinicdiv = document.getElementById("clinic1"); 
   var addressdiv =document.getElementById("address"); 
   var labtech =document.getElementById("labtechnician1");
-  var vet1  =document.getElementById("vet1");
+  var vet1  = document.getElementById("vet1");
+  var details11 = document.getElementById("details1");
+  var details21 = document.getElementById("details2"); 
 
   clinicdiv.innerHTML = String(clinic1); 
   addressdiv.innerHTML = String(address1); 
   labtech.innerHTML = String(person1); 
   vet1.innerHTML = String(person2)
+  details11.innerHTML = String(details1); 
+  details21.innerHTML = String (details2); 
 
 })
+
+
+

@@ -23,6 +23,7 @@
   <script defer src="/rep/fontawesome.js" crossorigin="anonymous"></script>
   <script src='/jscodes/moment.js'></script>
   <script src='/rep/jquery.inputfit.js'></script>
+	<script src='https://cdn.plot.ly/plotly-2.12.1.min.js'></script>
 </head>
 <link rel="stylesheet" type="text/css" href="/css/combo/runsamples.css">
 
@@ -115,7 +116,7 @@
             </div>
           </div>
       </nav>
-
+   
       <div id="content">
         <div id="container" class="container">
           <div id="container" class="container">
@@ -271,7 +272,7 @@
             </table>
           </div>
 
-  
+       
 
        <div class="horizontal_line"></div>
        <br>
@@ -284,6 +285,7 @@
               <th>Test</th>
               <th>Results</th>
               <th class="yay" >Reference Range</th>
+              <th></th>
               <th>Unit</th>
 
             </tr>
@@ -291,12 +293,18 @@
               <td id="seq2"><div id="th_alb2">Albumin</td></div>
               <td id="th_alb"></td>
               <td class="yay" id="th_albnormal"></td>
+              <td>
+                <div class='testclass'><div id='alb1'></div></div>
+              </td>
               <td id="th_albunit"></td>
             </tr>
             <tr id="tp">
               <td id="seq2"><div id="th_tp2">Total Protein</td></div>
               <td id="th_tp"></td>
               <td class="yay" id="th_tpnormal"></td>
+              <td>
+                <div class='testclass'><div id='tp1'></div></div>
+              </td>
               <td id="th_tpunit"></td>
             </tr>
 
@@ -304,6 +312,9 @@
               <td id="seq2"><div id="th_ca2">Calcium</td></div>
               <td id="th_ca"></td>
               <td class="yay" id="th_canormal"></td>
+              <td>
+                <div class='testclass'><div id='ca1'></div></div>
+              </td>
               <td id="th_caunit"></td>
             </tr>
 
@@ -311,12 +322,18 @@
               <td id="seq2"><div id="th_glu2">Glucose</td></div>
               <td id="th_glu"></td>
               <td class="yay" id="th_glunormal"></td>
+              <td>
+                <div class='testclass'><div id='glu1'></div></div>
+              </td>
               <td id="th_gluunit"></td>
             </tr>
             <tr class="RBC_Count" id="bun">
               <td id="seq2"><div id="th_bun2">BUN</td></div>
               <td id="th_bun"></td>
               <td class="yay" id="th_bunnormal"></td>
+              <td>
+                <div class='testclass'><div id='bun1'></div></div>
+              </td>
               <td id="th_bununit"></td>
             </tr>
 
@@ -324,6 +341,9 @@
               <td id="seq2"><div id="th_p2">Phosphorus</td></div>
               <td id="th_p"></td>
               <td class="yay"  id="th_pnormal"></td>
+              <td>
+                <div class='testclass'><div id='p1'></div></div>
+              </td>
               <td id="th_punit"></td>
             </tr>
 
@@ -331,6 +351,9 @@
               <td id="seq2"><div id="th_amy2">Amylase</td></div>
               <td id="th_amy"></td>
               <td class="yay" id="th_amynormal"></td>
+              <td>
+                <div class='testclass'><div id='amy1'></div></div>
+              </td>
               <td id="th_amyunit"></td>
             </tr>
 
@@ -338,6 +361,9 @@
               <td id="seq2"><div id="th_chol2">Cholesterol</td></div>
               <td id="th_chol"></td>
               <td class="yay" id="th_cholnormal"></td>
+              <td>
+                <div class='testclass'><div id='chol1'></div></div>
+              </td>
               <td id="th_cholunit"></td>
             </tr>
 
@@ -345,6 +371,9 @@
               <td id="seq2"><div id="th_alt2">ALT</td></div>
               <td id="th_alt"></td>
               <td class="yay" id="th_altnormal"></td>
+              <td>
+                <div class='testclass'><div id='alt1'></div></div>
+              </td>
               <td id="th_altunit"></td>
             </tr>
 
@@ -352,28 +381,41 @@
               <td id="seq2"><div id="th_tbil2">TBIL</td></div>
               <td id="th_tbil"></td>
               <td class="yay" id="th_tbilnormal"></td>
+              <td>
+                <div class='testclass'><div id='tbil1'></div></div>
+              </td>
               <td id="th_tbilunit"></td>
             </tr>
             <tr class="PLT" id="alp">
               <td id="seq2"><div id="th_alp2">ALP</td></div>
               <td id="th_alp"></td>
               <td class="yay" id="th_alpnormal"></td>
+              <td>
+                <div class='testclass'><div id='alp1'></div></div>
+              </td>
               <td id="th_alpunit"></td>
             </tr>
             <tr id="cre">
               <td id="seq2"><div id="th_cre2">Creatinine</td></div>
               <td id="th_cre"></td>
               <td class="yay" id="th_crenormal"></td>
+              <td>
+                <div class='testclass'><div id='cre1'></div></div>
+              </td>
               <td id="th_creunit"></td>
             </tr>
             <tr id="ck">
               <td id="seq2"><div id="th_ck2">CK</td></div>
               <td id="th_ck"></td>
               <td class="yay" id="th_cknormal"></td>
+              <td>
+                <div class='testclass'><div id='ck1'></div></div>
+              </td>
               <td id="th_ckunit"></td>
             </tr>
           </table>
         </div>
+
         <div class="vertical">&nbsp</div>
         <div class="column2">
           <div class="cbc">HEMATOLOGY</div>
@@ -382,6 +424,7 @@
               <th>Test</th>
               <th>Results</th>
               <th class="yay">Reference Range</th>
+              <th></th>
               <th>Unit</th>
 
             </tr>
@@ -389,6 +432,9 @@
               <td id="seq2"><div id="th_wbc2">WBC Count</td></div>
               <td id="th_wbc"></td>
               <td class="yay" id="th_wbcnormal"></td>
+              <td>
+                <div class='testclass'><div id='wbc1'></div></div>
+              </td>
               <td id="th_wbcunit"></td>
             </tr>
 
@@ -396,6 +442,9 @@
               <td id="seq2"><div id="th_lym2">% Lymphocytes</td></div>
               <td id="th_lym"></td>
               <td class="yay" id="th_lymnormal"></td>
+              <td>
+                <div class='testclass'><div id='lym1'></div></div>
+              </td>
               <td id="th_lymunit"></td>
             </tr>
   
@@ -403,6 +452,9 @@
               <td id="seq2"><div id="th_mon2">% Monocytes</td></div>
               <td id="th_mon"></td>
               <td class="yay" id="th_monnormal"></td>
+              <td>
+                <div class='testclass'><div id='mon1'></div></div>
+              </td>
               <td id="th_monunit"></td>
             </tr>
   
@@ -410,6 +462,9 @@
               <td id="seq2"><div id="th_gra2">% Granulocytes</td></div>
               <td id="th_gra"></td>
               <td class="yay" id="th_granormal"></td>
+              <td>
+                <div class='testclass'><div id='gra1'></div></div>
+              </td>
               <td id="th_graunit"></td>
             </tr>
 
@@ -417,6 +472,9 @@
               <td id="seq2"><div id="th_rbc2">RBC Count</td></div>
               <td id="th_rbc"></td>
               <td class="yay" id="th_rbcnormal"></td>
+              <td>
+                <div class='testclass'><div id='rbc1'></div></div>
+              </td>
               <td id="th_rbcunit"></td>
             </tr>
 
@@ -424,6 +482,9 @@
               <td id="seq2"><div id="th_lym2n">Lymphocytes</td></div>
               <td id="th_lymn"></td>
               <td class="yay" id="th_lymnormaln"></td>
+              <td>
+                <div class='testclass'><div id='lymn1'></div></div>
+              </td>
               <td id="th_lymunitn"></td>
             </tr>
   
@@ -431,6 +492,9 @@
               <td id="seq2"><div id="th_mon2n">Monocytes</td></div>
               <td id="th_monn"></td>
               <td class="yay" id="th_monnormaln"></td>
+              <td>
+                <div class='testclass'><div id='monn1'></div></div>
+              </td>
               <td id="th_monunitn"></td>
             </tr>
   
@@ -438,6 +502,9 @@
               <td id="seq2"><div id="th_gra2n">Granulocytes</td></div>
               <td id="th_gran"></td>
               <td class="yay" id="th_granormaln"></td>
+              <td>
+                <div class='testclass'><div id='gran1'></div></div>
+              </td>
               <td id="th_graunitn"></td>
             </tr>
   
@@ -445,6 +512,9 @@
               <td id="seq2"><div id="th_hgb2">Hemoglobin</td></div>
               <td id="th_hgb"></td>
               <td class="yay" id="th_hgbnormal"></td>
+              <td>
+                <div class='testclass'><div id='hgb1'></div></div>
+              </td>
               <td id="th_hgbunit"></td>
             </tr>
   
@@ -452,6 +522,9 @@
               <td id="seq2"><div id="th_hct2">Hematocrit</td></div>
               <td id="th_hct"></td>
               <td class="yay" id="th_hctnormal"></td>
+              <td>
+                <div class='testclass'><div id='hct1'></div></div>
+              </td>
               <td id="th_hctunit"></td>
             </tr>
   
@@ -459,6 +532,9 @@
               <td id="seq2"><div id="th_mcv2">MCV</td></div>
               <td id="th_mcv"></td>
               <td class="yay" id="th_mcvnormal"></td>
+              <td>
+                <div class='testclass'><div id='mcv1'></div></div>
+              </td>
               <td id="th_mcvunit"></td>
             </tr>
   
@@ -466,6 +542,9 @@
               <td id="seq2"><div id="th_mch2">MCH</td></div>
               <td id="th_mch"></td>
               <td class="yay" id="th_mchnormal"></td>
+              <td>
+                <div class='testclass'><div id='mch1'></div></div>
+              </td>
               <td id="th_mchunit"></td>
             </tr>
   
@@ -473,30 +552,64 @@
               <td id="seq2"><div id="th_mchc2">MCHC</td></div>
               <td id="th_mchc"></td>
               <td class="yay" id="th_mchcnormal"></td>
+              <td>
+                <div class='testclass'><div id='mchc1'></div></div>
+              </td>
               <td id="th_mchcunit"></td>
             </tr>
             <tr class="PLT" id="plt">
               <td id="seq2"><div id="th_plt2">Platelets</td></div>
               <td id="th_plt"></td>
               <td class="yay" id="th_pltnormal"></td>
+              <td>
+                <div class='testclass'><div id='plt1'></div></div>
+              </td>
               <td id="th_pltunit"></td>
             </tr>
           </table>
       </div>
       <div class="horizontal_line2"></div>
       <br>
-      <div class="row">
+
+
+      <!-- <tr id="fn1">
+        <th class="w-100" style="text-align:left">
+          <div class="row">
+            <div class="col-5 ">
+              <div class="inputBoxPetsName">PID: </div>
+            </div>
+            <div class="col-7 ">
+              <div class="row">
+              <div class="col-7 " id="PID">-</div>
+              <div class="col-3 " id="SID">-</div></div>
+            </div>
+          </div>
+          &nbsp;                   
+          <div class="row">
+            <div class="col-5">
+          <div class="inputBoxPetsName">Pet's Name: </div></div>
+          <div class="col-7 "><b><input id="petnameinputs" class="inpUpdate1" type="text" oninput="this.value = this.value.toUpperCase()">
+          </b></div></div>
+        </th>
+      </tr> -->
+      <div class="row ">
       <div id="textareaposition">
         <div class="chip">REMARKS</div>
       <textarea id="remarks-textarea" required></textarea>
       <div class="horizontal_line4"></div>  
       <div class="horizontal_line5"></div>
-        <div class="signatoriesyes">        
-          <div id="labtechnician1"></div> 
-          <div id="vet1"></div>   
-          <div id="signature"></div>
+      
+      <div class="signatoriesyes"> 
+     
+          <div id="labtechnician1"></div>
+          <div id="vet1"></div>     
+          <div id="details1"></div>
+          
+          <div id="details2"></div>
+          <img id="signature1" width="155px" height="155px">
+          <img id="signature2" width="155px" height="155px">  
       </div>
-          </div
+    </div>
         </div>
       </div>
     </div>
@@ -582,5 +695,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script src="/jscodes/navbutton.js"></script>
     <script src="/jscodes/combo/values.js"></script>
+
 </body>
 </html>

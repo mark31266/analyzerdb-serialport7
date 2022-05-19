@@ -513,7 +513,7 @@ div.subtabletext {
 }
 .column2
 {
-  padding-left:53px;
+  padding-left:29px;
 }
 .horizontal_line {
   background-color: black;
@@ -573,13 +573,17 @@ div.subtabletext {
   margin-left: -18px;
   visibility: hidden;
 }
-
+.testclass {
+  -webkit-print-color-adjust: exact;
+  background-color: transparent;
+ 
+}
 #column1 {
   width: 90%; 
   color: black;
 }
 #column2 {
-  width: 132%;
+  width: 106%; 
   color : black
 }
 
@@ -594,13 +598,15 @@ div.subtabletext {
 
 
 
-.signatoriesyes{
-  visibility: hidden;
-}
+ .signatoriesyes{
+  /* display: none; */
+} 
 
 @media print {
 
- 
+  .signatoriesyes{
+    display: block;
+  }
 
   .header12, .header123{
     display: flex;
@@ -665,11 +671,12 @@ div.subtabletext {
     display: none;
   }
   #column2 {
-    width: 130%;
+    width: 100%;
     color : black
   }
 
 #labtechnician1{
+  
   float: right;
   margin-top: -20px;
   margin-right: 65px;
@@ -678,6 +685,22 @@ div.subtabletext {
     visibility: visible;
     color : black;
     white-space: nowrap;
+}
+#details1{
+  margin-top: 5px;
+  margin-right: 95px;
+  font-family: 'Segoe UI Semibold';
+    font-size: 14px;
+    visibility: visible;
+    color : red;
+    white-space: nowrap;
+}
+
+#signature2{
+  float: right;
+  margin-top: -280px;
+  margin-right: 90px;
+ 
 }
 
 #vet1{
@@ -691,6 +714,12 @@ div.subtabletext {
   color : black;
   
 }
+#details2{
+
+ 
+}
+
+
   .horizontal_line{
     background-color: black;
   width: 100%;
@@ -780,7 +809,7 @@ div.subtabletext {
   }
   .column2
   {
-    padding-left:53px;
+    padding-left:50px;
   }
   input#ownernameinputs,
   input#petnameinputs
@@ -1383,4 +1412,17 @@ body {
 #gender {
   display: none;
 }
+.modebar {
+  display: none;
+}
+.testclass {
+     position: relative;
+     padding: 0px;
+     margin-top: -113px;
+     margin-left: -84px;
+     margin-bottom: -105px;
+     margin-right: -78px;
+}
+
+
 

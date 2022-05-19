@@ -48,7 +48,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   }); 
   
  
- 
+
   var clicks2 = document.getElementById("clicks"); 
   var myimg = document.getElementById("signatories1"); 
   var myimg2 = document.getElementById("logo1"); 
@@ -560,6 +560,7 @@ var logresultstable = document.getElementById("logresults");
       setTimeout(() => {
         $("#example"). css("visibility", "visible");
         $("#example_wrapper"). css("visibility", "visible");
+        $(".dataTables_info"). css("visibility", "hidden");
         
       }, 300);
       $(".spinner-grow"). css("display", "none");
@@ -1457,6 +1458,7 @@ var logresultstable = document.getElementById("logresults");
         
         $("#messagemodal").modal("show");
         $("body.modal-open"). css("padding-right", "unset");
+        
       });
       
     });
@@ -1464,6 +1466,8 @@ var logresultstable = document.getElementById("logresults");
   }, 2000);
 
   $('#updatebtn').click(function() {
+    $(".row-gen").css("margin","none");
+    $(".row-spc").css("margin-top","none!important");
     $("#updatebtn").css("display","none");
     $("#submitbtn").css("display","block");
     $(".col-gen").css("display","none");
@@ -1478,6 +1482,7 @@ var logresultstable = document.getElementById("logresults");
     $("#remarks-textarea2"). css("display", "block");
     $("#printbtn2"). css("display", "block");
     $("#printbtn"). css("display", "none");
+    $("#deletebtn"). css("display", "none");
   })
   var date2 = document.getElementById("date"); 
   var clock1 = document.getElementById("clock"); 
@@ -1504,6 +1509,7 @@ var logresultstable = document.getElementById("logresults");
     else {
     document.getElementById("error5").innerHTML = "Are you sure you want to update this data?"
     $('#updatemodal').modal("show"); 
+    $('#updatemodal').css('display',"block");
     }
   })
  
@@ -1534,7 +1540,7 @@ var logresultstable = document.getElementById("logresults");
         } , {once: true});   
   })
   $('#updateno').click(function() {
-    $('#updatemodal').modal('hide');
+    $('#updatemodal').css('display',"none");
   })
 
   $('#closebtn2').click(function() {
@@ -1564,8 +1570,24 @@ var logresultstable = document.getElementById("logresults");
     $("#genderselectcol"). css("display", "none");
     gender1.innerHTML = gender2.value;   
     window.print();
-  })
-  
+  })  
 })
+$('#closebtn').click(function() {
+  $('#ModalCenterScn').css("display", "none");
+})
+$('#scnrbtn').click(function() {
+  $('#ModalCenterScn').css("display", "block");
+})
+$('#deleteno').click(function() {
+  $('#ModalCenter').css("display", "none");
+})
+$('#deletebtn').click(function() {
+  $('#ModalCenter').css("display", "block");
+})
+
+
+
+
+
 
 

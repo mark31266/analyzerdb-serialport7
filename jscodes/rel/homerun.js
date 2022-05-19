@@ -51,9 +51,24 @@ socket.on('uptimedata', function(uptimedata)
       db.collection("users").doc(uid10).get().then((doc) => {
           var email10 = doc.data().Username; 
           var userlevel10 = doc.data().UserLevel; 
+          var name1 = doc.data().Name; 
           document.getElementById("usernamelevel").innerHTML = String(email10) + " | " + String(userlevel10)
+          document.getElementById("usrname").innerHTML = String(name1); 
+          document.getElementById("usrLvl").innerHTML = String(userlevel10); 
       }); 
-       
+       var result1 = [];
+      db.collection("machinessupported").get().then(querySnapshot => {
+       querySnapshot.forEach(doc => result1.push(doc.id));
+       result1.forEach(function (item1) {
+         const optionObj1 = document.createElement("option");
+         optionObj1.textContent = item1; 
+         optionObj1.disabled = true
+         document.getElementById("machineselect").appendChild(optionObj1);
+         
+         $('#machineselect').selectpicker('refresh');
+        
+       });
+     }) 
       //count data
 
     db.collection("Audit Log").where("Activity", "==", "Run Sample").get()
@@ -1490,11 +1505,12 @@ var totaldata = document.getElementById("data1").innerHTML;
 var averagedata = document.getElementById("data3").innerHTML; 
 var updatedata = document.getElementById("data2").innerHTML; 
 var accdata = document.getElementById("data4").innerHTML; 
+
 // The speed gauge
 var chartSpeed = Highcharts.chart('container-total', Highcharts.merge(gaugeOptions, {
     yAxis: {
         min: 0,
-        max: parseFloat(totaldata) * 5 -200,
+        max: parseFloat(totaldata) * 5 ,
         title: {
             text: 'Total Test Runs'
         }
@@ -1568,11 +1584,11 @@ var chartUpd = Highcharts.chart('container-upd', Highcharts.merge(gaugeOptions, 
           format:
               '<div style="text-align:center">' +
               '<span style="font-size:25px">{y}</span><br/>' +
-              '<span style="font-size:12px;opacity:0.4">Tests</span>' +
+              '<span style="font-size:12px;opacity:0.4">Updates</span>' +
               '</div>'
       },
       tooltip: {
-          valueSuffix: ' Tests '
+          valueSuffix: ' Updates '
       }
   }]
 }));
