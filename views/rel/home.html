@@ -33,11 +33,17 @@
     <script src='https://cdn.datatables.net/searchpanes/2.0.0/js/dataTables.searchPanes.min.js'></script>
     <script src='https://cdn.datatables.net/searchpanes/2.0.0/js/searchPanes.jqueryui.min.js'></script>
     <script src='https://cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js'></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <!--<link rel="stylesheet" type="text/css" href="/semantic/out/semantic.min.css">-->
     </head>
 <link rel="stylesheet" href="/css/rel/home.css">
 
-<body onload="card()">
+<body>
 
     <div class="wrapper">
         <!-- Sidebar Holder -->
@@ -327,138 +333,6 @@
                                     </figure>
                                 </div>
                             </div>
-
-
-
-                                            <!--<div class="card-deck">
-                                            <div class="card card-bg" style="width:480px;">
-                                            <div class="card-body">
-                                                <table class="table" id="example" style="width:100%">
-                                                    <thead>
-                                                      <tr>
-                                                        <th data-sortable="true">PID</th>
-                                                        <th data-sortable="false">Pet Name</th>
-                                                        <th data-sortable="false">Owner Name</th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false">Date</th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false">User</th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                        <th data-sortable="false"></th>
-                                                      </tr>
-                                                    </thead>
-                                                    <tbody id="logresults">
-                                                    </tbody>
-                                                  </table>
-                                            </div>
-                                        </div></div>
-                                    </div>
-
-                                        <div class="col-3 ml-2 mt-3">
-                                        <div class="card card-bg" style="width: 680px; height: 400px">
-                                            <div class="d-flex justify-content-center text-center">
-
-                                            </div>
-                                            <div class="card-body-2">
-                                                <figure class="highcharts-figure">
-                                                    <div id="container-total" class="chart-container"></div>
-                                                    <div id="container-avg" class="chart-container"></div>
-                                                    <div id="container-upd" class="chart-container"></div>
-                                                    <div id="container-acc" class="chart-container"></div>
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    </div>-->
-                                    
-
-
-
                         <div class="card-deck stats-card">
                             <div class="card card-bg1">
                                 <div class="col-12 mt-4 ">
@@ -558,12 +432,7 @@
         <script>
         </script>
         <script type="module" src="/jscodes/rel/homerun.js"></script>
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/highcharts-more.js"></script>
-        <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script src="https://code.highcharts.com/modules/export-data.js"></script>
-        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+     
         <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> -->
         <script src="/jscodes/navbutton.js"></script>
         <script>

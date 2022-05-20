@@ -611,11 +611,12 @@ body {
   #vet1{
     display:none;
   }
-  
+ 
 
   /* Print Function */
   @media print {
-
+    
+    
     th {
       color: black; 
     }
@@ -712,8 +713,8 @@ body {
     /* float: left; */
     padding-left: 50%;
     float: right;
-  
     margin-top: -8%;
+    display: block;
   } 
  
 

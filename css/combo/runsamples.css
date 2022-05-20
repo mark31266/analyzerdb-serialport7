@@ -579,7 +579,7 @@ div.subtabletext {
  
 }
 #column1 {
-  width: 90%; 
+  width: 92%; 
   color: black;
 }
 #column2 {
@@ -599,7 +599,7 @@ div.subtabletext {
 
 
  .signatoriesyes{
-  /* display: none; */
+   display: none; 
 } 
 
 @media print {
@@ -687,20 +687,44 @@ div.subtabletext {
     white-space: nowrap;
 }
 #details1{
+  /* float: right; */
+  position: static;
   margin-top: 5px;
-  margin-right: 95px;
+  padding-left: 485px;
+  /* margin-right: 95px; */
   font-family: 'Segoe UI Semibold';
     font-size: 14px;
     visibility: visible;
-    color : red;
     white-space: nowrap;
+    color:black;
+}
+#details2{
+position: absolute;
+ float: none;
+  /* margin-top: 5px; */
+  /* object-position: center top; */
+  /* padding-right: 200px; */
+  margin-left: 760px;
+  margin-top: -17px;
+  font-family: 'Segoe UI Semibold';
+    font-size: 14px;
+    visibility: visible;;
+    color: black;
+    /* white-space: nowrap; */
+}
+
+#signature1{
+  float: right;
+  margin-top: -120px;
+  margin-right: -160px;
+ 
 }
 
 #signature2{
   float: right;
-  margin-top: -280px;
+  margin-top: -120px;
   margin-right: 90px;
- 
+  /* margin-right: 500px; */
 }
 
 #vet1{
@@ -713,10 +737,6 @@ div.subtabletext {
   white-space: nowrap;
   color : black;
   
-}
-#details2{
-
- 
 }
 
 
@@ -805,11 +825,11 @@ div.subtabletext {
   .column1 {
     float: left;
     width: 50%;
-    padding-left: 15px;
+    padding-left: 10px;
   }
   .column2
   {
-    padding-left:50px;
+    padding-left:29px;
   }
   input#ownernameinputs,
   input#petnameinputs
@@ -1424,5 +1444,7 @@ body {
      margin-right: -78px;
 }
 
-
-
+/* div#alb1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect 
+{
+fill: #41c8ab !important;
+} */

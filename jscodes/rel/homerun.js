@@ -1438,7 +1438,7 @@ socket.on('uptimedata', function(uptimedata)
       });
       
     });
-  }, 1000);
+  }, 2000);
 
   var gaugeOptions = {
     chart: {
@@ -1498,13 +1498,16 @@ socket.on('uptimedata', function(uptimedata)
         }
     }
 };
+
+
+
 setTimeout(() => {
   
-
-var totaldata = document.getElementById("data1").innerHTML; 
-var averagedata = document.getElementById("data3").innerHTML; 
-var updatedata = document.getElementById("data2").innerHTML; 
-var accdata = document.getElementById("data4").innerHTML; 
+  var totaldata = document.getElementById("data1").innerHTML; 
+  var averagedata = document.getElementById("data3").innerHTML; 
+  var updatedata = document.getElementById("data2").innerHTML; 
+  var accdata = document.getElementById("data4").innerHTML; 
+  console.log(String(totaldata) + " " + String(averagedata) + " " + String(updatedata) + " " + String(accdata))
 
 // The speed gauge
 var chartSpeed = Highcharts.chart('container-total', Highcharts.merge(gaugeOptions, {
@@ -1621,7 +1624,7 @@ var chartAcc = Highcharts.chart('container-acc', Highcharts.merge(gaugeOptions, 
   }]
 }));
 
-}, 1000);
+}, 2000);
 
 
   
