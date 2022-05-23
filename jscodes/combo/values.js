@@ -210,23 +210,6 @@
               document.getElementById("user5").innerHTML = String(doc.data().Username); 
               document.getElementById("usernamelevel").innerHTML = String(email10) + " | " + String(userlevel10)
             })
-  
-            // db.collection("Details").doc("Clinic Details").get()  
-            // .then((doc) => {
-            //   var clinic1 = doc.data().Clinic; 
-            //   var address1 = doc.data().Address; 
-            //   var person1 = doc.data().LabTechnician; 
-            //   var details1 = doc.data().Details1; 
-            //   var vet1 = doc.data().Veterinarian;
-            //   var details2 = doc.data().Details2; 
-    
-            //   var clinicdiv = document.getElementById("clinic1"); 
-            //   var addressdiv =document.getElementById("address"); 
-    
-            //   clinicdiv.innerHTML = String(clinic1); 
-            //   addressdiv.innerHTML = String(address1); 
-            
-            // })
                           
           })
              function dataonload() {
@@ -2253,15 +2236,14 @@ function printfunction() {
   $("#species"). css("display", "block");
   species1.innerHTML = species2.value; 
 
-
   $("#labtechnician1"). css("display", "block");
   $("#vet1"). css("display", "block");
 window.print(); 
-$(".col-6"). css("display", "block");
-$("#gender"). css("display", "none");
+  $(".col-6"). css("display", "block");
+  $("#gender"). css("display", "none");
 
-$("#speciecol"). css("display", "block");
-$("#species"). css("display", "none");
+  $("#speciecol"). css("display", "block");
+  $("#species"). css("display", "none");
 }
 function passvalues() {
   var name = document.getElementById("textvalue").value; 
@@ -2286,8 +2268,8 @@ db.collection("Details").doc("Clinic Details").get()
   var details2 = doc.data().Details2; 
 
   var clinicdiv = document.getElementById("clinic1"); 
-  var addressdiv =document.getElementById("address"); 
-  var labtech =document.getElementById("labtechnician1");
+  var addressdiv = document.getElementById("address"); 
+  var labtech = document.getElementById("labtechnician1");
   var vet1  = document.getElementById("vet1");
   var details11 = document.getElementById("details1");
   var details21 = document.getElementById("details2"); 

@@ -47,39 +47,40 @@ firebase.auth().onAuthStateChanged(function (user) {
       document.getElementById("usernamelevel").innerHTML = String(email10) + " | " + String(userlevel10)
   }); 
   
- 
+  db2.collection("Details").doc("Clinic Details").get()  
+  .then((doc) => {
+    var clinic1 = doc.data().Clinic; 
+    var address1 = doc.data().Address; 
+    var person1 = doc.data().LabTechnician; 
+    var details1 = doc.data().Details1; 
+    var person2 = doc.data().Veterinarian;
+    var details2 = doc.data().Details2; 
+  
+    var clinicdiv = document.getElementById("clinic1"); 
+    var addressdiv =document.getElementById("address"); 
+    var labtech =document.getElementById("labtechnician1");
+    var vet1  = document.getElementById("vet1");
+    var details11 = document.getElementById("details1");
+    var details21 = document.getElementById("details2"); 
+  
+    clinicdiv.innerHTML = String(clinic1); 
+    addressdiv.innerHTML = String(address1); 
+    labtech.innerHTML = String(person1); 
+    vet1.innerHTML = String(person2)
+    details11.innerHTML = String(details1); 
+    details21.innerHTML = String (details2); 
+  })
 
   var clicks2 = document.getElementById("clicks"); 
-  var myimg = document.getElementById("signatories1"); 
+  var myimg = document.getElementById("signature1"); 
   var myimg2 = document.getElementById("logo1"); 
-  var myimg3 = document.getElementById("header1"); 
+  var myimg3 = document.getElementById("signature2"); 
   //Automatic Image Data (Signatories)!!
-  var docRef = db2.collection("Images").doc("signatories.png");
-
-  db2.collection("Details").doc("Clinic Details").get()  
-        .then((doc) => {
-          var clinic1 = doc.data().Clinic; 
-          var address1 = doc.data().Address; 
-          var person1 = doc.data().LabTechnician; 
-          var details1 = doc.data().Details1; 
-          var person2 = doc.data().Veterinarian;
-          var details2 = doc.data().Details2; 
-
-          var clinicdiv = document.getElementById("clinic1"); 
-          var addressdiv =document.getElementById("address"); 
-          var labtech =document.getElementById("labtechnician1");
-          var vet1  =document.getElementById("vet1");
-
-          clinicdiv.innerHTML = String(clinic1); 
-          addressdiv.innerHTML = String(address1); 
-          labtech.innerHTML = String(person1); 
-          vet1.innerHTML = String(person2)
-        
-        })
+  var docRef = db2.collection("Images").doc("Person 1 E-Signature");
 docRef.get().then((doc) => {
     if (doc.exists) {
        myimg.src = doc.data().ImageURL; 
-       console.log("Signatories Present")
+       console.log("Signatories 1 Present")
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -101,11 +102,11 @@ docRef.get().then((doc) => {
     console.log("Error getting document:", error);
 });
 //Automatic Image Data (Header)!!
-var docRef = db2.collection("Images").doc("header.png");
+var docRef = db2.collection("Images").doc("Person 2 E-Signature");
 docRef.get().then((doc) => {
     if (doc.exists) {
        myimg3.src = doc.data().ImageURL; 
-       console.log("Header Present")
+       console.log("Signatories 2 Present")
     } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -860,20 +861,51 @@ var logresultstable = document.getElementById("logresults");
         /*low */ var albb = String(doc.data().ALBLower);
         /* high */ var albc = String(doc.data().ALBUpper);    
       
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(alba),
+            domain: { x: [0, 1], y: [0, 1]},
+            steps: { range: [0, 4],visible:true, color: "green", },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(albc)]},
+              bar: {color: "rgb(50 135 69)"}
+            },                  
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        showlegend: false,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        var config = { responsive: true,displayModeBar: false };
+        Plotly.newPlot('alb1', data, layout, config);
+
+
           if (parseFloat(alba) > parseFloat(albc) || alba.includes(">"))
               {
                th_alb.style.color = "red"
                document.getElementById("th_alb2").style.color = "red"; 
+               $("div#alb1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)");                   
               }
              else if (parseFloat(alba) < parseFloat(albb))
               {
                th_alb.style.color = "red"
                document.getElementById("th_alb2").style.color = "red"; 
+               $("div#alb1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
               }
               else 
               {
                document.getElementById("th_alb").style.color = "black"; 
                document.getElementById("th_alb2").style.color = "black"; 
+               $("div#alb1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
 
         $("#th_albunit").html(table.row(this).data()[12]);
@@ -885,20 +917,51 @@ var logresultstable = document.getElementById("logresults");
         var tpa = String(document.getElementById("th_tp").innerText);  
         /*low */ var tpb =  String(doc.data().TPLower)
         /* high */ var tpc =  String(doc.data().TPUpper)
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(tpa),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(tpc)]},
+              bar: {color: "rgb(50 135 69)"}
+            },
+       
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        var config = { responsive: true,displayModeBar: false};
+        Plotly.newPlot('tp1', data, layout,config);
+
+
         if (parseFloat(tpa) > parseFloat(tpc) || tpa.includes(">"))
         {
          th_tp.style.color = "red"
          document.getElementById("th_tp2").style.color = "red"; 
+         $("div#tp1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
         }
        else if (parseFloat(tpa) < parseFloat(tpb))
         {
          th_tp.style.color = "red"
          document.getElementById("th_tp2").style.color = "red"; 
+         $("div#tp1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
         }
         else 
         {
          document.getElementById("th_tp").style.color = "black"; 
          document.getElementById("th_tp2").style.color = "black"; 
+         $("div#tp1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
         }
         $("#th_tpunit").html(table.row(this).data()[15]);
         $("#th_tpnormal").html(table.row(this).data()[16]);
@@ -907,21 +970,51 @@ var logresultstable = document.getElementById("logresults");
         $("#th_ca").html(table.row(this).data()[17]);
         var caa = String(document.getElementById("th_ca").innerText);  
         /*low */ var cab = String(doc.data().CaLower); 
-        /* high */ var cac = String(doc.data().CaUpper);     
+        /* high */ var cac = String(doc.data().CaUpper);    
+        
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(caa),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(cac)]},
+            },
+       
+            
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('ca1', data, layout);
+
           if (parseFloat(caa) > parseFloat(cac) || caa.includes(">"))
               {
                th_ca.style.color = "red"
                document.getElementById("th_ca2").style.color = "red"; 
+               $("div#ca1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(caa) < parseFloat(cab))
               {
                th_ca.style.color = "red"
                document.getElementById("th_ca2").style.color = "red"; 
+               $("div#ca1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
               }
               else 
               {
                document.getElementById("th_ca").style.color = "black"; 
                document.getElementById("th_ca2").style.color = "black"; 
+               $("div#ca1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
+               
               }
 
         $("#th_caunit").html(table.row(this).data()[18]);
@@ -933,20 +1026,49 @@ var logresultstable = document.getElementById("logresults");
         var glua = String(document.getElementById("th_glu").innerText);  
         /*low */ var glub = String(doc.data().GLULower); 
         /* high */ var gluc = String(doc.data().GLUUpper); 
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(glua),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(gluc)]},
+            },
+       
+            
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('glu1', data, layout);
+
           if (parseFloat(glua) > parseFloat(gluc) || glua.includes(">"))
               {
                th_glu.style.color = "red"
                document.getElementById("th_glu2").style.color = "red"; 
+               $("div#glu1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(glua) < parseFloat(glub))
               {
                th_glu.style.color = "red"
                document.getElementById("th_glu2").style.color = "red"; 
+               $("div#glu1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
               }
               else 
               {
                document.getElementById("th_glu").style.color = "black"; 
                document.getElementById("th_glu2").style.color = "black"; 
+               $("div#glu1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
 
         $("#th_gluunit").html(table.row(this).data()[21]);
@@ -958,23 +1080,50 @@ var logresultstable = document.getElementById("logresults");
         var buna = String(document.getElementById("th_bun").innerText);
         /*low */ var bunb = String(doc.data().BUNLower)
         /* high */ var bunc =  String(doc.data().BUNUpper)
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(buna),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+            },
+       
+            
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('bun1', data, layout);
       
           if (parseFloat(buna) > parseFloat(bunc) || buna.includes(">"))
               {
                th_bun.style.color = "red"
                document.getElementById("th_bun2").style.color = "red"; 
+               $("div#bun1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)");
               }
              else if (parseFloat(buna) < parseFloat(bunb))
               {
                th_bun.style.color = "red"
                document.getElementById("th_bun2").style.color = "red"; 
+               $("div#bun1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
               }
               else 
               {
                document.getElementById("th_bun").style.color = "black"; 
                document.getElementById("th_bun2").style.color = "black"; 
+               $("div#bun1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
-
+              
         $("#th_bununit").html(table.row(this).data()[24]);
         $("#th_bunnormal").html(table.row(this).data()[25]);
 
@@ -984,21 +1133,48 @@ var logresultstable = document.getElementById("logresults");
         var pa = String(document.getElementById("th_p").innerText);  
         /*low */ var pb =  String(doc.data().PLower)
         /* high */ var pc =  String(doc.data().PUpper)  
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(pa),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(pc)]},
+            },
+       
+            
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('p1', data, layout);
       
           if (parseFloat(pa) > parseFloat(pc) || pa.includes(">"))
               {
                th_p.style.color = "red"
                document.getElementById("th_p2").style.color = "red"; 
+               $("div#p1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(pa) < parseFloat(pb))
               {
                th_p.style.color = "red"
                document.getElementById("th_p2").style.color = "red"; 
+               $("div#p1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
               }
               else 
               {
                document.getElementById("th_p").style.color = "black"; 
                document.getElementById("th_p2").style.color = "black"; 
+               $("div#p1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }        
 
         $("#th_punit").html(table.row(this).data()[27]);
@@ -1009,22 +1185,50 @@ var logresultstable = document.getElementById("logresults");
         $("#th_amy").html(table.row(this).data()[29]);
         var amya = String(document.getElementById("th_amy").innerText);  
          /*low */ var amyb = String(doc.data().AMYLower); 
-               /* high */ var amyc = String(doc.data().AMYUpper);   
+               /* high */ var amyc = String(doc.data().AMYUpper);  
+               
+               var data = [
+                {
+                  type: "indicator",
+                  mode: "gauge",
+                  value: parseFloat(amya),
+                  domain: { x: [0, 1], y: [0, 1] },
+                  gauge: { 
+                    shape: "bullet",
+                    axis: { range: [0, parseFloat(amyc)]},
+                  },
+             
+                  
+                }
+              ];
+              var layout = { 
+              width: 250, height: 200,
+              paper_bgcolor:"rgba(0,0,0,0)", 
+              font: {
+                family: 'Courier New, monospace',
+                size: 0,
+                color: '#FFFFFF'
+              }
+              };
+              Plotly.newPlot('amy1', data, layout);
              
                if (parseFloat(amya) > parseFloat(amyc) || amya.includes(">"))
                {              
                 th_amy.style.color = "red"
                 document.getElementById("th_amy2").style.color = "red"; 
+                $("div#amy1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
                }
               else if (parseFloat(amya) < parseFloat(amyb))
                {            
                 th_amy.style.color = "red"
                 document.getElementById("th_amy2").style.color = "red"; 
+                $("div#amy1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
                }
                else 
                {              
                 document.getElementById("th_amy").style.color = "black"; 
                 document.getElementById("th_amy2").style.color = "black"; 
+                $("div#amy1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
                }
 
         $("#th_amyunit").html(table.row(this).data()[30]);
@@ -1036,21 +1240,49 @@ var logresultstable = document.getElementById("logresults");
         var chola = String(document.getElementById("th_chol").innerText);  
          /*low */ var cholb =  String(doc.data().CholLower)
                 /* high */ var cholc =  String(doc.data().CholUpper)  
+
+                var data = [
+                  {
+                    type: "indicator",
+                    mode: "gauge",
+                    value: parseFloat(chola),
+                    domain: { x: [0, 1], y: [0, 1] },
+                    gauge: { 
+                      shape: "bullet",
+                      axis: { range: [0, parseFloat(cholc)]},
+                    },
+               
+                    
+                  }
+                ];
+                var layout = { 
+                width: 250, height: 200,
+                paper_bgcolor:"rgba(0,0,0,0)", 
+                font: {
+                  family: 'Courier New, monospace',
+                  size: 0,
+                  color: '#FFFFFF'
+                }
+                };
+                Plotly.newPlot('chol1', data, layout);
               
                 if (parseFloat(chola) > parseFloat(cholc) || chola.includes(">"))
                 {             
                  th_chol.style.color = "red"
                  document.getElementById("th_chol2").style.color = "red"; 
+                 $("div#chol1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
                 }
                else if (parseFloat(chola) < parseFloat(cholb))
                 {              
                  th_chol.style.color = "red"
                  document.getElementById("th_chol2").style.color = "red"; 
+                 $("div#chol1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
                 }
                 else 
                 {              
                  document.getElementById("th_chol").style.color = "black"; 
                  document.getElementById("th_chol2").style.color = "black"; 
+                 $("div#chol1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
                 }
 
         $("#th_cholunit").html(table.row(this).data()[33]);
@@ -1062,20 +1294,49 @@ var logresultstable = document.getElementById("logresults");
         var alpa = String(document.getElementById("th_alp").innerText);  
           /*low */ var alpb =  String(doc.data().AlpLower)
                 /* high */ var alpc =  String(doc.data().AlpUpper)   
+
+                var data = [
+                  {
+                    type: "indicator",
+                    mode: "gauge",
+                    value: parseFloat(alpa),
+                    domain: { x: [0, 1], y: [0, 1] },
+                    gauge: { 
+                      shape: "bullet",
+                      axis: { range: [0, parseFloat(alpc)]},
+                    },
+               
+                    
+                  }
+                ];
+                var layout = { 
+                width: 250, height: 200,
+                paper_bgcolor:"rgba(0,0,0,0)", 
+                font: {
+                  family: 'Courier New, monospace',
+                  size: 0,
+                  color: '#FFFFFF'
+                }
+                };
+                Plotly.newPlot('alp1', data, layout);
+
                 if (parseFloat(alpa) > parseFloat(alpc) || alpa.includes(">"))
                 {            
                  th_alp.style.color = "red"
                  document.getElementById("th_alp2").style.color = "red"; 
+                 $("div#alp1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
                 }
                else if (parseFloat(alpa) < parseFloat(alpb))
                 {             
                  th_alp.style.color = "red"
                  document.getElementById("th_alp2").style.color = "red"; 
+                 $("div#alp1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
                 }
                 else 
                 {             
                  document.getElementById("th_alp").style.color = "black"; 
                  document.getElementById("th_alp2").style.color = "black"; 
+                 $("div#alp1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
                 }
 
         $("#th_alpunit").html(table.row(this).data()[36]);
@@ -1086,21 +1347,51 @@ var logresultstable = document.getElementById("logresults");
         var crea = String(document.getElementById("th_cre").innerText);  
           /*low */ var creb = String(doc.data().CreLower)
            /* high */ var crec = String(doc.data().CreUpper)
+
+           var data = [
+            {
+              type: "indicator",
+              mode: "gauge",
+              value: parseFloat(crea),
+              domain: { x: [0, 1], y: [0, 1] },
+              gauge: { 
+                shape: "bullet",
+                axis: { range: [0, parseFloat(crec)]},
+                bar: {color: "#296e74"}
+              },
+         
+              
+            }
+          ];
+          var layout = { 
+          width: 250, height: 200,
+          paper_bgcolor:"rgba(0,0,0,0)", 
+          font: {
+            family: 'Courier New, monospace',
+            size: 0,
+            color: '#FFFFFF'
+          }
+          };
+          Plotly.newPlot('cre1', data, layout);
          
            if (parseFloat(crea) > parseFloat(crec) || crea.includes(">"))
            {
-            th_cre.style.color = "red"
+            th_cre.style.color 
+            = "red"
             document.getElementById("th_cre2").style.color = "red"; 
+            $("div#cre1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
            }
           else if (parseFloat(crea) < parseFloat(creb))
            {
             th_cre.style.color = "red"
             document.getElementById("th_cre2").style.color = "red"; 
+            $("div#cre1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
            }
            else 
            {
             document.getElementById("th_cre").style.color = "black"; 
             document.getElementById("th_cre2").style.color = "black"; 
+            $("div#cre1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
            }
         $("#th_creunit").html(table.row(this).data()[39]);
         $("#th_crenormal").html(table.row(this).data()[40]);
@@ -1110,21 +1401,49 @@ var logresultstable = document.getElementById("logresults");
         var cka = String(document.getElementById("th_ck").innerText);  
         /*low */ var ckb = String(doc.data().CkLower)
        /* high */ var ckc = String(doc.data().CkUpper)
+
+       var data = [
+        {
+          type: "indicator",
+          mode: "gauge",
+          value: parseFloat(cka),
+          domain: { x: [0, 1], y: [0, 1] },
+          gauge: { 
+            shape: "bullet",
+            axis: { range: [0, parseFloat(ckc)]},
+          },
+     
+          
+        }
+      ];
+      var layout = { 
+      width: 250, height: 200,
+      paper_bgcolor:"rgba(0,0,0,0)", 
+      font: {
+        family: 'Courier New, monospace',
+        size: 0,
+        color: '#FFFFFF'
+      }
+      };
+      Plotly.newPlot('ck1', data, layout);
      
        if (parseFloat(cka) > parseFloat(ckc))
        {     
         th_ck.style.color = "red"
         document.getElementById("th_ck2").style.color = "red"; 
+        $("div#ck1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)");
        }
       else if (parseFloat(cka) < parseFloat(ckb))
        {        
         th_ck.style.color = "red"
         document.getElementById("th_ck2").style.color = "red"; 
+        $("div#ck1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
        }
        else 
        {
         document.getElementById("th_ck").style.color = "black"; 
         document.getElementById("th_ck2").style.color = "black"; 
+        $("div#ck1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)"); 
        }
 
         $("#th_ckunit").html(table.row(this).data()[42]);
@@ -1135,21 +1454,48 @@ var logresultstable = document.getElementById("logresults");
         var tbila = String(document.getElementById("th_tbil").innerText);  
         /*low */ var tbilb = String(doc.data().TbilLower)
         /* high */ var tbilc = String(doc.data().TbilUpper)  
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(tbila),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(tbilc)]},
+            },
+       
+            
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('tbil1', data, layout);
       
           if (parseFloat(tbila) > parseFloat(tbilc) || tbila.includes(">"))
               {
                th_tbil.style.color = "red"
                document.getElementById("th_tbil2").style.color = "red"; 
+               $("div#tbil1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(tbila) < parseFloat(tbilb))
               {
                th_tbil.style.color = "red"
                document.getElementById("th_tbil2").style.color = "red"; 
+               $("div#tbil1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
               }
               else 
               {
                document.getElementById("th_tbil").style.color = "black"; 
                document.getElementById("th_tbil2").style.color = "black"; 
+               $("div#tbil1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               } 
         $("#th_tbilunit").html(table.row(this).data()[78]);
         $("#th_tbilnormal").html(table.row(this).data()[79]);
@@ -1158,20 +1504,48 @@ var logresultstable = document.getElementById("logresults");
         var alta = String(document.getElementById("th_alt").innerText);  
         /*low */ var altb = String(doc.data().AltLower)
         /* high */ var altc = String(doc.data().AltUpper)   
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(alta),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(altc)]},
+            },
+       
+            
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('alt1', data, layout);
           if (parseFloat(alta) > parseFloat(altc) || alta.includes(">"))
               {
                th_alt.style.color = "red"
                document.getElementById("th_alt2").style.color = "red"; 
+               $("div#alt1> .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)");
               }
              else if (parseFloat(alta) < parseFloat(altb))
               {
                th_alt.style.color = "red"
                document.getElementById("th_alt2").style.color = "red"; 
+               $("div#alt1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
               }
               else 
               {
                document.getElementById("th_alt").style.color = "black"; 
                document.getElementById("th_alt2").style.color = "black"; 
+               $("div#alt1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
         $("#th_altunit").html(table.row(this).data()[81]);
         $("#th_altnormal").html(table.row(this).data()[82]);
@@ -1186,21 +1560,48 @@ var logresultstable = document.getElementById("logresults");
         $("#th_wbc").html(table.row(this).data()[44]); 
         var wbca = String(document.getElementById("th_wbc").innerText);  
         /*low */ var wbcb = String(doc.data().WBCLower); 
-        /* high */ var wbcc = String(doc.data().WBCUpper);    
+        /* high */ var wbcc = String(doc.data().WBCUpper);  
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(wbca),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(wbcc)]},
+            },
+        
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('wbc1', data, layout);  
           if (parseFloat(wbca) > parseFloat(wbcc))
               {            
                th_wbc.style.color = "red"
                document.getElementById("th_wbc2").style.color = "red"; 
+               $("div#wbc1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(wbca) < parseFloat(wbcb))
               {
                th_wbc.style.color = "red"
                document.getElementById("th_wbc2").style.color = "red"; 
+               $("div#wbc1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
               }
               else 
               {
                document.getElementById("th_wbc").style.color = "black"; 
                document.getElementById("th_wbc2").style.color = "black"; 
+               $("div#wbc1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
         
         $("#th_wbcunit").html(table.row(this).data()[45]);
@@ -1210,21 +1611,49 @@ var logresultstable = document.getElementById("logresults");
         var lyma = String(document.getElementById("th_lym").innerText);  
         /*low */ var lymb = String(doc.data().LymLower); 
         /* high */ var lymc = String(doc.data().LymUpper); ;    
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(lyma),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(lymc)]},
+      
+            },
+       
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('lym1', data, layout);
       
           if (parseFloat(lyma) > parseFloat(lymc))
               {            
                th_lym.style.color = "red"
                document.getElementById("th_lym2").style.color = "red"; 
+               $("div#lym1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(lyma) < parseFloat(lymb))
               {            
                th_lym.style.color = "red"
                document.getElementById("th_lym2").style.color = "red"; 
+               $("div#lym1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)");
               }
               else 
               {
                document.getElementById("th_lym").style.color = "black"; 
                document.getElementById("th_lym2").style.color = "black"; 
+               $("div#lym1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)");
               }
 
         $("#th_lymunit").html(table.row(this).data()[48]);
@@ -1233,22 +1662,48 @@ var logresultstable = document.getElementById("logresults");
         $("#th_mon").html(table.row(this).data()[50]); 
         var mona = String(document.getElementById("th_mon").innerText);  
         /*low */ var monb = String(doc.data().MonLower); 
-        /* high */ var monc = String(doc.data().MonUpper);    
+        /* high */ var monc = String(doc.data().MonUpper);  
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(monb),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(monc)]},
+            },
+       
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('mon1', data, layout);  
       
           if (parseFloat(mona) > parseFloat(monc))
               {
                th_mon.style.color = "red"
                document.getElementById("th_mon2").style.color = "red"; 
+               $("div#mon1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(mona) < parseFloat(monb))
               {
                th_mon.style.color = "red"
                document.getElementById("th_mon2").style.color = "red"; 
+               $("div#mon1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
               }
               else 
               {
                document.getElementById("th_mon").style.color = "black"; 
                document.getElementById("th_mon2").style.color = "black"; 
+               $("div#mon1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
     
         $("#th_monunit").html(table.row(this).data()[51]);
@@ -1258,21 +1713,48 @@ var logresultstable = document.getElementById("logresults");
         var graa = String(document.getElementById("th_gra").innerText);  
         /*low */ var grab = String(doc.data().GraLower); 
         /* high */ var grac = String(doc.data().GraUpper);    
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(graa),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(grac)]},
+            },
+       
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('gra1', data, layout);
       
           if (parseFloat(graa) > parseFloat(grac))
               {
                th_gra.style.color = "red"
                document.getElementById("th_gra2").style.color = "red"; 
+               $("div#gra1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(graa) < parseFloat(grab))
               {
                th_gra.style.color = "red"
                document.getElementById("th_gra2").style.color = "red"; 
+               $("div#gra1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
               }
               else 
               {
                document.getElementById("th_gra").style.color = "black"; 
                document.getElementById("th_gra2").style.color = "black"; 
+               $("div#gra1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
 
         $("#th_graunit").html(table.row(this).data()[54]);
@@ -1282,21 +1764,47 @@ var logresultstable = document.getElementById("logresults");
         var rbca = String(document.getElementById("th_rbc").innerText);  
         /*low */ var rbcb = String(doc.data().RBCLower); 
         /* high */ var rbcc =  String(doc.data().RBCUpper); 
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(rbcc)]},
+            },
+            value: parseFloat(rbca),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('rbc1', data, layout);
       
           if (parseFloat(rbca) > parseFloat(rbcc))
               {
                th_rbc.style.color = "red"
                document.getElementById("th_rbc2").style.color = "red"; 
+               $("div#rbc1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)");
               }
              else if (parseFloat(rbca) < parseFloat(rbcb))
               {
                th_rbc.style.color = "red"
                document.getElementById("th_rbc2").style.color = "red"; 
+               $("div#rbc1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
               }
               else 
               {
                document.getElementById("th_rbc").style.color = "black"; 
                document.getElementById("th_rbc2").style.color = "black"; 
+               $("div#rbc1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
 
         $("#th_rbcunit").html(table.row(this).data()[57]);
@@ -1306,21 +1814,46 @@ var logresultstable = document.getElementById("logresults");
         var hgba = String(document.getElementById("th_hgb").innerText);  
         /*low */ var hgbb =  String(doc.data().HGBLower); 
         /* high */ var hgbc =  String(doc.data().HGBUpper); 
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(hgbc)]},
+            },
+            value: parseFloat(hgba),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('hgb1', data, layout);
       
           if (parseFloat(hgba) > parseFloat(hgbc))
               {
                th_hgb.style.color = "red"
                document.getElementById("th_hgb2").style.color = "red"; 
+               $("div#hgb1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(hgba) < parseFloat(hgbb))
               {
                th_hgb.style.color = "red"
                document.getElementById("th_hgb2").style.color = "red"; 
+               $("div#hgb1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
               }
               else 
               {
                document.getElementById("th_hgb").style.color = "black"; 
                document.getElementById("th_hgb2").style.color = "black"; 
+               $("div#hgb1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
         $("#th_hgbunit").html(table.row(this).data()[60]);
         $("#th_hgbnormal").html(table.row(this).data()[61]);
@@ -1329,22 +1862,48 @@ var logresultstable = document.getElementById("logresults");
         var hcta = String(document.getElementById("th_hct").innerText);  
         /*low */ var hctb = String(doc.data().HCTLower); 
         /* high */ var hctc = String(doc.data().HCTUpper); 
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(hctc)]},
+            },
+            value: parseFloat(hcta),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('hct1', data, layout);
       
           if (parseFloat(hcta) > parseFloat(hctc))
               {          
                th_hct.style.color = "red"
                document.getElementById("th_hct2").style.color = "red"; 
+               $("div#hct1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(hcta) < parseFloat(hctb))
               {
              
                th_hct.style.color = "red"
-               document.getElementById("th_hct2").style.color = "red"; 
+               document.getElementById("th_hct2").style.color = "red";
+               $("div#hct1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
               }
               else 
               {
                document.getElementById("th_hct").style.color = "black"; 
                document.getElementById("th_hct2").style.color = "black"; 
+               $("div#hct1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
         $("#th_hctunit").html(table.row(this).data()[63]);
         $("#th_hctnormal").html(table.row(this).data()[64]);
@@ -1353,21 +1912,47 @@ var logresultstable = document.getElementById("logresults");
         var mcva = String(document.getElementById("th_mcv").innerText);  
         /*low */ var mcvb =  String(doc.data().MCVLower); 
         /* high */ var mcvc =  String(doc.data().MCVUpper); 
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(mcvc)]},
+            },
+            value: parseFloat(mcva),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('mcv1', data, layout);
       
           if (parseFloat(mcva) > parseFloat(mcvc))
               {
                th_mcv.style.color = "red"
                document.getElementById("th_mcv2").style.color = "red"; 
+               $("div#mcv1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(mcva) < parseFloat(mcvb))
               {
                th_mcv.style.color = "red"
                document.getElementById("th_mcv2").style.color = "red";
+               $("div#mcv1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
               }
               else 
               {
                document.getElementById("th_mcv").style.color = "black"; 
                document.getElementById("th_mcv2").style.color = "black"; 
+               $("div#mcv1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
         $("#th_mcvunit").html(table.row(this).data()[66]);
         $("#th_mcvnormal").html(table.row(this).data()[67]);
@@ -1376,21 +1961,47 @@ var logresultstable = document.getElementById("logresults");
         var mcha = String(document.getElementById("th_mch").innerText);  
          /*low */ var mchb = String(doc.data().MCHLower); 
         /* high */ var mchc = String(doc.data().MCHUpper); 
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(mchc)]},
+            },
+            value: parseFloat(mcha),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('mch1', data, layout);
       
           if (parseFloat(mcha) > parseFloat(mchc))
               {
                th_mch.style.color = "red"
                document.getElementById("th_mch2").style.color = "red"; 
+               $("div#mch1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(mcha) < parseFloat(mchb))
               {
                th_mch.style.color = "red"
                document.getElementById("th_mch2").style.color = "red"; 
+               $("div#mch1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
               }
               else 
               {
                document.getElementById("th_mch").style.color = "black"; 
                document.getElementById("th_mch2").style.color = "black"; 
+               $("div#mch1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
         $("#th_mchunit").html(table.row(this).data()[69]);
         $("#th_mchnormal").html(table.row(this).data()[70]);
@@ -1399,21 +2010,47 @@ var logresultstable = document.getElementById("logresults");
         var mchca = String(document.getElementById("th_mchc").innerText);  
         /*low */ var mchcb = String(doc.data().MCHCLower); 
         /* high */ var mchcc = String(doc.data().MCHCUpper); 
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(mchcc)]},
+            },
+            value: parseFloat(mchca),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('mchc1', data, layout);
       
           if (parseFloat(mchca) > parseFloat(mchcc))
               {
                th_mchc.style.color = "red"
                document.getElementById("th_mchc2").style.color = "red"; 
+               $("div#mchc1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(mchca) < parseFloat(mchcb))
               {
                th_mchc.style.color = "red"
                document.getElementById("th_mchc2").style.color = "red"; 
+               $("div#mchc1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
               }
               else 
               {
                document.getElementById("th_mchc").style.color = "black"; 
                document.getElementById("th_mchc2").style.color = "black"; 
+               $("div#mchc1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               } 
         $("#th_mchcunit").html(table.row(this).data()[72]);
         $("#th_mchcnormal").html(table.row(this).data()[73]);
@@ -1422,36 +2059,198 @@ var logresultstable = document.getElementById("logresults");
         var plta = String(document.getElementById("th_plt").innerText);  
          /*low */ var pltb =  String(doc.data().PLTLower); 
         /* high */ var pltc =  String(doc.data().PLTUpper); 
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(pltc)]},
+            },
+            value: parseFloat(plta),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('plt1', data, layout);
       
           if (parseFloat(plta) > parseFloat(pltc))
               {
                th_plt.style.color = "red"
                document.getElementById("th_plt2").style.color = "red"; 
+               $("div#plt1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
               }
              else if (parseFloat(plta) < parseFloat(pltb))
               {
                th_plt.style.color = "red"
                document.getElementById("th_plt2").style.color = "red"; 
+               $("div#plt1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
               }
               else 
               {
                document.getElementById("th_plt").style.color = "black"; 
                document.getElementById("th_plt2").style.color = "black"; 
+               $("div#plt1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
               }
         $("#th_pltunit").html(table.row(this).data()[75]);
         $("#th_pltnormal").html(table.row(this).data()[76]);
 
-  
 
         $("#th_lymn").html(table.row(this).data()[84]);
+        var lymna = String(document.getElementById("th_lymn").innerText);  
+        /*low */ var lymnb = String(doc.data().LymNLower); 
+        /* high */ var lymnc = String(doc.data().LymNUpper); 
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(lymna),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(lymnc)]},
+            },
+       
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('lymn1', data, layout);
+
+          if (parseFloat(lymna) > parseFloat(lymnc))
+              {
+               th_lymn.style.color = "red"
+               document.getElementById("th_lym2n").style.color = "red"; 
+               $("div#lymn1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
+              }
+             else if (parseFloat(lymna) < parseFloat(lymnb))
+              {
+               th_lymn.style.color = "red"
+               document.getElementById("th_lym2n").style.color = "red"; 
+               $("div#lymn1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)"); 
+              }
+              else 
+              {
+               document.getElementById("th_lymn").style.color = "black"; 
+               document.getElementById("th_lym2n").style.color = "black"; 
+               $("div#lymn1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
+              } 
         $("#th_lymunitn").html(table.row(this).data()[85]);
         $("#th_lymnormaln").html(table.row(this).data()[86]);
 
         $("#th_monn").html(table.row(this).data()[87]);
+        var monna = String(document.getElementById("th_monn").innerText);  
+        /*low */ var monnb = String(doc.data().MonNLower); 
+        /* high */ var monnc = String(doc.data().MonNUpper); 
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            value: parseFloat(monna),
+            domain: { x: [0, 1], y: [0, 1] },
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(monnc)]},
+            },
+       
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('monn1', data, layout);
+
+          if (parseFloat(monna) > parseFloat(monnc))
+              {
+               th_monn.style.color = "red"
+               document.getElementById("th_mon2n").style.color = "red";
+               $("div#monn1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)");  
+              }
+             else if (parseFloat(monna) < parseFloat(monnb))
+              {
+               th_monn.style.color = "red"
+               document.getElementById("th_mon2n").style.color = "red"; 
+               $("div#monn1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
+              }
+              else 
+              {
+               document.getElementById("th_monn").style.color = "black"; 
+               document.getElementById("th_mon2n").style.color = "black"; 
+               $("div#monn1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
+              } 
         $("#th_monunitn").html(table.row(this).data()[88]);
         $("#th_monnormaln").html(table.row(this).data()[89]);
 
         $("#th_gran").html(table.row(this).data()[90]);
+        var grana = String(document.getElementById("th_gran").innerText);  
+        /*low */ var granb = String(doc.data().GraNLower); 
+        /* high */ var granc = String(doc.data().GraNUpper); 
+
+        var data = [
+          {
+            type: "indicator",
+            mode: "gauge",
+            gauge: { 
+              shape: "bullet",
+              axis: { range: [0, parseFloat(granc)]},
+            },
+            value: parseFloat(grana),
+            domain: { x: [0, 1], y: [0, 1] },
+          }
+        ];
+        var layout = { 
+        width: 250, height: 200,
+        paper_bgcolor:"rgba(0,0,0,0)", 
+        font: {
+          family: 'Courier New, monospace',
+          size: 0,
+          color: '#FFFFFF'
+        }
+        };
+        Plotly.newPlot('gran1', data, layout);
+
+          if (parseFloat(grana) > parseFloat(granc))
+              {
+               th_gran.style.color = "red"
+               document.getElementById("th_gra2n").style.color = "red"; 
+               $("div#gran1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(177 40 40)"); 
+              }
+             else if (parseFloat(grana) < parseFloat(granb))
+              {
+               th_gran.style.color = "red"
+               document.getElementById("th_gra2n").style.color = "red"; 
+               $("div#gran1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(184 170 59)");
+              }
+              else 
+              {
+               document.getElementById("th_gran").style.color = "black"; 
+               document.getElementById("th_gra2n").style.color = "black"; 
+               $("div#gran1 > .plot-container.plotly > .user-select-none.svg-container > svg.main-svg g.indicatorlayer g.trace g.bullet g.value-bullet rect ").css("fill","rgb(50 135 69)");
+              } 
         $("#th_graunitn").html(table.row(this).data()[91]);
         $("#th_granormaln").html(table.row(this).data()[92]);
         })
@@ -1584,6 +2383,9 @@ $('#deleteno').click(function() {
 $('#deletebtn').click(function() {
   $('#ModalCenter').css("display", "block");
 })
+
+
+
 
 
 

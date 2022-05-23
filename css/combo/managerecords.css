@@ -561,23 +561,14 @@ body {
   }
 
   .horizontal_line4{
-    background-color: black;
-    width: 50%;
-    height: 2px;
-    border-top:  black;
-    line-height: 50%;
-    margin-top: 30px;
     visibility: hidden;
+    
    
   }
   .horizontal_line5{
-    background-color: black;
-    width: 50%;
-    height: 2px;
-    border-top:  black;
-    line-height: 50%;
-    margin-top: -10px;
     visibility: hidden;
+   
+   
     
   }
   .vertical {
@@ -606,10 +597,32 @@ body {
 
   #labtechnician1{
     display:none;
+  
   }
 
   #vet1{
     display:none;
+   
+  }
+
+  #details1{
+    display:none;
+   
+  }
+
+  #details2{
+    display:none;
+    
+  }
+
+  #signature1{
+    display:none;
+   
+  }
+
+  #signature2{
+    display:none;
+   
   }
  
 
@@ -691,11 +704,6 @@ body {
       display:none;
     }
 
-  
-    /* div#new-row {
-      padding-top: 120px;
-  } */
-  
     ::-webkit-scrollbar {
       display: none;
     }
@@ -709,29 +717,67 @@ body {
       width: 115%;
       color : black
     }
+
    .signatoriesyes {
-    /* float: left; */
-    padding-left: 50%;
     float: right;
-    margin-top: -8%;
-    display: block;
   } 
  
-
   #labtechnician1{
-    margin-top: 35px;
-    margin-left: -35px;
+    margin-top: -90px;
+      margin-left: 270px;
     font-family: 'Segoe UI Semibold';
-      font-size: 15px;
+      font-size: 14px;
+      display: block;
+      color : black;
+      white-space: nowrap;
+      text-align: center;
   }
 
+  #details1{
+    margin-top: 10px;
+      margin-left: 270px;
+    font-family: 'Segoe UI Semibold';
+      font-size: 14px;
+      display: block;
+      color : black;
+      white-space: nowrap;
+      text-align: center;
+
+  }
+  #signature2{
+    margin-top: -170px;
+      margin-left: 570px;
+    display: block;
+  }
+ 
   #vet1{
-    margin-top: 20px;
-    margin-left: 20px;
+    margin-top: -15px;
+      margin-left: 765px; 
     font-family: 'Segoe UI Semibold';
-    font-size: 15px;
+    font-size: 14px;
+    display: block;
+    white-space: nowrap;
+    color : black;
+    text-align: center;
   }
 
+  #details2{
+    margin-top: -15px;
+    margin-left: 765px; 
+    font-family: 'Segoe UI Semibold';
+    font-size: 14px;
+    display: block;
+    white-space: nowrap;
+    color : black;
+    text-align: center;
+  }
+
+  #signature1{
+    margin-top: -160px;
+    margin-left: 800px; 
+      display: block;
+  }
+ 
     .horizontal_line{
       background-color: black;
       width: 105%;
@@ -766,26 +812,26 @@ body {
    
      .horizontal_line4 {    
       background-color: black;
-      width: 25%;
-      height: 1px;
+      width: 21%;
+      height: 2px;
       border-top:  black;
       line-height: 50%;
       -webkit-print-color-adjust: exact;
       visibility: visible; 
-      margin-top: 90px;
-      margin-left: -10px;
+      margin-top: -70px;
+      margin-left: 540px;
     }
     .horizontal_line5 {
      
       background-color: black;
-      width: 25%;
-      height: 1px;
+      width: 21%;
+      height: 2px;
       border-top:  black;
       line-height: 50%;
       -webkit-print-color-adjust: exact;
       visibility: visible; 
-      margin-top: -55px;
-      margin-left: 740px;
+      margin-top: -70px;
+      margin-left: 780px;
       
     }
     .vertical {
@@ -1545,6 +1591,7 @@ body {
     float:left;
     text-align: justify;
     white-space: normal;
+    font-size: 18px;
   }
   #remarks-textarea2 {
   
@@ -1555,6 +1602,7 @@ body {
     float:left;
     text-align: justify;
     white-space: normal;
+    font-size: 18px;
   }
   
   .bootstrap-select>.dropdown-toggle.bs-placeholder{
@@ -1715,4 +1763,15 @@ margin-left: -4px;
 }
 #specieselect {
 margin-left: -4px;
+}
+.modebar {
+  display: none;
+}
+.testclass {
+  position: relative;
+  padding: 0px;
+  margin-top: -113px;
+  margin-left: -84px;
+  margin-bottom: -105px;
+  margin-right: -78px;
 }

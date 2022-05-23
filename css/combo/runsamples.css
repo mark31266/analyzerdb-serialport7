@@ -768,21 +768,21 @@ position: absolute;
     visibility: visible; 
   }
   .horizontal_line4 {
-    background-color: black;
+    background-color: blue;
     width: 30%;
     height: 2px;
     border-top:  black;
     line-height: 50%;
     -webkit-print-color-adjust: exact;
     visibility: visible; 
-    margin-top: 50px;
+    margin-top: 60px;
     margin-left: 450px;
   }
   .horizontal_line5 {
-    background-color: black;
+    background-color: RED;
     width: 30%;
     height: 2px;
-    border-top:  black;
+    border-top:  red;
     line-height: 50%;
     -webkit-print-color-adjust: exact;
     visibility: visible; 
