@@ -627,11 +627,19 @@ div.subtabletext {
     margin-top: 75px;
   
   }
-
+  #logo1{
+    position:static;
+  }
   #clinic1{
     font-family: 'Segoe UI Semibold';
     font-size: 35px;
-
+    position: static;
+    width: 450px;
+   height: 100%;
+   text-align: center;
+   /* border: 1px solid black; */
+   overflow: auto;
+   font-size: 35px;
   }
 
   #address{
@@ -678,8 +686,8 @@ div.subtabletext {
 #labtechnician1{
   
   float: right;
-  margin-top: -20px;
-  margin-right: 65px;
+  margin-top: -24px;
+  margin-right: 40px;
   font-family: 'Segoe UI Semibold';
     font-size: 14px;
     visibility: visible;
@@ -704,7 +712,7 @@ position: absolute;
   /* margin-top: 5px; */
   /* object-position: center top; */
   /* padding-right: 200px; */
-  margin-left: 760px;
+  margin-left: 740px;
   margin-top: -17px;
   font-family: 'Segoe UI Semibold';
     font-size: 14px;
@@ -729,8 +737,8 @@ position: absolute;
 
 #vet1{
   float: right;
-  margin-top: -20px;
-  margin-right: -220px;
+  margin-top: -24px;
+  margin-right: -240px;
   font-family: 'Segoe UI Semibold';
   font-size: 14px;
   visibility: visible;
@@ -768,26 +776,26 @@ position: absolute;
     visibility: visible; 
   }
   .horizontal_line4 {
-    background-color: blue;
+    background-color: black;
     width: 30%;
     height: 2px;
     border-top:  black;
     line-height: 50%;
     -webkit-print-color-adjust: exact;
     visibility: visible; 
-    margin-top: 60px;
+    margin-top: 50px;
     margin-left: 450px;
   }
   .horizontal_line5 {
-    background-color: RED;
-    width: 30%;
+    background-color: black;
+    width: 35%;
     height: 2px;
-    border-top:  red;
+    border-top:  black;
     line-height: 50%;
     -webkit-print-color-adjust: exact;
     visibility: visible; 
     margin-top: -2px;
-    margin-left: 720px;
+    margin-left: 690px;
     
   }
   .vertical {

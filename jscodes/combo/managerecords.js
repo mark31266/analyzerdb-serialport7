@@ -63,7 +63,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     var details11 = document.getElementById("details1");
     var details21 = document.getElementById("details2"); 
   
-    clinicdiv.innerHTML = String(clinic1); 
+    clinicdiv.innerHTML = String(clinic1 ); 
     addressdiv.innerHTML = String(address1); 
     labtech.innerHTML = String(person1); 
     vet1.innerHTML = String(person2)
@@ -89,7 +89,7 @@ docRef.get().then((doc) => {
     console.log("Error getting document:", error);
 });
 //Automatic Image Data (Logo)!!
-var docRef = db2.collection("Images").doc("logo.png");
+var docRef = db2.collection("Images").doc("Logo");
 docRef.get().then((doc) => {
     if (doc.exists) {
        myimg2.src = doc.data().ImageURL; 
@@ -837,8 +837,7 @@ var logresultstable = document.getElementById("logresults");
         $("#breedinputs").val(table.row(this).data()[93]);
         $("#breed").html(table.row(this).data()[93]);
 
-        $("#remarks-textarea").html(table.row(this).data()[94]);
-        $("#remarks-textarea2").html(table.row(this).data()[94]);
+        $("#remarks-textarea").text(table.row(this).data()[94]);
         var barcode5 = document.getElementById("last-barcode").innerText; 
           //barcode
     JsBarcode("#barcode3", barcode5, {
@@ -2271,14 +2270,13 @@ var logresultstable = document.getElementById("logresults");
     $("#submitbtn").css("display","block");
     $(".col-gen").css("display","none");
     $(".hideelements"). css("display", "none");
-    $("#remarks-textarea"). css("display", "none");
+    $("#remarks-textarea").prop("disabled", false);
     $(".inpUpdate1"). css("display", "block");
     $(".inpUpdate1-2"). css("display", "block");
     $(".inpUpdate2"). css("display", "block");
     $(".dropdown.bootstrap-select.select-gen"). css("display", "block");
     $("#breedinputs"). css("display", "block");
     $("#physicianinputs"). css("display", "block");
-    $("#remarks-textarea2"). css("display", "block");
     $("#printbtn2"). css("display", "block");
     $("#printbtn"). css("display", "none");
     $("#deletebtn"). css("display", "none");
@@ -2292,7 +2290,7 @@ var logresultstable = document.getElementById("logresults");
   var gender1 = document.getElementById("genderselect"); 
   var breed1 = document.getElementById("breedinputs"); 
   var vet1 = document.getElementById("physicianinputs");
-  var remarks1 = document.getElementById("remarks-textarea2");
+  var remarks1 = document.getElementById("remarks-textarea");
   var sampledate = document.getElementById("DATE")
   $('#submitbtn').click(function() {
     if (petname1 !== null && petname1.value === "" ||
@@ -2384,8 +2382,12 @@ $('#deletebtn').click(function() {
   $('#ModalCenter').css("display", "block");
 })
 
-
-
+/* ED CLINIC */
+// $(function() {
+//   while( $('#fitin div').height() > $('#fitin').height() ) {
+//       $('#fitin div').css('font-size', (parseInt($('#fitin div').css('font-size')) - 1) + "px" );
+//   }
+// });
 
 
 

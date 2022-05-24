@@ -230,7 +230,7 @@
                 console.log("Error getting document:", error);
             });
             //Automatic Image Data (Logo)!!
-            var docRef = db.collection("Images").doc("logo.png");
+            var docRef = db.collection("Images").doc("Logo");
             docRef.get().then((doc) => {
                 if (doc.exists) {
                    myimg2.src = doc.data().ImageURL; 
@@ -718,7 +718,7 @@
                     shape: "bullet",
                   },
              
-                  
+                   
                 }
               ];
               var layout = { 
