@@ -287,14 +287,10 @@
                       <div class="col-3">
                         <div class="inputBoxPetsName">PID: </div>
                       </div>
-                      <!--<div class="col-8">-->
                         <div class="col-7" id="pidinfo"></div>
-                      <!--</div>-->
                     </div>
                   </div>
-
                     &nbsp;                   
-
                     <div class="row">
                       <div class="col-5">
                     <div class="inputBoxPetsName">Pet's Name: </div></div><div id="petname" class="hideelements"></div>
@@ -765,7 +761,7 @@
            
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-dlt text-light" onClick="deletefunction();">Yes</button>
+                    <button id="deleteyes" type="button" class="btn btn-dlt text-light">Yes</button>
                     <button type="button" id="deleteno" class="btn btn-rst text-light">No</button>
                   </div>
                 </div>
@@ -825,16 +821,16 @@
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-backdrop="false" data-target="#myModal"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog1 modal-dialog-centered" role="document">
       <div class="modal-content-message">
-        <div class="modal-header">
-          <h5 class="modal-title">
+        <div class="modal-header1">
+          <h5 class="modal-title2">
             <div id="error1"></div>
           </h5>
           <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-rst text-light" data-dismiss="modal">Close</button>
+          <button id="closeno" type="button" class="btn btn-rst text-light" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

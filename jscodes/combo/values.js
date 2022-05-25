@@ -151,6 +151,7 @@
                 var machinename = document.getElementById("machinename"); 
                 var remarks = document.getElementById("remarks-textarea"); 
                 var result1 = [] ; 
+                var result5 = [] ; 
                 
                 var firebaseConfig = {
                  apiKey: "AIzaSyBJspFr6QSvhEAmONVu3Tl7lZrRFQSA-8I",
@@ -188,6 +189,7 @@
                let db = firebase.firestore(); 
              //-----------------------------------------String to Date Function-------------------------------//
                //--------------writing data---------------------//
+            
                db.collection("Reference Ranges").where("Machine", "==", "MNCHIP V5")
                .get().then(querySnapshot => {
                 querySnapshot.forEach(doc => result1.push(doc.id));
@@ -198,6 +200,33 @@
                   $('#specieselect').selectpicker('refresh');
                 });
               }) 
+
+              db.collection("Reference Ranges").where("Machine", "==", "Mythic 18 Vet")
+              .get().then(querySnapshot => {
+               querySnapshot.forEach(doc => result5.push(doc.id));
+               result5.forEach(function (item2) {
+                 const optionObj2 = document.createElement("option");
+                 optionObj2.textContent = item2.replace("Mythic 18 Vet - ","");
+                 document.getElementById("specieselect").appendChild(optionObj2);
+                 jQuery.fn.uniqueAttrs = function(attr) {
+                  if(!attr) return this;
+                  var that = this;
+                  return this.filter(function (index, node) {
+                     return that.index(that.filter(function() {
+                        return this[attr] === node[attr];
+                     })) === index;
+                  });
+               };
+               var $ul = $('#specieselect');
+               $ul.html($ul.find('option').uniqueAttrs('value'));
+                 $('#specieselect').selectpicker('refresh');
+               });
+             }) 
+
+           
+        
+
+
                   var uid; 
                   var username5; 
           firebase.auth().onAuthStateChanged(function (user) {
@@ -430,8 +459,33 @@
              });
          
            }
+           var socket = io();
+           socket.on('ALB', function(ALB) {
+            if (ALB !== null ){
+             //  console.log(data); 
+            } 
+            var selectBox = document.getElementById("specieselect");
+            if(selectBox !== null && selectBox.value === "") {
+
+             document.getElementById("error1").innerHTML = "Please Select a Specie First";
+             $('#errormodal').modal('show');
+             
+            }
+          });   
+          socket.on('WBC', function(WBC) {
+            if (WBC !== null ){
+             //  console.log(data); 
+            } 
+            var selectBox = document.getElementById("specieselect");
+            if(selectBox !== null && selectBox.value === "") {
+
+             document.getElementById("error1").innerHTML = "Please Select a Specie First";
+             $('#errormodal').modal('show');
+             
+            }
+          });   
              function changeFunc() {
-                           var socket = io();
+                          
               //SID DATA
                  socket.on('data', function(data) {
                    if (data !== null ){

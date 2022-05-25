@@ -539,7 +539,9 @@ var logresultstable = document.getElementById("logresults");
     })
   }
   GetAllDataOnce();
+ 
   setTimeout(function (wews) {
+   
     $(document).ready(function () {
 
       setTimeout(() => {
@@ -560,9 +562,10 @@ var logresultstable = document.getElementById("logresults");
       }, 500);
       setTimeout(() => {
         $("#example"). css("visibility", "visible");
-        $("#example_wrapper"). css("visibility", "visible");
+        $("#example_wrapper"). css("visibility", "visible")
         $(".dataTables_info"). css("visibility", "hidden");
-        
+        $("#scnrbtn"). css("display", "none");
+      
       }, 300);
       $(".spinner-grow"). css("display", "none");
       $('#example').dataTable({
@@ -581,7 +584,7 @@ var logresultstable = document.getElementById("logresults");
         responsive: true,
         "autoWidth": false,
         sorting: true,
-        "order": [[0]],
+        "order": [[5]],
         lengthChange: false,
         pageLength: 12,
         scrollY: "400px",
@@ -617,6 +620,7 @@ var logresultstable = document.getElementById("logresults");
             orderable: true,
           },
           {
+            
             "targets": [3,4,6,7,8,9,11,12,13,14,15,
               16,17,18,19,20,21,22,23,24,25,26,27,28,29,
               30,31,32,33,34,35,36,37,38,39,40,41,42,43,
@@ -2032,7 +2036,6 @@ var logresultstable = document.getElementById("logresults");
         }
         };
         Plotly.newPlot('mchc1', data, layout);
-      
           if (parseFloat(mchca) > parseFloat(mchcc))
               {
                th_mchc.style.color = "red"
@@ -2280,7 +2283,23 @@ var logresultstable = document.getElementById("logresults");
     $("#printbtn2"). css("display", "block");
     $("#printbtn"). css("display", "none");
     $("#deletebtn"). css("display", "none");
+
+    $('.modal-dialog.modal-dialog-centered.modal-manage').click(function(e) {   
+      $("#remarks-textarea").prop("disabled", true);
+      }); 
+      $('.btn-toolbar.float-right').click(function(event){
+        event.stopPropagation();
+     });   
+     $('#textareaposition').click(function(event){
+      $("#remarks-textarea").prop("disabled", false);
+      event.stopPropagation();
+      $('#textareaposition').click(function(event){
+        $("#remarks-textarea").prop("disabled", false);
+        event.stopPropagation();
+      });   
+    });   
   })
+
   var date2 = document.getElementById("date"); 
   var clock1 = document.getElementById("clock"); 
   var pidinfo1 = document.getElementById("pidinfo"); 
@@ -2302,6 +2321,7 @@ var logresultstable = document.getElementById("logresults");
 
     document.getElementById("error1").innerHTML = "Missing Details! Please fill out the field/s"
     $('#myModal').modal("show"); 
+    $('#myModal').css('display',"block");
     }
     else {
     document.getElementById("error5").innerHTML = "Are you sure you want to update this data?"
@@ -2338,6 +2358,10 @@ var logresultstable = document.getElementById("logresults");
   })
   $('#updateno').click(function() {
     $('#updatemodal').css('display',"none");
+  })
+
+  $('#closeno').click(function() {
+    $('#myModal').css('display',"none");
   })
 
   $('#closebtn2').click(function() {
@@ -2378,6 +2402,17 @@ $('#scnrbtn').click(function() {
 $('#deleteno').click(function() {
   $('#ModalCenter').css("display", "none");
 })
+$('#deleteyes').click(function() {
+  var pidno = document.getElementById("pidinfo")
+  db2.collection("patientvalues2").doc(pidno.innerHTML).delete().then(() => {
+    document.getElementById("error1").innerHTML = "Test No. " + (pidno.innerHTML) + " " + "has been successfully deleted." ;
+    $('#deletemodal').modal('hide');
+    $('#messagemodal').modal('show');
+    setTimeout(() => {
+      window.location.reload(); 
+    }, 500);
+  })
+})
 $('#deletebtn').click(function() {
   $('#ModalCenter').css("display", "block");
 })
@@ -2388,7 +2423,6 @@ $('#deletebtn').click(function() {
 //       $('#fitin div').css('font-size', (parseInt($('#fitin div').css('font-size')) - 1) + "px" );
 //   }
 // });
-
 
 
 
